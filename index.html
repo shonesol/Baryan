@@ -1658,7 +1658,1194 @@
 
 </section>
 
+<!-- =====================================================
+     REVIEWS
+===================================================== -->
 
+<section
+  class="reviews-section"
+  id="reviews"
+>
+
+  <div class="container">
+
+    <div class="section-heading center-heading">
+
+      <p class="eyebrow">
+        BBA REVIEWS
+      </p>
+
+      <h2>
+        WHAT OUR
+        <span>PLAYERS SAY.</span>
+      </h2>
+
+      <p>
+        Hear from players, parents and members
+        of the Baryan Badminton Academy community.
+      </p>
+
+    </div>
+
+
+    <!-- =================================================
+         REVIEW SELECTOR
+    ================================================== -->
+
+    <div class="reviews-selector">
+
+      <label for="reviewSelect">
+        Select a review
+      </label>
+
+      <select
+        id="reviewSelect"
+        aria-label="Select a BBA review"
+      >
+
+        <option value="">
+          Select a review...
+        </option>
+
+      </select>
+
+
+      <div
+        class="selected-review"
+        id="selectedReview"
+      >
+
+        <p class="reviews-loading">
+          Select a review above to read it.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SUBMIT REVIEW
+    ================================================== -->
+
+    <div class="review-form-wrapper">
+
+      <div class="review-form-heading">
+
+        <p class="eyebrow">
+          YOUR EXPERIENCE
+        </p>
+
+        <h3>
+          LEAVE A
+          <span>REVIEW.</span>
+        </h3>
+
+        <p>
+          Tell us about your experience at
+          Baryan Badminton Academy.
+        </p>
+
+      </div>
+
+
+      <form
+        id="reviewForm"
+        class="review-form"
+      >
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+          <label for="reviewName">
+            Your Name
+          </label>
+
+          <input
+            type="text"
+            id="reviewName"
+            name="name"
+            placeholder="Enter your name"
+            required
+            maxlength="60"
+          >
+
+        </div>
+
+
+        <!-- ROLE -->
+
+        <div class="form-group">
+
+          <label for="reviewRole">
+            You are a
+          </label>
+
+          <select
+            id="reviewRole"
+            name="role"
+            required
+          >
+
+            <option value="">
+              Select one
+            </option>
+
+            <option value="Player">
+              Player
+            </option>
+
+            <option value="Parent">
+              Parent
+            </option>
+
+            <option value="Coach">
+              Coach
+            </option>
+
+            <option value="Member">
+              Member
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- RATING -->
+
+        <div class="form-group">
+
+          <label>
+            Rating
+          </label>
+
+          <div class="rating-input">
+
+            <label>
+
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                required
+              >
+
+              ★★★★★
+
+            </label>
+
+            <label>
+
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+              >
+
+              ★★★★
+
+            </label>
+
+            <label>
+
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+              >
+
+              ★★★
+
+            </label>
+
+            <label>
+
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+              >
+
+              ★★
+
+            </label>
+
+            <label>
+
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+              >
+
+              ★
+
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group">
+
+          <label for="reviewMessage">
+            Your Review
+          </label>
+
+          <textarea
+            id="reviewMessage"
+            name="message"
+            rows="5"
+            placeholder="Write your review..."
+            required
+            maxlength="500"
+          ></textarea>
+
+        </div>
+
+
+        <!-- SUBMIT -->
+
+        <button
+          type="submit"
+          class="primary-button review-submit"
+          id="reviewSubmit"
+        >
+          SUBMIT REVIEW
+        </button>
+
+
+        <!-- STATUS -->
+
+        <p
+          id="reviewStatus"
+          class="review-status"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FIREBASE REVIEWS
+===================================================== -->
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+  /* ================================================
+     FIREBASE CONFIG
+  ================================================ */
+
+  const firebaseConfig = {
+
+    apiKey: "YOUR_API_KEY",
+
+    authDomain:
+      "YOUR_PROJECT.firebaseapp.com",
+
+    projectId:
+      "YOUR_PROJECT_ID",
+
+    storageBucket:
+      "YOUR_PROJECT.firebasestorage.app",
+
+    messagingSenderId:
+      "YOUR_MESSAGING_SENDER_ID",
+
+    appId:
+      "YOUR_APP_ID"
+
+  };
+
+
+  /* ================================================
+     INITIALIZE FIREBASE
+  ================================================ */
+
+  const app =
+    initializeApp(firebaseConfig);
+
+  const db =
+    getFirestore(app);
+
+
+  /* ================================================
+     ELEMENTS
+  ================================================ */
+
+  const reviewSelect =
+    document.getElementById(
+      "reviewSelect"
+    );
+
+  const selectedReview =
+    document.getElementById(
+      "selectedReview"
+    );
+
+  const reviewForm =
+    document.getElementById(
+      "reviewForm"
+    );
+
+  const reviewSubmit =
+    document.getElementById(
+      "reviewSubmit"
+    );
+
+  const reviewStatus =
+    document.getElementById(
+      "reviewStatus"
+    );
+
+
+  let reviews = [];
+
+
+  /* ================================================
+     LOAD REVIEWS
+  ================================================ */
+
+  async function loadReviews() {
+
+    try {
+
+      const reviewsQuery =
+        query(
+          collection(
+            db,
+            "reviews"
+          ),
+          orderBy(
+            "createdAt",
+            "desc"
+          )
+        );
+
+
+      const snapshot =
+        await getDocs(
+          reviewsQuery
+        );
+
+
+      reviews = [];
+
+
+      snapshot.forEach(
+        documentSnapshot => {
+
+          reviews.push({
+
+            id:
+              documentSnapshot.id,
+
+            ...documentSnapshot.data()
+
+          });
+
+        }
+      );
+
+
+      renderReviewSelector();
+
+
+    } catch (error) {
+
+      console.error(
+        "Error loading reviews:",
+        error
+      );
+
+
+      reviewSelect.innerHTML = `
+        <option value="">
+          Reviews could not be loaded
+        </option>
+      `;
+
+
+      selectedReview.innerHTML = `
+        <p class="reviews-loading">
+          Reviews could not be loaded.
+          Please try again later.
+        </p>
+      `;
+
+    }
+
+  }
+
+
+  /* ================================================
+     RENDER REVIEW SELECT BOX
+  ================================================ */
+
+  function renderReviewSelector() {
+
+    if (
+      reviews.length === 0
+    ) {
+
+      reviewSelect.innerHTML = `
+        <option value="">
+          No reviews yet
+        </option>
+      `;
+
+
+      selectedReview.innerHTML = `
+        <p class="reviews-loading">
+          No reviews yet.
+          Be the first to review BBA!
+        </p>
+      `;
+
+      return;
+
+    }
+
+
+    reviewSelect.innerHTML = `
+
+      <option value="">
+        Select a review...
+      </option>
+
+      ${
+        reviews
+          .map(
+            (review, index) => `
+
+              <option value="${index}">
+
+                ${escapeHTML(
+                  review.name ||
+                  "BBA Member"
+                )}
+
+                —
+                
+                ${escapeHTML(
+                  review.role ||
+                  "BBA Member"
+                )}
+
+              </option>
+
+            `
+          )
+          .join("")
+      }
+
+    `;
+
+
+    selectedReview.innerHTML = `
+      <p class="reviews-loading">
+        Select a review above to read it.
+      </p>
+    `;
+
+  }
+
+
+  /* ================================================
+     SELECT REVIEW
+  ================================================ */
+
+  reviewSelect.addEventListener(
+    "change",
+    () => {
+
+      const selectedIndex =
+        reviewSelect.value;
+
+
+      if (
+        selectedIndex === ""
+      ) {
+
+        selectedReview.innerHTML = `
+          <p class="reviews-loading">
+            Select a review above to read it.
+          </p>
+        `;
+
+        return;
+
+      }
+
+
+      const review =
+        reviews[
+          Number(
+            selectedIndex
+          )
+        ];
+
+
+      if (!review) {
+
+        selectedReview.innerHTML = `
+          <p class="reviews-loading">
+            Review could not be found.
+          </p>
+        `;
+
+        return;
+
+      }
+
+
+      displayReview(
+        review
+      );
+
+    }
+  );
+
+
+  /* ================================================
+     DISPLAY REVIEW
+  ================================================ */
+
+  function displayReview(
+    review
+  ) {
+
+    const rating =
+      Math.min(
+        5,
+        Math.max(
+          1,
+          Number(
+            review.rating
+          ) || 5
+        )
+      );
+
+
+    const stars =
+      "★".repeat(
+        rating
+      ) +
+      "☆".repeat(
+        5 - rating
+      );
+
+
+    selectedReview.innerHTML = `
+
+      <div class="review-stars">
+        ${stars}
+      </div>
+
+      <p class="review-message">
+        “${escapeHTML(
+          review.message ||
+          ""
+        )}”
+      </p>
+
+      <strong class="review-name">
+        ${escapeHTML(
+          review.name ||
+          "BBA Member"
+        )}
+      </strong>
+
+      <span class="review-role">
+        ${escapeHTML(
+          review.role ||
+          "BBA Member"
+        )}
+      </span>
+
+    `;
+
+  }
+
+
+  /* ================================================
+     SUBMIT REVIEW
+  ================================================ */
+
+  reviewForm.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+
+      const ratingInput =
+        document.querySelector(
+          'input[name="rating"]:checked'
+        );
+
+
+      if (!ratingInput) {
+
+        reviewStatus.textContent =
+          "Please select a rating.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      const name =
+        document
+          .getElementById(
+            "reviewName"
+          )
+          .value
+          .trim();
+
+
+      const role =
+        document
+          .getElementById(
+            "reviewRole"
+          )
+          .value;
+
+
+      const rating =
+        Number(
+          ratingInput.value
+        );
+
+
+      const message =
+        document
+          .getElementById(
+            "reviewMessage"
+          )
+          .value
+          .trim();
+
+
+      reviewSubmit.disabled =
+        true;
+
+
+      reviewSubmit.textContent =
+        "SUBMITTING...";
+
+
+      reviewStatus.textContent =
+        "";
+
+
+      try {
+
+        await addDoc(
+
+          collection(
+            db,
+            "reviews"
+          ),
+
+          {
+
+            name:
+              name,
+
+            role:
+              role,
+
+            rating:
+              rating,
+
+            message:
+              message,
+
+            createdAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+
+        reviewStatus.textContent =
+          "Thank you! Your review has been submitted.";
+
+
+        reviewStatus.style.color =
+          "#168a45";
+
+
+        reviewForm.reset();
+
+
+        await loadReviews();
+
+
+      } catch (error) {
+
+        console.error(
+          "Error submitting review:",
+          error
+        );
+
+
+        reviewStatus.textContent =
+          "Sorry, your review could not be submitted. Please try again.";
+
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+      }
+
+
+      reviewSubmit.disabled =
+        false;
+
+
+      reviewSubmit.textContent =
+        "SUBMIT REVIEW";
+
+    }
+  );
+
+
+  /* ================================================
+     SECURITY
+  ================================================ */
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  /* ================================================
+     START
+  ================================================ */
+
+  loadReviews();
+
+</script>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     CONTACT CTA
+===================================================== -->
+
+<section
+  class="contact-cta"
+  id="contact"
+>
+
+  <div class="container contact-cta-content">
+
+    <div>
+
+      <p class="eyebrow">
+        READY TO PLAY?
+      </p>
+
+      <h2>
+
+        YOUR NEXT
+
+        <span>
+          GAME STARTS HERE.
+        </span>
+
+      </h2>
+
+    </div>
+
+
+    <div class="cta-buttons">
+
+      <a
+        href="membership.html"
+        class="primary-button"
+      >
+        JOIN BBA
+      </a>
+
+
+      <a
+        href="#whatsapp"
+        class="whatsapp-button"
+        id="whatsappButton"
+      >
+        WhatsApp BBA
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MEMBERSHIP CTA
+===================================================== -->
+
+<section class="membership-anchor">
+
+  <div class="container">
+
+    <div class="membership-anchor-box">
+
+      <p class="eyebrow">
+        BBA MEMBERSHIP
+      </p>
+
+      <h2>
+
+        JOIN THE
+
+        <span>
+          BBA FAMILY.
+        </span>
+
+      </h2>
+
+      <p>
+
+        Train with purpose, develop your skills
+        and take the next step in your badminton
+        journey.
+
+      </p>
+
+      <a
+        href="membership.html"
+        class="primary-button"
+      >
+        START APPLICATION
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <div class="container footer-grid">
+
+
+    <!-- BRAND -->
+
+    <div>
+
+      <a
+        href="#home"
+        class="logo"
+        aria-label="Baryan Badminton Academy home"
+      >
+
+        BARYAN
+
+        <span>
+          BBA
+        </span>
+
+      </a>
+
+
+      <p>
+        Train. Develop. Compete. Belong.
+      </p>
+
+    </div>
+
+
+
+    <!-- EXPLORE -->
+
+    <div>
+
+      <h4>
+        Explore
+      </h4>
+
+
+      <a href="#about">
+        About
+      </a>
+
+
+      <a href="#programs">
+        Programs
+      </a>
+
+
+      <a href="#schedule">
+        Schedule
+      </a>
+
+    </div>
+
+
+
+    <!-- ACADEMY -->
+
+    <div>
+
+      <h4>
+        Academy
+      </h4>
+
+
+      <a href="membership.html">
+        Membership
+      </a>
+
+
+      <a href="#gallery">
+        Gallery
+      </a>
+
+
+      <a href="#news">
+        News
+      </a>
+
+    </div>
+
+
+
+    <!-- CONTACT -->
+
+    <div>
+
+      <h4>
+        Contact
+      </h4>
+
+
+      <a href="#contact">
+        Contact BBA
+      </a>
+
+
+      <a
+        href="#whatsapp"
+        id="footerWhatsApp"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- FOOTER BOTTOM -->
+
+  <div class="container footer-bottom">
+
+    <p>
+
+      © 2026 Baryan Badminton Academy.
+      All rights reserved.
+
+    </p>
+
+
+    <div>
+
+      <a href="privacy.html">
+        Privacy
+      </a>
+
+
+      <a href="terms.html">
+        Terms
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     MOBILE NAVIGATION
+===================================================== -->
+
+<script>
+
+  const menuButton =
+    document.getElementById(
+      "mobileMenuButton"
+    );
+
+
+  const navigation =
+    document.getElementById(
+      "mainNavigation"
+    );
+
+
+  if (
+    menuButton &&
+    navigation
+  ) {
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          navigation.classList.toggle(
+            "open"
+          );
+
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(
+            isOpen
+          )
+        );
+
+      }
+    );
+
+
+    document
+      .querySelectorAll(
+        ".main-navigation a"
+      )
+      .forEach(
+        link => {
+
+          link.addEventListener(
+            "click",
+            () => {
+
+              navigation.classList.remove(
+                "open"
+              );
+
+
+              menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          navigation.classList.remove(
+            "open"
+          );
+
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+</script>
+
+
+</body>
+</html>
 
 
 

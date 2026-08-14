@@ -1401,55 +1401,43 @@
     </div>
 
 
-    <!-- REVIEWS SLIDER -->
+    <!-- =================================================
+         REVIEW SELECTOR
+    ================================================== -->
 
-    <div class="reviews-slider">
+    <div class="reviews-selector">
 
-      <div class="review-window">
+      <label for="reviewSelect">
+        Select a review
+      </label>
 
-        <div
-          class="review-track"
-          id="reviewTrack"
-        >
+      <select id="reviewSelect">
 
-          <div class="reviews-loading">
-            Loading reviews...
-          </div>
+        <option value="">
+          Select a review...
+        </option>
 
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="review-button review-prev"
-        id="reviewPrev"
-        aria-label="Previous review"
-      >
-        ←
-      </button>
-
-
-      <button
-        type="button"
-        class="review-button review-next"
-        id="reviewNext"
-        aria-label="Next review"
-      >
-        →
-      </button>
+      </select>
 
 
       <div
-        class="review-dots"
-        id="reviewDots"
-      ></div>
+        class="selected-review"
+        id="selectedReview"
+      >
+
+        <p class="reviews-loading">
+          Select a review above to read it.
+        </p>
+
+      </div>
 
     </div>
 
 
-    <!-- SUBMIT REVIEW -->
+
+    <!-- =================================================
+         SUBMIT REVIEW
+    ================================================== -->
 
     <div class="review-form-wrapper">
 
@@ -1472,7 +1460,13 @@
       </div>
 
 
-      <form id="reviewForm" class="review-form">
+      <form
+        id="reviewForm"
+        class="review-form"
+      >
+
+
+        <!-- NAME -->
 
         <div class="form-group">
 
@@ -1491,6 +1485,9 @@
 
         </div>
 
+
+
+        <!-- ROLE -->
 
         <div class="form-group">
 
@@ -1529,6 +1526,9 @@
         </div>
 
 
+
+        <!-- RATING -->
+
         <div class="form-group">
 
           <label>
@@ -1538,55 +1538,77 @@
           <div class="rating-input">
 
             <label>
+
               <input
                 type="radio"
                 name="rating"
                 value="5"
                 required
               >
+
               ★★★★★
+
             </label>
 
+
             <label>
+
               <input
                 type="radio"
                 name="rating"
                 value="4"
               >
+
               ★★★★
+
             </label>
 
+
             <label>
+
               <input
                 type="radio"
                 name="rating"
                 value="3"
               >
+
               ★★★
+
             </label>
 
+
             <label>
+
               <input
                 type="radio"
                 name="rating"
                 value="2"
               >
+
               ★★
+
             </label>
 
+
             <label>
+
               <input
                 type="radio"
                 name="rating"
                 value="1"
               >
+
               ★
+
             </label>
 
           </div>
 
         </div>
 
+
+
+        <!-- MESSAGE -->
 
         <div class="form-group">
 
@@ -1606,6 +1628,9 @@
         </div>
 
 
+
+        <!-- SUBMIT -->
+
         <button
           type="submit"
           class="primary-button review-submit"
@@ -1615,11 +1640,15 @@
         </button>
 
 
+
+        <!-- STATUS -->
+
         <p
           id="reviewStatus"
           class="review-status"
           aria-live="polite"
         ></p>
+
 
       </form>
 
@@ -1628,6 +1657,579 @@
   </div>
 
 </section>
+
+
+
+
+
+
+
+<!-- =====================================================
+     FIREBASE REVIEWS
+===================================================== -->
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+  /* ================================================
+     YOUR FIREBASE CONFIG
+  ================================================ */
+
+  const firebaseConfig = {
+
+    apiKey: "YOUR_API_KEY",
+
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+
+    projectId: "YOUR_PROJECT_ID",
+
+    storageBucket: "YOUR_PROJECT.firebasestorage.app",
+
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+
+    appId: "YOUR_APP_ID"
+
+  };
+
+
+
+  /* ================================================
+     FIREBASE
+  ================================================ */
+
+  const app =
+    initializeApp(firebaseConfig);
+
+
+  const db =
+    getFirestore(app);
+
+
+
+  /* ================================================
+     ELEMENTS
+  ================================================ */
+
+  const reviewSelect =
+    document.getElementById(
+      "reviewSelect"
+    );
+
+
+  const selectedReview =
+    document.getElementById(
+      "selectedReview"
+    );
+
+
+  const reviewForm =
+    document.getElementById(
+      "reviewForm"
+    );
+
+
+  const reviewSubmit =
+    document.getElementById(
+      "reviewSubmit"
+    );
+
+
+  const reviewStatus =
+    document.getElementById(
+      "reviewStatus"
+    );
+
+
+
+  /* ================================================
+     REVIEWS
+  ================================================ */
+
+  let reviews = [];
+
+
+
+  /* ================================================
+     LOAD REVIEWS
+  ================================================ */
+
+  async function loadReviews() {
+
+    try {
+
+      const reviewsQuery = query(
+
+        collection(
+          db,
+          "reviews"
+        ),
+
+        orderBy(
+          "createdAt",
+          "desc"
+        )
+
+      );
+
+
+      const snapshot =
+        await getDocs(
+          reviewsQuery
+        );
+
+
+      reviews = [];
+
+
+      snapshot.forEach(
+        documentSnapshot => {
+
+          reviews.push({
+
+            id:
+              documentSnapshot.id,
+
+            ...documentSnapshot.data()
+
+          });
+
+        }
+      );
+
+
+      renderReviewSelector();
+
+
+    } catch (error) {
+
+      console.error(
+        "Error loading reviews:",
+        error
+      );
+
+
+      reviewSelect.innerHTML = `
+
+        <option value="">
+          Reviews could not be loaded
+        </option>
+
+      `;
+
+
+      selectedReview.innerHTML = `
+
+        <p class="reviews-loading">
+          Reviews could not be loaded.
+          Please try again later.
+        </p>
+
+      `;
+
+    }
+
+  }
+
+
+
+  /* ================================================
+     REVIEW SELECTOR
+  ================================================ */
+
+  function renderReviewSelector() {
+
+    if (
+      !reviews.length
+    ) {
+
+      reviewSelect.innerHTML = `
+
+        <option value="">
+          No reviews yet
+        </option>
+
+      `;
+
+
+      selectedReview.innerHTML = `
+
+        <p class="reviews-loading">
+          No reviews yet.
+          Be the first to review BBA!
+        </p>
+
+      `;
+
+
+      return;
+
+    }
+
+
+
+    reviewSelect.innerHTML = `
+
+      <option value="">
+        Select a review...
+      </option>
+
+      ${
+        reviews
+          .map(
+            (review, index) => `
+
+              <option value="${index}">
+
+                ${escapeHTML(
+                  review.name
+                )}
+
+                —
+                
+                ${escapeHTML(
+                  review.role ||
+                  "BBA Member"
+                )}
+
+              </option>
+
+            `
+          )
+          .join("")
+      }
+
+    `;
+
+
+    selectedReview.innerHTML = `
+
+      <p class="reviews-loading">
+        Select a review above to read it.
+      </p>
+
+    `;
+
+  }
+
+
+
+  /* ================================================
+     SELECT REVIEW
+  ================================================ */
+
+  reviewSelect.addEventListener(
+    "change",
+    () => {
+
+      const selectedIndex =
+        reviewSelect.value;
+
+
+      if (
+        selectedIndex === ""
+      ) {
+
+        selectedReview.innerHTML = `
+
+          <p class="reviews-loading">
+            Select a review above to read it.
+          </p>
+
+        `;
+
+        return;
+
+      }
+
+
+      const review =
+        reviews[
+          Number(selectedIndex)
+        ];
+
+
+      if (!review) {
+
+        return;
+
+      }
+
+
+      displayReview(
+        review
+      );
+
+    }
+  );
+
+
+
+  /* ================================================
+     DISPLAY SELECTED REVIEW
+  ================================================ */
+
+  function displayReview(
+    review
+  ) {
+
+    const rating =
+      Number(
+        review.rating
+      ) || 5;
+
+
+    const stars =
+      "★".repeat(
+        rating
+      ) +
+      "☆".repeat(
+        5 - rating
+      );
+
+
+    selectedReview.innerHTML = `
+
+      <div class="review-stars">
+
+        ${stars}
+
+      </div>
+
+
+      <p class="review-message">
+
+        “${escapeHTML(
+          review.message
+        )}”
+
+      </p>
+
+
+      <strong class="review-name">
+
+        ${escapeHTML(
+          review.name
+        )}
+
+      </strong>
+
+
+      <span class="review-role">
+
+        ${escapeHTML(
+          review.role ||
+          "BBA Member"
+        )}
+
+      </span>
+
+    `;
+
+  }
+
+
+
+  /* ================================================
+     SUBMIT REVIEW
+  ================================================ */
+
+  reviewForm.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+
+      reviewSubmit.disabled =
+        true;
+
+
+      reviewSubmit.textContent =
+        "SUBMITTING...";
+
+
+      reviewStatus.textContent =
+        "";
+
+
+      const name =
+        document
+          .getElementById(
+            "reviewName"
+          )
+          .value
+          .trim();
+
+
+      const role =
+        document
+          .getElementById(
+            "reviewRole"
+          )
+          .value;
+
+
+      const ratingInput =
+        document.querySelector(
+          'input[name="rating"]:checked'
+        );
+
+
+      const rating =
+        Number(
+          ratingInput.value
+        );
+
+
+      const message =
+        document
+          .getElementById(
+            "reviewMessage"
+          )
+          .value
+          .trim();
+
+
+
+      try {
+
+        await addDoc(
+
+          collection(
+            db,
+            "reviews"
+          ),
+
+          {
+
+            name:
+              name,
+
+            role:
+              role,
+
+            rating:
+              rating,
+
+            message:
+              message,
+
+            createdAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+
+        reviewStatus.textContent =
+          "Thank you! Your review has been submitted.";
+
+
+        reviewStatus.style.color =
+          "#168a45";
+
+
+        reviewForm.reset();
+
+
+        await loadReviews();
+
+
+      } catch (error) {
+
+        console.error(
+          "Error submitting review:",
+          error
+        );
+
+
+        reviewStatus.textContent =
+          "Sorry, your review could not be submitted. Please try again.";
+
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+      }
+
+
+      reviewSubmit.disabled =
+        false;
+
+
+      reviewSubmit.textContent =
+        "SUBMIT REVIEW";
+
+    }
+  );
+
+
+
+  /* ================================================
+     SECURITY
+  ================================================ */
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value
+    )
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+
+  /* ================================================
+     START
+  ================================================ */
+
+  loadReviews();
+
+</script>
 <script type="module">
 
   import {

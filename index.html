@@ -1378,10 +1378,7 @@
      REVIEWS
 ===================================================== -->
 
-<section
-  class="reviews-section"
-  id="reviews"
->
+<section class="reviews-section" id="reviews">
 
   <div class="container">
 
@@ -1404,164 +1401,28 @@
     </div>
 
 
+    <!-- REVIEWS SLIDER -->
+
     <div class="reviews-slider">
 
-      <div class="review-track" id="reviewTrack">
+      <div class="review-window">
 
+        <div
+          class="review-track"
+          id="reviewTrack"
+        >
 
-        <!-- REVIEW 1 -->
-
-        <article class="review-card">
-
-          <div class="review-stars">
-            ★★★★★
+          <div class="reviews-loading">
+            Loading reviews...
           </div>
 
-          <p class="review-text">
-            “BBA has helped me improve my badminton
-            skills, confidence and understanding of
-            the game. The training environment is
-            motivating and welcoming.”
-          </p>
-
-          <div class="review-author">
-
-            <div class="review-avatar">
-              BP
-            </div>
-
-            <div>
-              <strong>
-                BBA Player
-              </strong>
-
-              <span>
-                Academy Member
-              </span>
-            </div>
-
-          </div>
-
-        </article>
-
-
-
-        <!-- REVIEW 2 -->
-
-        <article class="review-card">
-
-          <div class="review-stars">
-            ★★★★★
-          </div>
-
-          <p class="review-text">
-            “The academy provides a great environment
-            for players to learn, train and compete.
-            I have seen a big improvement in my game
-            since joining BBA.”
-          </p>
-
-          <div class="review-author">
-
-            <div class="review-avatar">
-              BM
-            </div>
-
-            <div>
-              <strong>
-                BBA Member
-              </strong>
-
-              <span>
-                Intermediate Player
-              </span>
-            </div>
-
-          </div>
-
-        </article>
-
-
-
-        <!-- REVIEW 3 -->
-
-        <article class="review-card">
-
-          <div class="review-stars">
-            ★★★★★
-          </div>
-
-          <p class="review-text">
-            “BBA combines badminton training with
-            discipline, teamwork and personal growth.
-            It is a great place for young players
-            to develop.”
-          </p>
-
-          <div class="review-author">
-
-            <div class="review-avatar">
-              BP
-            </div>
-
-            <div>
-              <strong>
-                BBA Parent
-              </strong>
-
-              <span>
-                Parent Member
-              </span>
-            </div>
-
-          </div>
-
-        </article>
-
-
-
-        <!-- REVIEW 4 -->
-
-        <article class="review-card">
-
-          <div class="review-stars">
-            ★★★★★
-          </div>
-
-          <p class="review-text">
-            “The training sessions are challenging,
-            enjoyable and well organised. BBA has
-            created a strong community for badminton
-            players.”
-          </p>
-
-          <div class="review-author">
-
-            <div class="review-avatar">
-              BA
-            </div>
-
-            <div>
-              <strong>
-                BBA Athlete
-              </strong>
-
-              <span>
-                Advanced Player
-              </span>
-            </div>
-
-          </div>
-
-        </article>
-
+        </div>
 
       </div>
 
 
-      <!-- SLIDER CONTROLS -->
-
       <button
+        type="button"
         class="review-button review-prev"
         id="reviewPrev"
         aria-label="Previous review"
@@ -1571,6 +1432,7 @@
 
 
       <button
+        type="button"
         class="review-button review-next"
         id="reviewNext"
         aria-label="Next review"
@@ -1582,29 +1444,184 @@
       <div
         class="review-dots"
         id="reviewDots"
-      >
+      ></div>
 
-        <button
-          class="review-dot active"
-          aria-label="Review 1"
-        ></button>
+    </div>
 
-        <button
-          class="review-dot"
-          aria-label="Review 2"
-        ></button>
 
-        <button
-          class="review-dot"
-          aria-label="Review 3"
-        ></button>
+    <!-- SUBMIT REVIEW -->
 
-        <button
-          class="review-dot"
-          aria-label="Review 4"
-        ></button>
+    <div class="review-form-wrapper">
+
+      <div class="review-form-heading">
+
+        <p class="eyebrow">
+          YOUR EXPERIENCE
+        </p>
+
+        <h3>
+          LEAVE A
+          <span>REVIEW.</span>
+        </h3>
+
+        <p>
+          Tell us about your experience at
+          Baryan Badminton Academy.
+        </p>
 
       </div>
+
+
+      <form id="reviewForm" class="review-form">
+
+        <div class="form-group">
+
+          <label for="reviewName">
+            Your Name
+          </label>
+
+          <input
+            type="text"
+            id="reviewName"
+            name="name"
+            placeholder="Enter your name"
+            required
+            maxlength="60"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="reviewRole">
+            You are a
+          </label>
+
+          <select
+            id="reviewRole"
+            name="role"
+            required
+          >
+
+            <option value="">
+              Select one
+            </option>
+
+            <option value="Player">
+              Player
+            </option>
+
+            <option value="Parent">
+              Parent
+            </option>
+
+            <option value="Coach">
+              Coach
+            </option>
+
+            <option value="Member">
+              Member
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Rating
+          </label>
+
+          <div class="rating-input">
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                required
+              >
+              ★★★★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+              >
+              ★★★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+              >
+              ★★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+              >
+              ★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+              >
+              ★
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="reviewMessage">
+            Your Review
+          </label>
+
+          <textarea
+            id="reviewMessage"
+            name="message"
+            rows="5"
+            placeholder="Write your review..."
+            required
+            maxlength="500"
+          ></textarea>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="primary-button review-submit"
+          id="reviewSubmit"
+        >
+          SUBMIT REVIEW
+        </button>
+
+
+        <p
+          id="reviewStatus"
+          class="review-status"
+          aria-live="polite"
+        ></p>
+
+      </form>
 
     </div>
 

@@ -1,79 +1,40 @@
-:root {
-  --blue: #0757c9;
-  --blue-dark: #04347d;
-  --blue-light: #1677ff;
-
-  --orange: #ff6b00;
-  --orange-light: #ff8a24;
-
-  --green: #159447;
-  --green-light: #28b463;
-
-  --black: #050505;
-  --black-soft: #0a0a0a;
-  --surface: #111111;
-  --surface-light: #181818;
-
-  --white: #ffffff;
-  --muted: #aeb7c2;
-
-  --border: rgba(255,255,255,.12);
-
-  --danger: #ff4545;
-  --success: #35c875;
-
-  --max-width: 1180px;
-}
+/* =========================================================
+   BARYAN BADMINTON CLUB
+   MEMBERSHIP PAGE
+   BLUE • ORANGE • GREEN • BLACK
+========================================================= */
 
 
-/* =========================
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
 
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
-  background: var(--black);
-  color: var(--white);
-
   font-family:
     Inter,
     Arial,
     Helvetica,
     sans-serif;
 
+  background: #f5f7fb;
+  color: #111111;
   line-height: 1.6;
 }
 
-
-body,
-input,
-select,
-textarea,
-button {
-  font-family:
-    Inter,
-    Arial,
-    Helvetica,
-    sans-serif;
+img {
+  max-width: 100%;
+  display: block;
 }
-
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 
 button,
 input,
@@ -82,865 +43,1067 @@ textarea {
   font: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
 
-button {
-  cursor: pointer;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 
-/* =========================
+/* =========================================================
+   BRAND COLORS
+========================================================= */
+
+:root {
+
+  --blue: #0757c9;
+  --blue-dark: #043d91;
+  --blue-light: #eaf2ff;
+
+  --orange: #f47b20;
+  --orange-dark: #d85f08;
+  --orange-light: #fff1e5;
+
+  --green: #16834b;
+  --green-dark: #0d6036;
+  --green-light: #e9f8ef;
+
+  --black: #0b0b0b;
+  --black-soft: #171717;
+
+  --white: #ffffff;
+
+  --gray-50: #f8fafc;
+  --gray-100: #eef1f5;
+  --gray-200: #dfe4ea;
+  --gray-500: #697386;
+  --gray-700: #343b46;
+
+  --danger: #c62828;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-sm:
+    0 5px 20px rgba(0, 0, 0, 0.07);
+
+  --shadow-md:
+    0 15px 45px rgba(0, 0, 0, 0.10);
+
+  --shadow-lg:
+    0 25px 70px rgba(0, 0, 0, 0.14);
+
+}
+
+
+/* =========================================================
    CONTAINER
-========================= */
+========================================================= */
 
 .membership-container {
-  width:
-    min(
-      calc(100% - 40px),
-      var(--max-width)
-    );
+
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
 
   margin-inline: auto;
+
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .membership-header {
-  position: absolute;
 
+  position: sticky;
   top: 0;
-  left: 0;
+  z-index: 1000;
 
-  width: 100%;
+  background:
+    rgba(255, 255, 255, 0.96);
 
-  z-index: 50;
+  border-bottom:
+    1px solid var(--gray-200);
+
+  backdrop-filter: blur(14px);
+
+}
+
+
+/*
+   Blue accent line
+*/
+
+.membership-header::before {
+
+  content: "";
+
+  display: block;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blue) 0%,
+      var(--blue) 25%,
+      var(--orange) 25%,
+      var(--orange) 50%,
+      var(--blue) 50%,
+      var(--blue) 75%,
+      var(--green) 75%,
+      var(--green) 100%
+    );
+
 }
 
 
 .membership-header
 .membership-container {
-  min-height: 90px;
+
+  min-height: 76px;
 
   display: flex;
 
   align-items: center;
 
   justify-content: space-between;
+
+  gap: 30px;
+
 }
 
 
-.membership-logo {
-  display: inline-block;
+/* =========================================================
+   LOGO
+========================================================= */
 
-  font-size: 1.3rem;
+.membership-logo {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 1.35rem;
 
   font-weight: 950;
 
-  letter-spacing: -.06em;
+  letter-spacing: -0.04em;
+
+  color: var(--blue);
+
 }
 
 
 .membership-logo span {
-  color: var(--orange);
-}
 
-
-.membership-header nav {
-  display: flex;
+  display: inline-flex;
 
   align-items: center;
 
-  gap: 28px;
-}
+  justify-content: center;
 
+  min-width: 42px;
 
-.membership-header nav a {
-  color:
-    rgba(255,255,255,.78);
+  min-height: 30px;
 
-  font-size: .88rem;
-
-  font-weight: 750;
-
-  transition:
-    color .25s ease;
-}
-
-
-.membership-header nav a:hover {
-  color: var(--orange);
-}
-
-
-.membership-header nav a.active {
-  color: var(--orange);
-}
-
-
-.membership-header nav a.active::after {
-  content: "";
-
-  display: block;
-
-  width: 20px;
-  height: 2px;
-
-  margin: 5px auto 0;
-
-  background: var(--orange);
-}
-
-
-.membership-header .membership-join {
-  padding:
-    11px 20px;
-
-  border-radius: 999px;
+  padding: 3px 8px;
 
   background: var(--orange);
 
   color: var(--white);
+
+  border-radius: 6px;
+
+  font-size: 0.75rem;
+
+  letter-spacing: 0.04em;
+
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-.membership-hero {
-  min-height: 650px;
+.membership-header nav {
 
   display: flex;
 
   align-items: center;
+
+  gap: 4px;
+
+}
+
+
+.membership-header nav a {
+
+  position: relative;
+
+  padding: 10px 13px;
+
+  color: var(--gray-700);
+
+  font-size: 0.9rem;
+
+  font-weight: 750;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+
+}
+
+
+.membership-header nav a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 13px;
+  right: 13px;
+
+  bottom: 4px;
+
+  height: 2px;
+
+  background: var(--orange);
+
+  transform:
+    scaleX(0);
+
+  transform-origin: center;
+
+  transition:
+    transform 0.25s ease;
+
+}
+
+
+.membership-header nav a:hover,
+.membership-header nav a.active {
+
+  color: var(--blue);
+
+}
+
+
+.membership-header nav a:hover::after,
+.membership-header nav a.active::after {
+
+  transform:
+    scaleX(1);
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.membership-hero {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding:
+    115px 0 125px;
 
   background:
 
     radial-gradient(
-      circle at 82% 25%,
-      rgba(255,107,0,.25),
-      transparent 25%
-    ),
-
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(21,148,71,.18),
-      transparent 30%
+      circle at 85% 20%,
+      rgba(244, 123, 32, 0.22),
+      transparent 28%
     ),
 
     linear-gradient(
       135deg,
-      var(--black),
       var(--blue-dark),
       var(--blue)
     );
+
+  color: var(--white);
+
+}
+
+
+.membership-hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 340px;
+  height: 340px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  right: -100px;
+  top: -130px;
+
+}
+
+
+.membership-hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  border:
+    35px solid rgba(244, 123, 32, 0.28);
+
+  left: -100px;
+  bottom: -130px;
+
+}
+
+
+.membership-hero
+.membership-container {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 900px;
+
 }
 
 
 .eyebrow {
-  display: flex;
 
-  align-items: center;
-
-  gap: 10px;
+  margin-bottom: 12px;
 
   color: var(--orange);
 
-  font-size: .72rem;
+  font-size: 0.78rem;
 
-  font-weight: 950;
+  font-weight: 900;
 
-  letter-spacing: .2em;
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
 }
 
 
-.eyebrow::before {
-  content: "";
+.membership-hero .eyebrow {
 
-  width: 28px;
-  height: 3px;
+  color: #ffd0ad;
 
-  background: var(--orange);
-
-  border-radius: 999px;
 }
 
 
 .membership-hero h1 {
-  max-width: 900px;
 
-  margin:
-    15px 0 25px;
+  max-width: 850px;
+
+  margin-bottom: 22px;
 
   font-size:
-    clamp(
-      4rem,
-      10vw,
-      8rem
-    );
+    clamp(3rem, 8vw, 7rem);
 
-  line-height: .86;
+  line-height: 0.9;
 
-  letter-spacing: -.07em;
+  letter-spacing: -0.07em;
 
   font-weight: 950;
+
 }
 
 
 .membership-hero h1 span {
+
   color: var(--orange);
+
 }
 
 
-.membership-hero p:not(.eyebrow) {
-  max-width: 620px;
+.membership-hero > div > p:last-child {
+
+  max-width: 680px;
 
   color:
-    rgba(255,255,255,.76);
+    rgba(255, 255, 255, 0.84);
 
-  font-size: 1.1rem;
+  font-size:
+    clamp(1rem, 2vw, 1.2rem);
+
 }
 
 
-/* =========================
-   GENERAL SECTION
-========================= */
+/* =========================================================
+   SECTION COMMON
+========================================================= */
 
 .membership-info,
 .categories-section,
 .application-section,
 .benefits-section,
 .responsibilities-section {
+
   padding:
-    110px 0;
+    100px 0;
+
 }
 
 
 .section-heading {
-  max-width: 750px;
+
+  max-width: 760px;
 
   margin-bottom: 55px;
+
 }
 
 
 .section-heading h2 {
-  margin:
-    15px 0 20px;
+
+  margin-bottom: 18px;
+
+  color: var(--black);
 
   font-size:
-    clamp(
-      2.8rem,
-      6vw,
-      5rem
-    );
+    clamp(2.3rem, 5vw, 4.6rem);
 
-  line-height: .9;
+  line-height: 0.98;
 
-  letter-spacing: -.06em;
+  letter-spacing: -0.055em;
 
   font-weight: 950;
+
 }
 
 
 .section-heading h2 span {
-  color: var(--orange);
+
+  color: var(--blue);
+
 }
 
 
 .section-heading > p:last-child {
-  color: var(--muted);
+
+  color: var(--gray-500);
+
+  max-width: 680px;
+
 }
 
 
-/* =========================
+/* =========================================================
    MEMBERSHIP STEPS
-========================= */
+========================================================= */
 
 .membership-info {
-  background: var(--black);
+
+  background: var(--white);
+
 }
 
 
 .membership-steps {
+
   display: grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(4, 1fr);
 
-  gap: 2px;
+  gap: 18px;
 
-  background: var(--border);
-
-  border-radius: 20px;
-
-  overflow: hidden;
 }
 
 
 .membership-steps article {
+
+  position: relative;
+
   min-height: 260px;
 
   padding: 30px;
 
-  background: var(--surface);
+  border:
+    1px solid var(--gray-200);
 
-  border-top:
-    4px solid var(--blue);
+  border-radius:
+    var(--radius-md);
+
+  background: var(--white);
+
+  box-shadow: var(--shadow-sm);
+
+  overflow: hidden;
 
   transition:
-    transform .3s ease,
-    background .3s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
 }
 
 
-.membership-steps article:nth-child(2) {
-  border-top-color: var(--orange);
+.membership-steps article::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 5px;
+
+  background: var(--blue);
+
 }
 
 
-.membership-steps article:nth-child(3) {
-  border-top-color: var(--green);
+.membership-steps article:nth-child(2)::before {
+
+  background: var(--orange);
+
 }
 
 
-.membership-steps article:nth-child(4) {
-  border-top-color: var(--blue-light);
+.membership-steps article:nth-child(3)::before {
+
+  background: var(--blue);
+
+}
+
+
+.membership-steps article:nth-child(4)::before {
+
+  background: var(--green);
+
 }
 
 
 .membership-steps article:hover {
-  background: var(--surface-light);
 
   transform:
-    translateY(-5px);
+    translateY(-8px);
+
+  box-shadow:
+    var(--shadow-md);
+
 }
 
 
 .membership-steps strong {
+
   display: block;
 
   margin-bottom: 35px;
 
   color: var(--orange);
 
-  font-size: 1rem;
+  font-size: 2rem;
+
+  font-weight: 950;
+
 }
 
 
 .membership-steps h3 {
-  margin-bottom: 12px;
 
-  font-size: 1.4rem;
+  margin-bottom: 10px;
+
+  font-size: 1.3rem;
+
 }
 
 
 .membership-steps p {
-  color: var(--muted);
 
-  font-size: .9rem;
+  color: var(--gray-500);
+
+  font-size: 0.94rem;
+
 }
 
 
-/* =========================
+/* =========================================================
    CATEGORIES
-========================= */
+========================================================= */
 
 .categories-section {
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue-dark),
-      var(--blue)
-    );
+
+  background: var(--gray-50);
+
 }
 
 
 .category-grid {
+
   display: grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(4, 1fr);
 
-  gap: 2px;
+  gap: 18px;
 
-  background:
-    rgba(255,255,255,.15);
-
-  border-radius: 20px;
-
-  overflow: hidden;
 }
 
 
 .category-card {
-  min-height: 280px;
 
-  padding: 32px;
+  position: relative;
+
+  min-height: 300px;
+
+  padding: 34px;
+
+  color: var(--white);
+
+  border-radius:
+    var(--radius-lg);
+
+  overflow: hidden;
+
+  box-shadow:
+    var(--shadow-md);
+
+  transition:
+    transform 0.3s ease;
+
+}
+
+
+.category-card:hover {
+
+  transform:
+    translateY(-10px)
+    rotate(-0.5deg);
+
+}
+
+
+.category-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  right: -70px;
+  bottom: -80px;
+
+  border-radius: 50%;
 
   background:
-    rgba(0,0,0,.25);
+    rgba(255, 255, 255, 0.12);
 
-  border-top:
-    5px solid var(--blue-light);
+}
+
+
+.category-card.blue {
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--blue),
+      var(--blue-dark)
+    );
+
 }
 
 
 .category-card.orange {
-  border-top-color: var(--orange);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--orange),
+      var(--orange-dark)
+    );
+
 }
 
 
 .category-card.green {
-  border-top-color: var(--green);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--green),
+      var(--green-dark)
+    );
+
 }
 
 
 .category-card.black {
-  border-top-color: var(--black);
+
+  background:
+    linear-gradient(
+      145deg,
+      #222,
+      #050505
+    );
+
 }
 
 
 .category-card > span {
-  color: var(--orange);
 
-  font-weight: 950;
+  display: block;
+
+  margin-bottom: 65px;
+
+  font-size: 1rem;
+
+  font-weight: 900;
+
+  opacity: 0.75;
+
 }
 
 
 .category-card h3 {
-  margin:
-    35px 0 12px;
 
-  font-size: 2rem;
+  margin-bottom: 12px;
 
-  line-height: 1;
+  font-size: 1.7rem;
+
+  font-weight: 900;
+
 }
 
 
 .category-card p {
-  color:
-    rgba(255,255,255,.72);
 
-  font-size: .9rem;
+  position: relative;
+
+  z-index: 2;
+
+  color:
+    rgba(255, 255, 255, 0.84);
+
+  font-size: 0.93rem;
+
 }
 
 
-/* =========================
-   APPLICATION SECTION
-========================= */
+/* =========================================================
+   APPLICATION
+========================================================= */
 
 .application-section {
-  background: var(--black);
+
+  background: var(--white);
+
 }
 
 
 .application-layout {
+
   display: grid;
 
   grid-template-columns:
-    .8fr 1.2fr;
+    minmax(280px, 0.75fr)
+    minmax(0, 1.25fr);
 
-  gap: 80px;
+  gap: 70px;
 
   align-items: start;
+
 }
 
 
 .application-intro {
+
   position: sticky;
 
-  top: 30px;
+  top: 110px;
+
 }
 
 
 .application-intro h2 {
-  margin:
-    15px 0 20px;
+
+  margin-bottom: 20px;
 
   font-size:
-    clamp(
-      3rem,
-      6vw,
-      5.5rem
-    );
+    clamp(2.5rem, 5vw, 5rem);
 
-  line-height: .88;
+  line-height: 0.95;
 
-  letter-spacing: -.07em;
+  letter-spacing: -0.06em;
 
   font-weight: 950;
+
 }
 
 
 .application-intro h2 span {
+
   color: var(--orange);
+
 }
 
 
 .application-intro > p:not(.eyebrow) {
-  color: var(--muted);
+
+  margin-bottom: 35px;
+
+  color: var(--gray-500);
+
 }
 
 
 .requirements {
-  margin-top: 40px;
 
-  padding:
-    25px;
-
-  background: var(--surface);
+  padding: 28px;
 
   border-left:
-    4px solid var(--orange);
+    5px solid var(--green);
+
+  background:
+    var(--green-light);
 
   border-radius:
-    0 12px 12px 0;
+    0 var(--radius-md) var(--radius-md) 0;
+
 }
 
 
 .requirements h3 {
+
   margin-bottom: 15px;
 
-  font-size: 1rem;
+  color: var(--green-dark);
+
 }
 
 
 .requirements ul {
-  display: grid;
-
-  gap: 10px;
 
   list-style: none;
+
 }
 
 
 .requirements li {
-  color: var(--muted);
 
-  font-size: .85rem;
+  margin: 9px 0;
+
+  color: var(--gray-700);
+
+  font-size: 0.94rem;
+
 }
 
 
-/* =========================
-   FORM CARD
-========================= */
+.membership-note {
 
-.form-card {
-  padding:
-    clamp(
-      25px,
-      5vw,
-      45px
-    );
+  margin-top: 20px;
 
-  background: var(--surface);
+  padding: 25px;
 
-  border:
-    1px solid var(--border);
+  border-radius: var(--radius-md);
 
-  border-top:
+  background: var(--orange-light);
+
+  border-left:
     5px solid var(--orange);
 
-  border-radius: 20px;
+}
+
+
+.membership-note h3 {
+
+  margin-bottom: 7px;
+
+}
+
+
+.membership-note p {
+
+  color: var(--gray-700);
+
+  font-size: 0.9rem;
+
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card {
+
+  padding: clamp(25px, 5vw, 50px);
+
+  background: var(--white);
+
+  border:
+    1px solid var(--gray-200);
+
+  border-radius:
+    var(--radius-lg);
 
   box-shadow:
-    0 30px 80px
-    rgba(0,0,0,.35);
+    var(--shadow-lg);
+
 }
 
 
-.form-card form {
-  width: 100%;
+.form-section-title {
+
+  margin:
+    10px 0 25px;
+
+  padding-bottom: 15px;
+
+  border-bottom:
+    1px solid var(--gray-200);
+
 }
 
+
+.form-section-title h3 {
+
+  font-size: 1.25rem;
+
+}
+
+
+/* =========================================================
+   FORM LAYOUT
+========================================================= */
 
 .form-row {
+
   display: grid;
 
   grid-template-columns:
-    repeat(2,1fr);
+    repeat(2, 1fr);
 
   gap: 18px;
+
 }
 
 
 .form-group {
+
   margin-bottom: 20px;
+
 }
 
 
 .form-group label {
+
   display: block;
 
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 
-  color:
-    rgba(255,255,255,.9);
+  color: var(--black);
 
-  font-size: .78rem;
+  font-size: 0.88rem;
 
   font-weight: 800;
+
 }
 
 
 .form-group input,
 .form-group select,
 .form-group textarea {
+
   width: 100%;
 
   border:
-    1px solid var(--border);
+    1.5px solid var(--gray-200);
+
+  border-radius:
+    var(--radius-sm);
+
+  background:
+    var(--gray-50);
+
+  color: var(--black);
 
   outline: none;
 
-  border-radius: 10px;
-
-  background:
-    #080808;
-
-  color: var(--white);
-
-  padding:
-    14px 15px;
-
   transition:
-    border-color .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
 }
 
 
 .form-group input,
 .form-group select {
+
   min-height: 52px;
+
+  padding:
+    0 15px;
+
 }
 
 
 .form-group textarea {
-  resize: vertical;
 
   min-height: 130px;
-}
 
+  padding: 14px 15px;
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color:
-    rgba(255,255,255,.35);
+  resize: vertical;
+
 }
 
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
+
   border-color:
-    var(--blue-light);
+    var(--blue);
 
   background:
-    #0d0d0d;
+    var(--white);
 
   box-shadow:
-    0 0 0 3px
-    rgba(22,119,255,.12);
+    0 0 0 4px
+    rgba(7, 87, 201, 0.10);
+
 }
 
 
-.form-group input.invalid,
-.form-group select.invalid,
-.form-group textarea.invalid {
-  border-color:
-    var(--danger);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(255,69,69,.08);
-}
-
-
-.field-error {
-  display: block;
-
-  min-height: 18px;
-
-  margin-top: 5px;
-
-  color:
-    var(--danger);
-
-  font-size: .72rem;
-}
-
-
-/* =========================
-   CHECKBOX
-========================= */
-
-.checkbox-label {
-  display: flex;
-
-  align-items: flex-start;
-
-  gap: 12px;
-
-  margin:
-    10px 0 22px;
-
-  color: var(--muted);
-
-  font-size: .82rem;
-
-  cursor: pointer;
-}
-
-
-.checkbox-label input {
-  width: 18px;
-  height: 18px;
-
-  flex: 0 0 auto;
-
-  accent-color: var(--orange);
-
-  margin-top: 2px;
-}
-
-
-/* =========================
-   SUBMIT BUTTON
-========================= */
-
-.submit-button {
-  width: 100%;
-
-  min-height: 56px;
-
-  border: 0;
-
-  border-radius: 999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--orange),
-      var(--orange-light)
-    );
-
-  color: var(--white);
-
-  font-weight: 950;
-
-  letter-spacing: .03em;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    opacity .25s ease;
-}
-
-
-.submit-button:hover {
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 12px 30px
-    rgba(255,107,0,.2);
-}
-
-
-.submit-button:disabled {
-  cursor: not-allowed;
-
-  opacity: .65;
-
-  transform: none;
-}
-
-
-.submit-loader {
-  display: none;
-}
-
-
-.submit-button.loading
-#submitText {
-  display: none;
-}
-
-
-.submit-button.loading
-.submit-loader {
-  display: inline;
-}
-
-
-/* =========================
-   FORM MESSAGES
-========================= */
-
-.form-message {
-  display: none;
-
-  margin-top: 20px;
-
-  padding:
-    15px 17px;
-
-  border-radius: 10px;
-
-  font-size: .85rem;
-}
-
-
-.form-message.success {
-  display: block;
-
-  background:
-    rgba(53,200,117,.1);
-
-  border:
-    1px solid
-    rgba(53,200,117,.3);
-
-  color:
-    var(--success);
-}
-
-
-.form-message.error {
-  display: block;
-
-  background:
-    rgba(255,69,69,.1);
-
-  border:
-    1px solid
-    rgba(255,69,69,.3);
-
-  color:
-    #ff7070;
-}
-
-
-.form-security {
-  margin-top: 15px;
-
-  color:
-    rgba(255,255,255,.4);
-
-  font-size: .7rem;
-
-  text-align: center;
-}
-
-
-/* =========================
+/* =========================================================
    HONEYPOT
-========================= */
+========================================================= */
 
 .honeypot {
+
   position: absolute;
 
   left: -9999px;
@@ -949,342 +1112,746 @@ button {
   height: 1px;
 
   overflow: hidden;
+
 }
 
 
-/* =========================
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.checkbox-label {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin:
+    10px 0 25px;
+
+  cursor: pointer;
+
+  color: var(--gray-700);
+
+  font-size: 0.88rem;
+
+}
+
+
+.checkbox-label input {
+
+  flex:
+    0 0 auto;
+
+  width: 19px;
+  height: 19px;
+
+  margin-top: 2px;
+
+  accent-color:
+    var(--blue);
+
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.submit-button {
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 58px;
+
+  border: 0;
+
+  border-radius:
+    var(--radius-sm);
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blue),
+      var(--blue-dark)
+    );
+
+  color: var(--white);
+
+  cursor: pointer;
+
+  font-weight: 950;
+
+  letter-spacing: 0.05em;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+
+}
+
+
+.submit-button:hover:not(:disabled) {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 30px
+    rgba(7, 87, 201, 0.25);
+
+}
+
+
+.submit-button:active:not(:disabled) {
+
+  transform:
+    translateY(0);
+
+}
+
+
+.submit-button:disabled {
+
+  cursor: not-allowed;
+
+  opacity: 0.7;
+
+}
+
+
+.submit-loader {
+
+  animation:
+    pulse 1s infinite;
+
+}
+
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
+
+.form-message {
+
+  display: none;
+
+  margin-top: 18px;
+
+  padding: 15px 18px;
+
+  border-radius:
+    var(--radius-sm);
+
+  font-size: 0.92rem;
+
+  font-weight: 700;
+
+}
+
+
+.form-message.success {
+
+  display: block;
+
+  background:
+    var(--green-light);
+
+  color:
+    var(--green-dark);
+
+  border:
+    1px solid #b9e6ca;
+
+}
+
+
+.form-message.error {
+
+  display: block;
+
+  background:
+    #fff0f0;
+
+  color:
+    var(--danger);
+
+  border:
+    1px solid #f1bebe;
+
+}
+
+
+/* =========================================================
+   WHATSAPP SUCCESS BUTTON
+========================================================= */
+
+.whatsapp-button {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 52px;
+
+  margin-top: 12px;
+
+  padding: 12px 20px;
+
+  border-radius:
+    var(--radius-sm);
+
+  background:
+    var(--green);
+
+  color: var(--white);
+
+  font-weight: 900;
+
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+
+}
+
+
+.whatsapp-button:hover {
+
+  background:
+    var(--green-dark);
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+/* =========================================================
+   SECURITY TEXT
+========================================================= */
+
+.form-security {
+
+  margin-top: 15px;
+
+  color: var(--gray-500);
+
+  font-size: 0.76rem;
+
+  text-align: center;
+
+}
+
+
+/* =========================================================
    BENEFITS
-========================= */
+========================================================= */
 
 .benefits-section {
-  background: var(--surface);
+
+  background:
+    var(--black);
+
+  color: var(--white);
+
+}
+
+
+.benefits-section .section-heading h2 {
+
+  color: var(--white);
+
+}
+
+
+.benefits-section .section-heading h2 span {
+
+  color: var(--orange);
+
+}
+
+
+.benefits-section .section-heading > p:last-child {
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
 }
 
 
 .benefits-grid {
+
   display: grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(4, 1fr);
 
-  gap: 2px;
+  gap: 1px;
 
-  background: var(--border);
+  background:
+    rgba(255, 255, 255, 0.15);
 
-  border-radius: 20px;
-
-  overflow: hidden;
 }
 
 
 .benefits-grid > div {
-  min-height: 230px;
 
-  padding: 30px;
+  min-height: 250px;
 
-  background: var(--black);
+  padding: 32px;
 
-  border-top:
-    4px solid var(--blue);
+  background:
+    var(--black);
+
+  transition:
+    background 0.25s ease;
+
 }
 
 
-.benefits-grid > div:nth-child(2) {
-  border-top-color: var(--orange);
+.benefits-grid > div:nth-child(1):hover,
+.benefits-grid > div:nth-child(3):hover {
+
+  background:
+    var(--blue);
+
 }
 
 
-.benefits-grid > div:nth-child(3) {
-  border-top-color: var(--green);
+.benefits-grid > div:nth-child(2):hover {
+
+  background:
+    var(--orange);
+
 }
 
 
-.benefits-grid > div:nth-child(4) {
-  border-top-color: var(--blue-light);
+.benefits-grid > div:nth-child(4):hover {
+
+  background:
+    var(--green);
+
 }
 
 
 .benefits-grid strong {
+
+  display: block;
+
+  margin-bottom: 45px;
+
   color: var(--orange);
 
-  font-size: .8rem;
+  font-size: 1.5rem;
+
 }
 
 
 .benefits-grid h3 {
-  margin:
-    30px 0 10px;
 
-  font-size: 1.4rem;
+  margin-bottom: 8px;
+
+  font-size: 1.3rem;
+
 }
 
 
 .benefits-grid p {
-  color: var(--muted);
 
-  font-size: .85rem;
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  font-size: 0.9rem;
+
 }
 
 
-/* =========================
+/* =========================================================
    RESPONSIBILITIES
-========================= */
+========================================================= */
 
 .responsibilities-section {
+
   background:
-    linear-gradient(
-      135deg,
-      var(--green),
-      var(--blue-dark)
-    );
+    var(--gray-50);
+
 }
 
 
 .responsibilities-grid {
+
   display: grid;
 
   grid-template-columns:
-    1fr 1fr;
+    0.8fr 1.2fr;
 
   gap: 80px;
+
+  align-items: start;
+
 }
 
 
 .responsibilities-grid h2 {
-  margin-top: 15px;
 
   font-size:
-    clamp(
-      3rem,
-      6vw,
-      5.5rem
-    );
+    clamp(2.4rem, 5vw, 5rem);
 
-  line-height: .88;
+  line-height: 0.95;
 
-  letter-spacing: -.07em;
+  letter-spacing: -0.06em;
 
   font-weight: 950;
+
 }
 
 
 .responsibilities-grid h2 span {
-  color: var(--orange);
+
+  color: var(--green);
+
 }
 
 
 .responsibilities-grid ul {
-  display: grid;
-
-  gap: 1px;
 
   list-style: none;
 
-  background:
-    rgba(255,255,255,.15);
+  border-top:
+    1px solid var(--gray-200);
+
 }
 
 
 .responsibilities-grid li {
-  padding:
-    20px 25px;
 
-  background:
-    rgba(0,0,0,.25);
+  padding: 18px 0;
 
-  color:
-    rgba(255,255,255,.82);
+  border-bottom:
+    1px solid var(--gray-200);
 
-  font-size: .9rem;
+  color: var(--gray-700);
+
+  font-weight: 650;
+
 }
 
 
 .responsibilities-grid li::before {
+
   content: "✓";
+
+  display: inline-block;
 
   margin-right: 12px;
 
-  color: var(--orange);
+  color: var(--green);
 
   font-weight: 950;
+
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 .membership-footer {
+
   padding:
-    50px 0;
+    55px 0 0;
 
-  border-top:
-    4px solid var(--orange);
+  background:
+    var(--black);
 
-  background: var(--black);
+  color:
+    var(--white);
+
 }
 
 
 .membership-footer
 .membership-container {
-  display: flex;
 
-  align-items: center;
+  display: flex;
 
   justify-content: space-between;
 
-  gap: 30px;
+  align-items: flex-start;
+
+  gap: 40px;
+
+  padding-bottom: 40px;
+
+}
+
+
+.membership-footer
+.membership-logo {
+
+  color:
+    var(--white);
+
 }
 
 
 .membership-footer p {
-  margin-top: 8px;
 
-  color: var(--muted);
+  margin-top: 12px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
 }
 
 
 .footer-links {
+
   display: flex;
 
   flex-wrap: wrap;
 
-  gap: 25px;
+  justify-content: flex-end;
+
+  gap: 12px 24px;
+
 }
 
 
 .footer-links a {
-  color:
-    rgba(255,255,255,.7);
 
-  font-size: .85rem;
+  color:
+    rgba(255, 255, 255, 0.7);
+
+  font-size: 0.88rem;
+
+  font-weight: 700;
+
+  transition:
+    color 0.2s ease;
+
 }
 
 
 .footer-links a:hover {
-  color: var(--orange);
+
+  color:
+    var(--orange);
+
 }
 
 
-/* =========================
-   SELECT ARROW
-========================= */
+.footer-bottom {
 
-select {
-  appearance: none;
+  padding:
+    20px;
 
-  background-image:
-    linear-gradient(45deg, transparent 50%, white 50%),
-    linear-gradient(135deg, white 50%, transparent 50%);
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.1);
 
-  background-position:
-    calc(100% - 18px) 22px,
-    calc(100% - 13px) 22px;
+  text-align: center;
 
-  background-size:
-    5px 5px,
-    5px 5px;
-
-  background-repeat: no-repeat;
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+.footer-bottom p {
+
+  margin: 0;
+
+  font-size: 0.78rem;
+
+}
+
+
+/* =========================================================
+   FORM VALIDATION
+========================================================= */
+
+.form-group input:user-invalid,
+.form-group select:user-invalid,
+.form-group textarea:user-invalid {
+
+  border-color:
+    rgba(198, 40, 40, 0.55);
+
+}
+
+
+.form-group input:valid,
+.form-group select:valid {
+
+  border-color:
+    rgba(22, 131, 75, 0.35);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
 
 @media (max-width: 1000px) {
 
   .membership-steps,
   .category-grid,
   .benefits-grid {
+
     grid-template-columns:
-      repeat(2,1fr);
+      repeat(2, 1fr);
+
   }
 
 
   .application-layout {
+
     grid-template-columns: 1fr;
 
-    gap: 50px;
+    gap: 45px;
+
   }
 
 
   .application-intro {
+
     position: static;
+
+  }
+
+
+  .responsibilities-grid {
+
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+
   }
 
 }
 
 
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
 @media (max-width: 700px) {
 
   .membership-container {
+
     width:
-      calc(100% - 28px);
+      min(
+        100% - 28px,
+        600px
+      );
+
   }
 
 
   .membership-header
   .membership-container {
-    min-height: 75px;
+
+    min-height: 68px;
+
   }
 
 
   .membership-header nav {
-    gap: 10px;
+
+    gap: 0;
+
+    overflow-x: auto;
+
+    max-width: 65vw;
+
+    scrollbar-width: none;
+
   }
 
 
-  .membership-header nav a:not(.active) {
+  .membership-header nav::-webkit-scrollbar {
+
     display: none;
+
   }
 
 
-  .membership-header nav a.active {
-    display: none;
-  }
+  .membership-header nav a {
 
-
-  .membership-header nav::after {
-    content: "JOIN";
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 40px;
+    flex:
+      0 0 auto;
 
     padding:
-      0 17px;
+      9px 8px;
 
-    border-radius: 999px;
+    font-size: 0.74rem;
 
-    background:
-      var(--orange);
+  }
 
-    color: white;
 
-    font-size: .72rem;
+  .membership-header nav a::after {
 
-    font-weight: 900;
+    left: 8px;
+    right: 8px;
+
+  }
+
+
+  .membership-logo {
+
+    font-size: 1rem;
+
+  }
+
+
+  .membership-logo span {
+
+    min-width: 35px;
+
+    min-height: 26px;
+
+    font-size: 0.65rem;
+
   }
 
 
   .membership-hero {
-    min-height: 570px;
+
+    padding:
+      80px 0 90px;
+
   }
 
 
   .membership-hero h1 {
+
     font-size:
-      clamp(
-        3.5rem,
-        17vw,
-        5rem
-      );
+      clamp(3.2rem, 16vw, 5rem);
+
   }
 
 
@@ -1293,68 +1860,236 @@ select {
   .application-section,
   .benefits-section,
   .responsibilities-section {
+
     padding:
-      75px 0;
+      70px 0;
+
+  }
+
+
+  .section-heading {
+
+    margin-bottom: 35px;
+
+  }
+
+
+  .section-heading h2 {
+
+    font-size:
+      clamp(2.4rem, 13vw, 4rem);
+
   }
 
 
   .membership-steps,
   .category-grid,
   .benefits-grid {
+
     grid-template-columns: 1fr;
+
   }
 
 
-  .form-row {
-    grid-template-columns: 1fr;
+  .membership-steps article {
 
-    gap: 0;
+    min-height: auto;
+
+  }
+
+
+  .category-card {
+
+    min-height: 260px;
+
+  }
+
+
+  .category-card > span {
+
+    margin-bottom: 50px;
+
   }
 
 
   .form-card {
-    padding: 22px;
+
+    padding:
+      22px 17px;
+
+    border-radius:
+      var(--radius-md);
+
+  }
+
+
+  .form-row {
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+  }
+
+
+  .application-intro h2 {
+
+    font-size:
+      clamp(2.8rem, 14vw, 4.2rem);
+
+  }
+
+
+  .benefits-grid {
+
+    gap: 1px;
+
+  }
+
+
+  .benefits-grid > div {
+
+    min-height: 190px;
+
   }
 
 
   .responsibilities-grid {
-    grid-template-columns: 1fr;
 
-    gap: 45px;
+    gap: 35px;
+
   }
 
 
   .membership-footer
   .membership-container {
+
     flex-direction: column;
 
-    align-items: flex-start;
+  }
+
+
+  .footer-links {
+
+    justify-content: flex-start;
+
   }
 
 }
 
 
-@media (max-width: 420px) {
+/* =========================================================
+   SMALL PHONES
+========================================================= */
 
-  .membership-logo {
-    font-size: 1.1rem;
+@media (max-width: 430px) {
+
+  .membership-header
+  .membership-container {
+
+    gap: 8px;
+
   }
 
 
-  .section-heading h2 {
-    font-size: 2.7rem;
+  .membership-header nav a {
+
+    padding:
+      8px 6px;
+
+    font-size:
+      0.68rem;
+
   }
 
 
-  .application-intro h2 {
-    font-size: 3rem;
+  .membership-hero {
+
+    padding:
+      65px 0 75px;
+
   }
 
 
-  .category-card,
-  .membership-steps article,
-  .benefits-grid > div {
-    padding: 25px;
+  .membership-hero h1 {
+
+    font-size:
+      3.1rem;
+
+  }
+
+
+  .form-card {
+
+    padding:
+      20px 14px;
+
+  }
+
+
+  .form-group input,
+  .form-group select {
+
+    min-height:
+      50px;
+
+  }
+
+
+  .submit-button {
+
+    min-height:
+      55px;
+
+    font-size:
+      0.84rem;
+
+  }
+
+
+  .footer-links {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    width: 100%;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+
+    scroll-behavior: auto;
+
+  }
+
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+
+    scroll-behavior:
+      auto !important;
+
   }
 
 }

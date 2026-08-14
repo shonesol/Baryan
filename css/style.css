@@ -1,0 +1,1512 @@
+/* =========================================================
+   BARYAN BADMINTON CLUB
+   PART 1 — MEMBERSHIP REGISTRATION
+   BRAND COLORS:
+   BLUE • ORANGE • GREEN • BLACK • WHITE
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT / BRAND
+   ========================================================= */
+
+:root {
+  --blue: #0757c9;
+  --blue-dark: #04347d;
+  --blue-light: #1677ff;
+
+  --orange: #ff6b00;
+  --orange-light: #ff8a24;
+  --orange-dark: #d94f00;
+
+  --green: #159447;
+  --green-light: #28b463;
+  --green-dark: #0d6b32;
+
+  --black: #050505;
+  --black-soft: #0b0b0b;
+  --surface: #111111;
+  --surface-light: #181818;
+
+  --white: #ffffff;
+  --text: #f5f7fa;
+  --muted: #aeb7c2;
+
+  --border: rgba(255, 255, 255, 0.12);
+
+  --success: #20b85a;
+  --error: #ff4545;
+
+  --radius: 18px;
+  --radius-small: 12px;
+  --radius-large: 28px;
+
+  --max-width: 1180px;
+
+  --shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35);
+
+  --transition:
+    0.25s ease;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  min-height: 100vh;
+
+  background: var(--black);
+  color: var(--text);
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+ul {
+  list-style: none;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  width: min(
+    calc(100% - 40px),
+    var(--max-width)
+  );
+
+  margin-inline: auto;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 100;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(5, 5, 5, 0.92),
+      rgba(5, 5, 5, 0.55),
+      transparent
+    );
+}
+
+
+.nav-container {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 90px;
+}
+
+
+.logo {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  font-size: 1.35rem;
+
+  font-weight: 950;
+
+  letter-spacing: -0.06em;
+
+  color: var(--white);
+}
+
+
+.logo::before {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  margin-right: 9px;
+
+  border-radius: 50%;
+
+  background: var(--orange);
+
+  box-shadow:
+    0 0 0 5px rgba(255, 107, 0, 0.15);
+}
+
+
+.logo span {
+  margin-left: 4px;
+
+  color: var(--blue-light);
+}
+
+
+.nav-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+
+  padding: 0 22px;
+
+  border: 2px solid var(--orange);
+
+  border-radius: 999px;
+
+  background: var(--orange);
+
+  color: var(--white);
+
+  font-size: 0.9rem;
+
+  font-weight: 850;
+
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+
+.nav-button:hover {
+  background: var(--blue);
+
+  border-color: var(--blue);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(7, 87, 201, 0.35);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.membership-hero {
+  position: relative;
+
+  min-height: 780px;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 107, 0, 0.25),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(21, 148, 71, 0.18),
+      transparent 28%
+    ),
+
+    linear-gradient(
+      135deg,
+      var(--black) 0%,
+      var(--blue-dark) 48%,
+      var(--blue) 72%,
+      var(--green-dark) 100%
+    );
+}
+
+
+.membership-hero::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 40%,
+      rgba(255, 107, 0, 0.08) 40%,
+      rgba(255, 107, 0, 0.08) 41%,
+      transparent 41%
+    );
+
+  pointer-events: none;
+}
+
+
+.membership-hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  right: -220px;
+  bottom: -250px;
+
+  border: 70px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.hero-content {
+  position: relative;
+
+  z-index: 2;
+
+  padding-top: 80px;
+
+  animation:
+    heroReveal 0.8s ease both;
+}
+
+
+@keyframes heroReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+.eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color: var(--orange);
+
+  font-size: 0.75rem;
+
+  font-weight: 950;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+}
+
+
+.eyebrow::before {
+  content: "";
+
+  width: 28px;
+  height: 3px;
+
+  background: var(--orange);
+
+  border-radius: 99px;
+}
+
+
+h1 {
+  max-width: 900px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      3.4rem,
+      9vw,
+      8rem
+    );
+
+  line-height: 0.88;
+
+  letter-spacing: -0.075em;
+
+  font-weight: 950;
+}
+
+
+h1 span {
+  color: var(--orange);
+
+  text-shadow:
+    0 10px 30px rgba(255, 107, 0, 0.2);
+}
+
+
+.hero-text {
+  max-width: 620px;
+
+  margin:
+    36px 0;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size:
+    clamp(
+      1rem,
+      2vw,
+      1.15rem
+    );
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.primary-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 56px;
+
+  padding: 0 28px;
+
+  border: 2px solid var(--orange);
+
+  border-radius: 999px;
+
+  background: var(--orange);
+
+  color: var(--white);
+
+  font-weight: 900;
+
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+
+.primary-button:hover {
+  background: var(--blue);
+
+  border-color: var(--blue);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(7, 87, 201, 0.4);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
+.membership-info,
+.membership-section,
+.responsibilities {
+  padding:
+    110px 0;
+}
+
+
+.membership-info {
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue-dark),
+      var(--blue)
+    );
+}
+
+
+.membership-section {
+  background: var(--black);
+}
+
+
+.responsibilities {
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue-dark),
+      var(--green-dark)
+    );
+}
+
+
+.section-heading {
+  max-width: 720px;
+
+  margin-bottom: 60px;
+}
+
+
+h2 {
+  margin-bottom: 20px;
+
+  font-size:
+    clamp(
+      2.6rem,
+      6vw,
+      5.5rem
+    );
+
+  line-height: 0.94;
+
+  letter-spacing: -0.065em;
+
+  font-weight: 950;
+}
+
+
+.section-heading > p:last-child {
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 1.05rem;
+}
+
+
+/* =========================================================
+   BENEFITS GRID
+   ========================================================= */
+
+.benefits-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 2px;
+
+  overflow: hidden;
+
+  border-radius: var(--radius-large);
+
+  background:
+    rgba(255, 255, 255, 0.12);
+
+  box-shadow: var(--shadow);
+}
+
+
+.benefits-grid article {
+  position: relative;
+
+  min-height: 270px;
+
+  padding: 35px;
+
+  background: var(--black-soft);
+
+  border-top: 5px solid var(--orange);
+
+  transition:
+    transform var(--transition),
+    background var(--transition);
+}
+
+
+.benefits-grid article:nth-child(1) {
+  border-top-color: var(--blue-light);
+}
+
+
+.benefits-grid article:nth-child(2) {
+  border-top-color: var(--orange);
+}
+
+
+.benefits-grid article:nth-child(3) {
+  border-top-color: var(--blue-light);
+}
+
+
+.benefits-grid article:nth-child(4) {
+  border-top-color: var(--green);
+}
+
+
+.benefits-grid article:hover {
+  background: var(--surface);
+
+  transform:
+    translateY(-6px);
+}
+
+
+.benefits-grid span {
+  display: block;
+
+  color: var(--orange);
+
+  font-size: 0.85rem;
+
+  font-weight: 950;
+
+  letter-spacing: 0.12em;
+}
+
+
+.benefits-grid h3 {
+  margin:
+    45px 0 12px;
+
+  font-size: 1.35rem;
+
+  font-weight: 900;
+}
+
+
+.benefits-grid p {
+  color: var(--muted);
+
+  font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   FORM LAYOUT
+   ========================================================= */
+
+.form-wrapper {
+  display: grid;
+
+  grid-template-columns:
+    0.72fr 1.28fr;
+
+  gap: 80px;
+
+  align-items: start;
+}
+
+
+.form-intro {
+  position: sticky;
+
+  top: 35px;
+
+  align-self: start;
+}
+
+
+.form-intro > p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+
+.member-categories {
+  margin-top: 45px;
+
+  padding: 28px;
+
+  border:
+    1px solid var(--border);
+
+  border-left:
+    5px solid var(--orange);
+
+  border-radius:
+    var(--radius);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(7, 87, 201, 0.14),
+      rgba(21, 148, 71, 0.08)
+    );
+}
+
+
+.member-categories strong {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: var(--white);
+
+  font-size: 0.9rem;
+}
+
+
+.member-categories ul {
+  padding-left: 20px;
+
+  list-style: disc;
+
+  color: var(--muted);
+}
+
+
+.member-categories li {
+  margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   FORM SECTIONS
+   ========================================================= */
+
+.form-section {
+  padding:
+    38px 0;
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+
+.form-section:first-child {
+  padding-top: 0;
+}
+
+
+.form-section h3 {
+  margin-bottom: 25px;
+
+  font-size: 1.35rem;
+
+  font-weight: 900;
+}
+
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+
+.form-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.form-field.full {
+  grid-column:
+    1 / -1;
+}
+
+
+.form-field label {
+  color: var(--white);
+
+  font-size: 0.85rem;
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  padding:
+    15px 16px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-small);
+
+  outline: none;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--white);
+
+  font-size: 0.95rem;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+
+input::placeholder,
+textarea::placeholder {
+  color:
+    rgba(174, 183, 194, 0.6);
+}
+
+
+input:hover,
+select:hover,
+textarea:hover {
+  background:
+    var(--surface-light);
+
+  border-color:
+    rgba(255, 255, 255, 0.2);
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color:
+    var(--orange);
+
+  background:
+    var(--surface-light);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255, 107, 0, 0.15);
+}
+
+
+textarea {
+  min-height: 130px;
+
+  resize: vertical;
+}
+
+
+select {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   JUNIOR SECTION
+   ========================================================= */
+
+.junior-section {
+  border-left:
+    4px solid var(--green);
+
+  padding-left:
+    24px;
+}
+
+
+.junior-section[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   AGREEMENTS
+   ========================================================= */
+
+.agreement {
+  display: grid;
+
+  gap: 18px;
+
+  padding:
+    30px 0;
+}
+
+
+.checkbox {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+}
+
+
+.checkbox input {
+  flex:
+    0 0 18px;
+
+  width: 18px;
+
+  height: 18px;
+
+  margin-top: 3px;
+
+  padding: 0;
+
+  accent-color:
+    var(--orange);
+}
+
+
+.checkbox span {
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.submit-button {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 60px;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--orange),
+      var(--orange-light)
+    );
+
+  color: var(--white);
+
+  font-size: 0.95rem;
+
+  font-weight: 950;
+
+  box-shadow:
+    0 12px 30px
+    rgba(255, 107, 0, 0.2);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+
+.submit-button:hover:not(:disabled) {
+  background:
+    linear-gradient(
+      90deg,
+      var(--blue),
+      var(--blue-light)
+    );
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(7, 87, 201, 0.35);
+}
+
+
+.submit-button:active:not(:disabled) {
+  transform:
+    translateY(-1px);
+}
+
+
+.submit-button:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   FORM MESSAGE
+   ========================================================= */
+
+.form-message {
+  display: none;
+
+  margin:
+    22px 0;
+
+  padding:
+    16px 18px;
+
+  border-radius:
+    var(--radius-small);
+
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+}
+
+
+.form-message.success,
+.form-message.error {
+  display: block;
+}
+
+
+.form-message.success {
+  background:
+    rgba(21, 148, 71, 0.14);
+
+  border:
+    1px solid
+    rgba(40, 180, 99, 0.45);
+
+  color:
+    #9ff0ba;
+}
+
+
+.form-message.error {
+  background:
+    rgba(255, 69, 69, 0.12);
+
+  border:
+    1px solid
+    rgba(255, 69, 69, 0.4);
+
+  color:
+    #ffaaaa;
+}
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
+.whatsapp-button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 54px;
+
+  margin-bottom: 20px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--green),
+      var(--green-light)
+    );
+
+  color: var(--white);
+
+  font-weight: 900;
+
+  box-shadow:
+    0 12px 30px
+    rgba(21, 148, 71, 0.2);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+
+.whatsapp-button:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(21, 148, 71, 0.35);
+}
+
+
+/* =========================================================
+   RESPONSIBILITIES
+   ========================================================= */
+
+.responsibility-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 2px;
+
+  overflow: hidden;
+
+  border-radius:
+    var(--radius-large);
+
+  background:
+    rgba(255, 255, 255, 0.1);
+}
+
+
+.responsibility-list p {
+  position: relative;
+
+  margin: 0;
+
+  padding:
+    28px 30px 28px 55px;
+
+  background:
+    rgba(0, 0, 0, 0.35);
+
+  color:
+    rgba(255, 255, 255, 0.85);
+}
+
+
+.responsibility-list p::before {
+  content: "✓";
+
+  position: absolute;
+
+  left: 25px;
+  top: 27px;
+
+  color:
+    var(--orange);
+
+  font-weight: 950;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  padding:
+    55px 0;
+
+  background:
+    var(--black);
+
+  border-top:
+    4px solid var(--orange);
+}
+
+
+footer strong {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 1.1rem;
+
+  font-weight: 950;
+}
+
+
+footer p {
+  color:
+    var(--muted);
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   HONEYPOT
+   ========================================================= */
+
+.honeypot {
+  position: absolute;
+
+  left: -9999px;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background:
+    var(--orange);
+
+  color:
+    var(--white);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+  background:
+    var(--black);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background:
+    var(--blue);
+
+  border-radius:
+    99px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    var(--orange);
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .benefits-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .form-wrapper {
+    grid-template-columns:
+      1fr;
+
+    gap: 55px;
+  }
+
+
+  .form-intro {
+    position: static;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .container {
+    width:
+      min(
+        calc(100% - 28px),
+        var(--max-width)
+      );
+  }
+
+
+  .nav-container {
+    min-height: 76px;
+  }
+
+
+  .logo {
+    font-size: 1.05rem;
+  }
+
+
+  .nav-button {
+    min-height: 43px;
+
+    padding:
+      0 15px;
+
+    font-size:
+      0.78rem;
+  }
+
+
+  .membership-hero {
+    min-height: 650px;
+  }
+
+
+  .hero-content {
+    padding-top: 70px;
+  }
+
+
+  h1 {
+    font-size:
+      clamp(
+        3rem,
+        16vw,
+        5.2rem
+      );
+  }
+
+
+  .hero-text {
+    margin:
+      28px 0;
+  }
+
+
+  .primary-button {
+    width: 100%;
+  }
+
+
+  .membership-info,
+  .membership-section,
+  .responsibilities {
+    padding:
+      75px 0;
+  }
+
+
+  h2 {
+    font-size:
+      clamp(
+        2.6rem,
+        13vw,
+        4rem
+      );
+  }
+
+
+  .benefits-grid {
+    grid-template-columns:
+      1fr;
+
+    border-radius:
+      var(--radius);
+  }
+
+
+  .benefits-grid article {
+    min-height:
+      220px;
+  }
+
+
+  .form-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .form-field.full {
+    grid-column:
+      auto;
+  }
+
+
+  .responsibility-list {
+    grid-template-columns:
+      1fr;
+
+    border-radius:
+      var(--radius);
+  }
+
+
+  .responsibility-list p {
+    padding:
+      23px 23px 23px 50px;
+  }
+
+
+  .responsibility-list p::before {
+    left:
+      22px;
+
+    top:
+      22px;
+  }
+
+
+  .member-categories {
+    margin-top:
+      30px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .container {
+    width:
+      calc(100% - 22px);
+  }
+
+
+  .nav-button {
+    padding:
+      0 12px;
+  }
+
+
+  .logo::before {
+    width: 6px;
+    height: 6px;
+
+    margin-right: 6px;
+  }
+
+
+  .membership-hero {
+    min-height:
+      600px;
+  }
+
+
+  h1 {
+    font-size:
+      3.1rem;
+  }
+
+
+  .form-section {
+    padding:
+      30px 0;
+  }
+
+
+  input,
+  select,
+  textarea {
+    padding:
+      14px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior:
+      auto;
+  }
+
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+
+}

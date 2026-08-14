@@ -3394,14 +3394,26 @@ footer {
 
 
 /* =====================================================
-   REVIEWS SLIDER
+   REVIEWS
 ===================================================== */
+
+.reviews-section {
+  padding: 100px 0;
+  background: #f5f7fb;
+  overflow: hidden;
+}
 
 .reviews-slider {
   position: relative;
   max-width: 850px;
-  margin: 0 auto;
-  padding: 0 70px 70px;
+  margin: 50px auto 0;
+  padding: 0 70px 55px;
+}
+
+.review-window {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 24px;
 }
 
 .review-track {
@@ -3411,88 +3423,61 @@ footer {
 }
 
 .review-card {
-  min-width: 100%;
+  flex: 0 0 100%;
   box-sizing: border-box;
-  background: #ffffff;
   padding: 45px;
-  border-radius: 20px;
+  background: #ffffff;
+  border-radius: 24px;
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
 .review-stars {
-  color: #f59e0b;
-  font-size: 24px;
+  color: #f5a623;
+  font-size: 25px;
   letter-spacing: 4px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
-.review-text {
-  max-width: 680px;
-  margin: 0 auto 30px;
-  color: #4b5563;
+.review-message {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 auto 25px;
+  max-width: 650px;
+}
+
+.review-name {
+  display: block;
   font-size: 18px;
-  line-height: 1.8;
-  font-style: italic;
-}
-
-.review-author {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-}
-
-.review-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #0757c9;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-weight: 800;
-  font-size: 14px;
+  color: #0757c9;
+  text-transform: uppercase;
 }
 
-.review-author div:last-child {
-  text-align: left;
-}
-
-.review-author strong {
+.review-role {
   display: block;
-  color: #111827;
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.review-author span {
-  display: block;
-  color: #6b7280;
+  margin-top: 6px;
   font-size: 13px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-
-
-/* =====================================================
-   SLIDER BUTTONS
-===================================================== */
 
 .review-button {
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
   border: none;
   border-radius: 50%;
   background: #0757c9;
-  color: #ffffff;
+  color: #fff;
   font-size: 22px;
-  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s ease;
   z-index: 5;
+  transition: 0.3s ease;
 }
 
 .review-button:hover {
@@ -3500,73 +3485,171 @@ footer {
 }
 
 .review-prev {
-  left: 0;
+  left: 5px;
 }
 
 .review-next {
-  right: 0;
+  right: 5px;
 }
 
-
-/* =====================================================
-   REVIEW DOTS
-===================================================== */
-
 .review-dots {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-
   display: flex;
   justify-content: center;
   gap: 8px;
+  margin-top: 25px;
 }
 
 .review-dot {
-  width: 10px;
-  height: 10px;
-  padding: 0;
+  width: 9px;
+  height: 9px;
   border: none;
   border-radius: 50%;
-  background: #cbd5e1;
+  background: #cbd2dc;
   cursor: pointer;
-  transition: 0.3s ease;
+  padding: 0;
 }
 
 .review-dot.active {
-  width: 28px;
-  border-radius: 20px;
+  width: 25px;
+  border-radius: 10px;
   background: #0757c9;
+}
+
+.reviews-loading {
+  width: 100%;
+  padding: 50px;
+  text-align: center;
+  box-sizing: border-box;
+  color: #777;
 }
 
 
 /* =====================================================
-   MOBILE REVIEWS
+   REVIEW FORM
 ===================================================== */
 
-@media (max-width: 768px) {
+.review-form-wrapper {
+  max-width: 700px;
+  margin: 80px auto 0;
+  padding: 45px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.07);
+}
+
+.review-form-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.review-form-heading h3 {
+  font-size: 36px;
+  margin: 10px 0;
+}
+
+.review-form-heading h3 span {
+  color: #0757c9;
+}
+
+.review-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #d9dee7;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #0757c9;
+  box-shadow: 0 0 0 3px rgba(7, 87, 201, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.rating-input {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rating-input label {
+  cursor: pointer;
+  color: #f5a623;
+  font-size: 22px;
+}
+
+.rating-input input {
+  display: none;
+}
+
+.rating-input label:has(input:checked) {
+  transform: scale(1.05);
+}
+
+.review-submit {
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.review-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.review-status {
+  text-align: center;
+  font-weight: 600;
+  min-height: 22px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
 
   .reviews-section {
     padding: 70px 0;
   }
 
   .reviews-slider {
-    padding: 0 0 65px;
+    padding: 0 15px 55px;
   }
 
   .review-card {
-    padding: 30px 22px;
-    border-radius: 16px;
+    padding: 30px 20px;
   }
 
-  .review-text {
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  .review-stars {
-    font-size: 20px;
+  .review-message {
+    font-size: 17px;
   }
 
   .review-button {
@@ -3576,11 +3659,20 @@ footer {
   }
 
   .review-prev {
-    left: 8px;
+    left: -5px;
   }
 
   .review-next {
-    right: 8px;
+    right: -5px;
+  }
+
+  .review-form-wrapper {
+    padding: 30px 20px;
+    margin-top: 50px;
+  }
+
+  .review-form-heading h3 {
+    font-size: 28px;
   }
 
 }

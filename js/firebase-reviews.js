@@ -1,309 +1,159 @@
 <script type="module">
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  orderBy,
-  getDocs,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
-
-const firebaseConfig = {
-
-  apiKey: "YOUR_API_KEY",
-
-  authDomain:
-    "YOUR_PROJECT.firebaseapp.com",
-
-  projectId:
-    "YOUR_PROJECT_ID",
-
-  storageBucket:
-    "YOUR_PROJECT.firebasestorage.app",
-
-  messagingSenderId:
-    "YOUR_MESSAGING_SENDER_ID",
-
-  appId:
-    "YOUR_APP_ID"
-
-};
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-/* =====================================================
-   INITIALIZE FIREBASE
-===================================================== */
+  /* ================================================
+     YOUR FIREBASE CONFIG
+  ================================================ */
 
-const app =
-  initializeApp(firebaseConfig);
+  const firebaseConfig = {
 
-const db =
-  getFirestore(app);
+    apiKey: "YOUR_API_KEY",
 
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+    projectId: "YOUR_PROJECT_ID",
 
-const reviewTrack =
-  document.getElementById(
-    "reviewTrack"
-  );
+    storageBucket: "YOUR_PROJECT.firebasestorage.app",
 
-const reviewDots =
-  document.getElementById(
-    "reviewDots"
-  );
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
 
-const reviewPrev =
-  document.getElementById(
-    "reviewPrev"
-  );
+    appId: "YOUR_APP_ID"
 
-const reviewNext =
-  document.getElementById(
-    "reviewNext"
-  );
-
-const reviewForm =
-  document.getElementById(
-    "reviewForm"
-  );
-
-const reviewName =
-  document.getElementById(
-    "reviewName"
-  );
-
-const reviewRole =
-  document.getElementById(
-    "reviewRole"
-  );
-
-const reviewMessage =
-  document.getElementById(
-    "reviewMessage"
-  );
-
-const reviewRating =
-  document.getElementById(
-    "reviewRating"
-  );
-
-const reviewStatus =
-  document.getElementById(
-    "reviewStatus"
-  );
-
-const reviewSubmit =
-  document.getElementById(
-    "reviewSubmit"
-  );
-
-const ratingStars =
-  document.querySelectorAll(
-    ".rating-star"
-  );
+  };
 
 
-let reviews = [];
-let currentReview = 0;
-let autoSlide;
+  const app =
+    initializeApp(firebaseConfig);
+
+  const db =
+    getFirestore(app);
 
 
-/* =====================================================
-   STAR RATING
-===================================================== */
+  /* ================================================
+     ELEMENTS
+  ================================================ */
 
-ratingStars.forEach(
-  star => {
+  const reviewTrack =
+    document.getElementById("reviewTrack");
 
-    star.addEventListener(
-      "click",
-      () => {
+  const reviewDots =
+    document.getElementById("reviewDots");
 
-        const rating =
-          Number(
-            star.dataset.rating
-          );
+  const reviewPrev =
+    document.getElementById("reviewPrev");
 
-        reviewRating.value =
-          rating;
+  const reviewNext =
+    document.getElementById("reviewNext");
 
+  const reviewForm =
+    document.getElementById("reviewForm");
 
-        ratingStars.forEach(
-          item => {
+  const reviewSubmit =
+    document.getElementById("reviewSubmit");
 
-            item.classList.toggle(
-              "selected",
-              Number(
-                item.dataset.rating
-              ) <= rating
-            );
-
-          }
-        );
-
-      }
-    );
-
-  }
-);
+  const reviewStatus =
+    document.getElementById("reviewStatus");
 
 
-/* =====================================================
-   LOAD REVIEWS
-===================================================== */
+  let reviews = [];
 
-async function loadReviews() {
+  let currentReview = 0;
 
-  try {
+  let autoSlide;
 
-    const reviewsQuery =
-      query(
 
-        collection(
-          db,
-          "reviews"
-        ),
+  /* ================================================
+     LOAD REVIEWS FROM FIREBASE
+  ================================================ */
 
-        where(
-          "approved",
-          "==",
-          true
-        ),
+  async function loadReviews() {
 
-        orderBy(
-          "createdAt",
-          "desc"
-        )
+    try {
 
+      const reviewsQuery = query(
+        collection(db, "reviews"),
+        orderBy("createdAt", "desc")
       );
 
+      const snapshot =
+        await getDocs(reviewsQuery);
 
-    const snapshot =
-      await getDocs(
-        reviewsQuery
-      );
+      reviews = [];
 
-
-    reviews = [];
-
-
-    snapshot.forEach(
-      doc => {
+      snapshot.forEach(documentSnapshot => {
 
         reviews.push({
-
-          id: doc.id,
-
-          ...doc.data()
-
+          id: documentSnapshot.id,
+          ...documentSnapshot.data()
         });
 
-      }
-    );
+      });
 
 
-    displayReviews();
+      renderReviews();
 
+    } catch (error) {
 
-  } catch (error) {
+      console.error(
+        "Error loading reviews:",
+        error
+      );
 
-    console.error(
-      error
-    );
+      reviewTrack.innerHTML = `
+        <div class="reviews-loading">
+          Reviews could not be loaded.
+        </div>
+      `;
 
-
-    reviewTrack.innerHTML = `
-      <div class="reviews-loading">
-        Unable to load reviews.
-      </div>
-    `;
-
-  }
-
-}
-
-
-/* =====================================================
-   DISPLAY REVIEWS
-===================================================== */
-
-function displayReviews() {
-
-  if (!reviews.length) {
-
-    reviewTrack.innerHTML = `
-      <div class="reviews-loading">
-        No reviews yet. Be the first to review BBA!
-      </div>
-    `;
-
-    return;
+    }
 
   }
 
 
-  reviewTrack.innerHTML =
-    reviews.map(
-      review => {
+  /* ================================================
+     DISPLAY REVIEWS
+  ================================================ */
+
+  function renderReviews() {
+
+    if (reviews.length === 0) {
+
+      reviewTrack.innerHTML = `
+        <div class="reviews-loading">
+          No reviews yet. Be the first to review BBA!
+        </div>
+      `;
+
+      reviewDots.innerHTML = "";
+
+      return;
+
+    }
+
+
+    reviewTrack.innerHTML =
+      reviews.map(review => {
 
         const rating =
-          Math.min(
-            5,
-            Math.max(
-              1,
-              Number(
-                review.rating || 5
-              )
-            )
-          );
-
+          Number(review.rating) || 5;
 
         const stars =
           "★".repeat(rating) +
           "☆".repeat(5 - rating);
-
-
-        const name =
-          review.name ||
-          "BBA Member";
-
-
-        const role =
-          review.role ||
-          "BBA Community";
-
-
-        const message =
-          review.message ||
-          "";
-
-
-        const initials =
-          name
-            .split(" ")
-            .map(
-              word =>
-                word.charAt(0)
-            )
-            .join("")
-            .substring(0, 2)
-            .toUpperCase();
-
 
         return `
 
@@ -313,371 +163,291 @@ function displayReviews() {
               ${stars}
             </div>
 
-            <p class="review-text">
-              “${escapeHTML(message)}”
+            <p class="review-message">
+              “${escapeHTML(review.message)}”
             </p>
 
-            <div class="review-author">
+            <strong class="review-name">
+              ${escapeHTML(review.name)}
+            </strong>
 
-              <div class="review-avatar">
-                ${escapeHTML(initials)}
-              </div>
-
-              <div>
-
-                <strong>
-                  ${escapeHTML(name)}
-                </strong>
-
-                <span>
-                  ${escapeHTML(role)}
-                </span>
-
-              </div>
-
-            </div>
+            <span class="review-role">
+              ${escapeHTML(review.role || "BBA Member")}
+            </span>
 
           </article>
 
         `;
 
-      }
-    ).join("");
+      }).join("");
 
 
-  createDots();
+    reviewDots.innerHTML =
+      reviews.map((_, index) => `
 
-  showReview(0);
+        <button
+          type="button"
+          class="review-dot ${
+            index === 0 ? "active" : ""
+          }"
+          data-index="${index}"
+          aria-label="Go to review ${index + 1}"
+        ></button>
 
-  startAutoSlide();
-
-}
-
-
-/* =====================================================
-   CREATE DOTS
-===================================================== */
-
-function createDots() {
-
-  reviewDots.innerHTML = "";
+      `).join("");
 
 
-  reviews.forEach(
-    (review, index) => {
+    document
+      .querySelectorAll(".review-dot")
+      .forEach(dot => {
 
-      const dot =
-        document.createElement(
-          "button"
+        dot.addEventListener(
+          "click",
+          () => {
+
+            goToReview(
+              Number(dot.dataset.index)
+            );
+
+            restartAutoSlide();
+
+          }
         );
 
-
-      dot.type = "button";
-
-      dot.className =
-        "review-dot";
+      });
 
 
-      dot.setAttribute(
-        "aria-label",
-        `Show review ${index + 1}`
-      );
+    currentReview = 0;
 
+    updateSlider();
 
-      dot.addEventListener(
-        "click",
-        () => {
+    startAutoSlide();
 
-          showReview(index);
-
-        }
-      );
-
-
-      reviewDots.appendChild(
-        dot
-      );
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   SHOW REVIEW
-===================================================== */
-
-function showReview(index) {
-
-  if (!reviews.length) {
-    return;
   }
 
 
-  currentReview =
-    (index + reviews.length) %
-    reviews.length;
+  /* ================================================
+     SLIDE
+  ================================================ */
+
+  function updateSlider() {
+
+    if (!reviews.length) {
+      return;
+    }
+
+    reviewTrack.style.transform =
+      `translateX(-${currentReview * 100}%)`;
 
 
-  reviewTrack.style.transform =
-    `translateX(-${currentReview * 100}%)`;
-
-
-  document
-    .querySelectorAll(
-      ".review-dot"
-    )
-    .forEach(
-      (dot, index) => {
+    document
+      .querySelectorAll(".review-dot")
+      .forEach((dot, index) => {
 
         dot.classList.toggle(
           "active",
           index === currentReview
         );
 
-      }
-    );
-
-}
-
-
-/* =====================================================
-   NEXT / PREVIOUS
-===================================================== */
-
-reviewNext.addEventListener(
-  "click",
-  () => {
-
-    showReview(
-      currentReview + 1
-    );
-
-    restartAutoSlide();
+      });
 
   }
-);
 
 
-reviewPrev.addEventListener(
-  "click",
-  () => {
+  function goToReview(index) {
 
-    showReview(
-      currentReview - 1
-    );
+    if (!reviews.length) {
+      return;
+    }
 
-    restartAutoSlide();
+    currentReview =
+      (index + reviews.length) %
+      reviews.length;
+
+    updateSlider();
 
   }
-);
 
 
-/* =====================================================
-   AUTO SLIDER
-===================================================== */
+  reviewNext.addEventListener(
+    "click",
+    () => {
 
-function startAutoSlide() {
+      goToReview(
+        currentReview + 1
+      );
 
-  clearInterval(
-    autoSlide
+      restartAutoSlide();
+
+    }
   );
 
 
-  autoSlide =
-    setInterval(
-      () => {
+  reviewPrev.addEventListener(
+    "click",
+    () => {
 
-        showReview(
-          currentReview + 1
-        );
-
-      },
-      5000
-    );
-
-}
-
-
-function restartAutoSlide() {
-
-  startAutoSlide();
-
-}
-
-
-/* =====================================================
-   SUBMIT REVIEW TO FIREBASE
-===================================================== */
-
-reviewForm.addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-
-    const name =
-      reviewName.value.trim();
-
-
-    const role =
-      reviewRole.value;
-
-
-    const rating =
-      Number(
-        reviewRating.value
+      goToReview(
+        currentReview - 1
       );
 
+      restartAutoSlide();
 
-    const message =
-      reviewMessage.value.trim();
+    }
+  );
 
 
-    /* Validate rating */
+  /* ================================================
+     AUTOMATIC SLIDE
+  ================================================ */
 
-    if (rating < 1 || rating > 5) {
+  function startAutoSlide() {
 
-      reviewStatus.textContent =
-        "Please select a rating.";
+    clearInterval(autoSlide);
 
-      reviewStatus.className =
-        "review-status error";
-
+    if (reviews.length <= 1) {
       return;
-
     }
 
+    autoSlide = setInterval(() => {
 
-    /* Disable button */
-
-    reviewSubmit.disabled =
-      true;
-
-    reviewSubmit.textContent =
-      "SUBMITTING...";
-
-
-    try {
-
-      await addDoc(
-        collection(
-          db,
-          "reviews"
-        ),
-        {
-
-          name: name,
-
-          role: role,
-
-          rating: rating,
-
-          message: message,
-
-          approved: false,
-
-          createdAt:
-            serverTimestamp()
-
-        }
+      goToReview(
+        currentReview + 1
       );
 
-
-      reviewForm.reset();
-
-
-      reviewRating.value =
-        "0";
-
-
-      ratingStars.forEach(
-        star => {
-
-          star.classList.remove(
-            "selected"
-          );
-
-        }
-      );
-
-
-      reviewStatus.textContent =
-        "Thank you! Your review has been submitted and is awaiting approval.";
-
-      reviewStatus.className =
-        "review-status success";
-
-
-    } catch (error) {
-
-      console.error(
-        "Review submission error:",
-        error
-      );
-
-
-      reviewStatus.textContent =
-        "Something went wrong. Please try again.";
-
-      reviewStatus.className =
-        "review-status error";
-
-    }
-
-
-    reviewSubmit.disabled =
-      false;
-
-    reviewSubmit.textContent =
-      "SUBMIT REVIEW";
+    }, 5000);
 
   }
-);
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+  function restartAutoSlide() {
 
-function escapeHTML(value) {
+    startAutoSlide();
 
-  return String(value)
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
+  }
 
 
-/* =====================================================
-   START
-===================================================== */
+  /* ================================================
+     SUBMIT REVIEW
+  ================================================ */
 
-loadReviews();
+  reviewForm.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+      reviewSubmit.disabled = true;
+
+      reviewSubmit.textContent =
+        "SUBMITTING...";
+
+      reviewStatus.textContent = "";
+
+
+      const name =
+        document
+          .getElementById("reviewName")
+          .value
+          .trim();
+
+      const role =
+        document
+          .getElementById("reviewRole")
+          .value;
+
+      const rating =
+        Number(
+          document.querySelector(
+            'input[name="rating"]:checked'
+          ).value
+        );
+
+      const message =
+        document
+          .getElementById("reviewMessage")
+          .value
+          .trim();
+
+
+      try {
+
+        await addDoc(
+          collection(db, "reviews"),
+          {
+
+            name: name,
+
+            role: role,
+
+            rating: rating,
+
+            message: message,
+
+            createdAt: serverTimestamp()
+
+          }
+        );
+
+
+        reviewStatus.textContent =
+          "Thank you! Your review has been submitted.";
+
+        reviewStatus.style.color =
+          "#168a45";
+
+
+        reviewForm.reset();
+
+
+        await loadReviews();
+
+
+      } catch (error) {
+
+        console.error(
+          "Error submitting review:",
+          error
+        );
+
+        reviewStatus.textContent =
+          "Sorry, your review could not be submitted. Please try again.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+      }
+
+
+      reviewSubmit.disabled = false;
+
+      reviewSubmit.textContent =
+        "SUBMIT REVIEW";
+
+    }
+  );
+
+
+  /* ================================================
+     SECURITY: ESCAPE USER CONTENT
+  ================================================ */
+
+  function escapeHTML(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /* ================================================
+     START
+  ================================================ */
+
+  loadReviews();
 
 </script>

@@ -1,3 +1,5 @@
+<script type="module">
+
 import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
@@ -8,7 +10,9 @@ import {
   query,
   where,
   orderBy,
-  getDocs
+  getDocs,
+  addDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
@@ -50,7 +54,7 @@ const db =
 
 
 /* =====================================================
-   REVIEW ELEMENTS
+   ELEMENTS
 ===================================================== */
 
 const reviewTrack =
@@ -73,39 +77,120 @@ const reviewNext =
     "reviewNext"
   );
 
+const reviewForm =
+  document.getElementById(
+    "reviewForm"
+  );
 
-let currentReview = 0;
+const reviewName =
+  document.getElementById(
+    "reviewName"
+  );
+
+const reviewRole =
+  document.getElementById(
+    "reviewRole"
+  );
+
+const reviewMessage =
+  document.getElementById(
+    "reviewMessage"
+  );
+
+const reviewRating =
+  document.getElementById(
+    "reviewRating"
+  );
+
+const reviewStatus =
+  document.getElementById(
+    "reviewStatus"
+  );
+
+const reviewSubmit =
+  document.getElementById(
+    "reviewSubmit"
+  );
+
+const ratingStars =
+  document.querySelectorAll(
+    ".rating-star"
+  );
+
+
 let reviews = [];
+let currentReview = 0;
 let autoSlide;
 
 
 /* =====================================================
-   LOAD REVIEWS FROM FIREBASE
+   STAR RATING
+===================================================== */
+
+ratingStars.forEach(
+  star => {
+
+    star.addEventListener(
+      "click",
+      () => {
+
+        const rating =
+          Number(
+            star.dataset.rating
+          );
+
+        reviewRating.value =
+          rating;
+
+
+        ratingStars.forEach(
+          item => {
+
+            item.classList.toggle(
+              "selected",
+              Number(
+                item.dataset.rating
+              ) <= rating
+            );
+
+          }
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =====================================================
+   LOAD REVIEWS
 ===================================================== */
 
 async function loadReviews() {
 
   try {
 
-    const reviewsQuery = query(
+    const reviewsQuery =
+      query(
 
-      collection(
-        db,
-        "reviews"
-      ),
+        collection(
+          db,
+          "reviews"
+        ),
 
-      where(
-        "approved",
-        "==",
-        true
-      ),
+        where(
+          "approved",
+          "==",
+          true
+        ),
 
-      orderBy(
-        "createdAt",
-        "desc"
-      )
+        orderBy(
+          "createdAt",
+          "desc"
+        )
 
-    );
+      );
 
 
     const snapshot =
@@ -118,13 +203,13 @@ async function loadReviews() {
 
 
     snapshot.forEach(
-      document => {
+      doc => {
 
         reviews.push({
 
-          id: document.id,
+          id: doc.id,
 
-          ...document.data()
+          ...doc.data()
 
         });
 
@@ -138,19 +223,14 @@ async function loadReviews() {
   } catch (error) {
 
     console.error(
-      "Error loading reviews:",
       error
     );
 
 
     reviewTrack.innerHTML = `
-
       <div class="reviews-loading">
-
-        Reviews are currently unavailable.
-
+        Unable to load reviews.
       </div>
-
     `;
 
   }
@@ -159,7 +239,7 @@ async function loadReviews() {
 
 
 /* =====================================================
-   CREATE REVIEW CARDS
+   DISPLAY REVIEWS
 ===================================================== */
 
 function displayReviews() {
@@ -167,13 +247,9 @@ function displayReviews() {
   if (!reviews.length) {
 
     reviewTrack.innerHTML = `
-
       <div class="reviews-loading">
-
-        No reviews available yet.
-
+        No reviews yet. Be the first to review BBA!
       </div>
-
     `;
 
     return;
@@ -185,12 +261,11 @@ function displayReviews() {
     reviews.map(
       review => {
 
-
         const rating =
-          Math.max(
-            1,
-            Math.min(
-              5,
+          Math.min(
+            5,
+            Math.max(
+              1,
               Number(
                 review.rating || 5
               )
@@ -238,18 +313,15 @@ function displayReviews() {
               ${stars}
             </div>
 
-
             <p class="review-text">
               “${escapeHTML(message)}”
             </p>
-
 
             <div class="review-author">
 
               <div class="review-avatar">
                 ${escapeHTML(initials)}
               </div>
-
 
               <div>
 
@@ -273,7 +345,7 @@ function displayReviews() {
     ).join("");
 
 
-  createReviewDots();
+  createDots();
 
   showReview(0);
 
@@ -286,7 +358,7 @@ function displayReviews() {
    CREATE DOTS
 ===================================================== */
 
-function createReviewDots() {
+function createDots() {
 
   reviewDots.innerHTML = "";
 
@@ -299,6 +371,8 @@ function createReviewDots() {
           "button"
         );
 
+
+      dot.type = "button";
 
       dot.className =
         "review-dot";
@@ -401,7 +475,7 @@ reviewPrev.addEventListener(
 
 
 /* =====================================================
-   AUTO SLIDE
+   AUTO SLIDER
 ===================================================== */
 
 function startAutoSlide() {
@@ -434,7 +508,138 @@ function restartAutoSlide() {
 
 
 /* =====================================================
-   SECURITY
+   SUBMIT REVIEW TO FIREBASE
+===================================================== */
+
+reviewForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+
+    const name =
+      reviewName.value.trim();
+
+
+    const role =
+      reviewRole.value;
+
+
+    const rating =
+      Number(
+        reviewRating.value
+      );
+
+
+    const message =
+      reviewMessage.value.trim();
+
+
+    /* Validate rating */
+
+    if (rating < 1 || rating > 5) {
+
+      reviewStatus.textContent =
+        "Please select a rating.";
+
+      reviewStatus.className =
+        "review-status error";
+
+      return;
+
+    }
+
+
+    /* Disable button */
+
+    reviewSubmit.disabled =
+      true;
+
+    reviewSubmit.textContent =
+      "SUBMITTING...";
+
+
+    try {
+
+      await addDoc(
+        collection(
+          db,
+          "reviews"
+        ),
+        {
+
+          name: name,
+
+          role: role,
+
+          rating: rating,
+
+          message: message,
+
+          approved: false,
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+      reviewForm.reset();
+
+
+      reviewRating.value =
+        "0";
+
+
+      ratingStars.forEach(
+        star => {
+
+          star.classList.remove(
+            "selected"
+          );
+
+        }
+      );
+
+
+      reviewStatus.textContent =
+        "Thank you! Your review has been submitted and is awaiting approval.";
+
+      reviewStatus.className =
+        "review-status success";
+
+
+    } catch (error) {
+
+      console.error(
+        "Review submission error:",
+        error
+      );
+
+
+      reviewStatus.textContent =
+        "Something went wrong. Please try again.";
+
+      reviewStatus.className =
+        "review-status error";
+
+    }
+
+
+    reviewSubmit.disabled =
+      false;
+
+    reviewSubmit.textContent =
+      "SUBMIT REVIEW";
+
+  }
+);
+
+
+/* =====================================================
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(value) {
@@ -474,3 +679,5 @@ function escapeHTML(value) {
 ===================================================== */
 
 loadReviews();
+
+</script>

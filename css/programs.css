@@ -1,0 +1,820 @@
+:root {
+  --blue: #0757c9;
+  --blue-dark: #04347d;
+  --blue-light: #1677ff;
+
+  --orange: #ff6b00;
+  --orange-light: #ff8a24;
+
+  --green: #159447;
+  --green-light: #28b463;
+
+  --black: #050505;
+  --black-soft: #0b0b0b;
+  --surface: #121212;
+  --surface-light: #1a1a1a;
+
+  --white: #ffffff;
+  --muted: #aeb7c2;
+
+  --border: rgba(255,255,255,.12);
+
+  --max-width: 1180px;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background: var(--black);
+  color: var(--white);
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  line-height: 1.6;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.program-container {
+  width:
+    min(
+      calc(100% - 40px),
+      var(--max-width)
+    );
+
+  margin-inline: auto;
+}
+
+
+/* HEADER */
+
+.program-header {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 20;
+}
+
+
+.program-header .program-container {
+  min-height: 90px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.program-logo {
+  font-size: 1.3rem;
+
+  font-weight: 950;
+
+  letter-spacing: -.06em;
+}
+
+
+.program-logo span {
+  color: var(--orange);
+}
+
+
+.program-header nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+}
+
+
+.program-header nav a {
+  font-size: .88rem;
+
+  font-weight: 700;
+
+  color:
+    rgba(255,255,255,.75);
+
+  transition:
+    color .25s ease;
+}
+
+
+.program-header nav a:hover {
+  color: var(--orange);
+}
+
+
+.program-header .program-join {
+  padding:
+    11px 20px;
+
+  border-radius: 999px;
+
+  background: var(--orange);
+
+  color: var(--white);
+}
+
+
+/* HERO */
+
+.program-hero {
+  min-height: 680px;
+
+  display: flex;
+
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 80% 25%,
+      rgba(255,107,0,.22),
+      transparent 25%
+    ),
+
+    linear-gradient(
+      135deg,
+      var(--black),
+      var(--blue-dark),
+      var(--blue)
+    );
+}
+
+
+.program-hero h1 {
+  max-width: 850px;
+
+  margin: 15px 0 30px;
+
+  font-size:
+    clamp(
+      4rem,
+      10vw,
+      8rem
+    );
+
+  line-height: .87;
+
+  letter-spacing: -.07em;
+
+  font-weight: 950;
+}
+
+
+.program-hero h1 span {
+  color: var(--orange);
+}
+
+
+.program-hero p:not(.eyebrow) {
+  max-width: 620px;
+
+  margin-bottom: 35px;
+
+  color:
+    rgba(255,255,255,.75);
+
+  font-size: 1.1rem;
+}
+
+
+.eyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--orange);
+
+  font-size: .72rem;
+
+  font-weight: 950;
+
+  letter-spacing: .2em;
+}
+
+
+.eyebrow::before {
+  content: "";
+
+  width: 28px;
+  height: 3px;
+
+  background: var(--orange);
+
+  border-radius: 99px;
+}
+
+
+.orange-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 54px;
+
+  padding:
+    0 26px;
+
+  border-radius: 999px;
+
+  background: var(--orange);
+
+  color: var(--white);
+
+  font-weight: 900;
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+
+.orange-button:hover {
+  background: var(--blue-light);
+
+  transform:
+    translateY(-3px);
+}
+
+
+/* SECTIONS */
+
+.programs-section,
+.schedule-section,
+.fees-section {
+  padding:
+    110px 0;
+}
+
+
+.programs-section {
+  background: var(--black);
+}
+
+
+.section-title {
+  max-width: 720px;
+
+  margin-bottom: 55px;
+}
+
+
+.section-title h2 {
+  margin:
+    15px 0 20px;
+
+  font-size:
+    clamp(
+      2.8rem,
+      6vw,
+      5rem
+    );
+
+  line-height: .92;
+
+  letter-spacing: -.06em;
+
+  font-weight: 950;
+}
+
+
+.section-title h2 span {
+  color: var(--orange);
+}
+
+
+.section-title > p:last-child {
+  color: var(--muted);
+}
+
+
+/* PROGRAM CARDS */
+
+.program-cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 2px;
+
+  border-radius: 25px;
+
+  overflow: hidden;
+
+  background: var(--border);
+}
+
+
+.program-card {
+  padding: 35px;
+
+  background: var(--surface);
+
+  border-top: 5px solid var(--blue);
+}
+
+
+.program-card.orange {
+  border-top-color: var(--orange);
+}
+
+
+.program-card.green {
+  border-top-color: var(--green);
+}
+
+
+.program-number {
+  margin-bottom: 35px;
+
+  color: var(--muted);
+
+  font-weight: 900;
+}
+
+
+.program-label {
+  color: var(--orange);
+
+  font-size: .7rem;
+
+  font-weight: 950;
+
+  letter-spacing: .16em;
+}
+
+
+.program-card h3 {
+  margin:
+    8px 0 15px;
+
+  font-size: 2rem;
+
+  line-height: 1;
+}
+
+
+.program-description {
+  min-height: 110px;
+
+  color: var(--muted);
+}
+
+
+.program-details {
+  display: grid;
+
+  gap: 12px;
+
+  margin:
+    25px 0;
+
+  padding:
+    20px 0;
+
+  border-top:
+    1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+
+.program-details div {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.program-details strong {
+  font-size: .75rem;
+
+  text-transform: uppercase;
+}
+
+
+.program-details span {
+  color: var(--muted);
+
+  text-align: right;
+
+  font-size: .8rem;
+}
+
+
+.program-card ul {
+  display: grid;
+
+  gap: 9px;
+
+  margin-bottom: 30px;
+
+  color: var(--muted);
+
+  font-size: .88rem;
+}
+
+
+.program-link {
+  color: var(--orange);
+
+  font-weight: 900;
+}
+
+
+/* PHILOSOPHY */
+
+.training-philosophy {
+  padding:
+    110px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue-dark),
+      var(--green-dark)
+    );
+}
+
+
+.philosophy-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 80px;
+}
+
+
+.philosophy-grid h2 {
+  margin-top: 15px;
+
+  font-size:
+    clamp(
+      2.8rem,
+      6vw,
+      5rem
+    );
+
+  line-height: .9;
+
+  letter-spacing: -.06em;
+}
+
+
+.philosophy-grid h2 span {
+  color: var(--orange);
+}
+
+
+.philosophy-points {
+  display: grid;
+
+  gap: 1px;
+
+  background:
+    rgba(255,255,255,.12);
+}
+
+
+.philosophy-points div {
+  display: grid;
+
+  grid-template-columns: 60px 1fr;
+
+  gap: 15px;
+
+  padding: 25px;
+
+  background:
+    rgba(0,0,0,.25);
+}
+
+
+.philosophy-points strong {
+  color: var(--orange);
+}
+
+
+.philosophy-points p {
+  color:
+    rgba(255,255,255,.78);
+}
+
+
+/* SCHEDULE */
+
+.schedule-section {
+  background: var(--black);
+}
+
+
+.schedule-table-wrapper {
+  overflow-x: auto;
+
+  border-radius: 20px;
+
+  border:
+    1px solid var(--border);
+}
+
+
+.schedule-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 750px;
+}
+
+
+.schedule-table th {
+  padding: 18px;
+
+  background: var(--blue);
+
+  text-align: left;
+
+  font-size: .78rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: .08em;
+}
+
+
+.schedule-table td {
+  padding: 20px 18px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  color: var(--muted);
+}
+
+
+.schedule-table tbody tr:hover td {
+  background:
+    rgba(255,107,0,.06);
+
+  color: var(--white);
+}
+
+
+.schedule-notice {
+  margin-top: 20px;
+
+  padding: 22px;
+
+  border-left:
+    4px solid var(--orange);
+
+  background: var(--surface);
+}
+
+
+.schedule-notice strong {
+  display: block;
+
+  margin-bottom: 5px;
+}
+
+
+.schedule-notice p {
+  color: var(--muted);
+
+  font-size: .9rem;
+}
+
+
+/* FEES */
+
+.fees-section {
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue-dark),
+      var(--blue)
+    );
+}
+
+
+.fees-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 2px;
+
+  margin-bottom: 40px;
+}
+
+
+.fees-grid article {
+  padding: 35px;
+
+  background:
+    rgba(0,0,0,.3);
+
+  border-top:
+    5px solid var(--orange);
+}
+
+
+.fees-grid article:nth-child(2) {
+  border-top-color: var(--green);
+}
+
+
+.fees-grid article:nth-child(3) {
+  border-top-color: var(--blue-light);
+}
+
+
+.fees-grid span {
+  color: var(--orange);
+
+  font-size: .7rem;
+
+  font-weight: 950;
+
+  letter-spacing: .15em;
+}
+
+
+.fees-grid h3 {
+  margin:
+    15px 0;
+
+  font-size: 2rem;
+}
+
+
+.fees-grid p {
+  color:
+    rgba(255,255,255,.7);
+}
+
+
+/* FOOTER */
+
+.program-footer {
+  padding:
+    50px 0;
+
+  background: var(--black);
+
+  border-top:
+    4px solid var(--orange);
+}
+
+
+.program-footer .program-container {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+.program-footer p {
+  margin-top: 8px;
+
+  color: var(--muted);
+}
+
+
+.footer-links {
+  display: flex;
+
+  gap: 25px;
+}
+
+
+.footer-links a:hover {
+  color: var(--orange);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .program-header nav {
+    gap: 15px;
+  }
+
+
+  .program-cards,
+  .fees-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .program-container {
+    width:
+      calc(100% - 28px);
+  }
+
+
+  .program-header .program-container {
+    min-height: 75px;
+  }
+
+
+  .program-header nav a:not(.program-join) {
+    display: none;
+  }
+
+
+  .program-hero {
+    min-height: 620px;
+  }
+
+
+  .program-hero h1 {
+    font-size:
+      clamp(
+        3.5rem,
+        17vw,
+        5rem
+      );
+  }
+
+
+  .programs-section,
+  .schedule-section,
+  .fees-section,
+  .training-philosophy {
+    padding:
+      75px 0;
+  }
+
+
+  .program-card {
+    padding: 28px;
+  }
+
+
+  .program-description {
+    min-height: auto;
+  }
+
+
+  .program-footer .program-container {
+    flex-direction: column;
+  }
+
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+}

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Join Baryan Badminton Club</title>
+  <meta
+    name="description"
+    content="Apply for membership at Baryan Badminton Club."
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#" class="logo">BARYAN<span>BC</span></a>
+
+      <a href="#membership" class="nav-button">
+        Join the Club
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="membership-hero">
+      <div class="container hero-content">
+        <p class="eyebrow">BARYAN BADMINTON CLUB</p>
+
+        <h1>
+          Become part of<br>
+          the <span>Baryan family.</span>
+        </h1>
+
+        <p class="hero-text">
+          Train, compete, improve your game and connect with
+          fellow badminton players in a disciplined and welcoming club.
+        </p>
+
+        <a href="#membership" class="primary-button">
+          Apply for Membership
+        </a>
+      </div>
+    </section>
+
+
+    <section class="membership-info">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">MEMBERSHIP</p>
+          <h2>How to become a member</h2>
+          <p>
+            Complete the application below. Your application will be
+            reviewed by Baryan Badminton Club management before your
+            membership is confirmed.
+          </p>
+        </div>
+
+        <div class="benefits-grid">
+
+          <article>
+            <span>01</span>
+            <h3>Apply</h3>
+            <p>
+              Complete the membership application with your personal
+              and badminton information.
+            </p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Pay</h3>
+            <p>
+              Pay the applicable registration or membership contribution
+              communicated by club management.
+            </p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Orientation</h3>
+            <p>
+              Learn about club rules, training schedules, court etiquette,
+              safety and member responsibilities.
+            </p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>Get Confirmed</h3>
+            <p>
+              Once approved by management, your membership becomes active.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="membership-section" id="membership">
+
+      <div class="container">
+
+        <div class="form-wrapper">
+
+          <div class="form-intro">
+            <p class="eyebrow">JOIN BARYAN</p>
+
+            <h2>
+              Membership<br>
+              application
+            </h2>
+
+            <p>
+              Fill in your details below. Fields marked with *
+              are required.
+            </p>
+
+            <div class="member-categories">
+              <strong>Membership categories</strong>
+
+              <ul>
+                <li>Junior Member</li>
+                <li>Adult Member</li>
+                <li>Student Member</li>
+                <li>Corporate / Institutional Member</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <form id="membershipForm" novalidate>
+
+            <!-- Anti-spam honeypot -->
+            <div class="honeypot" aria-hidden="true">
+              <label>
+                Leave this field empty
+                <input type="text" name="website">
+              </label>
+            </div>
+
+
+            <div class="form-section">
+              <h3>Personal information</h3>
+
+              <div class="form-grid">
+
+                <div class="form-field full">
+                  <label for="fullName">Full name *</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    autocomplete="name"
+                    required
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="dateOfBirth">Date of birth *</label>
+                  <input
+                    type="date"
+                    id="dateOfBirth"
+                    name="dateOfBirth"
+                    required
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="gender">Gender *</label>
+                  <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer not to say">
+                      Prefer not to say
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="phone">Phone number *</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+256..."
+                    autocomplete="tel"
+                    required
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="whatsapp">WhatsApp number</label>
+                  <input
+                    type="tel"
+                    id="whatsapp"
+                    name="whatsapp"
+                    placeholder="+256..."
+                  >
+                </div>
+
+                <div class="form-field full">
+                  <label for="email">Email address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    required
+                  >
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-section">
+              <h3>Membership</h3>
+
+              <div class="form-grid">
+
+                <div class="form-field">
+                  <label for="membershipCategory">
+                    Membership category *
+                  </label>
+
+                  <select
+                    id="membershipCategory"
+                    name="membershipCategory"
+                    required
+                  >
+                    <option value="">Select category</option>
+                    <option value="Junior">Junior Member</option>
+                    <option value="Adult">Adult Member</option>
+                    <option value="Student">Student Member</option>
+                    <option value="Corporate">
+                      Corporate / Institutional
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="skillLevel">Skill level *</label>
+
+                  <select
+                    id="skillLevel"
+                    name="skillLevel"
+                    required
+                  >
+                    <option value="">Select level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+                </div>
+
+                <div class="form-field full">
+                  <label for="trainingSession">
+                    Preferred training session
+                  </label>
+
+                  <select
+                    id="trainingSession"
+                    name="trainingSession"
+                  >
+                    <option value="">Select preferred session</option>
+                    <option value="Weekday">
+                      Weekday training
+                    </option>
+                    <option value="Weekend">
+                      Weekend training
+                    </option>
+                    <option value="Either">
+                      Either
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-field full">
+                  <label for="experience">
+                    Previous badminton experience
+                  </label>
+
+                  <textarea
+                    id="experience"
+                    name="experience"
+                    rows="4"
+                    placeholder="Tell us briefly about your badminton experience..."
+                  ></textarea>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div
+              class="form-section junior-section"
+              id="juniorSection"
+              hidden
+            >
+
+              <h3>Parent / guardian information</h3>
+
+              <div class="form-grid">
+
+                <div class="form-field">
+                  <label for="guardianName">
+                    Parent / guardian name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="guardianName"
+                    name="guardianName"
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="guardianPhone">
+                    Parent / guardian phone
+                  </label>
+
+                  <input
+                    type="tel"
+                    id="guardianPhone"
+                    name="guardianPhone"
+                    placeholder="+256..."
+                  >
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-section">
+
+              <h3>Emergency contact</h3>
+
+              <div class="form-grid">
+
+                <div class="form-field">
+                  <label for="emergencyName">
+                    Contact name *
+                  </label>
+
+                  <input
+                    type="text"
+                    id="emergencyName"
+                    name="emergencyName"
+                    required
+                  >
+                </div>
+
+                <div class="form-field">
+                  <label for="emergencyPhone">
+                    Contact phone *
+                  </label>
+
+                  <input
+                    type="tel"
+                    id="emergencyPhone"
+                    name="emergencyPhone"
+                    placeholder="+256..."
+                    required
+                  >
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="agreement">
+
+              <label class="checkbox">
+                <input
+                  type="checkbox"
+                  id="rulesAgreement"
+                  name="rulesAgreement"
+                  required
+                >
+
+                <span>
+                  I agree to follow Baryan Badminton Club rules,
+                  regulations, safety requirements and member
+                  responsibilities. *
+                </span>
+              </label>
+
+
+              <label class="checkbox">
+                <input
+                  type="checkbox"
+                  id="privacyAgreement"
+                  name="privacyAgreement"
+                  required
+                >
+
+                <span>
+                  I consent to Baryan Badminton Club using the
+                  information provided for membership administration. *
+                </span>
+              </label>
+
+            </div>
+
+
+            <div
+              class="form-message"
+              id="formMessage"
+              role="alert"
+              aria-live="polite"
+            ></div>
+
+
+            <button
+              type="submit"
+              class="submit-button"
+              id="submitButton"
+            >
+              <span id="submitText">
+                Submit Membership Application
+              </span>
+
+              <span
+                id="submitLoading"
+                hidden
+              >
+                Submitting...
+              </span>
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="responsibilities">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">OUR COMMUNITY</p>
+          <h2>Membership responsibilities</h2>
+        </div>
+
+        <div class="responsibility-list">
+
+          <p>Respect other members, coaches and officials.</p>
+
+          <p>Respect club property and facilities.</p>
+
+          <p>Pay membership fees on time.</p>
+
+          <p>Attend training and club activities responsibly.</p>
+
+          <p>Maintain good sportsmanship and discipline.</p>
+
+          <p>Promote and uphold the reputation of Baryan Badminton Club.</p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    <div class="container">
+      <strong>BARYAN BADMINTON CLUB</strong>
+      <p>
+        Train. Compete. Improve. Belong.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Firebase -->
+  <script type="module" src="js/registration.js"></script>
+
+</body>
+</html>

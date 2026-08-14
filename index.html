@@ -1374,7 +1374,243 @@
 
 </section>
 
+<!-- =====================================================
+     REVIEWS
+===================================================== -->
 
+<section
+  class="reviews-section"
+  id="reviews"
+>
+
+  <div class="container">
+
+    <div class="section-heading center-heading">
+
+      <p class="eyebrow">
+        BBA REVIEWS
+      </p>
+
+      <h2>
+        WHAT OUR
+        <span>PLAYERS SAY.</span>
+      </h2>
+
+      <p>
+        Hear from players, parents and members
+        of the Baryan Badminton Academy community.
+      </p>
+
+    </div>
+
+
+    <div class="reviews-slider">
+
+      <div class="review-track" id="reviewTrack">
+
+
+        <!-- REVIEW 1 -->
+
+        <article class="review-card">
+
+          <div class="review-stars">
+            ★★★★★
+          </div>
+
+          <p class="review-text">
+            “BBA has helped me improve my badminton
+            skills, confidence and understanding of
+            the game. The training environment is
+            motivating and welcoming.”
+          </p>
+
+          <div class="review-author">
+
+            <div class="review-avatar">
+              BP
+            </div>
+
+            <div>
+              <strong>
+                BBA Player
+              </strong>
+
+              <span>
+                Academy Member
+              </span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- REVIEW 2 -->
+
+        <article class="review-card">
+
+          <div class="review-stars">
+            ★★★★★
+          </div>
+
+          <p class="review-text">
+            “The academy provides a great environment
+            for players to learn, train and compete.
+            I have seen a big improvement in my game
+            since joining BBA.”
+          </p>
+
+          <div class="review-author">
+
+            <div class="review-avatar">
+              BM
+            </div>
+
+            <div>
+              <strong>
+                BBA Member
+              </strong>
+
+              <span>
+                Intermediate Player
+              </span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- REVIEW 3 -->
+
+        <article class="review-card">
+
+          <div class="review-stars">
+            ★★★★★
+          </div>
+
+          <p class="review-text">
+            “BBA combines badminton training with
+            discipline, teamwork and personal growth.
+            It is a great place for young players
+            to develop.”
+          </p>
+
+          <div class="review-author">
+
+            <div class="review-avatar">
+              BP
+            </div>
+
+            <div>
+              <strong>
+                BBA Parent
+              </strong>
+
+              <span>
+                Parent Member
+              </span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- REVIEW 4 -->
+
+        <article class="review-card">
+
+          <div class="review-stars">
+            ★★★★★
+          </div>
+
+          <p class="review-text">
+            “The training sessions are challenging,
+            enjoyable and well organised. BBA has
+            created a strong community for badminton
+            players.”
+          </p>
+
+          <div class="review-author">
+
+            <div class="review-avatar">
+              BA
+            </div>
+
+            <div>
+              <strong>
+                BBA Athlete
+              </strong>
+
+              <span>
+                Advanced Player
+              </span>
+            </div>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+
+      <!-- SLIDER CONTROLS -->
+
+      <button
+        class="review-button review-prev"
+        id="reviewPrev"
+        aria-label="Previous review"
+      >
+        ←
+      </button>
+
+
+      <button
+        class="review-button review-next"
+        id="reviewNext"
+        aria-label="Next review"
+      >
+        →
+      </button>
+
+
+      <div
+        class="review-dots"
+        id="reviewDots"
+      >
+
+        <button
+          class="review-dot active"
+          aria-label="Review 1"
+        ></button>
+
+        <button
+          class="review-dot"
+          aria-label="Review 2"
+        ></button>
+
+        <button
+          class="review-dot"
+          aria-label="Review 3"
+        ></button>
+
+        <button
+          class="review-dot"
+          aria-label="Review 4"
+        ></button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 <!-- =====================================================
      CONTACT CTA
@@ -1710,6 +1946,149 @@
 
 </script>
 
+<script>
 
+  /* =====================================================
+     REVIEWS SLIDER
+  ===================================================== */
+
+  const reviewTrack =
+    document.getElementById("reviewTrack");
+
+  const reviewPrev =
+    document.getElementById("reviewPrev");
+
+  const reviewNext =
+    document.getElementById("reviewNext");
+
+  const reviewDots =
+    document.querySelectorAll(".review-dot");
+
+
+  let currentReview = 0;
+
+  const totalReviews =
+    reviewDots.length;
+
+
+  function showReview(index) {
+
+    currentReview =
+      (index + totalReviews) % totalReviews;
+
+    reviewTrack.style.transform =
+      `translateX(-${currentReview * 100}%)`;
+
+
+    reviewDots.forEach(
+      (dot, dotIndex) => {
+
+        dot.classList.toggle(
+          "active",
+          dotIndex === currentReview
+        );
+
+      }
+    );
+
+  }
+
+
+  reviewNext.addEventListener(
+    "click",
+    () => {
+
+      showReview(
+        currentReview + 1
+      );
+
+    }
+  );
+
+
+  reviewPrev.addEventListener(
+    "click",
+    () => {
+
+      showReview(
+        currentReview - 1
+      );
+
+    }
+  );
+
+
+  reviewDots.forEach(
+    (dot, index) => {
+
+      dot.addEventListener(
+        "click",
+        () => {
+
+          showReview(index);
+
+        }
+      );
+
+    }
+  );
+
+
+  /* Automatic sliding */
+
+  let reviewAutoSlide =
+    setInterval(
+      () => {
+
+        showReview(
+          currentReview + 1
+        );
+
+      },
+      5000
+    );
+
+
+  /* Pause automatic sliding when
+     the user interacts with it */
+
+  const reviewsSlider =
+    document.querySelector(
+      ".reviews-slider"
+    );
+
+
+  reviewsSlider.addEventListener(
+    "mouseenter",
+    () => {
+
+      clearInterval(
+        reviewAutoSlide
+      );
+
+    }
+  );
+
+
+  reviewsSlider.addEventListener(
+    "mouseleave",
+    () => {
+
+      reviewAutoSlide =
+        setInterval(
+          () => {
+
+            showReview(
+              currentReview + 1
+            );
+
+          },
+          5000
+        );
+
+    }
+  );
+
+</script>
 </body>
 </html>

@@ -21,6 +21,188 @@
     rel="stylesheet"
     href="css/programs.css"
   >
+    <style>
+    /* =====================================================
+       LOGO STYLES
+    ===================================================== */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+
+    /* Footer logo slightly smaller */
+    footer .logo img {
+      height: 50px;
+    }
+
+    /* =====================================================
+       STAFF SECTION STYLES
+    ===================================================== */
+    .staff-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 260px;
+    }
+
+    .staff-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .staff-photo {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .staff-name {
+      position: relative;
+      z-index: 2;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 18px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+      width: 100%;
+    }
+
+    /* Modal */
+    .staff-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .staff-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .staff-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.75);
+      backdrop-filter: blur(6px);
+    }
+
+    .staff-modal-content {
+      position: relative;
+      z-index: 2;
+      width: min(420px, 92%);
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 30px 28px 35px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .staff-modal.open .staff-modal-content {
+      transform: translateY(0);
+    }
+
+    .staff-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      background: #f0f2f5;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .staff-modal-close:hover {
+      background: #e0e4ea;
+    }
+
+    .staff-modal-photo {
+      width: 140px;
+      height: 140px;
+      margin: 10px auto 22px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #0757c9, #043d91);
+      background-size: cover;
+      background-position: center;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .staff-modal-content h3 {
+      margin-bottom: 6px;
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #0b0b0b;
+    }
+
+    .staff-modal-position {
+      margin-bottom: 18px;
+      color: #0757c9;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+
+    .staff-modal-contact {
+      font-size: 0.92rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .staff-modal-contact a {
+      color: #0757c9;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .staff-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .staff-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 220px;
+      }
+
+      .logo img {
+        height: 42px;
+      }
+
+    }
+  </style>
 </head>
 
 

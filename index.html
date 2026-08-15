@@ -3,24 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Baryan Badminton Academy | Uganda</title>
-
   <meta name="description" content="Baryan Badminton Academy develops badminton players through professional coaching, skills training, discipline, fitness and competition in Uganda.">
-
   <meta name="keywords" content="Baryan Badminton Academy, badminton academy Uganda, badminton training Uganda, badminton Kampala, youth badminton Uganda">
-
   <meta name="author" content="Baryan Badminton Academy">
-
   <meta name="theme-color" content="#0757c9">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Baryan Badminton Academy | Uganda">
   <meta property="og:description" content="Train. Develop. Compete. Join Baryan Badminton Academy.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/bba-og.jpg">
+  <meta property="og:image" content="assets/images/baryan-logo.jpg">
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
@@ -32,9 +26,50 @@
 
   <style>
     /* =====================================================
+       LOGO STYLES
+    ===================================================== */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-text span:first-child {
+      font-size: 1.15rem;
+      color: #0757c9;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.72rem;
+      color: #333;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* Footer logo slightly smaller */
+    footer .logo img {
+      height: 44px;
+    }
+
+    /* =====================================================
        STAFF SECTION STYLES
     ===================================================== */
-
     .staff-grid {
       grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: 260px;
@@ -183,6 +218,14 @@
         grid-template-columns: 1fr;
         grid-auto-rows: 220px;
       }
+
+      .logo img {
+        height: 42px;
+      }
+
+      .logo-text span:first-child {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -196,8 +239,11 @@
   <div class="container nav-container">
 
     <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
-      BARYAN
-      <span>ACADEMY</span>
+      <img src="assets/images/baryan-logo.jpg" alt="Baryan Badminton Academy logo">
+      <div class="logo-text">
+        <span>BARYAN</span>
+        <span>ACADEMY</span>
+      </div>
     </a>
 
     <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNavigation">
@@ -549,7 +595,7 @@
 </section>
 
 <!-- =====================================================
-     OUR STAFF  (REPLACES OLD GALLERY)
+     OUR STAFF
 ===================================================== -->
 <section class="gallery-preview staff-section" id="gallery">
 
@@ -566,7 +612,6 @@
       </p>
     </div>
 
-    <!-- STAFF GRID (Photos + Names only) -->
     <div class="gallery-grid staff-grid" id="staffGrid">
 
       <article class="gallery-item gallery-blue staff-card" data-staff="1" tabindex="0" role="button" aria-label="View details for Coach James Okello">
@@ -591,14 +636,12 @@
 
     </div>
 
-    <!-- Explore More Button -->
     <div style="text-align: center; margin-top: 40px;">
       <button class="primary-button" id="exploreStaffBtn" type="button">
         EXPLORE MORE
       </button>
     </div>
 
-    <!-- STAFF DETAIL MODAL -->
     <div class="staff-modal" id="staffModal" aria-hidden="true">
       <div class="staff-modal-overlay" id="staffModalOverlay"></div>
 
@@ -820,8 +863,11 @@
 
     <div>
       <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
-        BARYAN
-        <span>ACADEMY</span>
+        <img src="assets/images/baryan-logo.jpg" alt="Baryan Badminton Academy logo">
+        <div class="logo-text">
+          <span>BARYAN</span>
+          <span>ACADEMY</span>
+        </div>
       </a>
       <p>Train. Develop. Compete. Belong.</p>
     </div>
@@ -974,7 +1020,7 @@
 </script>
 
 <!-- =====================================================
-     FIREBASE REVIEWS (single clean instance)
+     FIREBASE REVIEWS
 ===================================================== -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";

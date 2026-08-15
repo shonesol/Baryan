@@ -1,7 +1,7 @@
 /* =========================================================
    HENRISON BASKETBALL ACADEMY
    PROFESSIONAL HOMEPAGE CSS
-   Brand: Blue / Orange / Green / Black
+   Brand: Blue / Orange / Black / White
 ========================================================= */
 
 /* =========================================================
@@ -17,9 +17,6 @@
   --orange: #f47b20;
   --orange-dark: #d85d08;
   --orange-light: #ff9b4a;
-
-  --green: #159447;
-  --green-dark: #0c6b31;
 
   --black: #050505;
   --black-soft: #101010;
@@ -671,7 +668,7 @@ button {
 .whatsapp-button {
 
   background:
-    var(--green);
+    var(--blue);
 
   color:
     var(--white);
@@ -682,7 +679,7 @@ button {
 .whatsapp-button:hover {
 
   background:
-    var(--green-dark);
+    var(--blue-dark);
 
   transform:
     translateY(-3px);
@@ -902,7 +899,7 @@ button {
 
 .green-card {
   background:
-    var(--green);
+    var(--blue-dark);
 }
 
 
@@ -1458,7 +1455,7 @@ button {
 
   border-top:
     5px solid
-    var(--green);
+    var(--blue);
 
 }
 
@@ -1860,7 +1857,7 @@ button {
 .green-stat {
 
   background:
-    var(--green);
+    var(--blue-dark);
 
 }
 
@@ -1997,8 +1994,8 @@ button {
   background:
     linear-gradient(
       145deg,
-      var(--green),
-      var(--green-dark)
+      var(--blue),
+      var(--black)
     );
 
 }
@@ -2106,7 +2103,7 @@ button {
 .green-news {
 
   border-top-color:
-    var(--green);
+    var(--blue-dark);
 
 }
 
@@ -2142,7 +2139,7 @@ button {
 .green-news .news-tag {
 
   color:
-    var(--green);
+    var(--blue-dark);
 
 }
 
@@ -2247,7 +2244,7 @@ button {
 .green-testimonial {
 
   border-left-color:
-    var(--green);
+    var(--blue-dark);
 
 }
 
@@ -2378,7 +2375,7 @@ button {
 .whatsapp-button {
 
   background:
-    var(--green);
+    var(--blue);
 
 }
 
@@ -3374,6 +3371,8 @@ footer {
   }
 
 }
+
+
 /* =====================================================
    REVIEWS SELECTOR
 ===================================================== */

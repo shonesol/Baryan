@@ -30,23 +30,13 @@ const BARYAN_CONFIG = {
   */
 
   firebase: {
-
-    apiKey: "YOUR_FIREBASE_API_KEY",
-
-    authDomain:
-      "YOUR_PROJECT.firebaseapp.com",
-
-    projectId:
-      "YOUR_PROJECT_ID",
-
-    storageBucket:
-      "YOUR_PROJECT.firebasestorage.app",
-
-    messagingSenderId:
-      "YOUR_MESSAGING_SENDER_ID",
-
-    appId:
-      "YOUR_FIREBASE_APP_ID"
+  apiKey: "AIzaSyChcaNBkSkXp4DILZvvpYism9F1617fhZQ",
+  authDomain: "baryan-9997b.firebaseapp.com",
+  projectId: "baryan-9997b",
+  storageBucket: "baryan-9997b.firebasestorage.app",
+  messagingSenderId: "1037368957847",
+  appId: "1:1037368957847:web:c43200cbe2cb026c1fc2d2",
+  measurementId: "G-SP6971YS6C"
 
   },
 

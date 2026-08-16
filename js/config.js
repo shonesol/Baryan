@@ -1,117 +1,281 @@
-/*
-====================================================
-BARYAN BADMINTON CLUB
-PUBLIC FRONTEND CONFIGURATION
-====================================================
+<!-- =====================================================
+     WHATSAPP REVIEWS
+===================================================== -->
 
-IMPORTANT:
-Firebase Web App configuration is normally safe
-to include in frontend code.
+<script>
 
-DO NOT put:
-- Firebase Admin SDK credentials
-- Service account private keys
-- Email passwords
-- Private API secrets
+  /* =====================================================
+     GET ELEMENTS
+  ===================================================== */
 
-in this file.
-====================================================
-*/
+  const reviewForm =
+    document.getElementById("reviewForm");
 
-const BARYAN_CONFIG = {
+  const reviewSubmit =
+    document.getElementById("reviewSubmit");
 
-  /*
-  ================================
-  FIREBASE
-  ================================
-  Replace these values with the
-  Firebase Web App configuration
-  from your Firebase console.
-  */
-
-  firebase: {
-  apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
-  authDomain: "baryan-5f81d.firebaseapp.com",
-  projectId: "baryan-5f81d",
-  storageBucket: "baryan-5f81d.firebasestorage.app",
-  messagingSenderId: "409395363296",
-  appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
-  measurementId: "G-J1RCHQN6XN"
-
-  },
+  const reviewStatus =
+    document.getElementById("reviewStatus");
 
 
-  /*
-  ================================
-  EMAILJS
-  ================================
-  */
+  /* =====================================================
+     WHATSAPP NUMBER
+  ===================================================== */
 
-  emailjs: {
-
-    publicKey:
-      "yhUBvR2qJDBsXAOt6",
-
-    serviceId:
-      "service_jwvtdwh",
-
-    templateId:
-      "template_xh3ccdo"
-
-  },
+  const academyWhatsApp =
+    "256755805092";
 
 
-  /*
-  ================================
-  WHATSAPP
-  ================================
-  */
+  /* =====================================================
+     SUBMIT REVIEW
+  ===================================================== */
 
-  whatsapp: {
+  reviewForm.addEventListener(
+    "submit",
+    function (event) {
 
-    /*
-    Put the official club WhatsApp
-    number here.
-
-    Uganda example:
-    2567XXXXXXXX
-
-    Do NOT use:
-    +256
-    spaces
-    brackets
-    hyphens
-    */
-
-    phone:
-      "256755805092",
-
-    message:
-      "Hello Baryan Badminton Club, I would like to enquire about membership."
-
-  },
+      event.preventDefault();
 
 
-  /*
-  ================================
-  CLUB INFORMATION
-  ================================
-  */
+      /* -----------------------------------------------
+         GET RATING
+      ----------------------------------------------- */
 
-  club: {
+      const ratingInput =
+        document.querySelector(
+          'input[name="rating"]:checked'
+        );
 
-    name:
-      "Baryan Badminton Club",
 
-    email:
-      "baryanmintonclub@gmail.com",
+      if (!ratingInput) {
 
-    phone:
-      "+256755805092",
+        reviewStatus.textContent =
+          "Please select a rating.";
 
-    location:
-      "kyebando ring road Kampala, Uganda"
+        reviewStatus.style.color =
+          "#d32f2f";
 
-  }
+        return;
 
-};
+      }
+
+
+      /* -----------------------------------------------
+         GET FORM VALUES
+      ----------------------------------------------- */
+
+      const name =
+        document
+          .getElementById("reviewName")
+          .value
+          .trim();
+
+
+      const role =
+        document
+          .getElementById("reviewRole")
+          .value;
+
+
+      const message =
+        document
+          .getElementById("reviewMessage")
+          .value
+          .trim();
+
+
+      const rating =
+        Number(
+          ratingInput.value
+        );
+
+
+      /* -----------------------------------------------
+         VALIDATION
+      ----------------------------------------------- */
+
+      if (
+        !name ||
+        !role ||
+        !message
+      ) {
+
+        reviewStatus.textContent =
+          "Please complete all fields.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      if (
+        name.length > 60
+      ) {
+
+        reviewStatus.textContent =
+          "Your name is too long.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      if (
+        message.length > 500
+      ) {
+
+        reviewStatus.textContent =
+          "Your review is too long.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      if (
+        rating < 1 ||
+        rating > 5
+      ) {
+
+        reviewStatus.textContent =
+          "Please select a valid rating.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      /* -----------------------------------------------
+         CREATE STARS
+      ----------------------------------------------- */
+
+      const stars =
+        "★".repeat(rating) +
+        "☆".repeat(5 - rating);
+
+
+      /* -----------------------------------------------
+         CURRENT DATE
+      ----------------------------------------------- */
+
+      const submittedAt =
+        new Date().toLocaleString(
+          "en-UG",
+          {
+            dateStyle: "medium",
+            timeStyle: "short"
+          }
+        );
+
+
+      /* -----------------------------------------------
+         CREATE WHATSAPP MESSAGE
+      ----------------------------------------------- */
+
+      const whatsappMessage = `
+
+🏸 BARYAN BADMINTON ACADEMY
+
+⭐ NEW REVIEW
+
+👤 Name:
+${name}
+
+🎯 Role:
+${role}
+
+⭐ Rating:
+${stars} (${rating}/5)
+
+💬 Review:
+${message}
+
+📅 Submitted:
+${submittedAt}
+
+      `.trim();
+
+
+      /* -----------------------------------------------
+         CREATE WHATSAPP URL
+      ----------------------------------------------- */
+
+      const whatsappURL =
+        "https://wa.me/" +
+        academyWhatsApp +
+        "?text=" +
+        encodeURIComponent(
+          whatsappMessage
+        );
+
+
+      /* -----------------------------------------------
+         UPDATE BUTTON
+      ----------------------------------------------- */
+
+      reviewSubmit.disabled =
+        true;
+
+      reviewSubmit.textContent =
+        "OPENING WHATSAPP...";
+
+
+      reviewStatus.textContent =
+        "Opening WhatsApp with your review...";
+
+      reviewStatus.style.color =
+        "#0757c9";
+
+
+      /* -----------------------------------------------
+         OPEN WHATSAPP
+      ----------------------------------------------- */
+
+      window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+
+      /* -----------------------------------------------
+         RESET
+      ----------------------------------------------- */
+
+      setTimeout(
+        () => {
+
+          reviewForm.reset();
+
+          reviewSubmit.disabled =
+            false;
+
+          reviewSubmit.textContent =
+            "SUBMIT REVIEW";
+
+          reviewStatus.textContent =
+            "Your review has been prepared in WhatsApp. Please press Send.";
+
+          reviewStatus.style.color =
+            "#0757c9";
+
+        },
+        1000
+      );
+
+    }
+  );
+
+</script>

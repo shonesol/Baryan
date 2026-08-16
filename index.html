@@ -1278,24 +1278,22 @@ body.modal-open {
 
       renderReviewSelector();
 
-    } catch (error) {
+ } catch (error) {
 
-      console.error("FIRESTORE LOAD ERROR:", error);
+  console.error("FIREBASE ERROR:", error);
 
-      reviewSelect.innerHTML = `
-        <option value="">
-          Error loading reviews
-        </option>
-      `;
+  reviewStatus.textContent =
+    "Error: " + error.message;
 
-      selectedReview.innerHTML = `
-        <p class="reviews-loading">
-          Unable to load reviews.
-        </p>
-      `;
+  reviewStatus.style.color =
+    "#d32f2f";
 
-    }
-  }
+} finally {
+
+  reviewSubmit.disabled = false;
+  reviewSubmit.textContent = "SUBMIT REVIEW";
+
+}
 
 
   // ================================

@@ -2372,25 +2372,15 @@
 
   import {
     initializeApp
-  }
-  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
+  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
   import {
-
     getFirestore,
-
     collection,
-
     addDoc,
-
     getDocs,
-
     serverTimestamp
-
-  }
-  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
+  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
   /* =====================================================
@@ -2423,22 +2413,16 @@
   };
 
 
-
   /* =====================================================
      INITIALIZE FIREBASE
   ===================================================== */
 
-  let app;
-
-  let db;
-
+  let db = null;
 
   try {
 
-    app =
-      initializeApp(
-        firebaseConfig
-      );
+    const app =
+      initializeApp(firebaseConfig);
 
     db =
       getFirestore(app);
@@ -2457,44 +2441,27 @@
   }
 
 
-
   /* =====================================================
-     ELEMENTS
+     GET ELEMENTS
   ===================================================== */
 
   const reviewSelect =
-    document.getElementById(
-      "reviewSelect"
-    );
-
+    document.getElementById("reviewSelect");
 
   const selectedReview =
-    document.getElementById(
-      "selectedReview"
-    );
-
+    document.getElementById("selectedReview");
 
   const reviewForm =
-    document.getElementById(
-      "reviewForm"
-    );
-
+    document.getElementById("reviewForm");
 
   const reviewSubmit =
-    document.getElementById(
-      "reviewSubmit"
-    );
-
+    document.getElementById("reviewSubmit");
 
   const reviewStatus =
-    document.getElementById(
-      "reviewStatus"
-    );
-
+    document.getElementById("reviewStatus");
 
 
   let reviews = [];
-
 
 
   /* =====================================================
@@ -2503,35 +2470,110 @@
 
   function escapeHTML(value) {
 
-    return String(value || "")
+    return String(value ?? "")
 
-      .replace(
-        /&/g,
-        "&amp;"
-      )
+      .replace(/&/g, "&amp;")
 
-      .replace(
-        /</g,
-        "&lt;"
-      )
+      .replace(/</g, "&lt;")
 
-      .replace(
-        />/g,
-        "&gt;"
-      )
+      .replace(/>/g, "&gt;")
 
-      .replace(
-        /"/g,
-        "&quot;"
-      )
+      .replace(/"/g, "&quot;")
 
-      .replace(
-        /'/g,
-        "&#039;"
-      );
+      .replace(/'/g, "&#039;");
 
   }
 
+
+  /* =====================================================
+     SHOW ERROR
+  ===================================================== */
+
+  function showFirebaseError(error) {
+
+    console.error(
+      "Firebase error:",
+      error
+    );
+
+    console.error(
+      "Firebase error code:",
+      error?.code
+    );
+
+    console.error(
+      "Firebase error message:",
+      error?.message
+    );
+
+
+    let message =
+      "Unable to connect to the review system.";
+
+
+    if (
+      error?.code ===
+      "permission-denied"
+    ) {
+
+      message =
+        "Firebase denied access. Check your Firestore Rules.";
+
+    }
+
+    else if (
+      error?.code ===
+      "unavailable"
+    ) {
+
+      message =
+        "Firebase is temporarily unavailable. Please try again.";
+
+    }
+
+    else if (
+      error?.code ===
+      "failed-precondition"
+    ) {
+
+      message =
+        "Firestore is not configured correctly.";
+
+    }
+
+    else if (
+      error?.code ===
+      "unauthenticated"
+    ) {
+
+      message =
+        "Firebase requires authentication for this operation.";
+
+    }
+
+    else if (
+      error?.code ===
+      "not-found"
+    ) {
+
+      message =
+        "Firestore database was not found. Create Firestore Database in Firebase Console.";
+
+    }
+
+    else if (
+      error?.message
+    ) {
+
+      message =
+        error.message;
+
+    }
+
+
+    return message;
+
+  }
 
 
   /* =====================================================
@@ -2550,7 +2592,7 @@
 
       selectedReview.innerHTML = `
         <p>
-          Reviews are currently unavailable.
+          Firebase could not be initialized.
         </p>
       `;
 
@@ -2559,24 +2601,46 @@
     }
 
 
+    reviewSelect.innerHTML = `
+      <option value="">
+        Loading reviews...
+      </option>
+    `;
+
+
+    selectedReview.innerHTML = `
+      <p class="reviews-loading">
+        Loading reviews...
+      </p>
+    `;
+
+
     console.log(
-      "Loading reviews..."
+      "Loading reviews from Firestore..."
     );
 
 
     try {
 
+      const reviewsCollection =
+        collection(
+          db,
+          "reviews"
+        );
+
+
       const snapshot =
         await getDocs(
-          collection(
-            db,
-            "reviews"
-          )
+          reviewsCollection
         );
 
 
       console.log(
-        "Reviews found:",
+        "Firestore connection successful."
+      );
+
+      console.log(
+        "Number of reviews:",
         snapshot.size
       );
 
@@ -2585,13 +2649,14 @@
 
 
       snapshot.forEach(
-        doc => {
+        documentSnapshot => {
 
           reviews.push({
 
-            id: doc.id,
+            id:
+              documentSnapshot.id,
 
-            ...doc.data()
+            ...documentSnapshot.data()
 
           });
 
@@ -2604,10 +2669,10 @@
 
     } catch (error) {
 
-      console.error(
-        "ERROR LOADING REVIEWS:",
-        error
-      );
+      const message =
+        showFirebaseError(
+          error
+        );
 
 
       reviewSelect.innerHTML = `
@@ -2619,14 +2684,13 @@
 
       selectedReview.innerHTML = `
         <p class="reviews-loading">
-          Reviews could not be loaded.
+          ${escapeHTML(message)}
         </p>
       `;
 
     }
 
   }
-
 
 
   /* =====================================================
@@ -2676,7 +2740,7 @@
 
 
         option.value =
-          index;
+          String(index);
 
 
         option.textContent =
@@ -2693,9 +2757,8 @@
   }
 
 
-
   /* =====================================================
-     DISPLAY SELECTED REVIEW
+     SELECT REVIEW
   ===================================================== */
 
   reviewSelect.addEventListener(
@@ -2739,7 +2802,6 @@
   );
 
 
-
   /* =====================================================
      DISPLAY REVIEW
   ===================================================== */
@@ -2765,12 +2827,8 @@
 
 
     const stars =
-      "★".repeat(
-        rating
-      ) +
-      "☆".repeat(
-        5 - rating
-      );
+      "★".repeat(rating) +
+      "☆".repeat(5 - rating);
 
 
     selectedReview.innerHTML = `
@@ -2780,9 +2838,7 @@
       </div>
 
       <p class="review-message">
-        “${escapeHTML(
-          review.message
-        )}”
+        “${escapeHTML(review.message)}”
       </p>
 
       <strong class="review-name">
@@ -2804,7 +2860,6 @@
   }
 
 
-
   /* =====================================================
      SUBMIT REVIEW
   ===================================================== */
@@ -2817,18 +2872,14 @@
 
 
       console.log(
-        "REVIEW FORM SUBMITTED"
+        "Review form submitted."
       );
 
-
-      /* -----------------------------------------------
-         CHECK FIREBASE
-      ----------------------------------------------- */
 
       if (!db) {
 
         reviewStatus.textContent =
-          "Firebase is not initialized. Please refresh the page.";
+          "Firebase is not initialized.";
 
         reviewStatus.style.color =
           "#d32f2f";
@@ -2839,7 +2890,7 @@
 
 
       /* -----------------------------------------------
-         GET RATING
+         RATING
       ----------------------------------------------- */
 
       const ratingInput =
@@ -2862,31 +2913,25 @@
 
 
       /* -----------------------------------------------
-         GET FORM VALUES
+         FORM DATA
       ----------------------------------------------- */
 
       const name =
         document
-          .getElementById(
-            "reviewName"
-          )
+          .getElementById("reviewName")
           .value
           .trim();
 
 
       const role =
         document
-          .getElementById(
-            "reviewRole"
-          )
+          .getElementById("reviewRole")
           .value;
 
 
       const message =
         document
-          .getElementById(
-            "reviewMessage"
-          )
+          .getElementById("reviewMessage")
           .value
           .trim();
 
@@ -2948,6 +2993,22 @@
       }
 
 
+      if (
+        rating < 1 ||
+        rating > 5
+      ) {
+
+        reviewStatus.textContent =
+          "Invalid rating.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
       /* -----------------------------------------------
          DISABLE BUTTON
       ----------------------------------------------- */
@@ -2958,57 +3019,36 @@
       reviewSubmit.textContent =
         "SUBMITTING...";
 
+
       reviewStatus.textContent =
         "Submitting your review...";
+
 
       reviewStatus.style.color =
         "#555";
 
 
-
       /* -----------------------------------------------
-         FIREBASE TIMEOUT
-      ----------------------------------------------- */
-
-      const timeoutPromise =
-        new Promise(
-          (_, reject) => {
-
-            setTimeout(
-              () => {
-
-                reject(
-                  new Error(
-                    "Firebase took too long to respond. Please check your internet connection and Firestore rules."
-                  )
-                );
-
-              },
-              15000
-            );
-
-          }
-        );
-
-
-
-      /* -----------------------------------------------
-         SAVE REVIEW
+         SAVE TO FIRESTORE
       ----------------------------------------------- */
 
       try {
 
         console.log(
-          "Sending review to Firebase..."
+          "Sending review to Firestore..."
         );
 
 
-        const savePromise =
-          addDoc(
-            collection(
-              db,
-              "reviews"
-            ),
+        const reviewsCollection =
+          collection(
+            db,
+            "reviews"
+          );
+
+
+        const docRef =
+          await addDoc(
+            reviewsCollection,
             {
 
               name:
@@ -3030,18 +3070,10 @@
           );
 
 
-        const docRef =
-          await Promise.race([
-            savePromise,
-            timeoutPromise
-          ]);
-
-
         console.log(
-          "REVIEW SAVED:",
+          "Review saved successfully:",
           docRef.id
         );
-
 
 
         /* -------------------------------------------
@@ -3056,15 +3088,7 @@
 
 
         /* -------------------------------------------
-           RESET FORM
-        ------------------------------------------- */
-
-        reviewForm.reset();
-
-
-
-        /* -------------------------------------------
-           ADD REVIEW LOCALLY
+           CREATE LOCAL REVIEW
         ------------------------------------------- */
 
         const newReview = {
@@ -3095,23 +3119,20 @@
         renderReviewSelector();
 
 
-        /* -------------------------------------------
-           SHOW NEW REVIEW
-        ------------------------------------------- */
-
         const newIndex =
           reviews.length - 1;
 
 
         reviewSelect.value =
-          String(
-            newIndex
-          );
+          String(newIndex);
 
 
         displayReview(
           newReview
         );
+
+
+        reviewForm.reset();
 
 
       } catch (error) {
@@ -3122,57 +3143,18 @@
         );
 
 
-        let errorMessage =
-          "Could not submit your review.";
-
-
-        if (
-          error.code ===
-          "permission-denied"
-        ) {
-
-          errorMessage =
-            "Permission denied by Firebase. Please check your Firestore Rules.";
-
-        }
-
-        else if (
-          error.code ===
-          "failed-precondition"
-        ) {
-
-          errorMessage =
-            "Firebase configuration requires attention.";
-
-        }
-
-        else if (
-          error.code ===
-          "unavailable"
-        ) {
-
-          errorMessage =
-            "Firebase is temporarily unavailable. Please check your internet connection.";
-
-        }
-
-        else if (
-          error.message
-        ) {
-
-          errorMessage =
-            error.message;
-
-        }
+        const message =
+          showFirebaseError(
+            error
+          );
 
 
         reviewStatus.textContent =
-          errorMessage;
+          message;
 
 
         reviewStatus.style.color =
           "#d32f2f";
-
 
       } finally {
 
@@ -3189,15 +3171,13 @@
   );
 
 
-
   /* =====================================================
-     START
+     START FIREBASE
   ===================================================== */
 
   loadReviews();
 
 </script>
-
 
 </body>
 </html>

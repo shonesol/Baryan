@@ -1208,15 +1208,9 @@ body.modal-open {
     collection,
     addDoc,
     getDocs,
-    query,
-    orderBy,
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-
-  /* =====================================================
-     FIREBASE CONFIGURATION
-  ===================================================== */
 
   const firebaseConfig = {
     apiKey: "AIzaSyChcaNBkSkXp4DILZvvpYism9F1617fhZQ",
@@ -1229,17 +1223,9 @@ body.modal-open {
   };
 
 
-  /* =====================================================
-     INITIALIZE FIREBASE
-  ===================================================== */
-
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-
-  /* =====================================================
-     GET HTML ELEMENTS
-  ===================================================== */
 
   const reviewSelect = document.getElementById("reviewSelect");
   const selectedReview = document.getElementById("selectedReview");
@@ -1251,10 +1237,6 @@ body.modal-open {
   let reviews = [];
 
 
-  /* =====================================================
-     ESCAPE HTML
-  ===================================================== */
-
   function escapeHTML(value) {
     return String(value || "")
       .replace(/&/g, "&amp;")
@@ -1265,58 +1247,27 @@ body.modal-open {
   }
 
 
-  /* =====================================================
-     LOAD REVIEWS
-  ===================================================== */
+  // ================================
+  // LOAD REVIEWS
+  // ================================
 
   async function loadReviews() {
 
+    console.log("Loading reviews from Firestore...");
+
     try {
 
-      reviewSelect.innerHTML =
-        `<option value="">Loading reviews...</option>`;
+      const snapshot = await getDocs(
+        collection(db, "reviews")
+      );
 
-      selectedReview.innerHTML =
-        `<p class="reviews-loading">Loading reviews...</p>`;
-
-
-      /*
-        We first try the normal query using createdAt.
-      */
-
-      let snapshot;
-
-      try {
-
-        const reviewsQuery = query(
-          collection(db, "reviews"),
-          orderBy("createdAt", "desc")
-        );
-
-        snapshot = await getDocs(reviewsQuery);
-
-      } catch (error) {
-
-        /*
-          If existing reviews do not have createdAt,
-          load them without orderBy.
-        */
-
-        console.warn(
-          "Could not order reviews by createdAt. Loading without ordering.",
-          error
-        );
-
-        snapshot = await getDocs(
-          collection(db, "reviews")
-        );
-      }
-
+      console.log("Reviews found:", snapshot.size);
 
       reviews = [];
 
-
       snapshot.forEach((doc) => {
+
+        console.log("Review:", doc.id, doc.data());
 
         reviews.push({
           id: doc.id,
@@ -1325,38 +1276,35 @@ body.modal-open {
 
       });
 
-
       renderReviewSelector();
-
 
     } catch (error) {
 
-      console.error(
-        "Firebase review loading error:",
-        error
-      );
+      console.error("FIRESTORE LOAD ERROR:", error);
 
-
-      reviewSelect.innerHTML =
-        `<option value="">Reviews unavailable</option>`;
+      reviewSelect.innerHTML = `
+        <option value="">
+          Error loading reviews
+        </option>
+      `;
 
       selectedReview.innerHTML = `
         <p class="reviews-loading">
-          Reviews could not be loaded at the moment.
-          Please try again later.
+          Unable to load reviews.
         </p>
       `;
+
     }
   }
 
 
-  /* =====================================================
-     DISPLAY REVIEW SELECTOR
-  ===================================================== */
+  // ================================
+  // DISPLAY REVIEW SELECTOR
+  // ================================
 
   function renderReviewSelector() {
 
-    if (!reviews.length) {
+    if (reviews.length === 0) {
 
       reviewSelect.innerHTML = `
         <option value="">
@@ -1366,8 +1314,7 @@ body.modal-open {
 
       selectedReview.innerHTML = `
         <p class="reviews-loading">
-          No reviews yet.
-          Be the first to review Baryan Badminton Academy!
+          No reviews yet. Be the first to review Baryan Badminton Academy!
         </p>
       `;
 
@@ -1379,48 +1326,37 @@ body.modal-open {
       <option value="">
         Select a review...
       </option>
-
-      ${reviews.map((review, index) => {
-
-        const name =
-          escapeHTML(
-            review.name || "Academy Member"
-          );
-
-        const role =
-          escapeHTML(
-            review.role || "Member"
-          );
-
-        return `
-          <option value="${index}">
-            ${name} — ${role}
-          </option>
-        `;
-
-      }).join("")}
     `;
 
 
-    selectedReview.innerHTML = `
-      <p class="reviews-loading">
-        Select a review above to read it.
-      </p>
-    `;
+    reviews.forEach((review, index) => {
+
+      const option = document.createElement("option");
+
+      option.value = index;
+
+      option.textContent =
+        `${review.name || "Academy Member"} — ${review.role || "Member"}`;
+
+      reviewSelect.appendChild(option);
+
+    });
+
   }
 
 
-  /* =====================================================
-     SELECT REVIEW
-  ===================================================== */
+  // ================================
+  // SELECT REVIEW
+  // ================================
 
   reviewSelect.addEventListener("change", () => {
 
-    const selectedIndex =
-      reviewSelect.value;
+    const index = Number(reviewSelect.value);
 
-
-    if (selectedIndex === "") {
+    if (
+      reviewSelect.value === "" ||
+      !reviews[index]
+    ) {
 
       selectedReview.innerHTML = `
         <p class="reviews-loading">
@@ -1431,59 +1367,27 @@ body.modal-open {
       return;
     }
 
-
-    const review =
-      reviews[Number(selectedIndex)];
-
-
-    if (review) {
-      displayReview(review);
-    }
+    displayReview(reviews[index]);
 
   });
 
 
-  /* =====================================================
-     DISPLAY SINGLE REVIEW
-  ===================================================== */
+  // ================================
+  // DISPLAY REVIEW
+  // ================================
 
   function displayReview(review) {
 
-    let rating =
-      Number(review.rating);
+    let rating = Number(review.rating) || 5;
 
-
-    if (!rating || rating < 1) {
-      rating = 5;
-    }
-
-
-    rating =
-      Math.min(5, Math.max(1, rating));
-
+    rating = Math.min(
+      5,
+      Math.max(1, rating)
+    );
 
     const stars =
       "★".repeat(rating) +
       "☆".repeat(5 - rating);
-
-
-    const name =
-      escapeHTML(
-        review.name || "Academy Member"
-      );
-
-
-    const role =
-      escapeHTML(
-        review.role || "Academy Member"
-      );
-
-
-    const message =
-      escapeHTML(
-        review.message || ""
-      );
-
 
     selectedReview.innerHTML = `
 
@@ -1492,219 +1396,146 @@ body.modal-open {
       </div>
 
       <p class="review-message">
-        “${message}”
+        “${escapeHTML(review.message)}”
       </p>
 
       <strong class="review-name">
-        ${name}
+        ${escapeHTML(review.name || "Academy Member")}
       </strong>
 
       <span class="review-role">
-        ${role}
+        ${escapeHTML(review.role || "Member")}
       </span>
 
     `;
+
   }
 
 
-  /* =====================================================
-     SUBMIT REVIEW
-  ===================================================== */
+  // ================================
+  // SUBMIT REVIEW
+  // ================================
 
-  reviewForm.addEventListener(
-    "submit",
-    async (event) => {
+  reviewForm.addEventListener("submit", async (event) => {
 
-      event.preventDefault();
+    event.preventDefault();
 
+    const ratingInput =
+      document.querySelector(
+        'input[name="rating"]:checked'
+      );
 
-      /* -----------------------------------------------
-         GET RATING
-      ------------------------------------------------ */
-
-      const ratingInput =
-        document.querySelector(
-          'input[name="rating"]:checked'
-        );
-
-
-      if (!ratingInput) {
-
-        reviewStatus.textContent =
-          "Please select a rating.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-      }
-
-
-      /* -----------------------------------------------
-         GET FORM VALUES
-      ------------------------------------------------ */
-
-      const name =
-        document
-          .getElementById("reviewName")
-          .value
-          .trim();
-
-
-      const role =
-        document
-          .getElementById("reviewRole")
-          .value;
-
-
-      const rating =
-        Number(ratingInput.value);
-
-
-      const message =
-        document
-          .getElementById("reviewMessage")
-          .value
-          .trim();
-
-
-      /* -----------------------------------------------
-         VALIDATION
-      ------------------------------------------------ */
-
-      if (!name) {
-
-        reviewStatus.textContent =
-          "Please enter your name.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-      }
-
-
-      if (!role) {
-
-        reviewStatus.textContent =
-          "Please select your role.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-      }
-
-
-      if (!message) {
-
-        reviewStatus.textContent =
-          "Please write your review.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-      }
-
-
-      /* -----------------------------------------------
-         DISABLE BUTTON
-      ------------------------------------------------ */
-
-      reviewSubmit.disabled = true;
-
-      reviewSubmit.textContent =
-        "SUBMITTING...";
+    if (!ratingInput) {
 
       reviewStatus.textContent =
-        "";
+        "Please select a rating.";
+
+      return;
+
+    }
 
 
-      /* -----------------------------------------------
-         SAVE TO FIRESTORE
-      ------------------------------------------------ */
+    const name =
+      document
+        .getElementById("reviewName")
+        .value
+        .trim();
 
-      try {
+    const role =
+      document
+        .getElementById("reviewRole")
+        .value;
 
-        await addDoc(
-          collection(db, "reviews"),
-          {
-            name: name,
-            role: role,
-            rating: rating,
-            message: message,
-            createdAt: serverTimestamp()
-          }
-        );
+    const message =
+      document
+        .getElementById("reviewMessage")
+        .value
+        .trim();
 
-
-        /* ---------------------------------------------
-           SUCCESS
-        --------------------------------------------- */
-
-        reviewStatus.textContent =
-          "Thank you! Your review has been submitted.";
-
-        reviewStatus.style.color =
-          "#0757c9";
+    const rating =
+      Number(ratingInput.value);
 
 
-        reviewForm.reset();
+    if (!name || !role || !message) {
+
+      reviewStatus.textContent =
+        "Please complete all fields.";
+
+      return;
+
+    }
 
 
-        /* ---------------------------------------------
-           RELOAD REVIEWS
-        --------------------------------------------- */
+    reviewSubmit.disabled = true;
 
-        await loadReviews();
+    reviewSubmit.textContent =
+      "SUBMITTING...";
 
 
-        /*
-          Automatically select the newest review.
-        */
+    try {
 
-        if (reviews.length > 0) {
-
-          reviewSelect.value = "0";
-
-          displayReview(reviews[0]);
-
+      const docRef = await addDoc(
+        collection(db, "reviews"),
+        {
+          name,
+          role,
+          rating,
+          message,
+          createdAt: serverTimestamp()
         }
+      );
 
-      } catch (error) {
 
-        console.error(
-          "Error submitting review:",
-          error
+      console.log(
+        "Review successfully added:",
+        docRef.id
+      );
+
+
+      reviewStatus.textContent =
+        "Thank you! Your review has been submitted.";
+
+      reviewForm.reset();
+
+
+      await loadReviews();
+
+
+      if (reviews.length > 0) {
+
+        reviewSelect.value =
+          reviews.length - 1;
+
+        displayReview(
+          reviews[reviews.length - 1]
         );
-
-
-        reviewStatus.textContent =
-          "Sorry, your review could not be submitted. Please try again.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
 
       }
 
+    } catch (error) {
 
-      /* -----------------------------------------------
-         ENABLE BUTTON
-      ------------------------------------------------ */
+      console.error(
+        "FIRESTORE SUBMIT ERROR:",
+        error
+      );
 
-      reviewSubmit.disabled = false;
-
-      reviewSubmit.textContent =
-        "SUBMIT REVIEW";
+      reviewStatus.textContent =
+        "Your review could not be submitted. Check the browser console.";
 
     }
-  );
 
 
-  /* =====================================================
-     START
-  ===================================================== */
+    reviewSubmit.disabled = false;
+
+    reviewSubmit.textContent =
+      "SUBMIT REVIEW";
+
+  });
+
+
+  // ================================
+  // START
+  // ================================
 
   loadReviews();
 

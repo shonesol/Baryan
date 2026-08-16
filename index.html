@@ -205,6 +205,126 @@
       }
 
     }
+    .staff-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.staff-explore {
+  margin-top: 15px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  background: #fff;
+  color: #111;
+}
+
+.staff-explore:hover {
+  transform: translateY(-2px);
+}
+
+.staff-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.staff-modal.active {
+  display: flex;
+}
+
+.staff-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.staff-modal-content {
+  position: relative;
+  z-index: 2;
+  width: min(500px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+}
+
+.staff-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.staff-modal-photo {
+  width: 180px;
+  height: 180px;
+  margin: 10px auto 20px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.staff-modal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-staff-photo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.staff-modal-position {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.staff-modal-contact {
+  margin-top: 25px;
+  display: grid;
+  gap: 12px;
+}
+
+.staff-contact-item {
+  padding: 12px;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+
+.staff-contact-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.staff-contact-item a {
+  text-decoration: none;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
   </style>
 </head>
 
@@ -589,44 +709,108 @@
 
     <div class="gallery-grid staff-grid" id="staffGrid">
 
-      <article class="gallery-item gallery-blue staff-card" data-staff="1" tabindex="0" role="button" aria-label="View details for Coach James Okello">
-        <div class="staff-photo"></div>
-        <span class="staff-name">James Okello</span>
+      <!-- Alema G Hamis -->
+      <article class="gallery-item gallery-blue staff-card"
+        data-staff="1"
+        tabindex="0"
+        role="button"
+        aria-label="View details for Coach Alema G Hamis">
+
+        <div class="staff-photo">
+          <img src="/home/workdir/attachments/e5ec51cf-a87b-435f-a299-b73a3c82baad.jpg"
+               alt="Alema G Hamis"
+               style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+        </div>
+
+        <span class="staff-name">Alema G Hamis</span>
+
+        <button class="staff-explore" type="button">
+          EXPLORE DETAILS
+        </button>
       </article>
 
-      <article class="gallery-item gallery-orange staff-card" data-staff="2" tabindex="0" role="button" aria-label="View details for Coach Sarah Nalwoga">
+
+      <!-- Sarah Nalwoga -->
+      <article class="gallery-item gallery-orange staff-card"
+        data-staff="2"
+        tabindex="0"
+        role="button"
+        aria-label="View details for Coach Sarah Nalwoga">
+
         <div class="staff-photo"></div>
+
         <span class="staff-name">Sarah Nalwoga</span>
+
+        <button class="staff-explore" type="button">
+          EXPLORE DETAILS
+        </button>
       </article>
 
-      <article class="gallery-item gallery-green staff-card" data-staff="3" tabindex="0" role="button" aria-label="View details for Coach David Ssempijja">
+
+      <!-- David Ssempijja -->
+      <article class="gallery-item gallery-green staff-card"
+        data-staff="3"
+        tabindex="0"
+        role="button"
+        aria-label="View details for Coach David Ssempijja">
+
         <div class="staff-photo"></div>
+
         <span class="staff-name">David Ssempijja</span>
+
+        <button class="staff-explore" type="button">
+          EXPLORE DETAILS
+        </button>
       </article>
 
-      <article class="gallery-item gallery-dark staff-card" data-staff="4" tabindex="0" role="button" aria-label="View details for Admin Grace Nakato">
+
+      <!-- Grace Nakato -->
+      <article class="gallery-item gallery-dark staff-card"
+        data-staff="4"
+        tabindex="0"
+        role="button"
+        aria-label="View details for Admin Grace Nakato">
+
         <div class="staff-photo"></div>
+
         <span class="staff-name">Grace Nakato</span>
+
+        <button class="staff-explore" type="button">
+          EXPLORE DETAILS
+        </button>
       </article>
 
     </div>
 
-    <div style="text-align: center; margin-top: 40px;">
-      <button class="primary-button" id="exploreStaffBtn" type="button">
-        EXPLORE MORE
-      </button>
-    </div>
 
+    <!-- Staff Details Modal -->
     <div class="staff-modal" id="staffModal" aria-hidden="true">
+
       <div class="staff-modal-overlay" id="staffModalOverlay"></div>
 
-      <div class="staff-modal-content" role="dialog" aria-labelledby="staffModalName">
-        <button class="staff-modal-close" id="staffModalClose" aria-label="Close staff details">×</button>
+      <div class="staff-modal-content"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="staffModalName">
+
+        <button class="staff-modal-close"
+                id="staffModalClose"
+                aria-label="Close staff details">
+          ×
+        </button>
 
         <div class="staff-modal-photo" id="staffModalPhoto"></div>
+
         <h3 id="staffModalName"></h3>
-        <p class="staff-modal-position" id="staffModalPosition"></p>
-        <div class="staff-modal-contact" id="staffModalContact"></div>
+
+        <p class="staff-modal-position"
+           id="staffModalPosition"></p>
+
+        <p id="staffModalBio"></p>
+
+        <div class="staff-modal-contact"
+             id="staffModalContact"></div>
+
       </div>
     </div>
 
@@ -1129,6 +1313,173 @@
 
   loadReviews();
 </script>
+<script>
+const staffDetails = {
 
+  1: {
+    name: "Alema G Hamis",
+    position: "Head Coach & Founder",
+    bio: "Alema G Hamis is a dedicated badminton coach committed to developing players of all levels through professional training, discipline and teamwork.",
+    photo: "/home/workdir/attachments/e5ec51cf-a87b-435f-a299-b73a3c82baad.jpg",
+    phone: "+256 755 805 092",
+    email: "baryanmintonclub@gmail.com"
+  },
+
+  2: {
+    name: "Sarah Nalwoga",
+    position: "Badminton Coach",
+    bio: "Sarah Nalwoga supports players through structured training, skills development and competitive preparation.",
+    photo: "",
+    phone: "+256 000 000 000",
+    email: "baryanmintonclub@gmail.com"
+  },
+
+  3: {
+    name: "David Ssempijja",
+    position: "Badminton Coach",
+    bio: "David Ssempijja focuses on player development, fitness, technique and helping athletes reach their full potential.",
+    photo: "",
+    phone: "+256 000 000 000",
+    email: "baryanmintonclub@gmail.com"
+  },
+
+  4: {
+    name: "Grace Nakato",
+    position: "Administrator & Support",
+    bio: "Grace Nakato supports the academy's administration, communication and coordination of activities.",
+    photo: "",
+    phone: "+256 000 000 000",
+    email: "baryanmintonclub@gmail.com"
+  }
+
+};
+
+
+const staffCards = document.querySelectorAll(".staff-card");
+const staffModal = document.getElementById("staffModal");
+const staffModalName = document.getElementById("staffModalName");
+const staffModalPosition = document.getElementById("staffModalPosition");
+const staffModalBio = document.getElementById("staffModalBio");
+const staffModalContact = document.getElementById("staffModalContact");
+const staffModalPhoto = document.getElementById("staffModalPhoto");
+const staffModalClose = document.getElementById("staffModalClose");
+const staffModalOverlay = document.getElementById("staffModalOverlay");
+
+
+function openStaffDetails(id) {
+
+  const staff = staffDetails[id];
+
+  if (!staff) return;
+
+  staffModalName.textContent = staff.name;
+  staffModalPosition.textContent = staff.position;
+  staffModalBio.textContent = staff.bio;
+
+
+  // Staff photo
+  if (staff.photo) {
+    staffModalPhoto.innerHTML = `
+      <img src="${staff.photo}"
+           alt="${staff.name}"
+           style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+    `;
+  } else {
+    staffModalPhoto.innerHTML = `
+      <div class="no-staff-photo">
+        ${staff.name.charAt(0)}
+      </div>
+    `;
+  }
+
+
+  // Contact information
+  const whatsappNumber = staff.phone.replace(/\D/g, "");
+
+  staffModalContact.innerHTML = `
+    <div class="staff-contact-item">
+      <strong>Phone</strong>
+      <a href="tel:${staff.phone}">
+        ${staff.phone}
+      </a>
+    </div>
+
+    <div class="staff-contact-item">
+      <strong>WhatsApp</strong>
+      <a href="https://wa.me/${whatsappNumber}"
+         target="_blank"
+         rel="noopener">
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <div class="staff-contact-item">
+      <strong>Email</strong>
+      <a href="mailto:${staff.email}">
+        ${staff.email}
+      </a>
+    </div>
+  `;
+
+
+  staffModal.classList.add("active");
+  staffModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+
+function closeStaffDetails() {
+  staffModal.classList.remove("active");
+  staffModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+
+// Open details when card is clicked
+staffCards.forEach(card => {
+
+  card.addEventListener("click", function(event) {
+
+    // Prevent button click from triggering twice
+    event.stopPropagation();
+
+    const id = this.dataset.staff;
+
+    openStaffDetails(id);
+  });
+
+
+  // Keyboard accessibility
+  card.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter" || event.key === " ") {
+
+      event.preventDefault();
+
+      openStaffDetails(this.dataset.staff);
+    }
+
+  });
+
+});
+
+
+// Close button
+staffModalClose.addEventListener("click", closeStaffDetails);
+
+
+// Close when clicking overlay
+staffModalOverlay.addEventListener("click", closeStaffDetails);
+
+
+// Close with Escape key
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closeStaffDetails();
+  }
+
+});
+</script>
 </body>
 </html>

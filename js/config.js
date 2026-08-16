@@ -63,10 +63,10 @@ const BARYAN_CONFIG = {
       "YOUR_EMAILJS_PUBLIC_KEY",
 
     serviceId:
-      "YOUR_EMAILJS_SERVICE_ID",
+      "service_jwvtdwh",
 
     templateId:
-      "YOUR_EMAILJS_TEMPLATE_ID"
+      "template_xh3ccdo"
 
   },
 
@@ -94,7 +94,7 @@ const BARYAN_CONFIG = {
     */
 
     phone:
-      "2567XXXXXXXX",
+      "256755805092",
 
     message:
       "Hello Baryan Badminton Club, I would like to enquire about membership."
@@ -114,13 +114,13 @@ const BARYAN_CONFIG = {
       "Baryan Badminton Club",
 
     email:
-      "YOUR_CLUB_EMAIL",
+      "baryanmintonclub@gmail.com",
 
     phone:
-      "+256XXXXXXXXX",
+      "+256755805092",
 
     location:
-      "Kampala, Uganda"
+      "kyebando ring road Kampala, Uganda"
 
   }
 

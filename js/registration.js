@@ -1,52 +1,76 @@
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+// ============================================================
+// BARYAN BADMINTON CLUB
+// MEMBERSHIP REGISTRATION
+// Firebase Realtime Database + WhatsApp
+// ============================================================
+
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
+  getDatabase,
+  ref,
+  push,
+  set,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-import {
-  firebaseConfig,
-  emailjsConfig,
-  clubConfig
-} from "./config.js";
+} from
+  "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 
-/* -----------------------------
-   FIREBASE
------------------------------ */
+// ============================================================
+// FIREBASE CONFIG
+// ============================================================
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const firebaseConfig = {
 
+  apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
 
-/* -----------------------------
-   EMAILJS
------------------------------ */
+  authDomain:
+    "baryan-5f81d.firebaseapp.com",
 
-const emailScript = document.createElement("script");
+  databaseURL:
+    "https://baryan-5f81d-default-rtdb.firebaseio.com",
 
-emailScript.src =
-  "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+  projectId:
+    "baryan-5f81d",
 
-emailScript.onload = () => {
-  emailjs.init({
-    publicKey: emailjsConfig.publicKey
-  });
+  storageBucket:
+    "baryan-5f81d.firebasestorage.app",
+
+  messagingSenderId:
+    "409395363296",
+
+  appId:
+    "1:409395363296:web:f20c12dfb4c738361cbf85",
+
+  measurementId:
+    "G-J1RCHQN6XN"
+
 };
 
-document.head.appendChild(emailScript);
+
+// ============================================================
+// INITIALIZE FIREBASE
+// ============================================================
+
+const app = initializeApp(firebaseConfig);
+
+const database = getDatabase(app);
 
 
-/* -----------------------------
-   FORM
------------------------------ */
+// ============================================================
+// YOUR WHATSAPP NUMBER
+// ============================================================
 
-const form = document.getElementById("membershipForm");
+const WHATSAPP_NUMBER = "256755805092";
+
+
+// ============================================================
+// GET FORM
+// ============================================================
+
+const form =
+  document.getElementById("membershipForm");
 
 const submitButton =
   document.getElementById("submitButton");
@@ -60,331 +84,398 @@ const submitLoading =
 const formMessage =
   document.getElementById("formMessage");
 
-const category =
+const membershipCategory =
   document.getElementById("membershipCategory");
 
 const juniorSection =
   document.getElementById("juniorSection");
 
 
-/* -----------------------------
-   JUNIOR FIELDS
------------------------------ */
+// ============================================================
+// SHOW / HIDE JUNIOR INFORMATION
+// ============================================================
 
-category.addEventListener("change", () => {
+if (membershipCategory && juniorSection) {
 
-  const isJunior =
-    category.value === "Junior";
+  membershipCategory.addEventListener(
+    "change",
+    () => {
 
-  juniorSection.hidden = !isJunior;
+      if (
+        membershipCategory.value === "Junior"
+      ) {
 
-});
+        juniorSection.hidden = false;
 
+      } else {
 
-/* -----------------------------
-   MESSAGE
------------------------------ */
+        juniorSection.hidden = true;
 
-function showMessage(message, type) {
+        document.getElementById(
+          "guardianName"
+        ).value = "";
 
-  formMessage.textContent = message;
+        document.getElementById(
+          "guardianPhone"
+        ).value = "";
 
-  formMessage.className =
-    `form-message ${type}`;
+      }
 
-}
-
-
-/* -----------------------------
-   LOADING
------------------------------ */
-
-function setLoading(loading) {
-
-  submitButton.disabled = loading;
-
-  submitText.hidden = loading;
-  submitLoading.hidden = !loading;
-
-}
-
-
-/* -----------------------------
-   WHATSAPP
------------------------------ */
-
-function createWhatsAppLink(data) {
-
-  const message =
-    `Hello Baryan Badminton Club,%0A%0A` +
-    `I have submitted a membership application.%0A%0A` +
-    `Name: ${encodeURIComponent(data.fullName)}%0A` +
-    `Membership: ${encodeURIComponent(data.membershipCategory)}%0A` +
-    `Skill level: ${encodeURIComponent(data.skillLevel)}%0A%0A` +
-    `Please let me know the next steps.`;
-
-  return `https://wa.me/${clubConfig.whatsappNumber}?text=${message}`;
-}
-
-
-/* -----------------------------
-   EMAILJS
------------------------------ */
-
-async function sendEmailNotification(data) {
-
-  if (
-    !emailjsConfig.publicKey ||
-    emailjsConfig.publicKey.includes("YOUR_")
-  ) {
-    console.warn(
-      "EmailJS is not configured yet."
-    );
-
-    return;
-  }
-
-  await emailjs.send(
-    emailjsConfig.serviceId,
-    emailjsConfig.templateId,
-    {
-      full_name: data.fullName,
-      email: data.email,
-      phone: data.phone,
-      whatsapp: data.whatsapp,
-      membership_category:
-        data.membershipCategory,
-      skill_level: data.skillLevel,
-      training_session:
-        data.trainingSession,
-      experience: data.experience,
-      guardian_name:
-        data.guardianName,
-      guardian_phone:
-        data.guardianPhone,
-      emergency_name:
-        data.emergencyName,
-      emergency_phone:
-        data.emergencyPhone
     }
   );
+
 }
 
 
-/* -----------------------------
-   FORM SUBMISSION
------------------------------ */
+// ============================================================
+// FORM SUBMISSION
+// ============================================================
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener(
+  "submit",
+  async (event) => {
 
-  event.preventDefault();
-
-
-  /* Honeypot */
-
-  const honeypot =
-    form.elements.website.value.trim();
-
-  if (honeypot !== "") {
-    return;
-  }
+    event.preventDefault();
 
 
-  /* Browser validation */
+    // ========================================================
+    // HONEYPOT
+    // ========================================================
 
-  if (!form.checkValidity()) {
+    const honeypot =
+      document.getElementById(
+        "website"
+      ).value.trim();
 
-    form.reportValidity();
+    if (honeypot !== "") {
 
-    showMessage(
-      "Please complete all required fields.",
-      "error"
-    );
+      return;
 
-    return;
-  }
-
-
-  setLoading(true);
-
-  showMessage("", "");
+    }
 
 
-  const formData =
-    new FormData(form);
+    // ========================================================
+    // BROWSER VALIDATION
+    // ========================================================
+
+    if (!form.checkValidity()) {
+
+      form.reportValidity();
+
+      return;
+
+    }
 
 
-  const data = {
+    // ========================================================
+    // LOADING STATE
+    // ========================================================
 
-    fullName:
-      formData.get("fullName").trim(),
+    submitButton.disabled = true;
 
-    dateOfBirth:
-      formData.get("dateOfBirth"),
+    submitText.hidden = true;
 
-    gender:
-      formData.get("gender"),
+    submitLoading.hidden = false;
 
-    phone:
-      formData.get("phone").trim(),
+    formMessage.textContent = "";
 
-    whatsapp:
-      formData.get("whatsapp").trim(),
+    formMessage.className =
+      "form-message";
 
-    email:
-      formData.get("email").trim(),
-
-    membershipCategory:
-      formData.get("membershipCategory"),
-
-    skillLevel:
-      formData.get("skillLevel"),
-
-    trainingSession:
-      formData.get("trainingSession"),
-
-    experience:
-      formData.get("experience").trim(),
-
-    guardianName:
-      formData.get("guardianName").trim(),
-
-    guardianPhone:
-      formData.get("guardianPhone").trim(),
-
-    emergencyName:
-      formData.get("emergencyName").trim(),
-
-    emergencyPhone:
-      formData.get("emergencyPhone").trim(),
-
-    status:
-      "pending"
-
-  };
-
-
-  try {
-
-    /* -----------------------------
-       SAVE TO FIREBASE
-    ----------------------------- */
-
-    await addDoc(
-      collection(
-        db,
-        "membershipApplications"
-      ),
-      {
-        ...data,
-        createdAt:
-          serverTimestamp()
-      }
-    );
-
-
-    /* -----------------------------
-       EMAIL NOTIFICATION
-    ----------------------------- */
 
     try {
 
-      await sendEmailNotification(data);
 
-    } catch (emailError) {
+      // ======================================================
+      // COLLECT FORM DATA
+      // ======================================================
+
+      const registration = {
+
+        fullName:
+          document
+            .getElementById("fullName")
+            .value
+            .trim(),
+
+        dateOfBirth:
+          document
+            .getElementById("dateOfBirth")
+            .value,
+
+        gender:
+          document
+            .getElementById("gender")
+            .value,
+
+        phone:
+          document
+            .getElementById("phone")
+            .value
+            .trim(),
+
+        whatsapp:
+          document
+            .getElementById("whatsapp")
+            .value
+            .trim(),
+
+        email:
+          document
+            .getElementById("email")
+            .value
+            .trim(),
+
+        membershipCategory:
+          document
+            .getElementById(
+              "membershipCategory"
+            )
+            .value,
+
+        skillLevel:
+          document
+            .getElementById("skillLevel")
+            .value,
+
+        trainingSession:
+          document
+            .getElementById(
+              "trainingSession"
+            )
+            .value,
+
+        experience:
+          document
+            .getElementById("experience")
+            .value
+            .trim(),
+
+        guardianName:
+          document
+            .getElementById("guardianName")
+            .value
+            .trim(),
+
+        guardianPhone:
+          document
+            .getElementById("guardianPhone")
+            .value
+            .trim(),
+
+        emergencyName:
+          document
+            .getElementById("emergencyName")
+            .value
+            .trim(),
+
+        emergencyPhone:
+          document
+            .getElementById("emergencyPhone")
+            .value
+            .trim(),
+
+        submittedAt:
+          new Date().toISOString()
+
+      };
+
+
+      // ======================================================
+      // SAVE TO REALTIME DATABASE
+      // ======================================================
+
+      const registrationsRef =
+        ref(
+          database,
+          "registrations"
+        );
+
+
+      const newRegistration =
+        push(registrationsRef);
+
+
+      await set(
+        newRegistration,
+        {
+
+          ...registration,
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+      // ======================================================
+      // CREATE WHATSAPP MESSAGE
+      // ======================================================
+
+      const message = `
+
+🏸 *BARYAN BADMINTON CLUB*
+
+*NEW MEMBERSHIP APPLICATION*
+
+━━━━━━━━━━━━━━━━━━
+
+👤 *PERSONAL INFORMATION*
+
+Name:
+${registration.fullName}
+
+Date of Birth:
+${registration.dateOfBirth}
+
+Gender:
+${registration.gender}
+
+━━━━━━━━━━━━━━━━━━
+
+📞 *CONTACT DETAILS*
+
+Phone:
+${registration.phone}
+
+WhatsApp:
+${registration.whatsapp || "Not provided"}
+
+Email:
+${registration.email}
+
+━━━━━━━━━━━━━━━━━━
+
+🏸 *MEMBERSHIP DETAILS*
+
+Category:
+${registration.membershipCategory}
+
+Skill Level:
+${registration.skillLevel}
+
+Training Session:
+${registration.trainingSession}
+
+Badminton Experience:
+${registration.experience || "Not provided"}
+
+━━━━━━━━━━━━━━━━━━
+
+👨‍👩‍👧 *PARENT / GUARDIAN*
+
+Name:
+${registration.guardianName || "Not applicable"}
+
+Phone:
+${registration.guardianPhone || "Not applicable"}
+
+━━━━━━━━━━━━━━━━━━
+
+🚨 *EMERGENCY CONTACT*
+
+Name:
+${registration.emergencyName}
+
+Phone:
+${registration.emergencyPhone}
+
+━━━━━━━━━━━━━━━━━━
+
+📅 *APPLICATION*
+
+Submitted:
+${new Date().toLocaleString()}
+
+Registration ID:
+${newRegistration.key}
+
+━━━━━━━━━━━━━━━━━━
+
+*BARYAN BADMINTON CLUB*
+
+Train. Compete. Improve. Belong.
+
+`;
+
+
+      // ======================================================
+      // CREATE WHATSAPP LINK
+      // ======================================================
+
+      const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+      // ======================================================
+      // SUCCESS MESSAGE
+      // ======================================================
+
+      formMessage.textContent =
+        "Application submitted successfully. Opening WhatsApp...";
+
+      formMessage.classList.add(
+        "success"
+      );
+
+
+      // ======================================================
+      // OPEN WHATSAPP
+      // ======================================================
+
+      window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+
+      // ======================================================
+      // RESET FORM
+      // ======================================================
+
+      form.reset();
+
+      if (juniorSection) {
+
+        juniorSection.hidden = true;
+
+      }
+
+
+    } catch (error) {
 
       console.error(
-        "EmailJS error:",
-        emailError
+        "Registration error:",
+        error
       );
 
-      /*
-        Firebase registration has already
-        succeeded, so we don't tell the
-        applicant that the entire process
-        failed.
-      */
 
-    }
+      // ======================================================
+      // ERROR
+      // ======================================================
 
+      formMessage.textContent =
+        "Registration failed. Please try again.";
 
-    /* -----------------------------
-       SUCCESS
-    ----------------------------- */
-
-    showMessage(
-      "Application submitted successfully. " +
-      "Club management will contact you with the next steps.",
-      "success"
-    );
-
-
-    form.reset();
-
-    juniorSection.hidden = true;
-
-
-    /* -----------------------------
-       WHATSAPP BUTTON
-    ----------------------------- */
-
-    const whatsappLink =
-      createWhatsAppLink(data);
-
-    const existing =
-      document.getElementById(
-        "whatsappSuccess"
+      formMessage.classList.add(
+        "error"
       );
 
-    if (existing) {
-      existing.remove();
+
+    } finally {
+
+      submitButton.disabled = false;
+
+      submitText.hidden = false;
+
+      submitLoading.hidden = true;
+
     }
-
-
-    const whatsappButton =
-      document.createElement("a");
-
-    whatsappButton.id =
-      "whatsappSuccess";
-
-    whatsappButton.href =
-      whatsappLink;
-
-    whatsappButton.target =
-      "_blank";
-
-    whatsappButton.rel =
-      "noopener noreferrer";
-
-    whatsappButton.className =
-      "whatsapp-button";
-
-    whatsappButton.textContent =
-      "Continue on WhatsApp";
-
-
-    formMessage.after(
-      whatsappButton
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Registration error:",
-      error
-    );
-
-    showMessage(
-      "We couldn't submit your application. " +
-      "Please check your internet connection and try again.",
-      "error"
-    );
-
-  } finally {
-
-    setLoading(false);
 
   }
-
-});
+);

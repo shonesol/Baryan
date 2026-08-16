@@ -1202,21 +1202,44 @@ body.modal-open {
 ===================================================== -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+  /* =====================================================
+     FIREBASE CONFIGURATION
+  ===================================================== */
 
   const firebaseConfig = {
-  apiKey: "AIzaSyChcaNBkSkXp4DILZvvpYism9F1617fhZQ",
-  authDomain: "baryan-9997b.firebaseapp.com",
-  projectId: "baryan-9997b",
-  storageBucket: "baryan-9997b.firebasestorage.app",
-  messagingSenderId: "1037368957847",
-  appId: "1:1037368957847:web:c43200cbe2cb026c1fc2d2",
-  measurementId: "G-SP6971YS6C"
+    apiKey: "AIzaSyChcaNBkSkXp4DILZvvpYism9F1617fhZQ",
+    authDomain: "baryan-9997b.firebaseapp.com",
+    projectId: "baryan-9997b",
+    storageBucket: "baryan-9997b.firebasestorage.app",
+    messagingSenderId: "1037368957847",
+    appId: "1:1037368957847:web:c43200cbe2cb026c1fc2d2",
+    measurementId: "G-SP6971YS6C"
+  };
 
-  },
+
+  /* =====================================================
+     INITIALIZE FIREBASE
+  ===================================================== */
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+
+
+  /* =====================================================
+     GET HTML ELEMENTS
+  ===================================================== */
 
   const reviewSelect = document.getElementById("reviewSelect");
   const selectedReview = document.getElementById("selectedReview");
@@ -1224,99 +1247,16 @@ body.modal-open {
   const reviewSubmit = document.getElementById("reviewSubmit");
   const reviewStatus = document.getElementById("reviewStatus");
 
+
   let reviews = [];
 
-  async function loadReviews() {
-    try {
-      const reviewsQuery = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
-      const snapshot = await getDocs(reviewsQuery);
-      reviews = [];
-      snapshot.forEach(doc => reviews.push({ id: doc.id, ...doc.data() }));
-      renderReviewSelector();
-    } catch (error) {
-      console.error("Error loading reviews:", error);
-      reviewSelect.innerHTML = `<option value="">Reviews could not be loaded</option>`;
-      selectedReview.innerHTML = `<p class="reviews-loading">Reviews could not be loaded. Please try again later.</p>`;
-    }
-  }
 
-  function renderReviewSelector() {
-    if (!reviews.length) {
-      reviewSelect.innerHTML = `<option value="">No reviews yet</option>`;
-      selectedReview.innerHTML = `<p class="reviews-loading">No reviews yet. Be the first to review Baryan Badminton Academy!</p>`;
-      return;
-    }
-
-    reviewSelect.innerHTML = `
-      <option value="">Select a review...</option>
-      ${reviews.map((review, index) => `
-        <option value="${index}">
-          ${escapeHTML(review.name || "Academy Member")} — ${escapeHTML(review.role || "Academy Member")}
-        </option>
-      `).join("")}
-    `;
-    selectedReview.innerHTML = `<p class="reviews-loading">Select a review above to read it.</p>`;
-  }
-
-  reviewSelect.addEventListener("change", () => {
-    const selectedIndex = reviewSelect.value;
-    if (selectedIndex === "") {
-      selectedReview.innerHTML = `<p class="reviews-loading">Select a review above to read it.</p>`;
-      return;
-    }
-    const review = reviews[Number(selectedIndex)];
-    if (review) displayReview(review);
-  });
-
-  function displayReview(review) {
-    const rating = Math.min(5, Math.max(1, Number(review.rating) || 5));
-    const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-    selectedReview.innerHTML = `
-      <div class="review-stars">${stars}</div>
-      <p class="review-message">“${escapeHTML(review.message || "")}”</p>
-      <strong class="review-name">${escapeHTML(review.name || "Academy Member")}</strong>
-      <span class="review-role">${escapeHTML(review.role || "Academy Member")}</span>
-    `;
-  }
-
-  reviewForm.addEventListener("submit", async event => {
-    event.preventDefault();
-    const ratingInput = document.querySelector('input[name="rating"]:checked');
-    if (!ratingInput) {
-      reviewStatus.textContent = "Please select a rating.";
-      reviewStatus.style.color = "#d32f2f";
-      return;
-    }
-
-    const name = document.getElementById("reviewName").value.trim();
-    const role = document.getElementById("reviewRole").value;
-    const rating = Number(ratingInput.value);
-    const message = document.getElementById("reviewMessage").value.trim();
-
-    reviewSubmit.disabled = true;
-    reviewSubmit.textContent = "SUBMITTING...";
-    reviewStatus.textContent = "";
-
-    try {
-      await addDoc(collection(db, "reviews"), {
-        name, role, rating, message, createdAt: serverTimestamp()
-      });
-      reviewStatus.textContent = "Thank you! Your review has been submitted.";
-      reviewStatus.style.color = "#0757c9";
-      reviewForm.reset();
-      await loadReviews();
-    } catch (error) {
-      console.error("Error submitting review:", error);
-      reviewStatus.textContent = "Sorry, your review could not be submitted. Please try again.";
-      reviewStatus.style.color = "#d32f2f";
-    }
-
-    reviewSubmit.disabled = false;
-    reviewSubmit.textContent = "SUBMIT REVIEW";
-  });
+  /* =====================================================
+     ESCAPE HTML
+  ===================================================== */
 
   function escapeHTML(value) {
-    return String(value)
+    return String(value || "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -1324,175 +1264,450 @@ body.modal-open {
       .replace(/'/g, "&#039;");
   }
 
-  loadReviews();
-</script>
-<script>
-const staffDetails = {
 
-  1: {
-    name: "Alema G Hamis",
-    position: "Head Coach & Founder",
-    bio: "Alema G Hamis is a dedicated badminton coach committed to developing players of all levels through professional training, discipline and teamwork.",
-    photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg",
-    phone: "+256 755 805 092",
-    email: "baryanmintonclub@gmail.com"
-  },
+  /* =====================================================
+     LOAD REVIEWS
+  ===================================================== */
 
-  2: {
-    name: "Sarah Nalwoga",
-    position: "Badminton Coach",
-    bio: "Sarah Nalwoga supports players through structured training, skills development and competitive preparation.",
-    photo: "",
-    phone: "+256 000 000 000",
-    email: "baryanmintonclub@gmail.com"
-  },
+  async function loadReviews() {
 
-  3: {
-    name: "David Ssempijja",
-    position: "Badminton Coach",
-    bio: "David Ssempijja focuses on player development, fitness, technique and helping athletes reach their full potential.",
-    photo: "",
-    phone: "+256 000 000 000",
-    email: "baryanmintonclub@gmail.com"
-  },
+    try {
 
-  4: {
-    name: "Grace Nakato",
-    position: "Administrator & Support",
-    bio: "Grace Nakato supports the academy's administration, communication and coordination of activities.",
-    photo: "",
-    phone: "+256 000 000 000",
-    email: "baryanmintonclub@gmail.com"
+      reviewSelect.innerHTML =
+        `<option value="">Loading reviews...</option>`;
+
+      selectedReview.innerHTML =
+        `<p class="reviews-loading">Loading reviews...</p>`;
+
+
+      /*
+        We first try the normal query using createdAt.
+      */
+
+      let snapshot;
+
+      try {
+
+        const reviewsQuery = query(
+          collection(db, "reviews"),
+          orderBy("createdAt", "desc")
+        );
+
+        snapshot = await getDocs(reviewsQuery);
+
+      } catch (error) {
+
+        /*
+          If existing reviews do not have createdAt,
+          load them without orderBy.
+        */
+
+        console.warn(
+          "Could not order reviews by createdAt. Loading without ordering.",
+          error
+        );
+
+        snapshot = await getDocs(
+          collection(db, "reviews")
+        );
+      }
+
+
+      reviews = [];
+
+
+      snapshot.forEach((doc) => {
+
+        reviews.push({
+          id: doc.id,
+          ...doc.data()
+        });
+
+      });
+
+
+      renderReviewSelector();
+
+
+    } catch (error) {
+
+      console.error(
+        "Firebase review loading error:",
+        error
+      );
+
+
+      reviewSelect.innerHTML =
+        `<option value="">Reviews unavailable</option>`;
+
+      selectedReview.innerHTML = `
+        <p class="reviews-loading">
+          Reviews could not be loaded at the moment.
+          Please try again later.
+        </p>
+      `;
+    }
   }
 
-};
+
+  /* =====================================================
+     DISPLAY REVIEW SELECTOR
+  ===================================================== */
+
+  function renderReviewSelector() {
+
+    if (!reviews.length) {
+
+      reviewSelect.innerHTML = `
+        <option value="">
+          No reviews yet
+        </option>
+      `;
+
+      selectedReview.innerHTML = `
+        <p class="reviews-loading">
+          No reviews yet.
+          Be the first to review Baryan Badminton Academy!
+        </p>
+      `;
+
+      return;
+    }
 
 
-const staffCards = document.querySelectorAll(".staff-card");
-const staffModal = document.getElementById("staffModal");
-const staffModalName = document.getElementById("staffModalName");
-const staffModalPosition = document.getElementById("staffModalPosition");
-const staffModalBio = document.getElementById("staffModalBio");
-const staffModalContact = document.getElementById("staffModalContact");
-const staffModalPhoto = document.getElementById("staffModalPhoto");
-const staffModalClose = document.getElementById("staffModalClose");
-const staffModalOverlay = document.getElementById("staffModalOverlay");
+    reviewSelect.innerHTML = `
+      <option value="">
+        Select a review...
+      </option>
 
+      ${reviews.map((review, index) => {
 
-function openStaffDetails(id) {
+        const name =
+          escapeHTML(
+            review.name || "Academy Member"
+          );
 
-  const staff = staffDetails[id];
+        const role =
+          escapeHTML(
+            review.role || "Member"
+          );
 
-  if (!staff) return;
+        return `
+          <option value="${index}">
+            ${name} — ${role}
+          </option>
+        `;
 
-  staffModalName.textContent = staff.name;
-  staffModalPosition.textContent = staff.position;
-  staffModalBio.textContent = staff.bio;
-
-
-  // Staff photo
-  if (staff.photo) {
-    staffModalPhoto.innerHTML = `
-      <img src="${staff.photo}"
-           alt="${staff.name}"
-           style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+      }).join("")}
     `;
-  } else {
-    staffModalPhoto.innerHTML = `
-      <div class="no-staff-photo">
-        ${staff.name.charAt(0)}
-      </div>
+
+
+    selectedReview.innerHTML = `
+      <p class="reviews-loading">
+        Select a review above to read it.
+      </p>
     `;
   }
 
 
-  // Contact information
-  const whatsappNumber = staff.phone.replace(/\D/g, "");
+  /* =====================================================
+     SELECT REVIEW
+  ===================================================== */
 
-  staffModalContact.innerHTML = `
-    <div class="staff-contact-item">
-      <strong>Phone</strong>
-      <a href="tel:${staff.phone}">
-        ${staff.phone}
-      </a>
-    </div>
+  reviewSelect.addEventListener("change", () => {
 
-    <div class="staff-contact-item">
-      <strong>WhatsApp</strong>
-      <a href="https://wa.me/${whatsappNumber}"
-         target="_blank"
-         rel="noopener">
-        Chat on WhatsApp
-      </a>
-    </div>
-
-    <div class="staff-contact-item">
-      <strong>Email</strong>
-      <a href="mailto:${staff.email}">
-        ${staff.email}
-      </a>
-    </div>
-  `;
+    const selectedIndex =
+      reviewSelect.value;
 
 
-  staffModal.classList.add("active");
-  staffModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-}
+    if (selectedIndex === "") {
+
+      selectedReview.innerHTML = `
+        <p class="reviews-loading">
+          Select a review above to read it.
+        </p>
+      `;
+
+      return;
+    }
 
 
-function closeStaffDetails() {
-  staffModal.classList.remove("active");
-  staffModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-}
+    const review =
+      reviews[Number(selectedIndex)];
 
 
-// Open details when card is clicked
-staffCards.forEach(card => {
-
-  card.addEventListener("click", function(event) {
-
-    // Prevent button click from triggering twice
-    event.stopPropagation();
-
-    const id = this.dataset.staff;
-
-    openStaffDetails(id);
-  });
-
-
-  // Keyboard accessibility
-  card.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter" || event.key === " ") {
-
-      event.preventDefault();
-
-      openStaffDetails(this.dataset.staff);
+    if (review) {
+      displayReview(review);
     }
 
   });
 
-});
+
+  /* =====================================================
+     DISPLAY SINGLE REVIEW
+  ===================================================== */
+
+  function displayReview(review) {
+
+    let rating =
+      Number(review.rating);
 
 
-// Close button
-staffModalClose.addEventListener("click", closeStaffDetails);
+    if (!rating || rating < 1) {
+      rating = 5;
+    }
 
 
-// Close when clicking overlay
-staffModalOverlay.addEventListener("click", closeStaffDetails);
+    rating =
+      Math.min(5, Math.max(1, rating));
 
 
-// Close with Escape key
-document.addEventListener("keydown", function(event) {
+    const stars =
+      "★".repeat(rating) +
+      "☆".repeat(5 - rating);
 
-  if (event.key === "Escape") {
-    closeStaffDetails();
+
+    const name =
+      escapeHTML(
+        review.name || "Academy Member"
+      );
+
+
+    const role =
+      escapeHTML(
+        review.role || "Academy Member"
+      );
+
+
+    const message =
+      escapeHTML(
+        review.message || ""
+      );
+
+
+    selectedReview.innerHTML = `
+
+      <div class="review-stars">
+        ${stars}
+      </div>
+
+      <p class="review-message">
+        “${message}”
+      </p>
+
+      <strong class="review-name">
+        ${name}
+      </strong>
+
+      <span class="review-role">
+        ${role}
+      </span>
+
+    `;
   }
 
-});
+
+  /* =====================================================
+     SUBMIT REVIEW
+  ===================================================== */
+
+  reviewForm.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+
+      /* -----------------------------------------------
+         GET RATING
+      ------------------------------------------------ */
+
+      const ratingInput =
+        document.querySelector(
+          'input[name="rating"]:checked'
+        );
+
+
+      if (!ratingInput) {
+
+        reviewStatus.textContent =
+          "Please select a rating.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+      }
+
+
+      /* -----------------------------------------------
+         GET FORM VALUES
+      ------------------------------------------------ */
+
+      const name =
+        document
+          .getElementById("reviewName")
+          .value
+          .trim();
+
+
+      const role =
+        document
+          .getElementById("reviewRole")
+          .value;
+
+
+      const rating =
+        Number(ratingInput.value);
+
+
+      const message =
+        document
+          .getElementById("reviewMessage")
+          .value
+          .trim();
+
+
+      /* -----------------------------------------------
+         VALIDATION
+      ------------------------------------------------ */
+
+      if (!name) {
+
+        reviewStatus.textContent =
+          "Please enter your name.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+      }
+
+
+      if (!role) {
+
+        reviewStatus.textContent =
+          "Please select your role.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+      }
+
+
+      if (!message) {
+
+        reviewStatus.textContent =
+          "Please write your review.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+      }
+
+
+      /* -----------------------------------------------
+         DISABLE BUTTON
+      ------------------------------------------------ */
+
+      reviewSubmit.disabled = true;
+
+      reviewSubmit.textContent =
+        "SUBMITTING...";
+
+      reviewStatus.textContent =
+        "";
+
+
+      /* -----------------------------------------------
+         SAVE TO FIRESTORE
+      ------------------------------------------------ */
+
+      try {
+
+        await addDoc(
+          collection(db, "reviews"),
+          {
+            name: name,
+            role: role,
+            rating: rating,
+            message: message,
+            createdAt: serverTimestamp()
+          }
+        );
+
+
+        /* ---------------------------------------------
+           SUCCESS
+        --------------------------------------------- */
+
+        reviewStatus.textContent =
+          "Thank you! Your review has been submitted.";
+
+        reviewStatus.style.color =
+          "#0757c9";
+
+
+        reviewForm.reset();
+
+
+        /* ---------------------------------------------
+           RELOAD REVIEWS
+        --------------------------------------------- */
+
+        await loadReviews();
+
+
+        /*
+          Automatically select the newest review.
+        */
+
+        if (reviews.length > 0) {
+
+          reviewSelect.value = "0";
+
+          displayReview(reviews[0]);
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Error submitting review:",
+          error
+        );
+
+
+        reviewStatus.textContent =
+          "Sorry, your review could not be submitted. Please try again.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+      }
+
+
+      /* -----------------------------------------------
+         ENABLE BUTTON
+      ------------------------------------------------ */
+
+      reviewSubmit.disabled = false;
+
+      reviewSubmit.textContent =
+        "SUBMIT REVIEW";
+
+    }
+  );
+
+
+  /* =====================================================
+     START
+  ===================================================== */
+
+  loadReviews();
+
 </script>
 </body>
 </html>

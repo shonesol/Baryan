@@ -5,16 +5,15 @@
 // ============================================================
 
 import { initializeApp } from
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
 import {
   getDatabase,
   ref,
   push,
-  set,
   serverTimestamp
 } from
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 
 // ============================================================
@@ -22,30 +21,18 @@ import {
 // ============================================================
 
 const firebaseConfig = {
-
   apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
+  authDomain: "baryan-5f81d.firebaseapp.com",
+  projectId: "baryan-5f81d",
+  storageBucket: "baryan-5f81d.firebasestorage.app",
+  messagingSenderId: "409395363296",
+  appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
+  measurementId: "G-J1RCHQN6XN",
 
-  authDomain:
-    "baryan-5f81d.firebaseapp.com",
-
-  databaseURL:
-    "https://baryan-5f81d-default-rtdb.firebaseio.com",
-
-  projectId:
-    "baryan-5f81d",
-
-  storageBucket:
-    "baryan-5f81d.firebasestorage.app",
-
-  messagingSenderId:
-    "409395363296",
-
-  appId:
-    "1:409395363296:web:f20c12dfb4c738361cbf85",
-
-  measurementId:
-    "G-J1RCHQN6XN"
-
+  // IMPORTANT:
+  // Replace this with the exact Realtime Database URL
+  // shown in Firebase Console > Realtime Database.
+  databaseURL: "https://baryan-5f81d-default-rtdb.firebaseio.com"
 };
 
 
@@ -59,18 +46,10 @@ const database = getDatabase(app);
 
 
 // ============================================================
-// YOUR WHATSAPP NUMBER
+// FORM ELEMENTS
 // ============================================================
 
-const WHATSAPP_NUMBER = "256755805092";
-
-
-// ============================================================
-// GET FORM
-// ============================================================
-
-const form =
-  document.getElementById("membershipForm");
+const form = document.getElementById("membershipForm");
 
 const submitButton =
   document.getElementById("submitButton");
@@ -92,37 +71,49 @@ const juniorSection =
 
 
 // ============================================================
-// SHOW / HIDE JUNIOR INFORMATION
+// SHOW / HIDE JUNIOR SECTION
 // ============================================================
 
-if (membershipCategory && juniorSection) {
+membershipCategory.addEventListener("change", () => {
 
-  membershipCategory.addEventListener(
-    "change",
-    () => {
+  const isJunior =
+    membershipCategory.value === "Junior";
 
-      if (
-        membershipCategory.value === "Junior"
-      ) {
+  juniorSection.hidden = !isJunior;
 
-        juniorSection.hidden = false;
+});
 
-      } else {
 
-        juniorSection.hidden = true;
+// ============================================================
+// HELPERS
+// ============================================================
 
-        document.getElementById(
-          "guardianName"
-        ).value = "";
+function getValue(id) {
 
-        document.getElementById(
-          "guardianPhone"
-        ).value = "";
+  const element = document.getElementById(id);
 
-      }
+  return element ? element.value.trim() : "";
 
-    }
-  );
+}
+
+
+function showMessage(message, type = "success") {
+
+  formMessage.textContent = message;
+
+  formMessage.className =
+    `form-message ${type}`;
+
+}
+
+
+function setLoading(loading) {
+
+  submitButton.disabled = loading;
+
+  submitText.hidden = loading;
+
+  submitLoading.hidden = !loading;
 
 }
 
@@ -131,351 +122,254 @@ if (membershipCategory && juniorSection) {
 // FORM SUBMISSION
 // ============================================================
 
-form.addEventListener(
-  "submit",
-  async (event) => {
+form.addEventListener("submit", async (event) => {
 
-    event.preventDefault();
+  event.preventDefault();
+
+
+  // ----------------------------------------------------------
+  // HONEYPOT
+  // ----------------------------------------------------------
+
+  const website =
+    getValue("website");
+
+  if (website !== "") {
+
+    // Silently ignore bots
+    return;
+
+  }
+
+
+  // ----------------------------------------------------------
+  // HTML VALIDATION
+  // ----------------------------------------------------------
+
+  if (!form.checkValidity()) {
+
+    form.reportValidity();
+
+    return;
+
+  }
+
+
+  setLoading(true);
+
+  showMessage("", "success");
+
+
+  try {
+
+    // ========================================================
+    // COLLECT APPLICATION
+    // ========================================================
+
+    const application = {
+
+      fullName:
+        getValue("fullName"),
+
+      dateOfBirth:
+        getValue("dateOfBirth"),
+
+      gender:
+        getValue("gender"),
+
+      phone:
+        getValue("phone"),
+
+      whatsapp:
+        getValue("whatsapp"),
+
+      email:
+        getValue("email"),
+
+      membershipCategory:
+        getValue("membershipCategory"),
+
+      skillLevel:
+        getValue("skillLevel"),
+
+      trainingSession:
+        getValue("trainingSession"),
+
+      experience:
+        getValue("experience"),
+
+      guardianName:
+        getValue("guardianName"),
+
+      guardianPhone:
+        getValue("guardianPhone"),
+
+      emergencyName:
+        getValue("emergencyName"),
+
+      emergencyPhone:
+        getValue("emergencyPhone"),
+
+      agreed:
+        document.getElementById("agree").checked,
+
+      createdAt:
+        serverTimestamp()
+
+    };
 
 
     // ========================================================
-    // HONEYPOT
+    // SAVE TO FIREBASE REALTIME DATABASE
     // ========================================================
 
-    const honeypot =
-      document.getElementById(
-        "website"
-      ).value.trim();
+    const applicationsRef =
+      ref(database, "membershipApplications");
 
-    if (honeypot !== "") {
+    const newApplication =
+      push(applicationsRef);
 
-      return;
+    await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js")
+      .then(({ set }) => {
 
-    }
-
-
-    // ========================================================
-    // BROWSER VALIDATION
-    // ========================================================
-
-    if (!form.checkValidity()) {
-
-      form.reportValidity();
-
-      return;
-
-    }
-
-
-    // ========================================================
-    // LOADING STATE
-    // ========================================================
-
-    submitButton.disabled = true;
-
-    submitText.hidden = true;
-
-    submitLoading.hidden = false;
-
-    formMessage.textContent = "";
-
-    formMessage.className =
-      "form-message";
-
-
-    try {
-
-
-      // ======================================================
-      // COLLECT FORM DATA
-      // ======================================================
-
-      const registration = {
-
-        fullName:
-          document
-            .getElementById("fullName")
-            .value
-            .trim(),
-
-        dateOfBirth:
-          document
-            .getElementById("dateOfBirth")
-            .value,
-
-        gender:
-          document
-            .getElementById("gender")
-            .value,
-
-        phone:
-          document
-            .getElementById("phone")
-            .value
-            .trim(),
-
-        whatsapp:
-          document
-            .getElementById("whatsapp")
-            .value
-            .trim(),
-
-        email:
-          document
-            .getElementById("email")
-            .value
-            .trim(),
-
-        membershipCategory:
-          document
-            .getElementById(
-              "membershipCategory"
-            )
-            .value,
-
-        skillLevel:
-          document
-            .getElementById("skillLevel")
-            .value,
-
-        trainingSession:
-          document
-            .getElementById(
-              "trainingSession"
-            )
-            .value,
-
-        experience:
-          document
-            .getElementById("experience")
-            .value
-            .trim(),
-
-        guardianName:
-          document
-            .getElementById("guardianName")
-            .value
-            .trim(),
-
-        guardianPhone:
-          document
-            .getElementById("guardianPhone")
-            .value
-            .trim(),
-
-        emergencyName:
-          document
-            .getElementById("emergencyName")
-            .value
-            .trim(),
-
-        emergencyPhone:
-          document
-            .getElementById("emergencyPhone")
-            .value
-            .trim(),
-
-        submittedAt:
-          new Date().toISOString()
-
-      };
-
-
-      // ======================================================
-      // SAVE TO REALTIME DATABASE
-      // ======================================================
-
-      const registrationsRef =
-        ref(
-          database,
-          "registrations"
+        return set(
+          newApplication,
+          application
         );
 
-
-      const newRegistration =
-        push(registrationsRef);
+      });
 
 
-      await set(
-        newRegistration,
-        {
+    // ========================================================
+    // CREATE WHATSAPP MESSAGE
+    // ========================================================
 
-          ...registration,
+    const message = `
 
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-
-      // ======================================================
-      // CREATE WHATSAPP MESSAGE
-      // ======================================================
-
-      const message = `
-
-🏸 *BARYAN BADMINTON CLUB*
-
-*NEW MEMBERSHIP APPLICATION*
+🏸 *NEW BARYAN BADMINTON CLUB MEMBERSHIP APPLICATION*
 
 ━━━━━━━━━━━━━━━━━━
 
 👤 *PERSONAL INFORMATION*
 
-Name:
-${registration.fullName}
+Name: ${application.fullName}
 
-Date of Birth:
-${registration.dateOfBirth}
+Date of Birth: ${application.dateOfBirth}
 
-Gender:
-${registration.gender}
+Gender: ${application.gender}
 
-━━━━━━━━━━━━━━━━━━
 
 📞 *CONTACT DETAILS*
 
-Phone:
-${registration.phone}
+Phone: ${application.phone}
 
-WhatsApp:
-${registration.whatsapp || "Not provided"}
+WhatsApp: ${application.whatsapp || "Not provided"}
 
-Email:
-${registration.email}
+Email: ${application.email}
 
-━━━━━━━━━━━━━━━━━━
 
 🏸 *MEMBERSHIP DETAILS*
 
-Category:
-${registration.membershipCategory}
+Category: ${application.membershipCategory}
 
-Skill Level:
-${registration.skillLevel}
+Skill Level: ${application.skillLevel}
 
-Training Session:
-${registration.trainingSession}
+Training Session: ${application.trainingSession}
 
-Badminton Experience:
-${registration.experience || "Not provided"}
 
-━━━━━━━━━━━━━━━━━━
+📝 *BADMINTON EXPERIENCE*
+
+${application.experience || "Not provided"}
+
 
 👨‍👩‍👧 *PARENT / GUARDIAN*
 
-Name:
-${registration.guardianName || "Not applicable"}
+Name: ${application.guardianName || "Not applicable"}
 
-Phone:
-${registration.guardianPhone || "Not applicable"}
+Phone: ${application.guardianPhone || "Not applicable"}
 
-━━━━━━━━━━━━━━━━━━
 
 🚨 *EMERGENCY CONTACT*
 
-Name:
-${registration.emergencyName}
+Name: ${application.emergencyName}
 
-Phone:
-${registration.emergencyPhone}
+Phone: ${application.emergencyPhone}
 
-━━━━━━━━━━━━━━━━━━
 
-📅 *APPLICATION*
-
-Submitted:
-${new Date().toLocaleString()}
-
-Registration ID:
-${newRegistration.key}
+✅ Agreement: ${application.agreed ? "Accepted" : "Not accepted"}
 
 ━━━━━━━━━━━━━━━━━━
 
-*BARYAN BADMINTON CLUB*
+🏸 Baryan Badminton Club
+New Membership Application
 
-Train. Compete. Improve. Belong.
+Firebase ID:
+${newApplication.key}
 
-`;
-
-
-      // ======================================================
-      // CREATE WHATSAPP LINK
-      // ======================================================
-
-      const whatsappURL =
-        "https://wa.me/" +
-        WHATSAPP_NUMBER +
-        "?text=" +
-        encodeURIComponent(message);
+`.trim();
 
 
-      // ======================================================
-      // SUCCESS MESSAGE
-      // ======================================================
+    // ========================================================
+    // WHATSAPP NUMBER
+    // ========================================================
 
-      formMessage.textContent =
-        "Application submitted successfully. Opening WhatsApp...";
-
-      formMessage.classList.add(
-        "success"
-      );
+    const whatsappNumber =
+      "256755805092";
 
 
-      // ======================================================
-      // OPEN WHATSAPP
-      // ======================================================
+    // ========================================================
+    // WHATSAPP URL
+    // ========================================================
 
-      window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
+    const whatsappURL =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 
-      // ======================================================
-      // RESET FORM
-      // ======================================================
+    // ========================================================
+    // SUCCESS MESSAGE
+    // ========================================================
 
-      form.reset();
-
-      if (juniorSection) {
-
-        juniorSection.hidden = true;
-
-      }
+    showMessage(
+      "Application submitted successfully. Opening WhatsApp...",
+      "success"
+    );
 
 
-    } catch (error) {
+    // ========================================================
+    // OPEN WHATSAPP
+    // ========================================================
 
-      console.error(
-        "Registration error:",
-        error
-      );
-
-
-      // ======================================================
-      // ERROR
-      // ======================================================
-
-      formMessage.textContent =
-        "Registration failed. Please try again.";
-
-      formMessage.classList.add(
-        "error"
-      );
+    window.location.href =
+      whatsappURL;
 
 
-    } finally {
+    // ========================================================
+    // RESET FORM
+    // ========================================================
 
-      submitButton.disabled = false;
+    form.reset();
 
-      submitText.hidden = false;
+    juniorSection.hidden = true;
 
-      submitLoading.hidden = true;
 
-    }
+  } catch (error) {
+
+    console.error(
+      "Membership submission error:",
+      error
+    );
+
+
+    showMessage(
+      "Sorry, your application could not be submitted. Please try again.",
+      "error"
+    );
+
+
+  } finally {
+
+    setLoading(false);
 
   }
-);
+
+});

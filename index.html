@@ -4,30 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Baryan Badminton Academy | Uganda</title>
-  <meta name="description" content="Baryan Badminton Academy develops badminton players through professional coaching, skills training, discipline, fitness and competition in Uganda.">
-  <meta name="keywords" content="Baryan Badminton Academy, badminton academy Uganda, badminton training Uganda, badminton Kampala, youth badminton Uganda">
+
+  <meta name="description"
+    content="Baryan Badminton Academy develops badminton players through professional coaching, skills training, discipline, fitness and competition in Uganda.">
+
+  <meta name="keywords"
+    content="Baryan Badminton Academy, badminton academy Uganda, badminton training Uganda, badminton Kampala, youth badminton Uganda">
+
   <meta name="author" content="Baryan Badminton Academy">
   <meta name="theme-color" content="#0757c9">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Baryan Badminton Academy | Uganda">
   <meta property="og:description" content="Train. Develop. Compete. Join Baryan Badminton Academy.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/baryan-logo.jpg">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <style>
+
     /* =====================================================
-       LOGO STYLES
+       LOGO
     ===================================================== */
+
     .logo {
       display: flex;
       align-items: center;
@@ -42,26 +50,26 @@
       display: block;
     }
 
-
-    /* Footer logo slightly smaller */
     footer .logo img {
       height: 50px;
     }
 
+
     /* =====================================================
-       STAFF SECTION STYLES
+       STAFF
     ===================================================== */
+
     .staff-grid {
       grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: 260px;
     }
 
     .staff-card {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       cursor: pointer;
-      position: relative;
       overflow: hidden;
     }
 
@@ -73,6 +81,13 @@
       background-position: center;
     }
 
+    .staff-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .staff-name {
       position: relative;
       z-index: 2;
@@ -81,21 +96,52 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 18px 20px;
-      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.75),
+        transparent
+      );
       width: 100%;
+      color: #fff;
     }
 
-    /* Modal */
+    .staff-explore {
+      position: relative;
+      z-index: 3;
+      margin: 0 20px 20px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      background: #fff;
+      color: #111;
+    }
+
+    .staff-explore:hover {
+      transform: translateY(-2px);
+    }
+
+
+    /* =====================================================
+       STAFF MODAL
+    ===================================================== */
+
     .staff-modal {
       position: fixed;
       inset: 0;
-      z-index: 2000;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
+
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
     }
 
     .staff-modal.open {
@@ -106,21 +152,32 @@
     .staff-modal-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(5, 5, 5, 0.75);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(6px);
     }
 
     .staff-modal-content {
       position: relative;
       z-index: 2;
-      width: min(420px, 92%);
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 30px 28px 35px;
+
+      width: min(500px, 100%);
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+
       text-align: center;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
       transform: translateY(20px);
-      transition: transform 0.3s ease;
+
+      transition:
+        transform 0.3s ease;
     }
 
     .staff-modal.open .staff-modal-content {
@@ -130,57 +187,110 @@
     .staff-modal-close {
       position: absolute;
       top: 12px;
-      right: 16px;
-      width: 38px;
-      height: 38px;
+      right: 15px;
+
+      width: 40px;
+      height: 40px;
+
       border: none;
-      background: #f0f2f5;
       border-radius: 50%;
-      font-size: 1.5rem;
-      line-height: 1;
+
+      background: #111;
+      color: #fff;
+
+      font-size: 25px;
+
       cursor: pointer;
-      color: #333;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s ease;
-    }
-
-    .staff-modal-close:hover {
-      background: #e0e4ea;
     }
 
     .staff-modal-photo {
-      width: 140px;
-      height: 140px;
-      margin: 10px auto 22px;
+      width: 180px;
+      height: 180px;
+
+      margin: 10px auto 20px;
+
+      overflow: hidden;
       border-radius: 50%;
-      background: linear-gradient(145deg, #0757c9, #043d91);
+
+      background: linear-gradient(
+        145deg,
+        #0757c9,
+        #043d91
+      );
+
       background-size: cover;
       background-position: center;
+
       border: 4px solid #fff;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .staff-modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .no-staff-photo {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #eee;
+
+      font-size: 60px;
+      font-weight: bold;
     }
 
     .staff-modal-content h3 {
       margin-bottom: 6px;
+
       font-size: 1.55rem;
       font-weight: 900;
+
       color: #0b0b0b;
     }
 
     .staff-modal-position {
       margin-bottom: 18px;
+
       color: #0757c9;
+
       font-weight: 700;
       font-size: 0.95rem;
+
       letter-spacing: 0.03em;
     }
 
     .staff-modal-contact {
+      margin-top: 25px;
+
+      display: grid;
+      gap: 12px;
+
       font-size: 0.92rem;
       color: #555;
       line-height: 1.7;
+    }
+
+    .staff-contact-item {
+      padding: 12px;
+      border-radius: 8px;
+      background: #f5f5f5;
+    }
+
+    .staff-contact-item strong {
+      display: block;
+      margin-bottom: 5px;
     }
 
     .staff-modal-contact a {
@@ -188,13 +298,61 @@
       font-weight: 600;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
+
+    /* =====================================================
+       REVIEWS
+    ===================================================== */
+
+    .review-status {
+      min-height: 24px;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .review-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .review-stars {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .review-message {
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .review-name {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .review-role {
+      display: block;
+      opacity: 0.7;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
     @media (max-width: 900px) {
+
       .staff-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 500px) {
+
       .staff-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: 220px;
@@ -204,174 +362,114 @@
         height: 42px;
       }
 
+      .staff-modal-content {
+        padding: 25px 20px;
+      }
+
+      .staff-modal-photo {
+        width: 150px;
+        height: 150px;
+      }
+
     }
-    .staff-card {
-  position: relative;
-  cursor: pointer;
-}
 
-.staff-explore {
-  margin-top: 15px;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-  background: #fff;
-  color: #111;
-}
-
-.staff-explore:hover {
-  transform: translateY(-2px);
-}
-
-.staff-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.staff-modal.active {
-  display: flex;
-}
-
-.staff-modal-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-}
-
-.staff-modal-content {
-  position: relative;
-  z-index: 2;
-  width: min(500px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #fff;
-  border-radius: 15px;
-  padding: 30px;
-  text-align: center;
-}
-
-.staff-modal-close {
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #111;
-  color: #fff;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-.staff-modal-photo {
-  width: 180px;
-  height: 180px;
-  margin: 10px auto 20px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.staff-modal-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.no-staff-photo {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eee;
-  font-size: 60px;
-  font-weight: bold;
-}
-
-.staff-modal-position {
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.staff-modal-contact {
-  margin-top: 25px;
-  display: grid;
-  gap: 12px;
-}
-
-.staff-contact-item {
-  padding: 12px;
-  border-radius: 8px;
-  background: #f5f5f5;
-}
-
-.staff-contact-item strong {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.staff-contact-item a {
-  text-decoration: none;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
   </style>
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      HEADER
 ===================================================== -->
+
 <header class="site-header">
+
   <div class="container nav-container">
 
-    <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
-      <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
-    
+    <a
+      href="#home"
+      class="logo"
+      aria-label="Baryan Badminton Academy home"
+    >
+
+      <img
+        src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png"
+        alt="Baryan Badminton Academy logo"
+      >
+
     </a>
 
-    <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNavigation">
+
+    <button
+      class="mobile-menu-button"
+      id="mobileMenuButton"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mainNavigation"
+    >
+
       <span></span>
       <span></span>
       <span></span>
+
     </button>
 
-    <nav class="main-navigation" id="mainNavigation" aria-label="Main navigation">
+
+    <nav
+      class="main-navigation"
+      id="mainNavigation"
+      aria-label="Main navigation"
+    >
+
       <a href="#home" class="active">Home</a>
+
       <a href="#about">About</a>
+
       <a href="#programs">Programs</a>
+
       <a href="#schedule">Schedule</a>
+
       <a href="#gallery">Staff</a>
+
       <a href="#news">News</a>
+
       <a href="#contact">Contact</a>
-      <a href="membership.html" class="nav-join">Join Academy</a>
+
+      <a
+        href="membership.html"
+        class="nav-join"
+      >
+        Join Academy
+      </a>
+
     </nav>
 
   </div>
+
 </header>
 
+
+
 <main>
+
 
 <!-- =====================================================
      HERO
 ===================================================== -->
+
 <section class="home-hero" id="home">
+
   <div class="hero-overlay"></div>
 
   <div class="container home-hero-content">
+
     <div class="hero-copy">
-      <p class="eyebrow">BARYAN BADMINTON ACADEMY</p>
+
+      <p class="eyebrow">
+        BARYAN BADMINTON ACADEMY
+      </p>
 
       <h1>
         TRAIN.
@@ -385,74 +483,163 @@ body.modal-open {
       </p>
 
       <div class="hero-actions">
-        <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
-        <a href="#programs" class="secondary-button">EXPLORE PROGRAMS</a>
+
+        <a
+          href="membership.html"
+          class="primary-button"
+        >
+          JOIN ACADEMY
+        </a>
+
+        <a
+          href="#programs"
+          class="secondary-button"
+        >
+          EXPLORE PROGRAMS
+        </a>
+
       </div>
+
     </div>
 
+
     <div class="hero-stat-card">
+
       <span>BARYAN BADMINTON</span>
+
       <strong>DEVELOP</strong>
-      <p>Build your skills. Build your confidence. Build your future.</p>
+
+      <p>
+        Build your skills.
+        Build your confidence.
+        Build your future.
+      </p>
+
     </div>
+
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      QUICK ACTIONS
 ===================================================== -->
+
 <section class="quick-actions">
+
   <div class="container">
+
     <div class="quick-grid">
 
-      <a href="membership.html" class="quick-card blue-card">
+      <a
+        href="membership.html"
+        class="quick-card blue-card"
+      >
+
         <span class="quick-number">01</span>
+
         <h3>Join Academy</h3>
-        <p>Start your badminton journey with Baryan Badminton Academy.</p>
+
+        <p>
+          Start your badminton journey with Baryan Badminton Academy.
+        </p>
+
         <span class="quick-arrow">→</span>
+
       </a>
 
-      <a href="#programs" class="quick-card orange-card">
+
+      <a
+        href="#programs"
+        class="quick-card orange-card"
+      >
+
         <span class="quick-number">02</span>
+
         <h3>Training</h3>
-        <p>Find a badminton development program that fits your level.</p>
+
+        <p>
+          Find a badminton development program that fits your level.
+        </p>
+
         <span class="quick-arrow">→</span>
+
       </a>
 
-      <a href="#schedule" class="quick-card blue-card">
+
+      <a
+        href="#schedule"
+        class="quick-card blue-card"
+      >
+
         <span class="quick-number">03</span>
+
         <h3>Schedule</h3>
-        <p>Check training days, sessions and academy activities.</p>
+
+        <p>
+          Check training days, sessions and academy activities.
+        </p>
+
         <span class="quick-arrow">→</span>
+
       </a>
 
-      <a href="#contact" class="quick-card green-card">
+
+      <a
+        href="#contact"
+        class="quick-card green-card"
+      >
+
         <span class="quick-number">04</span>
+
         <h3>Contact</h3>
-        <p>Speak with Baryan Badminton Academy and find out how to get started.</p>
+
+        <p>
+          Speak with Baryan Badminton Academy and find out how to get started.
+        </p>
+
         <span class="quick-arrow">→</span>
+
       </a>
 
     </div>
+
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      ABOUT
 ===================================================== -->
+
 <section class="about-section" id="about">
+
   <div class="container about-grid">
 
     <div class="about-image">
+
       <div class="image-placeholder">
+
         <span>BARYAN</span>
+
         <strong>BADMINTON</strong>
+
         <small>ACADEMY</small>
+
       </div>
+
     </div>
 
+
     <div class="about-content">
-      <p class="eyebrow">ABOUT THE ACADEMY</p>
+
+      <p class="eyebrow">
+        ABOUT THE ACADEMY
+      </p>
 
       <h2>
         MORE THAN
@@ -471,840 +658,1945 @@ body.modal-open {
         performance and develop the character required both on and off the court.
       </p>
 
-      <a href="#programs" class="text-link">
+      <a
+        href="#programs"
+        class="text-link"
+      >
         Discover our programs
         <span>→</span>
       </a>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      MISSION & VISION
 ===================================================== -->
+
 <section class="mission-section">
+
   <div class="container">
 
     <div class="section-heading center-heading">
-      <p class="eyebrow">OUR PURPOSE</p>
+
+      <p class="eyebrow">
+        OUR PURPOSE
+      </p>
+
       <h2>
         BUILDING
         <span>BETTER PLAYERS.</span>
       </h2>
+
       <p>
         Baryan Badminton Academy combines badminton development with
         discipline, teamwork and personal growth.
       </p>
+
     </div>
 
+
     <div class="mission-grid">
+
       <article class="mission-card blue-mission">
+
         <span class="mission-icon">M</span>
+
         <h3>Our Mission</h3>
+
         <p>
           To develop badminton players through quality coaching, consistent
           training, discipline, teamwork and opportunities to compete.
         </p>
+
       </article>
 
+
       <article class="mission-card orange-mission">
+
         <span class="mission-icon">V</span>
+
         <h3>Our Vision</h3>
+
         <p>
           To become a respected badminton development academy that creates
           opportunities for athletes to reach their full potential.
         </p>
+
       </article>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      WHY JOIN
 ===================================================== -->
+
 <section class="values-section">
+
   <div class="container">
 
     <div class="section-heading">
-      <p class="eyebrow">WHY JOIN US</p>
+
+      <p class="eyebrow">
+        WHY JOIN US
+      </p>
+
       <h2>
         DEVELOP
         <span>YOUR GAME.</span>
       </h2>
+
       <p>
         Our training environment is built around technical development,
         physical fitness, discipline and teamwork.
       </p>
+
     </div>
 
+
     <div class="values-grid">
+
       <article class="value-card">
+
         <span>01</span>
+
         <h3>Coaching</h3>
-        <p>Structured coaching designed to help players understand and improve every part of their game.</p>
+
+        <p>
+          Structured coaching designed to help players understand and improve every part of their game.
+        </p>
+
       </article>
+
 
       <article class="value-card orange-value">
+
         <span>02</span>
+
         <h3>Skills</h3>
-        <p>Grip, serving, footwork, movement, strokes, rallies and match awareness.</p>
+
+        <p>
+          Grip, serving, footwork, movement, strokes, rallies and match awareness.
+        </p>
+
       </article>
+
 
       <article class="value-card">
+
         <span>03</span>
+
         <h3>Fitness</h3>
-        <p>Improve speed, strength, coordination, endurance and overall athletic ability.</p>
+
+        <p>
+          Improve speed, strength, coordination, endurance and overall athletic ability.
+        </p>
+
       </article>
 
+
       <article class="value-card green-value">
+
         <span>04</span>
+
         <h3>Character</h3>
-        <p>Learn discipline, teamwork, respect, responsibility and sportsmanship.</p>
+
+        <p>
+          Learn discipline, teamwork, respect, responsibility and sportsmanship.
+        </p>
+
       </article>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      PROGRAMS
 ===================================================== -->
-<section class="program-preview" id="programs">
+
+<section
+  class="program-preview"
+  id="programs"
+>
+
   <div class="container">
 
     <div class="section-heading">
-      <p class="eyebrow">BADMINTON PROGRAMS</p>
+
+      <p class="eyebrow">
+        BADMINTON PROGRAMS
+      </p>
+
       <h2>
         FIND YOUR
         <span>LEVEL.</span>
       </h2>
+
       <p>
         Our programs are designed to support players at different stages
         of their badminton development.
       </p>
+
     </div>
 
+
     <div class="program-preview-grid">
+
       <article>
+
         <span>BEGINNER</span>
+
         <h3>Start Strong</h3>
-        <p>Learn badminton fundamentals, grip, serving, movement, footwork, strokes and basic game rules.</p>
-        <a href="#schedule">View sessions →</a>
+
+        <p>
+          Learn badminton fundamentals, grip, serving, movement,
+          footwork, strokes and basic game rules.
+        </p>
+
+        <a href="#schedule">
+          View sessions →
+        </a>
+
       </article>
 
+
       <article>
+
         <span>INTERMEDIATE</span>
+
         <h3>Level Up</h3>
-        <p>Develop consistency, decision-making, footwork, strokes, defence and match awareness.</p>
-        <a href="#schedule">View sessions →</a>
+
+        <p>
+          Develop consistency, decision-making, footwork, strokes,
+          defence and match awareness.
+        </p>
+
+        <a href="#schedule">
+          View sessions →
+        </a>
+
       </article>
 
+
       <article>
+
         <span>ADVANCED</span>
+
         <h3>Compete</h3>
-        <p>Performance-focused training covering tactics, conditioning, competition preparation and advanced skills.</p>
-        <a href="#schedule">View sessions →</a>
+
+        <p>
+          Performance-focused training covering tactics,
+          conditioning, competition preparation and advanced skills.
+        </p>
+
+        <a href="#schedule">
+          View sessions →
+        </a>
+
       </article>
 
+
       <article>
+
         <span>JUNIOR</span>
+
         <h3>Future Stars</h3>
-        <p>Age-appropriate badminton development focused on fundamentals, confidence, coordination and teamwork.</p>
-        <a href="#schedule">View sessions →</a>
+
+        <p>
+          Age-appropriate badminton development focused on fundamentals,
+          confidence, coordination and teamwork.
+        </p>
+
+        <a href="#schedule">
+          View sessions →
+        </a>
+
       </article>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      SCHEDULE
 ===================================================== -->
-<section class="schedule-preview" id="schedule">
+
+<section
+  class="schedule-preview"
+  id="schedule"
+>
+
   <div class="container schedule-grid">
 
     <div>
-      <p class="eyebrow">TRAINING SCHEDULE</p>
+
+      <p class="eyebrow">
+        TRAINING SCHEDULE
+      </p>
+
       <h2>
         MAKE TIME
         <span>TO PLAY.</span>
       </h2>
+
       <p>
         Training times, age groups and venues will be published here as
         the academy schedule is confirmed.
       </p>
-      <a href="membership.html" class="primary-button">JOIN A SESSION</a>
+
+      <a
+        href="membership.html"
+        class="primary-button"
+      >
+        JOIN A SESSION
+      </a>
+
     </div>
 
+
     <div class="schedule-card">
+
       <div class="schedule-row">
+
         <strong>MONDAY</strong>
+
         <span>Skills Training</span>
+
         <small>Time TBC</small>
+
       </div>
 
+
       <div class="schedule-row">
+
         <strong>WEDNESDAY</strong>
+
         <span>Development Session</span>
+
         <small>Time TBC</small>
+
       </div>
 
+
       <div class="schedule-row">
+
         <strong>SATURDAY</strong>
+
         <span>Academy Session</span>
+
         <small>Time TBC</small>
+
       </div>
+
 
       <div class="schedule-note">
+
         Training venue and exact times will be confirmed by academy management.
+
       </div>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      STATS
 ===================================================== -->
+
 <section class="stats-section">
+
   <div class="container stats-grid">
+
     <div class="stat-card">
+
       <strong>0+</strong>
+
       <span>PLAYERS</span>
+
     </div>
+
+
     <div class="stat-card orange-stat">
+
       <strong>0+</strong>
+
       <span>TRAINING SESSIONS</span>
+
     </div>
+
+
     <div class="stat-card">
+
       <strong>0+</strong>
+
       <span>COACHES</span>
+
     </div>
+
+
     <div class="stat-card green-stat">
+
       <strong>0+</strong>
+
       <span>COMPETITIONS</span>
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <!-- =====================================================
-     OUR STAFF
+     STAFF
 ===================================================== -->
-<section class="gallery-preview staff-section" id="gallery">
+
+<section
+  class="gallery-preview staff-section"
+  id="gallery"
+>
 
   <div class="container">
 
     <div class="section-heading">
-      <p class="eyebrow">OUR STAFF</p>
+
+      <p class="eyebrow">
+        OUR STAFF
+      </p>
+
       <h2>
         MEET THE
         <span>TEAM.</span>
       </h2>
+
       <p>
         The dedicated coaches, administrators and support team behind Baryan Badminton Academy.
       </p>
+
     </div>
 
-    <div class="gallery-grid staff-grid" id="staffGrid">
 
-      <!-- Alema G Hamis -->
-      <article class="gallery-item gallery-blue staff-card"
+    <div
+      class="gallery-grid staff-grid"
+      id="staffGrid"
+    >
+
+
+      <!-- STAFF 1 -->
+
+      <article
+        class="gallery-item gallery-blue staff-card"
         data-staff="1"
         tabindex="0"
         role="button"
-        aria-label="View details for Coach Alema G Hamis">
+        aria-label="View details for Alema G Hamis"
+      >
 
         <div class="staff-photo">
-          <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-               alt="Alema G Hamis"
-               style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
-        </div>
-        <span class="staff-name">Alema G Hamis</span>
 
-        <button class="staff-explore" type="button">
+          <img
+            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+            alt="Alema G Hamis"
+          >
+
+        </div>
+
+        <span class="staff-name">
+          Alema G Hamis
+        </span>
+
+        <button
+          class="staff-explore"
+          type="button"
+        >
           EXPLORE DETAILS
         </button>
+
       </article>
 
 
-      <!-- Sarah Nalwoga -->
-      <article class="gallery-item gallery-orange staff-card"
+
+      <!-- STAFF 2 -->
+
+      <article
+        class="gallery-item gallery-orange staff-card"
         data-staff="2"
         tabindex="0"
         role="button"
-        aria-label="View details for Coach Sarah Nalwoga">
+        aria-label="View details for Sarah Nalwoga"
+      >
 
         <div class="staff-photo">
-          <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-               alt="Alema G Hamis"
-               style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+
+          <img
+            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+            alt="Sarah Nalwoga"
+          >
+
         </div>
 
-        <span class="staff-name">Sarah Nalwoga</span>
+        <span class="staff-name">
+          Sarah Nalwoga
+        </span>
 
-        <button class="staff-explore" type="button">
+        <button
+          class="staff-explore"
+          type="button"
+        >
           EXPLORE DETAILS
         </button>
+
       </article>
 
 
-      <!-- David Ssempijja -->
-      <article class="gallery-item gallery-green staff-card"
+
+      <!-- STAFF 3 -->
+
+      <article
+        class="gallery-item gallery-green staff-card"
         data-staff="3"
         tabindex="0"
         role="button"
-        aria-label="View details for Coach David Ssempijja">
+        aria-label="View details for David Ssempijja"
+      >
 
         <div class="staff-photo">
-          <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-               alt="Alema G Hamis"
-               style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+
+          <img
+            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+            alt="David Ssempijja"
+          >
+
         </div>
 
-        <span class="staff-name">David Ssempijja</span>
+        <span class="staff-name">
+          David Ssempijja
+        </span>
 
-        <button class="staff-explore" type="button">
+        <button
+          class="staff-explore"
+          type="button"
+        >
           EXPLORE DETAILS
         </button>
+
       </article>
 
 
-      <!-- Grace Nakato -->
-      <article class="gallery-item gallery-dark staff-card"
+
+      <!-- STAFF 4 -->
+
+      <article
+        class="gallery-item gallery-dark staff-card"
         data-staff="4"
         tabindex="0"
         role="button"
-        aria-label="View details for Admin Grace Nakato">
+        aria-label="View details for Grace Nakato"
+      >
 
         <div class="staff-photo">
-          <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-               alt="Alema G Hamis"
-               style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+
+          <img
+            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+            alt="Grace Nakato"
+          >
+
         </div>
 
-        <span class="staff-name">Grace Nakato</span>
+        <span class="staff-name">
+          Grace Nakato
+        </span>
 
-        <button class="staff-explore" type="button">
+        <button
+          class="staff-explore"
+          type="button"
+        >
           EXPLORE DETAILS
         </button>
+
       </article>
 
     </div>
 
 
-    <!-- Staff Details Modal -->
-    <div class="staff-modal" id="staffModal" aria-hidden="true">
 
-      <div class="staff-modal-overlay" id="staffModalOverlay"></div>
+    <!-- =====================================================
+         STAFF MODAL
+    ===================================================== -->
 
-      <div class="staff-modal-content"
-           role="dialog"
-           aria-modal="true"
-           aria-labelledby="staffModalName">
+    <div
+      class="staff-modal"
+      id="staffModal"
+      aria-hidden="true"
+    >
 
-        <button class="staff-modal-close"
-                id="staffModalClose"
-                aria-label="Close staff details">
+      <div
+        class="staff-modal-overlay"
+        id="staffModalOverlay"
+      ></div>
+
+
+      <div
+        class="staff-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="staffModalName"
+      >
+
+        <button
+          class="staff-modal-close"
+          id="staffModalClose"
+          type="button"
+          aria-label="Close staff details"
+        >
           ×
         </button>
 
-        <div class="staff-modal-photo" id="staffModalPhoto"></div>
+
+        <div
+          class="staff-modal-photo"
+          id="staffModalPhoto"
+        ></div>
+
 
         <h3 id="staffModalName"></h3>
 
-        <p class="staff-modal-position"
-           id="staffModalPosition"></p>
+        <p
+          class="staff-modal-position"
+          id="staffModalPosition"
+        ></p>
 
         <p id="staffModalBio"></p>
 
-        <div class="staff-modal-contact"
-             id="staffModalContact"></div>
+        <div
+          class="staff-modal-contact"
+          id="staffModalContact"
+        ></div>
 
       </div>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      NEWS
 ===================================================== -->
-<section class="news-section" id="news">
+
+<section
+  class="news-section"
+  id="news"
+>
+
   <div class="container">
 
     <div class="section-heading">
-      <p class="eyebrow">NEWS & EVENTS</p>
+
+      <p class="eyebrow">
+        NEWS & EVENTS
+      </p>
+
       <h2>
         WHAT'S
         <span>HAPPENING.</span>
       </h2>
+
     </div>
 
+
     <div class="news-grid">
+
       <article class="news-card">
-        <div class="news-tag">ACADEMY NEWS</div>
-        <h3>Academy Updates</h3>
-        <p>Academy announcements, training updates and important information will appear here.</p>
-        <a href="#">Read more →</a>
+
+        <div class="news-tag">
+          ACADEMY NEWS
+        </div>
+
+        <h3>
+          Academy Updates
+        </h3>
+
+        <p>
+          Academy announcements, training updates and important information will appear here.
+        </p>
+
+        <a href="#">
+          Read more →
+        </a>
+
       </article>
+
 
       <article class="news-card orange-news">
-        <div class="news-tag">TOURNAMENTS</div>
-        <h3>Competition Updates</h3>
-        <p>Follow competitions, tournament results and player achievements from Baryan Badminton Academy.</p>
-        <a href="#">Read more →</a>
+
+        <div class="news-tag">
+          TOURNAMENTS
+        </div>
+
+        <h3>
+          Competition Updates
+        </h3>
+
+        <p>
+          Follow competitions, tournament results and player achievements from Baryan Badminton Academy.
+        </p>
+
+        <a href="#">
+          Read more →
+        </a>
+
       </article>
 
+
       <article class="news-card green-news">
-        <div class="news-tag">COMMUNITY</div>
-        <h3>Academy Activities</h3>
-        <p>Discover activities, events, camps and community programs.</p>
-        <a href="#">Read more →</a>
+
+        <div class="news-tag">
+          COMMUNITY
+        </div>
+
+        <h3>
+          Academy Activities
+        </h3>
+
+        <p>
+          Discover activities, events, camps and community programs.
+        </p>
+
+        <a href="#">
+          Read more →
+        </a>
+
       </article>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      TESTIMONIALS
 ===================================================== -->
+
 <section class="testimonials-section">
+
   <div class="container">
 
     <div class="section-heading center-heading">
-      <p class="eyebrow">OUR COMMUNITY</p>
+
+      <p class="eyebrow">
+        OUR COMMUNITY
+      </p>
+
       <h2>
         BUILT
         <span>TOGETHER.</span>
       </h2>
+
     </div>
 
+
     <div class="testimonial-grid">
+
       <article class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>“Testimonials from players, parents and the academy community will appear here.”</p>
-        <strong>ACADEMY PLAYER</strong>
+
+        <div class="testimonial-stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “Testimonials from players, parents and the academy community will appear here.”
+        </p>
+
+        <strong>
+          ACADEMY PLAYER
+        </strong>
+
       </article>
+
 
       <article class="testimonial-card orange-testimonial">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>“A professional space for player development, teamwork and confidence.”</p>
-        <strong>ACADEMY PARENT</strong>
+
+        <div class="testimonial-stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “A professional space for player development, teamwork and confidence.”
+        </p>
+
+        <strong>
+          ACADEMY PARENT
+        </strong>
+
       </article>
 
+
       <article class="testimonial-card green-testimonial">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>“Training, discipline and competition help athletes become better players.”</p>
-        <strong>ACADEMY COMMUNITY</strong>
+
+        <div class="testimonial-stars">
+          ★★★★★
+        </div>
+
+        <p>
+          “Training, discipline and competition help athletes become better players.”
+        </p>
+
+        <strong>
+          ACADEMY COMMUNITY
+        </strong>
+
       </article>
+
     </div>
 
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      REVIEWS
 ===================================================== -->
-<section class="reviews-section" id="reviews">
+
+<section
+  class="reviews-section"
+  id="reviews"
+>
+
   <div class="container">
 
     <div class="section-heading center-heading">
-      <p class="eyebrow">REVIEWS</p>
+
+      <p class="eyebrow">
+        REVIEWS
+      </p>
+
       <h2>
         WHAT OUR
         <span>PLAYERS SAY.</span>
       </h2>
+
       <p>
         Hear from players, parents and members of the Baryan Badminton Academy community.
       </p>
+
     </div>
+
+
+    <!-- REVIEW SELECTOR -->
 
     <div class="reviews-selector">
-      <label for="reviewSelect">Select a review</label>
-      <select id="reviewSelect" aria-label="Select a review">
-        <option value="">Select a review...</option>
+
+      <label for="reviewSelect">
+        Select a review
+      </label>
+
+      <select
+        id="reviewSelect"
+        aria-label="Select a review"
+      >
+
+        <option value="">
+          Loading reviews...
+        </option>
+
       </select>
 
-      <div class="selected-review" id="selectedReview">
-        <p class="reviews-loading">Select a review above to read it.</p>
+
+      <div
+        class="selected-review"
+        id="selectedReview"
+      >
+
+        <p class="reviews-loading">
+          Loading reviews...
+        </p>
+
       </div>
+
     </div>
 
+
+
+    <!-- REVIEW FORM -->
+
     <div class="review-form-wrapper">
+
       <div class="review-form-heading">
-        <p class="eyebrow">YOUR EXPERIENCE</p>
+
+        <p class="eyebrow">
+          YOUR EXPERIENCE
+        </p>
+
         <h3>
           LEAVE A
           <span>REVIEW.</span>
         </h3>
-        <p>Tell us about your experience at Baryan Badminton Academy.</p>
+
+        <p>
+          Tell us about your experience at Baryan Badminton Academy.
+        </p>
+
       </div>
 
-      <form id="reviewForm" class="review-form">
-        <div class="form-group">
-          <label for="reviewName">Your Name</label>
-          <input type="text" id="reviewName" name="name" placeholder="Enter your name" required maxlength="60">
-        </div>
+
+      <form
+        id="reviewForm"
+        class="review-form"
+      >
+
+
+        <!-- NAME -->
 
         <div class="form-group">
-          <label for="reviewRole">You are a</label>
-          <select id="reviewRole" name="role" required>
-            <option value="">Select one</option>
-            <option value="Player">Player</option>
-            <option value="Parent">Parent</option>
-            <option value="Coach">Coach</option>
-            <option value="Member">Member</option>
+
+          <label for="reviewName">
+            Your Name
+          </label>
+
+          <input
+            type="text"
+            id="reviewName"
+            name="name"
+            placeholder="Enter your name"
+            required
+            maxlength="60"
+            autocomplete="name"
+          >
+
+        </div>
+
+
+
+        <!-- ROLE -->
+
+        <div class="form-group">
+
+          <label for="reviewRole">
+            You are a
+          </label>
+
+          <select
+            id="reviewRole"
+            name="role"
+            required
+          >
+
+            <option value="">
+              Select one
+            </option>
+
+            <option value="Player">
+              Player
+            </option>
+
+            <option value="Parent">
+              Parent
+            </option>
+
+            <option value="Coach">
+              Coach
+            </option>
+
+            <option value="Member">
+              Member
+            </option>
+
           </select>
+
         </div>
 
+
+
+        <!-- RATING -->
+
         <div class="form-group">
-          <label>Rating</label>
+
+          <label>
+            Rating
+          </label>
+
           <div class="rating-input">
-            <label><input type="radio" name="rating" value="5" required> ★★★★★</label>
-            <label><input type="radio" name="rating" value="4"> ★★★★</label>
-            <label><input type="radio" name="rating" value="3"> ★★★</label>
-            <label><input type="radio" name="rating" value="2"> ★★</label>
-            <label><input type="radio" name="rating" value="1"> ★</label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                required
+              >
+              ★★★★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+              >
+              ★★★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+              >
+              ★★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+              >
+              ★★
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+              >
+              ★
+            </label>
+
           </div>
+
         </div>
+
+
+
+        <!-- MESSAGE -->
 
         <div class="form-group">
-          <label for="reviewMessage">Your Review</label>
-          <textarea id="reviewMessage" name="message" rows="5" placeholder="Write your review..." required maxlength="500"></textarea>
+
+          <label for="reviewMessage">
+            Your Review
+          </label>
+
+          <textarea
+            id="reviewMessage"
+            name="message"
+            rows="5"
+            placeholder="Write your review..."
+            required
+            maxlength="500"
+          ></textarea>
+
         </div>
 
-        <button type="submit" class="primary-button review-submit" id="reviewSubmit">SUBMIT REVIEW</button>
-        <p id="reviewStatus" class="review-status" aria-live="polite"></p>
+
+
+        <!-- SUBMIT -->
+
+        <button
+          type="submit"
+          class="primary-button review-submit"
+          id="reviewSubmit"
+        >
+          SUBMIT REVIEW
+        </button>
+
+
+        <p
+          id="reviewStatus"
+          class="review-status"
+          aria-live="polite"
+        ></p>
+
       </form>
+
     </div>
 
   </div>
+
 </section>
 
+
 </main>
+
+
 
 <!-- =====================================================
      CONTACT CTA
 ===================================================== -->
-<section class="contact-cta" id="contact">
+
+<section
+  class="contact-cta"
+  id="contact"
+>
+
   <div class="container contact-cta-content">
+
     <div>
-      <p class="eyebrow">READY TO PLAY?</p>
+
+      <p class="eyebrow">
+        READY TO PLAY?
+      </p>
+
       <h2>
         YOUR NEXT
         <span>GAME STARTS HERE.</span>
       </h2>
+
     </div>
 
+
     <div class="cta-buttons">
-      <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
-      <a href="#whatsapp" class="whatsapp-button" id="whatsappButton">WhatsApp Academy</a>
+
+      <a
+        href="membership.html"
+        class="primary-button"
+      >
+        JOIN ACADEMY
+      </a>
+
+      <a
+        href="https://wa.me/256755805092"
+        target="_blank"
+        rel="noopener"
+        class="whatsapp-button"
+        id="whatsappButton"
+      >
+        WhatsApp Academy
+      </a>
+
     </div>
+
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      MEMBERSHIP CTA
 ===================================================== -->
+
 <section class="membership-anchor">
+
   <div class="container">
+
     <div class="membership-anchor-box">
-      <p class="eyebrow">MEMBERSHIP</p>
+
+      <p class="eyebrow">
+        MEMBERSHIP
+      </p>
+
       <h2>
         JOIN THE
         <span>ACADEMY FAMILY.</span>
       </h2>
+
       <p>
         Train with purpose, develop your skills and take the next step in your badminton journey.
       </p>
-      <a href="membership.html" class="primary-button">START APPLICATION</a>
+
+      <a
+        href="membership.html"
+        class="primary-button"
+      >
+        START APPLICATION
+      </a>
+
     </div>
+
   </div>
+
 </section>
+
+
 
 <!-- =====================================================
      FOOTER
 ===================================================== -->
+
 <footer>
+
   <div class="container footer-grid">
 
+
     <div>
-      <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
-        <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
+
+      <a
+        href="#home"
+        class="logo"
+        aria-label="Baryan Badminton Academy home"
+      >
+
+        <img
+          src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png"
+          alt="Baryan Badminton Academy logo"
+        >
+
         <div class="logo-text">
+
           <span>BARYAN</span>
+
           <span>ACADEMY</span>
+
         </div>
+
       </a>
-      <p>Train. Develop. Compete. Belong.</p>
+
+      <p>
+        Train. Develop. Compete. Belong.
+      </p>
+
     </div>
 
+
     <div>
-      <h4>Explore</h4>
-      <a href="#about">About</a>
-      <a href="#programs">Programs</a>
-      <a href="#schedule">Schedule</a>
+
+      <h4>
+        Explore
+      </h4>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#programs">
+        Programs
+      </a>
+
+      <a href="#schedule">
+        Schedule
+      </a>
+
     </div>
 
+
     <div>
-      <h4>Academy</h4>
-      <a href="membership.html">Membership</a>
-      <a href="#gallery">Staff</a>
-      <a href="#news">News</a>
+
+      <h4>
+        Academy
+      </h4>
+
+      <a href="membership.html">
+        Membership
+      </a>
+
+      <a href="#gallery">
+        Staff
+      </a>
+
+      <a href="#news">
+        News
+      </a>
+
     </div>
 
+
     <div>
-      <h4>Contact</h4>
 
-<a href="#contact">Contact Academy</a>
+      <h4>
+        Contact
+      </h4>
 
-<a href="https://wa.me/256755805092" target="_blank">
-  Chat with us on WhatsApp
-</a>
+      <a href="#contact">
+        Contact Academy
+      </a>
 
-<a href="mailto:baryanmintonclub@gmail.com" id="footerEmail">
-  Email
-</a>
+      <a
+        href="https://wa.me/256755805092"
+        target="_blank"
+        rel="noopener"
+      >
+        Chat with us on WhatsApp
+      </a>
+
+      <a
+        href="mailto:baryanmintonclub@gmail.com"
+        id="footerEmail"
+      >
+        Email
+      </a>
+
     </div>
 
   </div>
+
 
   <div class="container footer-bottom">
-    <p>© 2026 Baryan Badminton Academy. All rights reserved.</p>
+
+    <p>
+      © 2026 Baryan Badminton Academy.
+      All rights reserved.
+    </p>
+
     <div>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+
+      <a href="privacy.html">
+        Privacy
+      </a>
+
+      <a href="terms.html">
+        Terms
+      </a>
+
     </div>
+
   </div>
+
 </footer>
+
+
 
 <!-- =====================================================
      MOBILE NAVIGATION
 ===================================================== -->
+
 <script>
-  const menuButton = document.getElementById("mobileMenuButton");
-  const navigation = document.getElementById("mainNavigation");
+
+  const menuButton =
+    document.getElementById("mobileMenuButton");
+
+  const navigation =
+    document.getElementById("mainNavigation");
+
 
   if (menuButton && navigation) {
+
     menuButton.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
+
+      const isOpen =
+        navigation.classList.toggle("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
     });
 
-    document.querySelectorAll(".main-navigation a").forEach(link => {
-      link.addEventListener("click", () => {
-        navigation.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
+
+    document
+      .querySelectorAll(".main-navigation a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          navigation.classList.remove("open");
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        });
+
       });
-    });
 
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        navigation.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (event.key === "Escape") {
+
+          navigation.classList.remove("open");
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
       }
-    });
+    );
+
   }
+
 </script>
+
+
 
 <!-- =====================================================
-     STAFF MODAL SCRIPT
+     STAFF MODAL
 ===================================================== -->
+
 <script>
+
   const staffData = {
+
     1: {
-      name: "James Okello",
+
+      name: "Alema G Hamis",
+
       position: "Head Coach",
-      contact: "Email: james.okello@baryanbadminton.com<br>Phone: +256 700 000 001",
-      photo: ""
+
+      bio:
+        "Alema G Hamis supports player development through structured badminton coaching, technical training and competitive preparation.",
+
+      email:
+        "baryanmintonclub@gmail.com",
+
+      phone:
+        "+256 755 805 092",
+
+      photo:
+        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+
     },
+
+
     2: {
+
       name: "Sarah Nalwoga",
+
       position: "Junior Coach",
-      contact: "Email: sarah.nalwoga@baryanbadminton.com<br>Phone: +256 700 000 002",
-      photo: ""
+
+      bio:
+        "Sarah Nalwoga supports junior players as they develop badminton fundamentals, confidence, coordination and teamwork.",
+
+      email:
+        "baryanmintonclub@gmail.com",
+
+      phone:
+        "+256 755 805 092",
+
+      photo:
+        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+
     },
+
+
     3: {
+
       name: "David Ssempijja",
+
       position: "Fitness & Conditioning Coach",
-      contact: "Email: david.ssempijja@baryanbadminton.com<br>Phone: +256 700 000 003",
-      photo: ""
+
+      bio:
+        "David Ssempijja supports players with fitness, conditioning, movement and physical preparation for badminton.",
+
+      email:
+        "baryanmintonclub@gmail.com",
+
+      phone:
+        "+256 755 805 092",
+
+      photo:
+        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+
     },
+
+
     4: {
+
       name: "Grace Nakato",
+
       position: "Academy Administrator",
-      contact: "Email: grace.nakato@baryanbadminton.com<br>Phone: +256 700 000 004",
-      photo: ""
+
+      bio:
+        "Grace Nakato supports academy administration and helps ensure smooth communication between players, parents and the academy.",
+
+      email:
+        "baryanmintonclub@gmail.com",
+
+      phone:
+        "+256 755 805 092",
+
+      photo:
+        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+
     }
+
   };
 
-  const modal = document.getElementById("staffModal");
-  const modalPhoto = document.getElementById("staffModalPhoto");
-  const modalName = document.getElementById("staffModalName");
-  const modalPosition = document.getElementById("staffModalPosition");
-  const modalContact = document.getElementById("staffModalContact");
-  const closeBtn = document.getElementById("staffModalClose");
-  const overlay = document.getElementById("staffModalOverlay");
-  const exploreBtn = document.getElementById("exploreStaffBtn");
+
+  const modal =
+    document.getElementById("staffModal");
+
+  const modalPhoto =
+    document.getElementById("staffModalPhoto");
+
+  const modalName =
+    document.getElementById("staffModalName");
+
+  const modalPosition =
+    document.getElementById("staffModalPosition");
+
+  const modalBio =
+    document.getElementById("staffModalBio");
+
+  const modalContact =
+    document.getElementById("staffModalContact");
+
+  const closeBtn =
+    document.getElementById("staffModalClose");
+
+  const overlay =
+    document.getElementById("staffModalOverlay");
+
 
   function openStaffModal(id) {
-    const data = staffData[id];
+
+    const data =
+      staffData[id];
+
     if (!data) return;
 
-    modalName.textContent = data.name;
-    modalPosition.textContent = data.position;
-    modalContact.innerHTML = data.contact;
 
-    if (data.photo) {
-      modalPhoto.style.backgroundImage = `url(${data.photo})`;
-    } else {
-      modalPhoto.style.backgroundImage = "";
-    }
+    modalName.textContent =
+      data.name;
+
+    modalPosition.textContent =
+      data.position;
+
+    modalBio.textContent =
+      data.bio;
+
+
+    modalContact.innerHTML = `
+
+      <div class="staff-contact-item">
+
+        <strong>Email</strong>
+
+        <a href="mailto:${data.email}">
+          ${data.email}
+        </a>
+
+      </div>
+
+
+      <div class="staff-contact-item">
+
+        <strong>Phone</strong>
+
+        <a href="tel:${data.phone.replace(/\s/g, "")}">
+          ${data.phone}
+        </a>
+
+      </div>
+
+    `;
+
+
+    modalPhoto.innerHTML = `
+      <img
+        src="${data.photo}"
+        alt="${data.name}"
+      >
+    `;
+
 
     modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+
+    modal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.classList.add(
+      "modal-open"
+    );
+
   }
+
 
   function closeStaffModal() {
+
     modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+
+    modal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
   }
 
-  document.querySelectorAll(".staff-card").forEach(card => {
-    card.addEventListener("click", () => openStaffModal(card.dataset.staff));
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openStaffModal(card.dataset.staff);
+
+  document
+    .querySelectorAll(".staff-card")
+    .forEach(card => {
+
+
+      card.addEventListener(
+        "click",
+        event => {
+
+          /*
+            Prevent the button click from
+            triggering the card twice.
+          */
+
+          if (
+            event.target.closest(
+              ".staff-explore"
+            )
+          ) {
+
+            event.stopPropagation();
+
+          }
+
+          openStaffModal(
+            card.dataset.staff
+          );
+
+        }
+      );
+
+
+      card.addEventListener(
+        "keydown",
+        event => {
+
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+
+            event.preventDefault();
+
+            openStaffModal(
+              card.dataset.staff
+            );
+
+          }
+
+        }
+      );
+
+
+      const button =
+        card.querySelector(
+          ".staff-explore"
+        );
+
+
+      if (button) {
+
+        button.addEventListener(
+          "click",
+          event => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openStaffModal(
+              card.dataset.staff
+            );
+
+          }
+        );
+
       }
+
     });
-  });
 
-  closeBtn.addEventListener("click", closeStaffModal);
-  overlay.addEventListener("click", closeStaffModal);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("open")) {
-      closeStaffModal();
+  closeBtn.addEventListener(
+    "click",
+    closeStaffModal
+  );
+
+
+  overlay.addEventListener(
+    "click",
+    closeStaffModal
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape" &&
+        modal.classList.contains("open")
+      ) {
+
+        closeStaffModal();
+
+      }
+
     }
-  });
+  );
 
-  exploreBtn.addEventListener("click", () => openStaffModal("1"));
 </script>
+
+
 
 <!-- =====================================================
      FIREBASE REVIEWS
 ===================================================== -->
+
 <script type="module">
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import {
+    initializeApp
+  }
+  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
 
   import {
+
     getFirestore,
+
     collection,
+
     addDoc,
+
     getDocs,
+
     serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+  }
+  from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-  /* ==========================================
+
+  /* =====================================================
      FIREBASE CONFIG
-  ========================================== */
+  ===================================================== */
 
   const firebaseConfig = {
-    apiKey: "AIzaSyChcaNBkSkXp4DILZvvpYism9F1617fhZQ",
-    authDomain: "baryan-9997b.firebaseapp.com",
-    projectId: "baryan-9997b",
-    storageBucket: "baryan-9997b.firebasestorage.app",
-    messagingSenderId: "1037368957847",
-    appId: "1:1037368957847:web:c43200cbe2cb026c1fc2d2",
-    measurementId: "G-SP6971YS6C"
+
+    apiKey:
+      "AIzaSyChcaNBkSkXp4DILZvvpYism9F1617fhZQ",
+
+    authDomain:
+      "baryan-9997b.firebaseapp.com",
+
+    projectId:
+      "baryan-9997b",
+
+    storageBucket:
+      "baryan-9997b.firebasestorage.app",
+
+    messagingSenderId:
+      "1037368957847",
+
+    appId:
+      "1:1037368957847:web:c43200cbe2cb026c1fc2d2",
+
+    measurementId:
+      "G-SP6971YS6C"
+
   };
 
 
-  /* ==========================================
+
+  /* =====================================================
      INITIALIZE FIREBASE
-  ========================================== */
+  ===================================================== */
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  let app;
+
+  let db;
 
 
-  /* ==========================================
+  try {
+
+    app =
+      initializeApp(
+        firebaseConfig
+      );
+
+    db =
+      getFirestore(app);
+
+    console.log(
+      "Firebase initialized successfully."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Firebase initialization failed:",
+      error
+    );
+
+  }
+
+
+
+  /* =====================================================
      ELEMENTS
-  ========================================== */
+  ===================================================== */
 
   const reviewSelect =
-    document.getElementById("reviewSelect");
+    document.getElementById(
+      "reviewSelect"
+    );
+
 
   const selectedReview =
-    document.getElementById("selectedReview");
+    document.getElementById(
+      "selectedReview"
+    );
+
 
   const reviewForm =
-    document.getElementById("reviewForm");
+    document.getElementById(
+      "reviewForm"
+    );
+
 
   const reviewSubmit =
-    document.getElementById("reviewSubmit");
+    document.getElementById(
+      "reviewSubmit"
+    );
+
 
   const reviewStatus =
-    document.getElementById("reviewStatus");
+    document.getElementById(
+      "reviewStatus"
+    );
+
 
 
   let reviews = [];
 
 
-  /* ==========================================
+
+  /* =====================================================
      ESCAPE HTML
-  ========================================== */
+  ===================================================== */
 
   function escapeHTML(value) {
 
     return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
   }
 
 
-  /* ==========================================
+
+  /* =====================================================
      LOAD REVIEWS
-  ========================================== */
+  ===================================================== */
 
   async function loadReviews() {
 
-    console.log("Loading reviews...");
+    if (!db) {
+
+      reviewSelect.innerHTML = `
+        <option value="">
+          Reviews unavailable
+        </option>
+      `;
+
+      selectedReview.innerHTML = `
+        <p>
+          Reviews are currently unavailable.
+        </p>
+      `;
+
+      return;
+
+    }
+
+
+    console.log(
+      "Loading reviews..."
+    );
+
 
     try {
 
-      const snapshot = await getDocs(
-        collection(db, "reviews")
-      );
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "reviews"
+          )
+        );
+
 
       console.log(
         "Reviews found:",
         snapshot.size
       );
 
+
       reviews = [];
 
 
-      snapshot.forEach((doc) => {
+      snapshot.forEach(
+        doc => {
 
-        reviews.push({
-          id: doc.id,
-          ...doc.data()
-        });
+          reviews.push({
 
-      });
+            id: doc.id,
+
+            ...doc.data()
+
+          });
+
+        }
+      );
 
 
       renderReviewSelector();
@@ -1317,11 +2609,13 @@ body.modal-open {
         error
       );
 
+
       reviewSelect.innerHTML = `
         <option value="">
           Reviews unavailable
         </option>
       `;
+
 
       selectedReview.innerHTML = `
         <p class="reviews-loading">
@@ -1334,13 +2628,16 @@ body.modal-open {
   }
 
 
-  /* ==========================================
-     DISPLAY REVIEW SELECTOR
-  ========================================== */
+
+  /* =====================================================
+     RENDER REVIEW SELECTOR
+  ===================================================== */
 
   function renderReviewSelector() {
 
-    if (reviews.length === 0) {
+    if (
+      reviews.length === 0
+    ) {
 
       reviewSelect.innerHTML = `
         <option value="">
@@ -1348,12 +2645,14 @@ body.modal-open {
         </option>
       `;
 
+
       selectedReview.innerHTML = `
         <p class="reviews-loading">
           No reviews yet.
           Be the first to review Baryan Badminton Academy!
         </p>
       `;
+
 
       return;
 
@@ -1367,26 +2666,37 @@ body.modal-open {
     `;
 
 
-    reviews.forEach((review, index) => {
+    reviews.forEach(
+      (review, index) => {
 
-      const option =
-        document.createElement("option");
+        const option =
+          document.createElement(
+            "option"
+          );
 
-      option.value = index;
 
-      option.textContent =
-        `${review.name || "Academy Member"} — ${review.role || "Member"}`;
+        option.value =
+          index;
 
-      reviewSelect.appendChild(option);
 
-    });
+        option.textContent =
+          `${review.name || "Academy Member"} — ${review.role || "Member"}`;
+
+
+        reviewSelect.appendChild(
+          option
+        );
+
+      }
+    );
 
   }
 
 
-  /* ==========================================
-     SELECT REVIEW
-  ========================================== */
+
+  /* =====================================================
+     DISPLAY SELECTED REVIEW
+  ===================================================== */
 
   reviewSelect.addEventListener(
     "change",
@@ -1396,7 +2706,9 @@ body.modal-open {
         reviewSelect.value;
 
 
-      if (value === "") {
+      if (
+        value === ""
+      ) {
 
         selectedReview.innerHTML = `
           <p class="reviews-loading">
@@ -1410,12 +2722,16 @@ body.modal-open {
 
 
       const review =
-        reviews[Number(value)];
+        reviews[
+          Number(value)
+        ];
 
 
       if (review) {
 
-        displayReview(review);
+        displayReview(
+          review
+        );
 
       }
 
@@ -1423,26 +2739,38 @@ body.modal-open {
   );
 
 
-  /* ==========================================
-     DISPLAY REVIEW
-  ========================================== */
 
-  function displayReview(review) {
+  /* =====================================================
+     DISPLAY REVIEW
+  ===================================================== */
+
+  function displayReview(
+    review
+  ) {
 
     let rating =
-      Number(review.rating) || 5;
+      Number(
+        review.rating
+      ) || 5;
 
 
     rating =
       Math.min(
         5,
-        Math.max(1, rating)
+        Math.max(
+          1,
+          rating
+        )
       );
 
 
     const stars =
-      "★".repeat(rating) +
-      "☆".repeat(5 - rating);
+      "★".repeat(
+        rating
+      ) +
+      "☆".repeat(
+        5 - rating
+      );
 
 
     selectedReview.innerHTML = `
@@ -1452,18 +2780,22 @@ body.modal-open {
       </div>
 
       <p class="review-message">
-        “${escapeHTML(review.message)}”
+        “${escapeHTML(
+          review.message
+        )}”
       </p>
 
       <strong class="review-name">
         ${escapeHTML(
-          review.name || "Academy Member"
+          review.name ||
+          "Academy Member"
         )}
       </strong>
 
       <span class="review-role">
         ${escapeHTML(
-          review.role || "Member"
+          review.role ||
+          "Member"
         )}
       </span>
 
@@ -1472,16 +2804,43 @@ body.modal-open {
   }
 
 
-  /* ==========================================
+
+  /* =====================================================
      SUBMIT REVIEW
-  ========================================== */
+  ===================================================== */
 
   reviewForm.addEventListener(
     "submit",
-    async (event) => {
+    async event => {
 
       event.preventDefault();
 
+
+      console.log(
+        "REVIEW FORM SUBMITTED"
+      );
+
+
+      /* -----------------------------------------------
+         CHECK FIREBASE
+      ----------------------------------------------- */
+
+      if (!db) {
+
+        reviewStatus.textContent =
+          "Firebase is not initialized. Please refresh the page.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      /* -----------------------------------------------
+         GET RATING
+      ----------------------------------------------- */
 
       const ratingInput =
         document.querySelector(
@@ -1494,53 +2853,148 @@ body.modal-open {
         reviewStatus.textContent =
           "Please select a rating.";
 
+        reviewStatus.style.color =
+          "#d32f2f";
+
         return;
 
       }
 
 
+      /* -----------------------------------------------
+         GET FORM VALUES
+      ----------------------------------------------- */
+
       const name =
         document
-          .getElementById("reviewName")
+          .getElementById(
+            "reviewName"
+          )
           .value
           .trim();
 
 
       const role =
         document
-          .getElementById("reviewRole")
+          .getElementById(
+            "reviewRole"
+          )
           .value;
 
 
       const message =
         document
-          .getElementById("reviewMessage")
+          .getElementById(
+            "reviewMessage"
+          )
           .value
           .trim();
 
 
       const rating =
-        Number(ratingInput.value);
+        Number(
+          ratingInput.value
+        );
 
 
-      if (!name || !role || !message) {
+      /* -----------------------------------------------
+         VALIDATION
+      ----------------------------------------------- */
+
+      if (
+        !name ||
+        !role ||
+        !message
+      ) {
 
         reviewStatus.textContent =
           "Please complete all fields.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
 
         return;
 
       }
 
 
-      reviewSubmit.disabled = true;
+      if (
+        name.length > 60
+      ) {
+
+        reviewStatus.textContent =
+          "Your name is too long.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      if (
+        message.length > 500
+      ) {
+
+        reviewStatus.textContent =
+          "Your review is too long.";
+
+        reviewStatus.style.color =
+          "#d32f2f";
+
+        return;
+
+      }
+
+
+      /* -----------------------------------------------
+         DISABLE BUTTON
+      ----------------------------------------------- */
+
+      reviewSubmit.disabled =
+        true;
 
       reviewSubmit.textContent =
         "SUBMITTING...";
 
       reviewStatus.textContent =
-        "";
+        "Submitting your review...";
 
+      reviewStatus.style.color =
+        "#555";
+
+
+
+      /* -----------------------------------------------
+         FIREBASE TIMEOUT
+      ----------------------------------------------- */
+
+      const timeoutPromise =
+        new Promise(
+          (_, reject) => {
+
+            setTimeout(
+              () => {
+
+                reject(
+                  new Error(
+                    "Firebase took too long to respond. Please check your internet connection and Firestore rules."
+                  )
+                );
+
+              },
+              15000
+            );
+
+          }
+        );
+
+
+
+      /* -----------------------------------------------
+         SAVE REVIEW
+      ----------------------------------------------- */
 
       try {
 
@@ -1549,17 +3003,38 @@ body.modal-open {
         );
 
 
-        const docRef =
-          await addDoc(
-            collection(db, "reviews"),
+        const savePromise =
+          addDoc(
+            collection(
+              db,
+              "reviews"
+            ),
             {
-              name: name,
-              role: role,
-              rating: rating,
-              message: message,
-              createdAt: serverTimestamp()
+
+              name:
+                name,
+
+              role:
+                role,
+
+              rating:
+                rating,
+
+              message:
+                message,
+
+              createdAt:
+                serverTimestamp()
+
             }
           );
+
+
+        const docRef =
+          await Promise.race([
+            savePromise,
+            timeoutPromise
+          ]);
 
 
         console.log(
@@ -1568,6 +3043,11 @@ body.modal-open {
         );
 
 
+
+        /* -------------------------------------------
+           SUCCESS
+        ------------------------------------------- */
+
         reviewStatus.textContent =
           "Thank you! Your review has been submitted.";
 
@@ -1575,37 +3055,63 @@ body.modal-open {
           "#0757c9";
 
 
+        /* -------------------------------------------
+           RESET FORM
+        ------------------------------------------- */
+
         reviewForm.reset();
 
 
-        /*
-          Reload reviews
-        */
 
-        await loadReviews();
+        /* -------------------------------------------
+           ADD REVIEW LOCALLY
+        ------------------------------------------- */
+
+        const newReview = {
+
+          id:
+            docRef.id,
+
+          name:
+            name,
+
+          role:
+            role,
+
+          rating:
+            rating,
+
+          message:
+            message
+
+        };
 
 
-        /*
-          Display the newly submitted review
-        */
+        reviews.push(
+          newReview
+        );
+
+
+        renderReviewSelector();
+
+
+        /* -------------------------------------------
+           SHOW NEW REVIEW
+        ------------------------------------------- */
 
         const newIndex =
-          reviews.findIndex(
-            review =>
-              review.id === docRef.id
+          reviews.length - 1;
+
+
+        reviewSelect.value =
+          String(
+            newIndex
           );
 
 
-        if (newIndex !== -1) {
-
-          reviewSelect.value =
-            newIndex;
-
-          displayReview(
-            reviews[newIndex]
-          );
-
-        }
+        displayReview(
+          newReview
+        );
 
 
       } catch (error) {
@@ -1616,16 +3122,63 @@ body.modal-open {
         );
 
 
+        let errorMessage =
+          "Could not submit your review.";
+
+
+        if (
+          error.code ===
+          "permission-denied"
+        ) {
+
+          errorMessage =
+            "Permission denied by Firebase. Please check your Firestore Rules.";
+
+        }
+
+        else if (
+          error.code ===
+          "failed-precondition"
+        ) {
+
+          errorMessage =
+            "Firebase configuration requires attention.";
+
+        }
+
+        else if (
+          error.code ===
+          "unavailable"
+        ) {
+
+          errorMessage =
+            "Firebase is temporarily unavailable. Please check your internet connection.";
+
+        }
+
+        else if (
+          error.message
+        ) {
+
+          errorMessage =
+            error.message;
+
+        }
+
+
         reviewStatus.textContent =
-          "ERROR: " + error.message;
+          errorMessage;
+
 
         reviewStatus.style.color =
           "#d32f2f";
+
 
       } finally {
 
         reviewSubmit.disabled =
           false;
+
 
         reviewSubmit.textContent =
           "SUBMIT REVIEW";
@@ -1636,12 +3189,15 @@ body.modal-open {
   );
 
 
-  /* ==========================================
+
+  /* =====================================================
      START
-  ========================================== */
+  ===================================================== */
 
   loadReviews();
 
 </script>
+
+
 </body>
 </html>

@@ -50,7 +50,7 @@ const BARYAN_CONFIG = {
   emailjs: {
 
     publicKey:
-      "YOUR_EMAILJS_PUBLIC_KEY",
+      "yhUBvR2qJDBsXAOt6",
 
     serviceId:
       "service_jwvtdwh",

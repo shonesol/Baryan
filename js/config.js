@@ -1,281 +1,48 @@
-<!-- =====================================================
-     WHATSAPP REVIEWS
-===================================================== -->
+// js/config.js
 
-<script>
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-  /* =====================================================
-     GET ELEMENTS
-  ===================================================== */
+import {
+  getFirestore
+} from
+  "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  const reviewForm =
-    document.getElementById("reviewForm");
 
-  const reviewSubmit =
-    document.getElementById("reviewSubmit");
+const firebaseConfig = {
 
-  const reviewStatus =
-    document.getElementById("reviewStatus");
+  apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
 
+  authDomain:
+    "baryan-5f81d.firebaseapp.com",
 
-  /* =====================================================
-     WHATSAPP NUMBER
-  ===================================================== */
+  projectId:
+    "baryan-5f81d",
 
-  const academyWhatsApp =
-    "256755805092";
+  storageBucket:
+    "baryan-5f81d.firebasestorage.app",
 
+  messagingSenderId:
+    "409395363296",
 
-  /* =====================================================
-     SUBMIT REVIEW
-  ===================================================== */
+  appId:
+    "1:409395363296:web:f20c12dfb4c738361cbf85",
 
-  reviewForm.addEventListener(
-    "submit",
-    function (event) {
+  measurementId:
+    "G-J1RCHQN6XN"
 
-      event.preventDefault();
+};
 
 
-      /* -----------------------------------------------
-         GET RATING
-      ----------------------------------------------- */
+const app =
+  initializeApp(firebaseConfig);
 
-      const ratingInput =
-        document.querySelector(
-          'input[name="rating"]:checked'
-        );
 
+const db =
+  getFirestore(app);
 
-      if (!ratingInput) {
 
-        reviewStatus.textContent =
-          "Please select a rating.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      /* -----------------------------------------------
-         GET FORM VALUES
-      ----------------------------------------------- */
-
-      const name =
-        document
-          .getElementById("reviewName")
-          .value
-          .trim();
-
-
-      const role =
-        document
-          .getElementById("reviewRole")
-          .value;
-
-
-      const message =
-        document
-          .getElementById("reviewMessage")
-          .value
-          .trim();
-
-
-      const rating =
-        Number(
-          ratingInput.value
-        );
-
-
-      /* -----------------------------------------------
-         VALIDATION
-      ----------------------------------------------- */
-
-      if (
-        !name ||
-        !role ||
-        !message
-      ) {
-
-        reviewStatus.textContent =
-          "Please complete all fields.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      if (
-        name.length > 60
-      ) {
-
-        reviewStatus.textContent =
-          "Your name is too long.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      if (
-        message.length > 500
-      ) {
-
-        reviewStatus.textContent =
-          "Your review is too long.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      if (
-        rating < 1 ||
-        rating > 5
-      ) {
-
-        reviewStatus.textContent =
-          "Please select a valid rating.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      /* -----------------------------------------------
-         CREATE STARS
-      ----------------------------------------------- */
-
-      const stars =
-        "★".repeat(rating) +
-        "☆".repeat(5 - rating);
-
-
-      /* -----------------------------------------------
-         CURRENT DATE
-      ----------------------------------------------- */
-
-      const submittedAt =
-        new Date().toLocaleString(
-          "en-UG",
-          {
-            dateStyle: "medium",
-            timeStyle: "short"
-          }
-        );
-
-
-      /* -----------------------------------------------
-         CREATE WHATSAPP MESSAGE
-      ----------------------------------------------- */
-
-      const whatsappMessage = `
-
-🏸 BARYAN BADMINTON ACADEMY
-
-⭐ NEW REVIEW
-
-👤 Name:
-${name}
-
-🎯 Role:
-${role}
-
-⭐ Rating:
-${stars} (${rating}/5)
-
-💬 Review:
-${message}
-
-📅 Submitted:
-${submittedAt}
-
-      `.trim();
-
-
-      /* -----------------------------------------------
-         CREATE WHATSAPP URL
-      ----------------------------------------------- */
-
-      const whatsappURL =
-        "https://wa.me/" +
-        academyWhatsApp +
-        "?text=" +
-        encodeURIComponent(
-          whatsappMessage
-        );
-
-
-      /* -----------------------------------------------
-         UPDATE BUTTON
-      ----------------------------------------------- */
-
-      reviewSubmit.disabled =
-        true;
-
-      reviewSubmit.textContent =
-        "OPENING WHATSAPP...";
-
-
-      reviewStatus.textContent =
-        "Opening WhatsApp with your review...";
-
-      reviewStatus.style.color =
-        "#0757c9";
-
-
-      /* -----------------------------------------------
-         OPEN WHATSAPP
-      ----------------------------------------------- */
-
-      window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-
-      /* -----------------------------------------------
-         RESET
-      ----------------------------------------------- */
-
-      setTimeout(
-        () => {
-
-          reviewForm.reset();
-
-          reviewSubmit.disabled =
-            false;
-
-          reviewSubmit.textContent =
-            "SUBMIT REVIEW";
-
-          reviewStatus.textContent =
-            "Your review has been prepared in WhatsApp. Please press Send.";
-
-          reviewStatus.style.color =
-            "#0757c9";
-
-        },
-        1000
-      );
-
-    }
-  );
-
-</script>
+export {
+  app,
+  db
+};

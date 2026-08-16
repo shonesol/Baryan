@@ -11,6 +11,7 @@ import {
   getDatabase,
   ref,
   push,
+  set,
   serverTimestamp
 } from
   "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
@@ -21,18 +22,31 @@ import {
 // ============================================================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
-  authDomain: "baryan-5f81d.firebaseapp.com",
-  projectId: "baryan-5f81d",
-  storageBucket: "baryan-5f81d.firebasestorage.app",
-  messagingSenderId: "409395363296",
-  appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
-  measurementId: "G-J1RCHQN6XN",
 
-  // IMPORTANT:
-  // Replace this with the exact Realtime Database URL
-  // shown in Firebase Console > Realtime Database.
-  databaseURL: "https://baryan-5f81d-default-rtdb.firebaseio.com"
+  apiKey:
+    "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
+
+  authDomain:
+    "baryan-5f81d.firebaseapp.com",
+
+  projectId:
+    "baryan-5f81d",
+
+  storageBucket:
+    "baryan-5f81d.firebasestorage.app",
+
+  messagingSenderId:
+    "409395363296",
+
+  appId:
+    "1:409395363296:web:f20c12dfb4c738361cbf85",
+
+  measurementId:
+    "G-J1RCHQN6XN",
+
+  databaseURL:
+    "https://baryan-5f81d-default-rtdb.firebaseio.com"
+
 };
 
 
@@ -40,16 +54,19 @@ const firebaseConfig = {
 // INITIALIZE FIREBASE
 // ============================================================
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const database = getDatabase(app);
+const database =
+  getDatabase(app);
 
 
 // ============================================================
 // FORM ELEMENTS
 // ============================================================
 
-const form = document.getElementById("membershipForm");
+const form =
+  document.getElementById("membershipForm");
 
 const submitButton =
   document.getElementById("submitButton");
@@ -74,32 +91,47 @@ const juniorSection =
 // SHOW / HIDE JUNIOR SECTION
 // ============================================================
 
-membershipCategory.addEventListener("change", () => {
+membershipCategory.addEventListener(
+  "change",
+  () => {
 
-  const isJunior =
-    membershipCategory.value === "Junior";
+    const isJunior =
+      membershipCategory.value === "Junior";
 
-  juniorSection.hidden = !isJunior;
+    juniorSection.hidden =
+      !isJunior;
 
-});
+  }
+);
 
 
 // ============================================================
-// HELPERS
+// HELPER
 // ============================================================
 
 function getValue(id) {
 
-  const element = document.getElementById(id);
+  const element =
+    document.getElementById(id);
 
-  return element ? element.value.trim() : "";
+  return element
+    ? element.value.trim()
+    : "";
 
 }
 
 
-function showMessage(message, type = "success") {
+// ============================================================
+// MESSAGE
+// ============================================================
 
-  formMessage.textContent = message;
+function showMessage(
+  message,
+  type = "success"
+) {
+
+  formMessage.textContent =
+    message;
 
   formMessage.className =
     `form-message ${type}`;
@@ -107,146 +139,161 @@ function showMessage(message, type = "success") {
 }
 
 
+// ============================================================
+// LOADING
+// ============================================================
+
 function setLoading(loading) {
 
-  submitButton.disabled = loading;
+  submitButton.disabled =
+    loading;
 
-  submitText.hidden = loading;
+  submitText.hidden =
+    loading;
 
-  submitLoading.hidden = !loading;
+  submitLoading.hidden =
+    !loading;
 
 }
 
 
 // ============================================================
-// FORM SUBMISSION
+// SUBMIT
 // ============================================================
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener(
+  "submit",
+  async (event) => {
 
-  event.preventDefault();
-
-
-  // ----------------------------------------------------------
-  // HONEYPOT
-  // ----------------------------------------------------------
-
-  const website =
-    getValue("website");
-
-  if (website !== "") {
-
-    // Silently ignore bots
-    return;
-
-  }
-
-
-  // ----------------------------------------------------------
-  // HTML VALIDATION
-  // ----------------------------------------------------------
-
-  if (!form.checkValidity()) {
-
-    form.reportValidity();
-
-    return;
-
-  }
-
-
-  setLoading(true);
-
-  showMessage("", "success");
-
-
-  try {
-
-    // ========================================================
-    // COLLECT APPLICATION
-    // ========================================================
-
-    const application = {
-
-      fullName:
-        getValue("fullName"),
-
-      dateOfBirth:
-        getValue("dateOfBirth"),
-
-      gender:
-        getValue("gender"),
-
-      phone:
-        getValue("phone"),
-
-      whatsapp:
-        getValue("whatsapp"),
-
-      email:
-        getValue("email"),
-
-      membershipCategory:
-        getValue("membershipCategory"),
-
-      skillLevel:
-        getValue("skillLevel"),
-
-      trainingSession:
-        getValue("trainingSession"),
-
-      experience:
-        getValue("experience"),
-
-      guardianName:
-        getValue("guardianName"),
-
-      guardianPhone:
-        getValue("guardianPhone"),
-
-      emergencyName:
-        getValue("emergencyName"),
-
-      emergencyPhone:
-        getValue("emergencyPhone"),
-
-      agreed:
-        document.getElementById("agree").checked,
-
-      createdAt:
-        serverTimestamp()
-
-    };
+    event.preventDefault();
 
 
     // ========================================================
-    // SAVE TO FIREBASE REALTIME DATABASE
+    // HONEYPOT
     // ========================================================
 
-    const applicationsRef =
-      ref(database, "membershipApplications");
+    const website =
+      getValue("website");
 
-    const newApplication =
-      push(applicationsRef);
+    if (website !== "") {
 
-    await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js")
-      .then(({ set }) => {
+      return;
 
-        return set(
-          newApplication,
-          application
+    }
+
+
+    // ========================================================
+    // VALIDATE FORM
+    // ========================================================
+
+    if (!form.checkValidity()) {
+
+      form.reportValidity();
+
+      return;
+
+    }
+
+
+    setLoading(true);
+
+    showMessage(
+      "Saving your application...",
+      "success"
+    );
+
+
+    try {
+
+      // ======================================================
+      // COLLECT DATA
+      // ======================================================
+
+      const application = {
+
+        fullName:
+          getValue("fullName"),
+
+        dateOfBirth:
+          getValue("dateOfBirth"),
+
+        gender:
+          getValue("gender"),
+
+        phone:
+          getValue("phone"),
+
+        whatsapp:
+          getValue("whatsapp"),
+
+        email:
+          getValue("email"),
+
+        membershipCategory:
+          getValue("membershipCategory"),
+
+        skillLevel:
+          getValue("skillLevel"),
+
+        trainingSession:
+          getValue("trainingSession"),
+
+        experience:
+          getValue("experience"),
+
+        guardianName:
+          getValue("guardianName"),
+
+        guardianPhone:
+          getValue("guardianPhone"),
+
+        emergencyName:
+          getValue("emergencyName"),
+
+        emergencyPhone:
+          getValue("emergencyPhone"),
+
+        agreed:
+          document.getElementById("agree").checked,
+
+        createdAt:
+          serverTimestamp()
+
+      };
+
+
+      // ======================================================
+      // SAVE TO REALTIME DATABASE
+      // ======================================================
+
+      const applicationsRef =
+        ref(
+          database,
+          "membershipApplications"
         );
 
-      });
+
+      const newApplication =
+        push(applicationsRef);
 
 
-    // ========================================================
-    // CREATE WHATSAPP MESSAGE
-    // ========================================================
+      await set(
+        newApplication,
+        application
+      );
 
-    const message = `
 
-🏸 *NEW BARYAN BADMINTON CLUB MEMBERSHIP APPLICATION*
+      console.log(
+        "Application saved:",
+        newApplication.key
+      );
+
+
+      // ======================================================
+      // WHATSAPP MESSAGE
+      // ======================================================
+
+      const message = `🏸 *NEW BARYAN BADMINTON CLUB MEMBERSHIP APPLICATION*
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -296,80 +343,73 @@ Name: ${application.emergencyName}
 Phone: ${application.emergencyPhone}
 
 
-✅ Agreement: ${application.agreed ? "Accepted" : "Not accepted"}
+✅ Agreement:
+${application.agreed ? "Accepted" : "Not accepted"}
 
 ━━━━━━━━━━━━━━━━━━
 
 🏸 Baryan Badminton Club
+
 New Membership Application
 
 Firebase ID:
-${newApplication.key}
-
-`.trim();
+${newApplication.key}`;
 
 
-    // ========================================================
-    // WHATSAPP NUMBER
-    // ========================================================
+      // ======================================================
+      // WHATSAPP
+      // ======================================================
 
-    const whatsappNumber =
-      "256755805092";
-
-
-    // ========================================================
-    // WHATSAPP URL
-    // ========================================================
-
-    const whatsappURL =
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const whatsappNumber =
+        "256755805092";
 
 
-    // ========================================================
-    // SUCCESS MESSAGE
-    // ========================================================
-
-    showMessage(
-      "Application submitted successfully. Opening WhatsApp...",
-      "success"
-    );
+      const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
 
 
-    // ========================================================
-    // OPEN WHATSAPP
-    // ========================================================
+      // ======================================================
+      // SUCCESS
+      // ======================================================
 
-    window.location.href =
-      whatsappURL;
-
-
-    // ========================================================
-    // RESET FORM
-    // ========================================================
-
-    form.reset();
-
-    juniorSection.hidden = true;
+      showMessage(
+        "Application saved successfully. Opening WhatsApp...",
+        "success"
+      );
 
 
-  } catch (error) {
+      // ======================================================
+      // OPEN WHATSAPP
+      // ======================================================
 
-    console.error(
-      "Membership submission error:",
-      error
-    );
-
-
-    showMessage(
-      "Sorry, your application could not be submitted. Please try again.",
-      "error"
-    );
+      window.location.href =
+        whatsappURL;
 
 
-  } finally {
+    } catch (error) {
 
-    setLoading(false);
+      console.error(
+        "Membership submission error:",
+        error
+      );
+
+
+      // Show the REAL Firebase error
+      showMessage(
+        "Firebase error: " +
+        (error.code || error.message),
+        "error"
+      );
+
+
+    } finally {
+
+      setLoading(false);
+
+    }
 
   }
-
-});
+);

@@ -22,16 +22,31 @@ import {
 // ============================================================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
-  authDomain: "baryan-5f81d.firebaseapp.com",
-  projectId: "baryan-5f81d",
-  storageBucket: "baryan-5f81d.firebasestorage.app",
-  messagingSenderId: "409395363296",
-  appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
-  measurementId: "G-J1RCHQN6XN",
+
+  apiKey:
+    "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
+
+  authDomain:
+    "baryan-5f81d.firebaseapp.com",
+
+  projectId:
+    "baryan-5f81d",
+
+  storageBucket:
+    "baryan-5f81d.firebasestorage.app",
+
+  messagingSenderId:
+    "409395363296",
+
+  appId:
+    "1:409395363296:web:f20c12dfb4c738361cbf85",
+
+  measurementId:
+    "G-J1RCHQN6XN",
 
   databaseURL:
-    "https://baryan-5f81d-default-rtdb.firebaseio.com"
+    "https://baryan-5f81d-default-rtdb.europe-west1.firebasedatabase.app"
+
 };
 
 
@@ -39,9 +54,11 @@ const firebaseConfig = {
 // INITIALIZE FIREBASE
 // ============================================================
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const database = getDatabase(app);
+const database =
+  getDatabase(app);
 
 
 // ============================================================
@@ -71,38 +88,42 @@ const juniorSection =
 
 
 // ============================================================
-// CHECK ELEMENTS
+// CHECK THAT FORM EXISTS
 // ============================================================
 
 if (!form) {
-  console.error("membershipForm was not found.");
-}
 
-if (!submitButton) {
-  console.error("submitButton was not found.");
-}
-
-
-// ============================================================
-// JUNIOR SECTION
-// ============================================================
-
-if (membershipCategory) {
-
-  membershipCategory.addEventListener("change", () => {
-
-    const isJunior =
-      membershipCategory.value === "Junior";
-
-    juniorSection.hidden = !isJunior;
-
-  });
+  console.error(
+    "ERROR: membershipForm was not found."
+  );
 
 }
 
 
 // ============================================================
-// HELPERS
+// SHOW / HIDE JUNIOR SECTION
+// ============================================================
+
+if (membershipCategory && juniorSection) {
+
+  membershipCategory.addEventListener(
+    "change",
+    () => {
+
+      const isJunior =
+        membershipCategory.value === "Junior";
+
+      juniorSection.hidden =
+        !isJunior;
+
+    }
+  );
+
+}
+
+
+// ============================================================
+// GET VALUE HELPER
 // ============================================================
 
 function getValue(id) {
@@ -110,16 +131,30 @@ function getValue(id) {
   const element =
     document.getElementById(id);
 
-  return element
-    ? element.value.trim()
-    : "";
+  if (!element) {
+    return "";
+  }
+
+  return element.value.trim();
 
 }
 
 
-function showMessage(message, type = "success") {
+// ============================================================
+// SHOW MESSAGE
+// ============================================================
 
-  formMessage.textContent = message;
+function showMessage(
+  message,
+  type = "success"
+) {
+
+  if (!formMessage) {
+    return;
+  }
+
+  formMessage.textContent =
+    message;
 
   formMessage.className =
     `form-message ${type}`;
@@ -127,13 +162,32 @@ function showMessage(message, type = "success") {
 }
 
 
+// ============================================================
+// LOADING STATE
+// ============================================================
+
 function setLoading(loading) {
 
-  submitButton.disabled = loading;
+  if (submitButton) {
 
-  submitText.hidden = loading;
+    submitButton.disabled =
+      loading;
 
-  submitLoading.hidden = !loading;
+  }
+
+  if (submitText) {
+
+    submitText.hidden =
+      loading;
+
+  }
+
+  if (submitLoading) {
+
+    submitLoading.hidden =
+      !loading;
+
+  }
 
 }
 
@@ -142,146 +196,171 @@ function setLoading(loading) {
 // FORM SUBMISSION
 // ============================================================
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener(
+  "submit",
+  async (event) => {
 
-  event.preventDefault();
+    event.preventDefault();
 
-  console.log("Membership form submitted.");
-
-
-  // ==========================================================
-  // HONEYPOT
-  // ==========================================================
-
-  const website =
-    getValue("website");
-
-  if (website !== "") {
-
-    console.warn("Spam submission blocked.");
-
-    return;
-
-  }
-
-
-  // ==========================================================
-  // VALIDATION
-  // ==========================================================
-
-  if (!form.checkValidity()) {
-
-    form.reportValidity();
-
-    return;
-
-  }
-
-
-  setLoading(true);
-
-  showMessage(
-    "Submitting your application...",
-    "success"
-  );
-
-
-  try {
-
-    // ========================================================
-    // APPLICATION DATA
-    // ========================================================
-
-    const application = {
-
-      fullName:
-        getValue("fullName"),
-
-      dateOfBirth:
-        getValue("dateOfBirth"),
-
-      gender:
-        getValue("gender"),
-
-      phone:
-        getValue("phone"),
-
-      whatsapp:
-        getValue("whatsapp"),
-
-      email:
-        getValue("email"),
-
-      membershipCategory:
-        getValue("membershipCategory"),
-
-      skillLevel:
-        getValue("skillLevel"),
-
-      trainingSession:
-        getValue("trainingSession"),
-
-      experience:
-        getValue("experience"),
-
-      guardianName:
-        getValue("guardianName"),
-
-      guardianPhone:
-        getValue("guardianPhone"),
-
-      emergencyName:
-        getValue("emergencyName"),
-
-      emergencyPhone:
-        getValue("emergencyPhone"),
-
-      agreed:
-        document.getElementById("agree").checked,
-
-      createdAt:
-        serverTimestamp()
-
-    };
-
-
-    // ========================================================
-    // FIREBASE
-    // ========================================================
 
     console.log(
-      "Saving application to Firebase..."
+      "Membership form submitted."
     );
 
 
-    const applicationsRef =
-      ref(
-        database,
-        "membershipApplications"
+    // ========================================================
+    // HONEYPOT
+    // ========================================================
+
+    const website =
+      getValue("website");
+
+    if (website !== "") {
+
+      console.warn(
+        "Honeypot triggered."
+      );
+
+      return;
+
+    }
+
+
+    // ========================================================
+    // HTML VALIDATION
+    // ========================================================
+
+    if (!form.checkValidity()) {
+
+      form.reportValidity();
+
+      return;
+
+    }
+
+
+    // ========================================================
+    // START LOADING
+    // ========================================================
+
+    setLoading(true);
+
+    showMessage(
+      "Submitting your application...",
+      "success"
+    );
+
+
+    try {
+
+      // ======================================================
+      // COLLECT FORM DATA
+      // ======================================================
+
+      const application = {
+
+        fullName:
+          getValue("fullName"),
+
+        dateOfBirth:
+          getValue("dateOfBirth"),
+
+        gender:
+          getValue("gender"),
+
+        phone:
+          getValue("phone"),
+
+        whatsapp:
+          getValue("whatsapp"),
+
+        email:
+          getValue("email"),
+
+        membershipCategory:
+          getValue("membershipCategory"),
+
+        skillLevel:
+          getValue("skillLevel"),
+
+        trainingSession:
+          getValue("trainingSession"),
+
+        experience:
+          getValue("experience"),
+
+        guardianName:
+          getValue("guardianName"),
+
+        guardianPhone:
+          getValue("guardianPhone"),
+
+        emergencyName:
+          getValue("emergencyName"),
+
+        emergencyPhone:
+          getValue("emergencyPhone"),
+
+        agreed:
+          document.getElementById("agree").checked,
+
+        createdAt:
+          serverTimestamp()
+
+      };
+
+
+      console.log(
+        "Application:",
+        application
       );
 
 
-    const newApplication =
-      push(applicationsRef);
+      // ======================================================
+      // FIREBASE DATABASE LOCATION
+      // ======================================================
+
+      const applicationsRef =
+        ref(
+          database,
+          "membershipApplications"
+        );
 
 
-    await set(
-      newApplication,
-      application
-    );
+      // ======================================================
+      // CREATE AUTOMATIC FIREBASE KEY
+      // ======================================================
+
+      const newApplication =
+        push(applicationsRef);
 
 
-    console.log(
-      "Firebase save successful:",
-      newApplication.key
-    );
+      console.log(
+        "Firebase key:",
+        newApplication.key
+      );
 
 
-    // ========================================================
-    // WHATSAPP MESSAGE
-    // ========================================================
+      // ======================================================
+      // SAVE TO FIREBASE
+      // ======================================================
 
-    const message = `
+      await set(
+        newApplication,
+        application
+      );
+
+
+      console.log(
+        "Application successfully saved to Firebase."
+      );
+
+
+      // ======================================================
+      // WHATSAPP MESSAGE
+      // ======================================================
+
+      const message = `
 
 🏸 *NEW BARYAN BADMINTON CLUB MEMBERSHIP APPLICATION*
 
@@ -289,29 +368,38 @@ form.addEventListener("submit", async (event) => {
 
 👤 *PERSONAL INFORMATION*
 
-Name: ${application.fullName}
+Name:
+${application.fullName}
 
-Date of Birth: ${application.dateOfBirth}
+Date of Birth:
+${application.dateOfBirth}
 
-Gender: ${application.gender}
+Gender:
+${application.gender}
 
 
 📞 *CONTACT DETAILS*
 
-Phone: ${application.phone}
+Phone:
+${application.phone}
 
-WhatsApp: ${application.whatsapp || "Not provided"}
+WhatsApp:
+${application.whatsapp || "Not provided"}
 
-Email: ${application.email}
+Email:
+${application.email}
 
 
 🏸 *MEMBERSHIP DETAILS*
 
-Category: ${application.membershipCategory}
+Category:
+${application.membershipCategory}
 
-Skill Level: ${application.skillLevel}
+Skill Level:
+${application.skillLevel}
 
-Training Session: ${application.trainingSession}
+Training Session:
+${application.trainingSession}
 
 
 📝 *BADMINTON EXPERIENCE*
@@ -321,20 +409,25 @@ ${application.experience || "Not provided"}
 
 👨‍👩‍👧 *PARENT / GUARDIAN*
 
-Name: ${application.guardianName || "Not applicable"}
+Name:
+${application.guardianName || "Not applicable"}
 
-Phone: ${application.guardianPhone || "Not applicable"}
+Phone:
+${application.guardianPhone || "Not applicable"}
 
 
 🚨 *EMERGENCY CONTACT*
 
-Name: ${application.emergencyName}
+Name:
+${application.emergencyName}
 
-Phone: ${application.emergencyPhone}
+Phone:
+${application.emergencyPhone}
 
 
 ✅ Agreement:
 ${application.agreed ? "Accepted" : "Not accepted"}
+
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -346,112 +439,110 @@ ${newApplication.key}
 `.trim();
 
 
-    // ========================================================
-    // WHATSAPP
-    // ========================================================
+      // ======================================================
+      // WHATSAPP NUMBER
+      // ======================================================
 
-    const whatsappNumber =
-      "256755805092";
-
-
-    const whatsappURL =
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const whatsappNumber =
+        "256755805092";
 
 
-    // ========================================================
-    // SUCCESS
-    // ========================================================
+      // ======================================================
+      // WHATSAPP URL
+      // ======================================================
 
-    showMessage(
-      "Application saved successfully. Opening WhatsApp...",
-      "success"
-    );
-
-
-    // ========================================================
-    // OPEN WHATSAPP
-    // ========================================================
-
-    window.location.href =
-      whatsappURL;
+      const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
 
 
-  } catch (error) {
+      // ======================================================
+      // SUCCESS MESSAGE
+      // ======================================================
 
-    // ========================================================
-    // FIREBASE ERROR
-    // ========================================================
-
-    console.error(
-      "FULL FIREBASE ERROR:",
-      error
-    );
+      showMessage(
+        "Application submitted successfully. Opening WhatsApp...",
+        "success"
+      );
 
 
-    console.error(
-      "Error code:",
-      error.code
-    );
+      // ======================================================
+      // RESET FORM
+      // ======================================================
+
+      form.reset();
 
 
-    console.error(
-      "Error message:",
-      error.message
-    );
+      if (juniorSection) {
+
+        juniorSection.hidden =
+          true;
+
+      }
 
 
-    let message =
-      "Submission failed.";
+      // ======================================================
+      // OPEN WHATSAPP
+      // ======================================================
+
+      window.location.href =
+        whatsappURL;
 
 
-    if (
-      error.code ===
-      "PERMISSION_DENIED"
-    ) {
+    } catch (error) {
 
-      message =
-        "Firebase permission denied. Please check your Realtime Database rules.";
+      // ======================================================
+      // FIREBASE ERROR
+      // ======================================================
+
+      console.error(
+        "MEMBERSHIP SUBMISSION ERROR:",
+        error
+      );
+
+
+      let errorMessage =
+        "Sorry, your application could not be submitted.";
+
+
+      if (
+        error &&
+        error.code ===
+        "PERMISSION_DENIED"
+      ) {
+
+        errorMessage =
+          "Firebase rejected the submission. Please check your Realtime Database Rules.";
+
+      }
+
+
+      if (
+        error &&
+        error.message
+      ) {
+
+        console.error(
+          "Firebase error message:",
+          error.message
+        );
+
+      }
+
+
+      showMessage(
+        errorMessage,
+        "error"
+      );
+
+
+    } finally {
+
+      setLoading(false);
 
     }
-
-    else if (
-      error.code ===
-      "NETWORK_ERROR"
-    ) {
-
-      message =
-        "Network error. Please check your internet connection.";
-
-    }
-
-    else if (
-      error.message &&
-      error.message.includes("databaseURL")
-    ) {
-
-      message =
-        "Firebase database URL is incorrect.";
-
-    }
-
-    else {
-
-      message =
-        `Submission failed: ${error.message || "Unknown Firebase error"}`;
-
-    }
-
-
-    showMessage(
-      message,
-      "error"
-    );
-
-
-  } finally {
-
-    setLoading(false);
 
   }
-
-});
+);

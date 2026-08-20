@@ -410,7 +410,42 @@ button {
 /* =========================================================
    HERO
 ========================================================= */
+/* =========================================================
+   HERO
+========================================================= */
 
+.home-hero {
+
+  position: relative;
+
+  min-height:
+    820px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  padding:
+    140px 0 90px;
+
+  color:
+    var(--white);
+
+  background:
+
+    linear-gradient(
+      115deg,
+      rgba(5,5,5,0.97),
+      rgba(5,5,5,0.78),
+      rgba(7,87,201,0.55)
+    ),
+
+    url("5277a911-f90a-490e-a43a-99e2dc8841c6.jpeg")
+    center / cover no-repeat;
+
+}
 .home-hero {
 
   position: relative;

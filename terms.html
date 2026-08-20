@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Terms & Conditions | Baryan Badminton Academy</title>
+
+  <meta name="description"
+    content="Terms and Conditions of Baryan Badminton Academy. Please read carefully before joining or using our services.">
+
+  <meta name="theme-color" content="#0757c9">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+       CSS VARIABLES & RESET
+    ===================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #0757c9;
+      --blue-dark: #043d91;
+      --orange: #f97316;
+      --green: #16a34a;
+      --dark: #0b0b0b;
+      --gray: #555;
+      --light: #f5f7fb;
+      --white: #ffffff;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: 0.25s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--dark);
+      line-height: 1.7;
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin-inline: auto;
+    }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      height: 52px;
+      width: auto;
+    }
+
+    .main-navigation {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .main-navigation a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--dark);
+      transition: color var(--transition);
+    }
+
+    .main-navigation a:hover,
+    .main-navigation a.active {
+      color: var(--blue);
+    }
+
+    .nav-join {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .nav-join:hover {
+      background: var(--blue-dark);
+    }
+
+    .mobile-menu-button {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .mobile-menu-button span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* =====================================================
+       PAGE HERO
+    ===================================================== */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: var(--white);
+      padding: 90px 0 80px;
+      text-align: center;
+    }
+
+    .page-hero .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 14px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .page-hero p {
+      max-width: 580px;
+      margin: 0 auto;
+      opacity: 0.92;
+      font-size: 1.1rem;
+    }
+
+    /* =====================================================
+       TERMS CONTENT
+    ===================================================== */
+    .terms-section {
+      padding: 80px 0 100px;
+    }
+
+    .terms-wrapper {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Sticky Table of Contents */
+    .terms-toc {
+      position: sticky;
+      top: 100px;
+      background: var(--light);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .terms-toc h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+      color: var(--blue);
+    }
+
+    .terms-toc ul {
+      list-style: none;
+    }
+
+    .terms-toc li {
+      margin-bottom: 10px;
+    }
+
+    .terms-toc a {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--gray);
+      padding: 6px 0;
+      border-left: 3px solid transparent;
+      padding-left: 12px;
+      transition: all var(--transition);
+    }
+
+    .terms-toc a:hover,
+    .terms-toc a.active {
+      color: var(--blue);
+      border-left-color: var(--blue);
+      font-weight: 600;
+    }
+
+    /* Main content */
+    .terms-content {
+      background: var(--white);
+    }
+
+    .terms-content section {
+      margin-bottom: 50px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #eef1f6;
+    }
+
+    .terms-content section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .terms-content h2 {
+      font-size: 1.55rem;
+      font-weight: 900;
+      margin-bottom: 18px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .terms-content h2 span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--blue);
+      color: var(--white);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .terms-content h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      color: var(--blue-dark);
+    }
+
+    .terms-content p {
+      color: var(--gray);
+      margin-bottom: 14px;
+      font-size: 1.02rem;
+    }
+
+    .terms-content ul {
+      margin: 12px 0 20px 22px;
+      color: var(--gray);
+    }
+
+    .terms-content li {
+      margin-bottom: 10px;
+      font-size: 1.02rem;
+    }
+
+    .terms-content strong {
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .highlight-box {
+      background: #f0f5ff;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      color: var(--blue-dark);
+      font-weight: 500;
+    }
+
+    .last-updated {
+      display: inline-block;
+      background: var(--light);
+      color: var(--blue);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 50px;
+      margin-bottom: 40px;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      background: #0b1220;
+      color: #cbd5e1;
+      padding-top: 70px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 50px;
+    }
+
+    .footer-grid h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-grid a {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      transition: color var(--transition);
+    }
+
+    .footer-grid a:hover {
+      color: var(--white);
+    }
+
+    .footer-grid .logo {
+      margin-bottom: 16px;
+    }
+
+    .footer-grid .logo img {
+      height: 50px;
+    }
+
+    .footer-grid p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom a {
+      margin-left: 20px;
+      opacity: 0.8;
+    }
+
+    .footer-bottom a:hover {
+      opacity: 1;
+    }
+
+    /* =====================================================
+       BACK TO TOP
+    ===================================================== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(7, 87, 201, 0.35);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all var(--transition);
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--blue-dark);
+      transform: translateY(-3px);
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 900px) {
+      .terms-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .terms-toc {
+        position: static;
+        margin-bottom: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-button {
+        display: flex;
+      }
+
+      .main-navigation {
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 30px 24px;
+        gap: 18px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-120%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+
+      .main-navigation.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .page-hero {
+        padding: 70px 0 60px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .footer-bottom a {
+        margin-left: 12px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo img {
+        height: 42px;
+      }
+
+      .terms-content h2 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       HEADER
+  ===================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" aria-label="Baryan Badminton Academy home">
+        <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
+      </a>
+
+      <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation" aria-expanded="false"
+        aria-controls="mainNavigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-navigation" id="mainNavigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#schedule">Schedule</a>
+        <a href="index.html#gallery">Staff</a>
+        <a href="membership.html">Join Academy</a>
+        <a href="terms.html" class="active">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =====================================================
+       PAGE HERO
+  ===================================================== -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms & Conditions</h1>
+      <p>Please read these terms carefully before joining Baryan Badminton Academy or using our services.</p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       TERMS CONTENT
+  ===================================================== -->
+  <section class="terms-section">
+    <div class="container">
+
+      <div class="last-updated">
+        Last updated: 20 August 2026
+      </div>
+
+      <div class="terms-wrapper">
+
+        <!-- Table of Contents -->
+        <aside class="terms-toc">
+          <h3>Contents</h3>
+          <ul>
+            <li><a href="#acceptance" class="toc-link">1. Acceptance</a></li>
+            <li><a href="#membership" class="toc-link">2. Membership</a></li>
+            <li><a href="#training" class="toc-link">3. Training & Sessions</a></li>
+            <li><a href="#conduct" class="toc-link">4. Code of Conduct</a></li>
+            <li><a href="#payments" class="toc-link">5. Fees & Payments</a></li>
+            <li><a href="#liability" class="toc-link">6. Liability</a></li>
+            <li><a href="#media" class="toc-link">7. Photos & Media</a></li>
+            <li><a href="#termination" class="toc-link">8. Termination</a></li>
+            <li><a href="#privacy" class="toc-link">9. Privacy</a></li>
+            <li><a href="#changes" class="toc-link">10. Changes</a></li>
+            <li><a href="#governing" class="toc-link">11. Governing Law</a></li>
+            <li><a href="#contact" class="toc-link">12. Contact</a></li>
+          </ul>
+        </aside>
+
+        <!-- Main Terms -->
+        <div class="terms-content">
+
+          <section id="acceptance">
+            <h2><span>1</span> Acceptance of Terms</h2>
+            <p>By registering as a member, attending training sessions, or using any service of <strong>Baryan Badminton Academy</strong> (“the Academy”, “we”, “us”, or “our”), you agree to be bound by these Terms and Conditions.</p>
+            <p>If you are registering a child under 18 years of age, you confirm that you are the parent or legal guardian and that you accept these terms on behalf of the minor.</p>
+            <div class="highlight-box">
+              <p>If you do not agree with any part of these terms, please do not register or participate in Academy activities.</p>
+            </div>
+          </section>
+
+          <section id="membership">
+            <h2><span>2</span> Membership & Registration</h2>
+            <p>Membership is open to individuals who complete the official registration process and meet any age or skill requirements set by the Academy.</p>
+            <ul>
+              <li>All information provided during registration must be accurate and complete.</li>
+              <li>The Academy reserves the right to accept or decline any application.</li>
+              <li>Membership is personal and non-transferable.</li>
+              <li>You must notify the Academy immediately of any change in contact details or medical conditions.</li>
+            </ul>
+            <h3>Junior Members</h3>
+            <p>Players under 18 years must be registered by a parent or legal guardian. The parent/guardian remains responsible for the player’s behaviour and compliance with these terms.</p>
+          </section>
+
+          <section id="training">
+            <h2><span>3</span> Training Sessions & Attendance</h2>
+            <p>Training schedules, venues, and session times are published by the Academy and may change from time to time.</p>
+            <ul>
+              <li>Players should arrive on time and ready to train.</li>
+              <li>The Academy may cancel or reschedule sessions due to weather, venue issues, coach unavailability, or other operational reasons.</li>
+              <li>Where possible, we will notify members of cancellations in advance via WhatsApp, email, or the website.</li>
+              <li>Missed sessions are generally non-refundable unless cancelled by the Academy.</li>
+            </ul>
+            <h3>Equipment & Attire</h3>
+            <p>Players must wear appropriate sports attire and non-marking indoor court shoes. The Academy is not responsible for lost or damaged personal equipment.</p>
+          </section>
+
+          <section id="conduct">
+            <h2><span>4</span> Code of Conduct</h2>
+            <p>All members, parents, and visitors are expected to maintain a high standard of behaviour that reflects the values of the Academy: discipline, respect, teamwork, and sportsmanship.</p>
+            <ul>
+              <li>Treat coaches, staff, fellow players, and officials with respect at all times.</li>
+              <li>Follow all instructions given by coaches and Academy staff.</li>
+              <li>No bullying, harassment, discrimination, or abusive language will be tolerated.</li>
+              <li>Do not engage in any behaviour that endangers the safety of others.</li>
+              <li>Respect Academy property and training facilities.</li>
+            </ul>
+            <div class="highlight-box">
+              <p>Serious or repeated breaches of the Code of Conduct may result in temporary suspension or permanent termination of membership without refund.</p>
+            </div>
+          </section>
+
+          <section id="payments">
+            <h2><span>5</span> Fees, Payments & Refunds</h2>
+            <p>Membership and training fees are set by the Academy and communicated at the time of registration or renewal.</p>
+            <ul>
+              <li>Fees must be paid by the stated due date.</li>
+              <li>Failure to pay may result in suspension of training privileges until payment is received.</li>
+              <li>Fees are generally non-refundable except in cases of session cancellation by the Academy or exceptional circumstances approved by management.</li>
+              <li>The Academy reserves the right to adjust fees with reasonable notice.</li>
+            </ul>
+          </section>
+
+          <section id="liability">
+            <h2><span>6</span> Assumption of Risk & Liability</h2>
+            <p>Badminton is a physical sport that involves inherent risks of injury. By participating, you acknowledge and accept these risks.</p>
+            <ul>
+              <li>You confirm that you (or the registered player) are physically fit to participate in badminton training and competition.</li>
+              <li>You must disclose any relevant medical conditions or injuries to the Academy before training.</li>
+              <li>The Academy, its coaches, staff, and organisers will take reasonable care, but shall not be held liable for any injury, loss, or damage arising from participation, except in cases of proven gross negligence.</li>
+              <li>Parents/guardians of junior players accept full responsibility for the player’s participation.</li>
+            </ul>
+            <div class="highlight-box">
+              <p>It is strongly recommended that members obtain personal sports accident insurance.</p>
+            </div>
+          </section>
+
+          <section id="media">
+            <h2><span>7</span> Photography, Video & Media</h2>
+            <p>The Academy may take photographs or video recordings during training sessions, events, and competitions for promotional, educational, or archival purposes.</p>
+            <ul>
+              <li>By joining the Academy, you grant permission for such images/videos to be used on the Academy website, social media, and marketing materials.</li>
+              <li>If you do not wish for images of yourself or your child to be used, please notify the Academy in writing.</li>
+              <li>Members must not publish or share images of other players (especially minors) without consent.</li>
+            </ul>
+          </section>
+
+          <section id="termination">
+            <h2><span>8</span> Termination of Membership</h2>
+            <p>Either party may terminate membership:</p>
+            <ul>
+              <li><strong>By the member:</strong> You may withdraw by giving written notice. Fees already paid are generally non-refundable.</li>
+              <li><strong>By the Academy:</strong> We may suspend or terminate membership for breach of these terms, non-payment, misconduct, or any behaviour that risks the safety or reputation of the Academy.</li>
+            </ul>
+          </section>
+
+          <section id="privacy">
+            <h2><span>9</span> Privacy</h2>
+            <p>Personal information collected during registration and Academy activities is handled in accordance with our <a href="privacy.html" style="color: var(--blue); font-weight: 600;">Privacy Policy</a>.</p>
+            <p>We use your data only for Academy administration, communication, and safety purposes. We do not sell personal information to third parties.</p>
+          </section>
+
+          <section id="changes">
+            <h2><span>10</span> Changes to These Terms</h2>
+            <p>The Academy reserves the right to update or modify these Terms and Conditions at any time. The latest version will always be available on this page.</p>
+            <p>Continued participation after changes are published constitutes acceptance of the revised terms.</p>
+          </section>
+
+          <section id="governing">
+            <h2><span>11</span> Governing Law</h2>
+            <p>These Terms and Conditions are governed by the laws of the Republic of Uganda. Any disputes shall be subject to the exclusive jurisdiction of the courts of Uganda.</p>
+          </section>
+
+          <section id="contact">
+            <h2><span>12</span> Contact Us</h2>
+            <p>If you have any questions about these Terms and Conditions, please contact us:</p>
+            <ul>
+              <li><strong>Email:</strong> <a href="mailto:baryanmintonclub@gmail.com" style="color: var(--blue); font-weight: 600;">baryanmintonclub@gmail.com</a></li>
+              <li><strong>WhatsApp:</strong> <a href="https://wa.me/256755805092" target="_blank" rel="noopener" style="color: var(--blue); font-weight: 600;">+256 755 805 092</a></li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo" aria-label="Baryan Badminton Academy home">
+          <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
+        </a>
+        <p>Train. Develop. Compete. Belong.</p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <a href="index.html#about">About</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#schedule">Schedule</a>
+      </div>
+
+      <div>
+        <h4>Academy</h4>
+        <a href="membership.html">Membership</a>
+        <a href="index.html#gallery">Staff</a>
+        <a href="index.html#news">News</a>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="https://wa.me/256755805092" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Baryan Badminton Academy. All rights reserved.</p>
+      <div>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+  <script>
+    // Mobile Navigation
+    const menuButton = document.getElementById("mobileMenuButton");
+    const navigation = document.getElementById("mainNavigation");
+
+    if (menuButton && navigation) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = navigation.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      document.querySelectorAll(".main-navigation a").forEach(link => {
+        link.addEventListener("click", () => {
+          navigation.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          navigation.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    // Smooth scroll + active TOC highlighting
+    const tocLinks = document.querySelectorAll(".toc-link");
+    const sections = document.querySelectorAll(".terms-content section");
+
+    // Smooth scroll for TOC
+    tocLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          const offset = 100;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      });
+    });
+
+    // Highlight active section in TOC while scrolling
+    function updateActiveToc() {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      tocLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveToc);
+    updateActiveToc();
+
+    // Back to Top button
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 400) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+</body>
+</html>

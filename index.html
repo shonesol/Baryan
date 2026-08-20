@@ -31,11 +31,9 @@
     rel="stylesheet">
 
   <style>
-
     /* =====================================================
        LOGO
     ===================================================== */
-
     .logo {
       display: flex;
       align-items: center;
@@ -54,11 +52,9 @@
       height: 50px;
     }
 
-
     /* =====================================================
        STAFF
     ===================================================== */
-
     .staff-grid {
       grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: 260px;
@@ -96,11 +92,7 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 18px 20px;
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.75),
-        transparent
-      );
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
       width: 100%;
       color: #fff;
     }
@@ -122,11 +114,9 @@
       transform: translateY(-2px);
     }
 
-
     /* =====================================================
        STAFF MODAL
     ===================================================== */
-
     .staff-modal {
       position: fixed;
       inset: 0;
@@ -135,13 +125,9 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-
       opacity: 0;
       visibility: hidden;
-
-      transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
     .staff-modal.open {
@@ -159,25 +145,16 @@
     .staff-modal-content {
       position: relative;
       z-index: 2;
-
       width: min(500px, 100%);
       max-height: 90vh;
-
       overflow-y: auto;
-
       background: #fff;
       border-radius: 15px;
       padding: 30px;
-
       text-align: center;
-
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.25);
-
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
       transform: translateY(20px);
-
-      transition:
-        transform 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
     .staff-modal.open .staff-modal-content {
@@ -188,20 +165,14 @@
       position: absolute;
       top: 12px;
       right: 15px;
-
       width: 40px;
       height: 40px;
-
       border: none;
       border-radius: 50%;
-
       background: #111;
       color: #fff;
-
       font-size: 25px;
-
       cursor: pointer;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -210,25 +181,14 @@
     .staff-modal-photo {
       width: 180px;
       height: 180px;
-
       margin: 10px auto 20px;
-
       overflow: hidden;
       border-radius: 50%;
-
-      background: linear-gradient(
-        145deg,
-        #0757c9,
-        #043d91
-      );
-
+      background: linear-gradient(145deg, #0757c9, #043d91);
       background-size: cover;
       background-position: center;
-
       border: 4px solid #fff;
-
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     .staff-modal-photo img {
@@ -240,43 +200,33 @@
     .no-staff-photo {
       width: 100%;
       height: 100%;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       background: #eee;
-
       font-size: 60px;
       font-weight: bold;
     }
 
     .staff-modal-content h3 {
       margin-bottom: 6px;
-
       font-size: 1.55rem;
       font-weight: 900;
-
       color: #0b0b0b;
     }
 
     .staff-modal-position {
       margin-bottom: 18px;
-
       color: #0757c9;
-
       font-weight: 700;
       font-size: 0.95rem;
-
       letter-spacing: 0.03em;
     }
 
     .staff-modal-contact {
       margin-top: 25px;
-
       display: grid;
       gap: 12px;
-
       font-size: 0.92rem;
       color: #555;
       line-height: 1.7;
@@ -302,11 +252,9 @@
       overflow: hidden;
     }
 
-
     /* =====================================================
        REVIEWS
     ===================================================== */
-
     .review-status {
       min-height: 24px;
       margin-top: 12px;
@@ -338,21 +286,16 @@
       opacity: 0.7;
     }
 
-
     /* =====================================================
        RESPONSIVE
     ===================================================== */
-
     @media (max-width: 900px) {
-
       .staff-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
     }
 
     @media (max-width: 500px) {
-
       .staff-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: 220px;
@@ -370,2801 +313,1039 @@
         width: 150px;
         height: 150px;
       }
-
     }
-
   </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header class="site-header">
-
-  <div class="container nav-container">
-
-    <a
-      href="#home"
-      class="logo"
-      aria-label="Baryan Badminton Academy home"
-    >
-
-      <img
-        src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png"
-        alt="Baryan Badminton Academy logo"
-      >
-
-    </a>
-
-
-    <button
-      class="mobile-menu-button"
-      id="mobileMenuButton"
-      aria-label="Open navigation"
-      aria-expanded="false"
-      aria-controls="mainNavigation"
-    >
-
-      <span></span>
-      <span></span>
-      <span></span>
-
-    </button>
-
-
-    <nav
-      class="main-navigation"
-      id="mainNavigation"
-      aria-label="Main navigation"
-    >
-
-      <a href="#home" class="active">Home</a>
-
-      <a href="#about">About</a>
-
-      <a href="#programs">Programs</a>
-
-      <a href="#schedule">Schedule</a>
-
-      <a href="#gallery">Staff</a>
-
-      <a href="#news">News</a>
-
-      <a href="#contact">Contact</a>
-
-      <a
-        href="membership.html"
-        class="nav-join"
-      >
-        Join Academy
+  <!-- =====================================================
+       HEADER
+  ===================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
+        <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
       </a>
 
-    </nav>
+      <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNavigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-  </div>
-
-</header>
-
-
-
-<main>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="home-hero" id="home">
-
-  <div class="hero-overlay"></div>
-
-  <div class="container home-hero-content">
-
-    <div class="hero-copy">
-
-      <p class="eyebrow">
-        BARYAN BADMINTON ACADEMY
-      </p>
-
-      <h1>
-        TRAIN.
-        <span>DEVELOP.</span>
-        COMPETE.
-      </h1>
-
-      <p class="hero-description">
-        Developing badminton talent, character, discipline and confidence
-        through structured training and competitive opportunities.
-      </p>
-
-      <div class="hero-actions">
-
-        <a
-          href="membership.html"
-          class="primary-button"
-        >
-          JOIN ACADEMY
-        </a>
-
-        <a
-          href="#programs"
-          class="secondary-button"
-        >
-          EXPLORE PROGRAMS
-        </a>
-
-      </div>
-
+      <nav class="main-navigation" id="mainNavigation" aria-label="Main navigation">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#gallery">Staff</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="membership.html" class="nav-join">Join Academy</a>
+      </nav>
     </div>
+  </header>
 
-
-    <div class="hero-stat-card">
-
-      <span>BARYAN BADMINTON</span>
-
-      <strong>DEVELOP</strong>
-
-      <p>
-        Build your skills.
-        Build your confidence.
-        Build your future.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     QUICK ACTIONS
-===================================================== -->
-
-<section class="quick-actions">
-
-  <div class="container">
-
-    <div class="quick-grid">
-
-      <a
-        href="membership.html"
-        class="quick-card blue-card"
-      >
-
-        <span class="quick-number">01</span>
-
-        <h3>Join Academy</h3>
-
-        <p>
-          Start your badminton journey with Baryan Badminton Academy.
-        </p>
-
-        <span class="quick-arrow">→</span>
-
-      </a>
-
-
-      <a
-        href="#programs"
-        class="quick-card orange-card"
-      >
-
-        <span class="quick-number">02</span>
-
-        <h3>Training</h3>
-
-        <p>
-          Find a badminton development program that fits your level.
-        </p>
-
-        <span class="quick-arrow">→</span>
-
-      </a>
-
-
-      <a
-        href="#schedule"
-        class="quick-card blue-card"
-      >
-
-        <span class="quick-number">03</span>
-
-        <h3>Schedule</h3>
-
-        <p>
-          Check training days, sessions and academy activities.
-        </p>
-
-        <span class="quick-arrow">→</span>
-
-      </a>
-
-
-      <a
-        href="#contact"
-        class="quick-card green-card"
-      >
-
-        <span class="quick-number">04</span>
-
-        <h3>Contact</h3>
-
-        <p>
-          Speak with Baryan Badminton Academy and find out how to get started.
-        </p>
-
-        <span class="quick-arrow">→</span>
-
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section class="about-section" id="about">
-
-  <div class="container about-grid">
-
-    <div class="about-image">
-
-      <div class="image-placeholder">
-
-        <span>BARYAN</span>
-
-        <strong>BADMINTON</strong>
-
-        <small>ACADEMY</small>
-
-      </div>
-
-    </div>
-
-
-    <div class="about-content">
-
-      <p class="eyebrow">
-        ABOUT THE ACADEMY
-      </p>
-
-      <h2>
-        MORE THAN
-        <span>A BADMINTON ACADEMY.</span>
-      </h2>
-
-      <p>
-        Baryan Badminton Academy is committed to developing badminton
-        players through structured coaching, skills development, fitness,
-        discipline and teamwork.
-      </p>
-
-      <p>
-        Our goal is to create an environment where young athletes and
-        badminton players can learn the fundamentals, improve their
-        performance and develop the character required both on and off the court.
-      </p>
-
-      <a
-        href="#programs"
-        class="text-link"
-      >
-        Discover our programs
-        <span>→</span>
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     MISSION & VISION
-===================================================== -->
-
-<section class="mission-section">
-
-  <div class="container">
-
-    <div class="section-heading center-heading">
-
-      <p class="eyebrow">
-        OUR PURPOSE
-      </p>
-
-      <h2>
-        BUILDING
-        <span>BETTER PLAYERS.</span>
-      </h2>
-
-      <p>
-        Baryan Badminton Academy combines badminton development with
-        discipline, teamwork and personal growth.
-      </p>
-
-    </div>
-
-
-    <div class="mission-grid">
-
-      <article class="mission-card blue-mission">
-
-        <span class="mission-icon">M</span>
-
-        <h3>Our Mission</h3>
-
-        <p>
-          To develop badminton players through quality coaching, consistent
-          training, discipline, teamwork and opportunities to compete.
-        </p>
-
-      </article>
-
-
-      <article class="mission-card orange-mission">
-
-        <span class="mission-icon">V</span>
-
-        <h3>Our Vision</h3>
-
-        <p>
-          To become a respected badminton development academy that creates
-          opportunities for athletes to reach their full potential.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     WHY JOIN
-===================================================== -->
-
-<section class="values-section">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <p class="eyebrow">
-        WHY JOIN US
-      </p>
-
-      <h2>
-        DEVELOP
-        <span>YOUR GAME.</span>
-      </h2>
-
-      <p>
-        Our training environment is built around technical development,
-        physical fitness, discipline and teamwork.
-      </p>
-
-    </div>
-
-
-    <div class="values-grid">
-
-      <article class="value-card">
-
-        <span>01</span>
-
-        <h3>Coaching</h3>
-
-        <p>
-          Structured coaching designed to help players understand and improve every part of their game.
-        </p>
-
-      </article>
-
-
-      <article class="value-card orange-value">
-
-        <span>02</span>
-
-        <h3>Skills</h3>
-
-        <p>
-          Grip, serving, footwork, movement, strokes, rallies and match awareness.
-        </p>
-
-      </article>
-
-
-      <article class="value-card">
-
-        <span>03</span>
-
-        <h3>Fitness</h3>
-
-        <p>
-          Improve speed, strength, coordination, endurance and overall athletic ability.
-        </p>
-
-      </article>
-
-
-      <article class="value-card green-value">
-
-        <span>04</span>
-
-        <h3>Character</h3>
-
-        <p>
-          Learn discipline, teamwork, respect, responsibility and sportsmanship.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PROGRAMS
-===================================================== -->
-
-<section
-  class="program-preview"
-  id="programs"
->
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <p class="eyebrow">
-        BADMINTON PROGRAMS
-      </p>
-
-      <h2>
-        FIND YOUR
-        <span>LEVEL.</span>
-      </h2>
-
-      <p>
-        Our programs are designed to support players at different stages
-        of their badminton development.
-      </p>
-
-    </div>
-
-
-    <div class="program-preview-grid">
-
-      <article>
-
-        <span>BEGINNER</span>
-
-        <h3>Start Strong</h3>
-
-        <p>
-          Learn badminton fundamentals, grip, serving, movement,
-          footwork, strokes and basic game rules.
-        </p>
-
-        <a href="#schedule">
-          View sessions →
-        </a>
-
-      </article>
-
-
-      <article>
-
-        <span>INTERMEDIATE</span>
-
-        <h3>Level Up</h3>
-
-        <p>
-          Develop consistency, decision-making, footwork, strokes,
-          defence and match awareness.
-        </p>
-
-        <a href="#schedule">
-          View sessions →
-        </a>
-
-      </article>
-
-
-      <article>
-
-        <span>ADVANCED</span>
-
-        <h3>Compete</h3>
-
-        <p>
-          Performance-focused training covering tactics,
-          conditioning, competition preparation and advanced skills.
-        </p>
-
-        <a href="#schedule">
-          View sessions →
-        </a>
-
-      </article>
-
-
-      <article>
-
-        <span>JUNIOR</span>
-
-        <h3>Future Stars</h3>
-
-        <p>
-          Age-appropriate badminton development focused on fundamentals,
-          confidence, coordination and teamwork.
-        </p>
-
-        <a href="#schedule">
-          View sessions →
-        </a>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SCHEDULE
-===================================================== -->
-
-<section
-  class="schedule-preview"
-  id="schedule"
->
-
-  <div class="container schedule-grid">
-
-    <div>
-
-      <p class="eyebrow">
-        TRAINING SCHEDULE
-      </p>
-
-      <h2>
-        MAKE TIME
-        <span>TO PLAY.</span>
-      </h2>
-
-      <p>
-        Training times, age groups and venues will be published here as
-        the academy schedule is confirmed.
-      </p>
-
-      <a
-        href="membership.html"
-        class="primary-button"
-      >
-        JOIN A SESSION
-      </a>
-
-    </div>
-
-
-    <div class="schedule-card">
-
-      <div class="schedule-row">
-
-        <strong>MONDAY</strong>
-
-        <span>Skills Training</span>
-
-        <small>Time TBC</small>
-
-      </div>
-
-
-      <div class="schedule-row">
-
-        <strong>WEDNESDAY</strong>
-
-        <span>Development Session</span>
-
-        <small>Time TBC</small>
-
-      </div>
-
-
-      <div class="schedule-row">
-
-        <strong>SATURDAY</strong>
-
-        <span>Academy Session</span>
-
-        <small>Time TBC</small>
-
-      </div>
-
-
-      <div class="schedule-note">
-
-        Training venue and exact times will be confirmed by academy management.
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     STATS
-===================================================== -->
-
-<section class="stats-section">
-
-  <div class="container stats-grid">
-
-    <div class="stat-card">
-
-      <strong>0+</strong>
-
-      <span>PLAYERS</span>
-
-    </div>
-
-
-    <div class="stat-card orange-stat">
-
-      <strong>0+</strong>
-
-      <span>TRAINING SESSIONS</span>
-
-    </div>
-
-
-    <div class="stat-card">
-
-      <strong>0+</strong>
-
-      <span>COACHES</span>
-
-    </div>
-
-
-    <div class="stat-card green-stat">
-
-      <strong>0+</strong>
-
-      <span>COMPETITIONS</span>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     STAFF
-===================================================== -->
-
-<section
-  class="gallery-preview staff-section"
-  id="gallery"
->
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <p class="eyebrow">
-        OUR STAFF
-      </p>
-
-      <h2>
-        MEET THE
-        <span>TEAM.</span>
-      </h2>
-
-      <p>
-        The dedicated coaches, administrators and support team behind Baryan Badminton Academy.
-      </p>
-
-    </div>
-
-
-    <div
-      class="gallery-grid staff-grid"
-      id="staffGrid"
-    >
-
-
-      <!-- STAFF 1 -->
-
-      <article
-        class="gallery-item gallery-blue staff-card"
-        data-staff="1"
-        tabindex="0"
-        role="button"
-        aria-label="View details for Alema G Hamis"
-      >
-
-        <div class="staff-photo">
-
-          <img
-            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-            alt="Alema G Hamis"
-          >
-
-        </div>
-
-        <span class="staff-name">
-          Alema G Hamis
-        </span>
-
-        <button
-          class="staff-explore"
-          type="button"
-        >
-          EXPLORE DETAILS
-        </button>
-
-      </article>
-
-
-
-      <!-- STAFF 2 -->
-
-      <article
-        class="gallery-item gallery-orange staff-card"
-        data-staff="2"
-        tabindex="0"
-        role="button"
-        aria-label="View details for Sarah Nalwoga"
-      >
-
-        <div class="staff-photo">
-
-          <img
-            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-            alt="Sarah Nalwoga"
-          >
-
-        </div>
-
-        <span class="staff-name">
-          Sarah Nalwoga
-        </span>
-
-        <button
-          class="staff-explore"
-          type="button"
-        >
-          EXPLORE DETAILS
-        </button>
-
-      </article>
-
-
-
-      <!-- STAFF 3 -->
-
-      <article
-        class="gallery-item gallery-green staff-card"
-        data-staff="3"
-        tabindex="0"
-        role="button"
-        aria-label="View details for David Ssempijja"
-      >
-
-        <div class="staff-photo">
-
-          <img
-            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-            alt="David Ssempijja"
-          >
-
-        </div>
-
-        <span class="staff-name">
-          David Ssempijja
-        </span>
-
-        <button
-          class="staff-explore"
-          type="button"
-        >
-          EXPLORE DETAILS
-        </button>
-
-      </article>
-
-
-
-      <!-- STAFF 4 -->
-
-      <article
-        class="gallery-item gallery-dark staff-card"
-        data-staff="4"
-        tabindex="0"
-        role="button"
-        aria-label="View details for Grace Nakato"
-      >
-
-        <div class="staff-photo">
-
-          <img
-            src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-            alt="Grace Nakato"
-          >
-
-        </div>
-
-        <span class="staff-name">
-          Grace Nakato
-        </span>
-
-        <button
-          class="staff-explore"
-          type="button"
-        >
-          EXPLORE DETAILS
-        </button>
-
-      </article>
-
-    </div>
-
-
+  <main>
 
     <!-- =====================================================
-         STAFF MODAL
+         HERO SLIDER
     ===================================================== -->
-
-    <div
-      class="staff-modal"
-      id="staffModal"
-      aria-hidden="true"
-    >
-
-      <div
-        class="staff-modal-overlay"
-        id="staffModalOverlay"
-      ></div>
-
-
-      <div
-        class="staff-modal-content"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="staffModalName"
-      >
-
-        <button
-          class="staff-modal-close"
-          id="staffModalClose"
-          type="button"
-          aria-label="Close staff details"
-        >
-          ×
-        </button>
-
-
-        <div
-          class="staff-modal-photo"
-          id="staffModalPhoto"
-        ></div>
-
-
-        <h3 id="staffModalName"></h3>
-
-        <p
-          class="staff-modal-position"
-          id="staffModalPosition"
-        ></p>
-
-        <p id="staffModalBio"></p>
-
-        <div
-          class="staff-modal-contact"
-          id="staffModalContact"
-        ></div>
-
+    <section class="home-hero" id="home">
+      <div class="hero-slider" id="heroSlider">
+        <div class="hero-slide active" style="background-image: url('11fc554a-a5c7-46d3-a55e-673e721447c7.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('5277a911-f90a-490e-a43a-99e2dc8841c6.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('c0df4b6f-1fa2-4b85-9f8c-328e645edfa5.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('2d88defd-f4be-497f-8aef-5d50bb277e3e.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('2509f763-9704-4226-8472-2d620672e194.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('12857a52-e324-4ec3-bb3c-433504dda1d3.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('dab26d07-0e0e-4a5d-a609-532815e368ca.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('011998db-4a59-4fce-91cf-1375202fb4e4.jpg')"></div>
       </div>
 
-    </div>
+      <div class="hero-overlay"></div>
 
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     NEWS
-===================================================== -->
-
-<section
-  class="news-section"
-  id="news"
->
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <p class="eyebrow">
-        NEWS & EVENTS
-      </p>
-
-      <h2>
-        WHAT'S
-        <span>HAPPENING.</span>
-      </h2>
-
-    </div>
-
-
-    <div class="news-grid">
-
-      <article class="news-card">
-
-        <div class="news-tag">
-          ACADEMY NEWS
+      <div class="container home-hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">BARYAN BADMINTON ACADEMY</p>
+          <h1>
+            TRAIN.
+            <span>DEVELOP.</span>
+            COMPETE.
+          </h1>
+          <p class="hero-description">
+            Developing badminton talent, character, discipline and confidence
+            through structured training and competitive opportunities.
+          </p>
+          <div class="hero-actions">
+            <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
+            <a href="#programs" class="secondary-button">EXPLORE PROGRAMS</a>
+          </div>
         </div>
 
-        <h3>
-          Academy Updates
-        </h3>
-
-        <p>
-          Academy announcements, training updates and important information will appear here.
-        </p>
-
-        <a href="#">
-          Read more →
-        </a>
-
-      </article>
-
-
-      <article class="news-card orange-news">
-
-        <div class="news-tag">
-          TOURNAMENTS
+        <div class="hero-stat-card">
+          <span>BARYAN BADMINTON</span>
+          <strong>DEVELOP</strong>
+          <p>
+            Build your skills.<br>
+            Build your confidence.<br>
+            Build your future.
+          </p>
         </div>
-
-        <h3>
-          Competition Updates
-        </h3>
-
-        <p>
-          Follow competitions, tournament results and player achievements from Baryan Badminton Academy.
-        </p>
-
-        <a href="#">
-          Read more →
-        </a>
-
-      </article>
-
-
-      <article class="news-card green-news">
-
-        <div class="news-tag">
-          COMMUNITY
-        </div>
-
-        <h3>
-          Academy Activities
-        </h3>
-
-        <p>
-          Discover activities, events, camps and community programs.
-        </p>
-
-        <a href="#">
-          Read more →
-        </a>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     TESTIMONIALS
-===================================================== -->
-
-<section class="testimonials-section">
-
-  <div class="container">
-
-    <div class="section-heading center-heading">
-
-      <p class="eyebrow">
-        OUR COMMUNITY
-      </p>
-
-      <h2>
-        BUILT
-        <span>TOGETHER.</span>
-      </h2>
-
-    </div>
-
-
-    <div class="testimonial-grid">
-
-      <article class="testimonial-card">
-
-        <div class="testimonial-stars">
-          ★★★★★
-        </div>
-
-        <p>
-          “Testimonials from players, parents and the academy community will appear here.”
-        </p>
-
-        <strong>
-          ACADEMY PLAYER
-        </strong>
-
-      </article>
-
-
-      <article class="testimonial-card orange-testimonial">
-
-        <div class="testimonial-stars">
-          ★★★★★
-        </div>
-
-        <p>
-          “A professional space for player development, teamwork and confidence.”
-        </p>
-
-        <strong>
-          ACADEMY PARENT
-        </strong>
-
-      </article>
-
-
-      <article class="testimonial-card green-testimonial">
-
-        <div class="testimonial-stars">
-          ★★★★★
-        </div>
-
-        <p>
-          “Training, discipline and competition help athletes become better players.”
-        </p>
-
-        <strong>
-          ACADEMY COMMUNITY
-        </strong>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     REVIEWS
-===================================================== -->
-
-<section
-  class="reviews-section"
-  id="reviews"
->
-
-  <div class="container">
-
-    <div class="section-heading center-heading">
-
-      <p class="eyebrow">
-        REVIEWS
-      </p>
-
-      <h2>
-        WHAT OUR
-        <span>PLAYERS SAY.</span>
-      </h2>
-
-      <p>
-        Hear from players, parents and members of the Baryan Badminton Academy community.
-      </p>
-
-    </div>
-
-
-    <!-- REVIEW SELECTOR -->
-
-    <div class="reviews-selector">
-
-      <label for="reviewSelect">
-        Select a review
-      </label>
-
-      <select
-        id="reviewSelect"
-        aria-label="Select a review"
-      >
-
-        <option value="">
-          Loading reviews...
-        </option>
-
-      </select>
-
-
-      <div
-        class="selected-review"
-        id="selectedReview"
-      >
-
-        <p class="reviews-loading">
-          Loading reviews...
-        </p>
-
       </div>
 
-    </div>
-
-
-
-    <!-- REVIEW FORM -->
-
-    <div class="review-form-wrapper">
-
-      <div class="review-form-heading">
-
-        <p class="eyebrow">
-          YOUR EXPERIENCE
-        </p>
-
-        <h3>
-          LEAVE A
-          <span>REVIEW.</span>
-        </h3>
-
-        <p>
-          Tell us about your experience at Baryan Badminton Academy.
-        </p>
-
+      <div class="hero-controls">
+        <button class="hero-prev" id="heroPrev" aria-label="Previous slide">‹</button>
+        <div class="hero-dots" id="heroDots"></div>
+        <button class="hero-next" id="heroNext" aria-label="Next slide">›</button>
       </div>
+    </section>
 
+    <!-- =====================================================
+         QUICK ACTIONS
+    ===================================================== -->
+    <section class="quick-actions">
+      <div class="container">
+        <div class="quick-grid">
+          <a href="membership.html" class="quick-card blue-card">
+            <span class="quick-number">01</span>
+            <h3>Join Academy</h3>
+            <p>Start your badminton journey with Baryan Badminton Academy.</p>
+            <span class="quick-arrow">→</span>
+          </a>
+          <a href="#programs" class="quick-card orange-card">
+            <span class="quick-number">02</span>
+            <h3>Training</h3>
+            <p>Find a badminton development program that fits your level.</p>
+            <span class="quick-arrow">→</span>
+          </a>
+          <a href="#schedule" class="quick-card blue-card">
+            <span class="quick-number">03</span>
+            <h3>Schedule</h3>
+            <p>Check training days, sessions and academy activities.</p>
+            <span class="quick-arrow">→</span>
+          </a>
+          <a href="#contact" class="quick-card green-card">
+            <span class="quick-number">04</span>
+            <h3>Contact</h3>
+            <p>Speak with Baryan Badminton Academy and find out how to get started.</p>
+            <span class="quick-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-      <form
-        id="reviewForm"
-        class="review-form"
-      >
-
-
-        <!-- NAME -->
-
-        <div class="form-group">
-
-          <label for="reviewName">
-            Your Name
-          </label>
-
-          <input
-            type="text"
-            id="reviewName"
-            name="name"
-            placeholder="Enter your name"
-            required
-            maxlength="60"
-            autocomplete="name"
-          >
-
+    <!-- =====================================================
+         ABOUT
+    ===================================================== -->
+    <section class="about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img src="5cba26d7-a05d-430b-85c4-04c0cce2511f.jpg" alt="Baryan Badminton Academy players and coaches">
         </div>
 
+        <div class="about-content">
+          <p class="eyebrow">ABOUT THE ACADEMY</p>
+          <h2>
+            MORE THAN
+            <span>A BADMINTON ACADEMY.</span>
+          </h2>
+          <p>
+            Baryan Badminton Academy is committed to developing badminton
+            players through structured coaching, skills development, fitness,
+            discipline and teamwork.
+          </p>
+          <p>
+            Our goal is to create an environment where young athletes and
+            badminton players can learn the fundamentals, improve their
+            performance and develop the character required both on and off the court.
+          </p>
+          <a href="#programs" class="text-link">
+            Discover our programs
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- =====================================================
+         MISSION & VISION
+    ===================================================== -->
+    <section class="mission-section">
+      <div class="container">
+        <div class="section-heading center-heading">
+          <p class="eyebrow">OUR PURPOSE</p>
+          <h2>
+            BUILDING
+            <span>BETTER PLAYERS.</span>
+          </h2>
+          <p>
+            Baryan Badminton Academy combines badminton development with
+            discipline, teamwork and personal growth.
+          </p>
+        </div>
 
-        <!-- ROLE -->
+        <div class="mission-grid">
+          <article class="mission-card blue-mission">
+            <span class="mission-icon">M</span>
+            <h3>Our Mission</h3>
+            <p>
+              To develop badminton players through quality coaching, consistent
+              training, discipline, teamwork and opportunities to compete.
+            </p>
+          </article>
 
-        <div class="form-group">
+          <article class="mission-card orange-mission">
+            <span class="mission-icon">V</span>
+            <h3>Our Vision</h3>
+            <p>
+              To become a respected badminton development academy that creates
+              opportunities for athletes to reach their full potential.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <label for="reviewRole">
-            You are a
-          </label>
+    <!-- =====================================================
+         WHY JOIN
+    ===================================================== -->
+    <section class="values-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">WHY JOIN US</p>
+          <h2>
+            DEVELOP
+            <span>YOUR GAME.</span>
+          </h2>
+          <p>
+            Our training environment is built around technical development,
+            physical fitness, discipline and teamwork.
+          </p>
+        </div>
 
-          <select
-            id="reviewRole"
-            name="role"
-            required
-          >
+        <div class="values-grid">
+          <article class="value-card">
+            <span>01</span>
+            <h3>Coaching</h3>
+            <p>Structured coaching designed to help players understand and improve every part of their game.</p>
+          </article>
+          <article class="value-card orange-value">
+            <span>02</span>
+            <h3>Skills</h3>
+            <p>Grip, serving, footwork, movement, strokes, rallies and match awareness.</p>
+          </article>
+          <article class="value-card">
+            <span>03</span>
+            <h3>Fitness</h3>
+            <p>Improve speed, strength, coordination, endurance and overall athletic ability.</p>
+          </article>
+          <article class="value-card green-value">
+            <span>04</span>
+            <h3>Character</h3>
+            <p>Learn discipline, teamwork, respect, responsibility and sportsmanship.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <option value="">
-              Select one
-            </option>
+    <!-- =====================================================
+         PROGRAMS
+    ===================================================== -->
+    <section class="program-preview" id="programs">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">BADMINTON PROGRAMS</p>
+          <h2>
+            FIND YOUR
+            <span>LEVEL.</span>
+          </h2>
+          <p>
+            Our programs are designed to support players at different stages
+            of their badminton development.
+          </p>
+        </div>
 
-            <option value="Player">
-              Player
-            </option>
+        <div class="program-preview-grid">
+          <article>
+            <span>BEGINNER</span>
+            <h3>Start Strong</h3>
+            <p>Learn badminton fundamentals, grip, serving, movement, footwork, strokes and basic game rules.</p>
+            <a href="#schedule">View sessions →</a>
+          </article>
+          <article>
+            <span>INTERMEDIATE</span>
+            <h3>Level Up</h3>
+            <p>Develop consistency, decision-making, footwork, strokes, defence and match awareness.</p>
+            <a href="#schedule">View sessions →</a>
+          </article>
+          <article>
+            <span>ADVANCED</span>
+            <h3>Compete</h3>
+            <p>Performance-focused training covering tactics, conditioning, competition preparation and advanced skills.</p>
+            <a href="#schedule">View sessions →</a>
+          </article>
+          <article>
+            <span>JUNIOR</span>
+            <h3>Future Stars</h3>
+            <p>Age-appropriate badminton development focused on fundamentals, confidence, coordination and teamwork.</p>
+            <a href="#schedule">View sessions →</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <option value="Parent">
-              Parent
-            </option>
+    <!-- =====================================================
+         SCHEDULE
+    ===================================================== -->
+    <section class="schedule-preview" id="schedule">
+      <div class="container schedule-grid">
+        <div>
+          <p class="eyebrow">TRAINING SCHEDULE</p>
+          <h2>
+            MAKE TIME
+            <span>TO PLAY.</span>
+          </h2>
+          <p>
+            Training times, age groups and venues will be published here as
+            the academy schedule is confirmed.
+          </p>
+          <a href="membership.html" class="primary-button">JOIN A SESSION</a>
+        </div>
 
-            <option value="Coach">
-              Coach
-            </option>
+        <div class="schedule-card">
+          <div class="schedule-row">
+            <strong>MONDAY</strong>
+            <span>Skills Training</span>
+            <small>Time TBC</small>
+          </div>
+          <div class="schedule-row">
+            <strong>WEDNESDAY</strong>
+            <span>Development Session</span>
+            <small>Time TBC</small>
+          </div>
+          <div class="schedule-row">
+            <strong>SATURDAY</strong>
+            <span>Academy Session</span>
+            <small>Time TBC</small>
+          </div>
+          <div class="schedule-note">
+            Training venue and exact times will be confirmed by academy management.
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <option value="Member">
-              Member
-            </option>
+    <!-- =====================================================
+         STATS
+    ===================================================== -->
+    <section class="stats-section">
+      <div class="container stats-grid">
+        <div class="stat-card">
+          <strong>0+</strong>
+          <span>PLAYERS</span>
+        </div>
+        <div class="stat-card orange-stat">
+          <strong>0+</strong>
+          <span>TRAINING SESSIONS</span>
+        </div>
+        <div class="stat-card">
+          <strong>0+</strong>
+          <span>COACHES</span>
+        </div>
+        <div class="stat-card green-stat">
+          <strong>0+</strong>
+          <span>COMPETITIONS</span>
+        </div>
+      </div>
+    </section>
 
+    <!-- =====================================================
+         STAFF
+    ===================================================== -->
+    <section class="gallery-preview staff-section" id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">OUR STAFF</p>
+          <h2>
+            MEET THE
+            <span>TEAM.</span>
+          </h2>
+          <p>
+            The dedicated coaches, administrators and support team behind Baryan Badminton Academy.
+          </p>
+        </div>
+
+        <div class="gallery-grid staff-grid" id="staffGrid">
+          <article class="gallery-item gallery-blue staff-card" data-staff="1" tabindex="0" role="button" aria-label="View details for Alema G Hamis">
+            <div class="staff-photo">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Alema G Hamis">
+            </div>
+            <span class="staff-name">Alema G Hamis</span>
+            <button class="staff-explore" type="button">EXPLORE DETAILS</button>
+          </article>
+
+          <article class="gallery-item gallery-orange staff-card" data-staff="2" tabindex="0" role="button" aria-label="View details for Sarah Nalwoga">
+            <div class="staff-photo">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Sarah Nalwoga">
+            </div>
+            <span class="staff-name">Sarah Nalwoga</span>
+            <button class="staff-explore" type="button">EXPLORE DETAILS</button>
+          </article>
+
+          <article class="gallery-item gallery-green staff-card" data-staff="3" tabindex="0" role="button" aria-label="View details for David Ssempijja">
+            <div class="staff-photo">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="David Ssempijja">
+            </div>
+            <span class="staff-name">David Ssempijja</span>
+            <button class="staff-explore" type="button">EXPLORE DETAILS</button>
+          </article>
+
+          <article class="gallery-item gallery-dark staff-card" data-staff="4" tabindex="0" role="button" aria-label="View details for Grace Nakato">
+            <div class="staff-photo">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Grace Nakato">
+            </div>
+            <span class="staff-name">Grace Nakato</span>
+            <button class="staff-explore" type="button">EXPLORE DETAILS</button>
+          </article>
+        </div>
+
+        <!-- STAFF MODAL -->
+        <div class="staff-modal" id="staffModal" aria-hidden="true">
+          <div class="staff-modal-overlay" id="staffModalOverlay"></div>
+          <div class="staff-modal-content" role="dialog" aria-modal="true" aria-labelledby="staffModalName">
+            <button class="staff-modal-close" id="staffModalClose" type="button" aria-label="Close staff details">×</button>
+            <div class="staff-modal-photo" id="staffModalPhoto"></div>
+            <h3 id="staffModalName"></h3>
+            <p class="staff-modal-position" id="staffModalPosition"></p>
+            <p id="staffModalBio"></p>
+            <div class="staff-modal-contact" id="staffModalContact"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         NEWS
+    ===================================================== -->
+    <section class="news-section" id="news">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">NEWS & EVENTS</p>
+          <h2>
+            WHAT'S
+            <span>HAPPENING.</span>
+          </h2>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="news-tag">ACADEMY NEWS</div>
+            <h3>Academy Updates</h3>
+            <p>Academy announcements, training updates and important information will appear here.</p>
+            <a href="#">Read more →</a>
+          </article>
+          <article class="news-card orange-news">
+            <div class="news-tag">TOURNAMENTS</div>
+            <h3>Competition Updates</h3>
+            <p>Follow competitions, tournament results and player achievements from Baryan Badminton Academy.</p>
+            <a href="#">Read more →</a>
+          </article>
+          <article class="news-card green-news">
+            <div class="news-tag">COMMUNITY</div>
+            <h3>Academy Activities</h3>
+            <p>Discover activities, events, camps and community programs.</p>
+            <a href="#">Read more →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         TESTIMONIALS
+    ===================================================== -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="section-heading center-heading">
+          <p class="eyebrow">OUR COMMUNITY</p>
+          <h2>
+            BUILT
+            <span>TOGETHER.</span>
+          </h2>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>“Testimonials from players, parents and the academy community will appear here.”</p>
+            <strong>ACADEMY PLAYER</strong>
+          </article>
+          <article class="testimonial-card orange-testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>“A professional space for player development, teamwork and confidence.”</p>
+            <strong>ACADEMY PARENT</strong>
+          </article>
+          <article class="testimonial-card green-testimonial">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>“Training, discipline and competition help athletes become better players.”</p>
+            <strong>ACADEMY COMMUNITY</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         REVIEWS
+    ===================================================== -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-heading center-heading">
+          <p class="eyebrow">REVIEWS</p>
+          <h2>
+            WHAT OUR
+            <span>PLAYERS SAY.</span>
+          </h2>
+          <p>Hear from players, parents and members of the Baryan Badminton Academy community.</p>
+        </div>
+
+        <div class="reviews-selector">
+          <label for="reviewSelect">Select a review</label>
+          <select id="reviewSelect" aria-label="Select a review">
+            <option value="">Loading reviews...</option>
           </select>
-
+          <div class="selected-review" id="selectedReview">
+            <p class="reviews-loading">Loading reviews...</p>
+          </div>
         </div>
 
-
-
-        <!-- RATING -->
-
-        <div class="form-group">
-
-          <label>
-            Rating
-          </label>
-
-          <div class="rating-input">
-
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="5"
-                required
-              >
-              ★★★★★
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="4"
-              >
-              ★★★★
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="3"
-              >
-              ★★★
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="2"
-              >
-              ★★
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                value="1"
-              >
-              ★
-            </label>
-
+        <div class="review-form-wrapper">
+          <div class="review-form-heading">
+            <p class="eyebrow">YOUR EXPERIENCE</p>
+            <h3>
+              LEAVE A
+              <span>REVIEW.</span>
+            </h3>
+            <p>Tell us about your experience at Baryan Badminton Academy.</p>
           </div>
 
+          <form id="reviewForm" class="review-form">
+            <div class="form-group">
+              <label for="reviewName">Your Name</label>
+              <input type="text" id="reviewName" name="name" placeholder="Enter your name" required maxlength="60" autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label for="reviewRole">You are a</label>
+              <select id="reviewRole" name="role" required>
+                <option value="">Select one</option>
+                <option value="Player">Player</option>
+                <option value="Parent">Parent</option>
+                <option value="Coach">Coach</option>
+                <option value="Member">Member</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Rating</label>
+              <div class="rating-input">
+                <label><input type="radio" name="rating" value="5" required> ★★★★★</label>
+                <label><input type="radio" name="rating" value="4"> ★★★★</label>
+                <label><input type="radio" name="rating" value="3"> ★★★</label>
+                <label><input type="radio" name="rating" value="2"> ★★</label>
+                <label><input type="radio" name="rating" value="1"> ★</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reviewMessage">Your Review</label>
+              <textarea id="reviewMessage" name="message" rows="5" placeholder="Write your review..." required maxlength="500"></textarea>
+            </div>
+
+            <button type="submit" class="primary-button review-submit" id="reviewSubmit">SUBMIT REVIEW</button>
+            <p id="reviewStatus" class="review-status" aria-live="polite"></p>
+          </form>
         </div>
+      </div>
+    </section>
 
+  </main>
 
+  <!-- =====================================================
+       CONTACT CTA
+  ===================================================== -->
+  <section class="contact-cta" id="contact">
+    <div class="container contact-cta-content">
+      <div>
+        <p class="eyebrow">READY TO PLAY?</p>
+        <h2>
+          YOUR NEXT
+          <span>GAME STARTS HERE.</span>
+        </h2>
+      </div>
+      <div class="cta-buttons">
+        <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
+        <a href="https://wa.me/256755805092" target="_blank" rel="noopener" class="whatsapp-button" id="whatsappButton">WhatsApp Academy</a>
+      </div>
+    </div>
+  </section>
 
-        <!-- MESSAGE -->
+  <!-- =====================================================
+       MEMBERSHIP CTA
+  ===================================================== -->
+  <section class="membership-anchor">
+    <div class="container">
+      <div class="membership-anchor-box">
+        <p class="eyebrow">MEMBERSHIP</p>
+        <h2>
+          JOIN THE
+          <span>ACADEMY FAMILY.</span>
+        </h2>
+        <p>
+          Train with purpose, develop your skills and take the next step in your badminton journey.
+        </p>
+        <a href="membership.html" class="primary-button">START APPLICATION</a>
+      </div>
+    </div>
+  </section>
 
-        <div class="form-group">
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
+          <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
+          <div class="logo-text">
+            <span>BARYAN</span>
+            <span>ACADEMY</span>
+          </div>
+        </a>
+        <p>Train. Develop. Compete. Belong.</p>
+      </div>
 
-          <label for="reviewMessage">
-            Your Review
-          </label>
+      <div>
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#schedule">Schedule</a>
+      </div>
 
-          <textarea
-            id="reviewMessage"
-            name="message"
-            rows="5"
-            placeholder="Write your review..."
-            required
-            maxlength="500"
-          ></textarea>
+      <div>
+        <h4>Academy</h4>
+        <a href="membership.html">Membership</a>
+        <a href="#gallery">Staff</a>
+        <a href="#news">News</a>
+      </div>
 
-        </div>
-
-
-
-        <!-- SUBMIT -->
-
-        <button
-          type="submit"
-          class="primary-button review-submit"
-          id="reviewSubmit"
-        >
-          SUBMIT REVIEW
-        </button>
-
-
-        <p
-          id="reviewStatus"
-          class="review-status"
-          aria-live="polite"
-        ></p>
-
-      </form>
-
+      <div>
+        <h4>Contact</h4>
+        <a href="#contact">Contact Academy</a>
+        <a href="https://wa.me/256755805092" target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+        <a href="mailto:baryanmintonclub@gmail.com" id="footerEmail">Email</a>
+      </div>
     </div>
 
-  </div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =====================================================
-     CONTACT CTA
-===================================================== -->
-
-<section
-  class="contact-cta"
-  id="contact"
->
-
-  <div class="container contact-cta-content">
-
-    <div>
-
-      <p class="eyebrow">
-        READY TO PLAY?
-      </p>
-
-      <h2>
-        YOUR NEXT
-        <span>GAME STARTS HERE.</span>
-      </h2>
-
+    <div class="container footer-bottom">
+      <p>© 2026 Baryan Badminton Academy. All rights reserved.</p>
+      <div>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
     </div>
-
-
-    <div class="cta-buttons">
-
-      <a
-        href="membership.html"
-        class="primary-button"
-      >
-        JOIN ACADEMY
-      </a>
-
-      <a
-        href="https://wa.me/256755805092"
-        target="_blank"
-        rel="noopener"
-        class="whatsapp-button"
-        id="whatsappButton"
-      >
-        WhatsApp Academy
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     MEMBERSHIP CTA
-===================================================== -->
-
-<section class="membership-anchor">
-
-  <div class="container">
-
-    <div class="membership-anchor-box">
-
-      <p class="eyebrow">
-        MEMBERSHIP
-      </p>
-
-      <h2>
-        JOIN THE
-        <span>ACADEMY FAMILY.</span>
-      </h2>
-
-      <p>
-        Train with purpose, develop your skills and take the next step in your badminton journey.
-      </p>
-
-      <a
-        href="membership.html"
-        class="primary-button"
-      >
-        START APPLICATION
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-  <div class="container footer-grid">
-
-
-    <div>
-
-      <a
-        href="#home"
-        class="logo"
-        aria-label="Baryan Badminton Academy home"
-      >
-
-        <img
-          src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png"
-          alt="Baryan Badminton Academy logo"
-        >
-
-        <div class="logo-text">
-
-          <span>BARYAN</span>
-
-          <span>ACADEMY</span>
-
-        </div>
-
-      </a>
-
-      <p>
-        Train. Develop. Compete. Belong.
-      </p>
-
-    </div>
-
-
-    <div>
-
-      <h4>
-        Explore
-      </h4>
-
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#programs">
-        Programs
-      </a>
-
-      <a href="#schedule">
-        Schedule
-      </a>
-
-    </div>
-
-
-    <div>
-
-      <h4>
-        Academy
-      </h4>
-
-      <a href="membership.html">
-        Membership
-      </a>
-
-      <a href="#gallery">
-        Staff
-      </a>
-
-      <a href="#news">
-        News
-      </a>
-
-    </div>
-
-
-    <div>
-
-      <h4>
-        Contact
-      </h4>
-
-      <a href="#contact">
-        Contact Academy
-      </a>
-
-      <a
-        href="https://wa.me/256755805092"
-        target="_blank"
-        rel="noopener"
-      >
-        Chat with us on WhatsApp
-      </a>
-
-      <a
-        href="mailto:baryanmintonclub@gmail.com"
-        id="footerEmail"
-      >
-        Email
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <div class="container footer-bottom">
-
-    <p>
-      © 2026 Baryan Badminton Academy.
-      All rights reserved.
-    </p>
-
-    <div>
-
-      <a href="privacy.html">
-        Privacy
-      </a>
-
-      <a href="terms.html">
-        Terms
-      </a>
-
-    </div>
-
-  </div>
-
-</footer>
-
-
-
-<!-- =====================================================
-     MOBILE NAVIGATION
-===================================================== -->
-
-<script>
-
-  const menuButton =
-    document.getElementById("mobileMenuButton");
-
-  const navigation =
-    document.getElementById("mainNavigation");
-
-
-  if (menuButton && navigation) {
-
-    menuButton.addEventListener("click", () => {
-
-      const isOpen =
-        navigation.classList.toggle("open");
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
-    });
-
-
-    document
-      .querySelectorAll(".main-navigation a")
-      .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-          navigation.classList.remove("open");
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-        });
-
+  </footer>
+
+  <!-- =====================================================
+       MOBILE NAVIGATION
+  ===================================================== -->
+  <script>
+    const menuButton = document.getElementById("mobileMenuButton");
+    const navigation = document.getElementById("mainNavigation");
+
+    if (menuButton && navigation) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = navigation.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
       });
 
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (event.key === "Escape") {
-
+      document.querySelectorAll(".main-navigation a").forEach(link => {
+        link.addEventListener("click", () => {
           navigation.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
 
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+          navigation.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
         }
+      });
+    }
+  </script>
 
+  <!-- =====================================================
+       STAFF MODAL
+  ===================================================== -->
+  <script>
+    const staffData = {
+      1: {
+        name: "Alema G Hamis",
+        position: "Head Coach",
+        bio: "Alema G Hamis supports player development through structured badminton coaching, technical training and competitive preparation.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      },
+      2: {
+        name: "Sarah Nalwoga",
+        position: "Junior Coach",
+        bio: "Sarah Nalwoga supports junior players as they develop badminton fundamentals, confidence, coordination and teamwork.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      },
+      3: {
+        name: "David Ssempijja",
+        position: "Fitness & Conditioning Coach",
+        bio: "David Ssempijja supports players with fitness, conditioning, movement and physical preparation for badminton.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      },
+      4: {
+        name: "Grace Nakato",
+        position: "Academy Administrator",
+        bio: "Grace Nakato supports academy administration and helps ensure smooth communication between players, parents and the academy.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
       }
-    );
+    };
 
-  }
+    const modal = document.getElementById("staffModal");
+    const modalPhoto = document.getElementById("staffModalPhoto");
+    const modalName = document.getElementById("staffModalName");
+    const modalPosition = document.getElementById("staffModalPosition");
+    const modalBio = document.getElementById("staffModalBio");
+    const modalContact = document.getElementById("staffModalContact");
+    const closeBtn = document.getElementById("staffModalClose");
+    const overlay = document.getElementById("staffModalOverlay");
 
-</script>
+    function openStaffModal(id) {
+      const data = staffData[id];
+      if (!data) return;
 
+      modalName.textContent = data.name;
+      modalPosition.textContent = data.position;
+      modalBio.textContent = data.bio;
 
+      modalContact.innerHTML = `
+        <div class="staff-contact-item">
+          <strong>Email</strong>
+          <a href="mailto:${data.email}">${data.email}</a>
+        </div>
+        <div class="staff-contact-item">
+          <strong>Phone</strong>
+          <a href="tel:${data.phone.replace(/\s/g, "")}">${data.phone}</a>
+        </div>
+      `;
 
-<!-- =====================================================
-     STAFF MODAL
-===================================================== -->
+      modalPhoto.innerHTML = `<img src="${data.photo}" alt="${data.name}">`;
 
-<script>
-
-  const staffData = {
-
-    1: {
-
-      name: "Alema G Hamis",
-
-      position: "Head Coach",
-
-      bio:
-        "Alema G Hamis supports player development through structured badminton coaching, technical training and competitive preparation.",
-
-      email:
-        "baryanmintonclub@gmail.com",
-
-      phone:
-        "+256 755 805 092",
-
-      photo:
-        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-
-    },
-
-
-    2: {
-
-      name: "Sarah Nalwoga",
-
-      position: "Junior Coach",
-
-      bio:
-        "Sarah Nalwoga supports junior players as they develop badminton fundamentals, confidence, coordination and teamwork.",
-
-      email:
-        "baryanmintonclub@gmail.com",
-
-      phone:
-        "+256 755 805 092",
-
-      photo:
-        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-
-    },
-
-
-    3: {
-
-      name: "David Ssempijja",
-
-      position: "Fitness & Conditioning Coach",
-
-      bio:
-        "David Ssempijja supports players with fitness, conditioning, movement and physical preparation for badminton.",
-
-      email:
-        "baryanmintonclub@gmail.com",
-
-      phone:
-        "+256 755 805 092",
-
-      photo:
-        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-
-    },
-
-
-    4: {
-
-      name: "Grace Nakato",
-
-      position: "Academy Administrator",
-
-      bio:
-        "Grace Nakato supports academy administration and helps ensure smooth communication between players, parents and the academy.",
-
-      email:
-        "baryanmintonclub@gmail.com",
-
-      phone:
-        "+256 755 805 092",
-
-      photo:
-        "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
     }
 
-  };
+    function closeStaffModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
 
-
-  const modal =
-    document.getElementById("staffModal");
-
-  const modalPhoto =
-    document.getElementById("staffModalPhoto");
-
-  const modalName =
-    document.getElementById("staffModalName");
-
-  const modalPosition =
-    document.getElementById("staffModalPosition");
-
-  const modalBio =
-    document.getElementById("staffModalBio");
-
-  const modalContact =
-    document.getElementById("staffModalContact");
-
-  const closeBtn =
-    document.getElementById("staffModalClose");
-
-  const overlay =
-    document.getElementById("staffModalOverlay");
-
-
-  function openStaffModal(id) {
-
-    const data =
-      staffData[id];
-
-    if (!data) return;
-
-
-    modalName.textContent =
-      data.name;
-
-    modalPosition.textContent =
-      data.position;
-
-    modalBio.textContent =
-      data.bio;
-
-
-    modalContact.innerHTML = `
-
-      <div class="staff-contact-item">
-
-        <strong>Email</strong>
-
-        <a href="mailto:${data.email}">
-          ${data.email}
-        </a>
-
-      </div>
-
-
-      <div class="staff-contact-item">
-
-        <strong>Phone</strong>
-
-        <a href="tel:${data.phone.replace(/\s/g, "")}">
-          ${data.phone}
-        </a>
-
-      </div>
-
-    `;
-
-
-    modalPhoto.innerHTML = `
-      <img
-        src="${data.photo}"
-        alt="${data.name}"
-      >
-    `;
-
-
-    modal.classList.add("open");
-
-    modal.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-    document.body.classList.add(
-      "modal-open"
-    );
-
-  }
-
-
-  function closeStaffModal() {
-
-    modal.classList.remove("open");
-
-    modal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.classList.remove(
-      "modal-open"
-    );
-
-  }
-
-
-  document
-    .querySelectorAll(".staff-card")
-    .forEach(card => {
-
-
-      card.addEventListener(
-        "click",
-        event => {
-
-          /*
-            Prevent the button click from
-            triggering the card twice.
-          */
-
-          if (
-            event.target.closest(
-              ".staff-explore"
-            )
-          ) {
-
-            event.stopPropagation();
-
-          }
-
-          openStaffModal(
-            card.dataset.staff
-          );
-
+    document.querySelectorAll(".staff-card").forEach(card => {
+      card.addEventListener("click", event => {
+        if (event.target.closest(".staff-explore")) {
+          event.stopPropagation();
         }
-      );
+        openStaffModal(card.dataset.staff);
+      });
 
-
-      card.addEventListener(
-        "keydown",
-        event => {
-
-          if (
-            event.key === "Enter" ||
-            event.key === " "
-          ) {
-
-            event.preventDefault();
-
-            openStaffModal(
-              card.dataset.staff
-            );
-
-          }
-
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openStaffModal(card.dataset.staff);
         }
-      );
+      });
 
-
-      const button =
-        card.querySelector(
-          ".staff-explore"
-        );
-
-
+      const button = card.querySelector(".staff-explore");
       if (button) {
-
-        button.addEventListener(
-          "click",
-          event => {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-            openStaffModal(
-              card.dataset.staff
-            );
-
-          }
-        );
-
+        button.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          openStaffModal(card.dataset.staff);
+        });
       }
-
     });
 
+    closeBtn.addEventListener("click", closeStaffModal);
+    overlay.addEventListener("click", closeStaffModal);
 
-  closeBtn.addEventListener(
-    "click",
-    closeStaffModal
-  );
-
-
-  overlay.addEventListener(
-    "click",
-    closeStaffModal
-  );
-
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key === "Escape" &&
-        modal.classList.contains("open")
-      ) {
-
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
         closeStaffModal();
+      }
+    });
+  </script>
 
+  <!-- =====================================================
+       HERO SLIDER
+  ===================================================== -->
+  <script>
+    (function () {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dotsContainer = document.getElementById('heroDots');
+      const prevBtn = document.getElementById('heroPrev');
+      const nextBtn = document.getElementById('heroNext');
+      let current = 0;
+      let autoTimer;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll('.hero-dot');
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        resetAuto();
       }
 
-    }
-  );
-
-</script>
-
-
-
-<!-- =====================================================
-     FIREBASE REVIEWS
-===================================================== -->
-
-<script type="module">
-
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-
-  /* =====================================================
-     FIREBASE CONFIG
-  ===================================================== */
-
-  const firebaseConfig = {
-
-    apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
-  authDomain: "baryan-5f81d.firebaseapp.com",
-  projectId: "baryan-5f81d",
-  storageBucket: "baryan-5f81d.firebasestorage.app",
-  messagingSenderId: "409395363296",
-  appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
-  measurementId: "G-J1RCHQN6XN"
-
-  };
-
-
-  /* =====================================================
-     INITIALIZE FIREBASE
-  ===================================================== */
-
-  let db = null;
-
-  try {
-
-    const app =
-      initializeApp(firebaseConfig);
-
-    db =
-      getFirestore(app);
-
-    console.log(
-      "Firebase initialized successfully."
-    );
-
-  } catch (error) {
-
-    console.error(
-      "Firebase initialization failed:",
-      error
-    );
-
-  }
-
-
-  /* =====================================================
-     GET ELEMENTS
-  ===================================================== */
-
-  const reviewSelect =
-    document.getElementById("reviewSelect");
-
-  const selectedReview =
-    document.getElementById("selectedReview");
-
-  const reviewForm =
-    document.getElementById("reviewForm");
-
-  const reviewSubmit =
-    document.getElementById("reviewSubmit");
-
-  const reviewStatus =
-    document.getElementById("reviewStatus");
-
-
-  let reviews = [];
-
-
-  /* =====================================================
-     ESCAPE HTML
-  ===================================================== */
-
-  function escapeHTML(value) {
-
-    return String(value ?? "")
-
-      .replace(/&/g, "&amp;")
-
-      .replace(/</g, "&lt;")
-
-      .replace(/>/g, "&gt;")
-
-      .replace(/"/g, "&quot;")
-
-      .replace(/'/g, "&#039;");
-
-  }
-
-
-  /* =====================================================
-     SHOW ERROR
-  ===================================================== */
-
-  function showFirebaseError(error) {
-
-    console.error(
-      "Firebase error:",
-      error
-    );
-
-    console.error(
-      "Firebase error code:",
-      error?.code
-    );
-
-    console.error(
-      "Firebase error message:",
-      error?.message
-    );
-
-
-    let message =
-      "Unable to connect to the review system.";
-
-
-    if (
-      error?.code ===
-      "permission-denied"
-    ) {
-
-      message =
-        "Firebase denied access. Check your Firestore Rules.";
-
-    }
-
-    else if (
-      error?.code ===
-      "unavailable"
-    ) {
-
-      message =
-        "Firebase is temporarily unavailable. Please try again.";
-
-    }
-
-    else if (
-      error?.code ===
-      "failed-precondition"
-    ) {
-
-      message =
-        "Firestore is not configured correctly.";
-
-    }
-
-    else if (
-      error?.code ===
-      "unauthenticated"
-    ) {
-
-      message =
-        "Firebase requires authentication for this operation.";
-
-    }
-
-    else if (
-      error?.code ===
-      "not-found"
-    ) {
-
-      message =
-        "Firestore database was not found. Create Firestore Database in Firebase Console.";
-
-    }
-
-    else if (
-      error?.message
-    ) {
-
-      message =
-        error.message;
-
-    }
-
-
-    return message;
-
-  }
-
-
-  /* =====================================================
-     LOAD REVIEWS
-  ===================================================== */
-
-  async function loadReviews() {
-
-    if (!db) {
-
-      reviewSelect.innerHTML = `
-        <option value="">
-          Reviews unavailable
-        </option>
-      `;
-
-      selectedReview.innerHTML = `
-        <p>
-          Firebase could not be initialized.
-        </p>
-      `;
-
-      return;
-
-    }
-
-
-    reviewSelect.innerHTML = `
-      <option value="">
-        Loading reviews...
-      </option>
-    `;
-
-
-    selectedReview.innerHTML = `
-      <p class="reviews-loading">
-        Loading reviews...
-      </p>
-    `;
-
-
-    console.log(
-      "Loading reviews from Firestore..."
-    );
-
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function resetAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(next, 5500);
+      }
+
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+
+      resetAuto();
+
+      const hero = document.querySelector('.home-hero');
+      hero.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      hero.addEventListener('mouseleave', resetAuto);
+    })();
+  </script>
+
+  <!-- =====================================================
+       FIREBASE REVIEWS
+  ===================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
+      authDomain: "baryan-5f81d.firebaseapp.com",
+      projectId: "baryan-5f81d",
+      storageBucket: "baryan-5f81d.firebasestorage.app",
+      messagingSenderId: "409395363296",
+      appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
+      measurementId: "G-J1RCHQN6XN"
+    };
+
+    let db = null;
 
     try {
-
-      const reviewsCollection =
-        collection(
-          db,
-          "reviews"
-        );
-
-
-      const snapshot =
-        await getDocs(
-          reviewsCollection
-        );
-
-
-      console.log(
-        "Firestore connection successful."
-      );
-
-      console.log(
-        "Number of reviews:",
-        snapshot.size
-      );
-
-
-      reviews = [];
-
-
-      snapshot.forEach(
-        documentSnapshot => {
-
-          reviews.push({
-
-            id:
-              documentSnapshot.id,
-
-            ...documentSnapshot.data()
-
-          });
-
-        }
-      );
-
-
-      renderReviewSelector();
-
-
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      console.log("Firebase initialized successfully.");
     } catch (error) {
-
-      const message =
-        showFirebaseError(
-          error
-        );
-
-
-      reviewSelect.innerHTML = `
-        <option value="">
-          Reviews unavailable
-        </option>
-      `;
-
-
-      selectedReview.innerHTML = `
-        <p class="reviews-loading">
-          ${escapeHTML(message)}
-        </p>
-      `;
-
+      console.error("Firebase initialization failed:", error);
     }
 
-  }
+    const reviewSelect = document.getElementById("reviewSelect");
+    const selectedReview = document.getElementById("selectedReview");
+    const reviewForm = document.getElementById("reviewForm");
+    const reviewSubmit = document.getElementById("reviewSubmit");
+    const reviewStatus = document.getElementById("reviewStatus");
 
+    let reviews = [];
 
-  /* =====================================================
-     RENDER REVIEW SELECTOR
-  ===================================================== */
-
-  function renderReviewSelector() {
-
-    if (
-      reviews.length === 0
-    ) {
-
-      reviewSelect.innerHTML = `
-        <option value="">
-          No reviews yet
-        </option>
-      `;
-
-
-      selectedReview.innerHTML = `
-        <p class="reviews-loading">
-          No reviews yet.
-          Be the first to review Baryan Badminton Academy!
-        </p>
-      `;
-
-
-      return;
-
+    function escapeHTML(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
+    function showFirebaseError(error) {
+      console.error("Firebase error:", error);
+      let message = "Unable to connect to the review system.";
 
-    reviewSelect.innerHTML = `
-      <option value="">
-        Select a review...
-      </option>
-    `;
-
-
-    reviews.forEach(
-      (review, index) => {
-
-        const option =
-          document.createElement(
-            "option"
-          );
-
-
-        option.value =
-          String(index);
-
-
-        option.textContent =
-          `${review.name || "Academy Member"} — ${review.role || "Member"}`;
-
-
-        reviewSelect.appendChild(
-          option
-        );
-
+      if (error?.code === "permission-denied") {
+        message = "Firebase denied access. Check your Firestore Rules.";
+      } else if (error?.code === "unavailable") {
+        message = "Firebase is temporarily unavailable. Please try again.";
+      } else if (error?.code === "failed-precondition") {
+        message = "Firestore is not configured correctly.";
+      } else if (error?.code === "unauthenticated") {
+        message = "Firebase requires authentication for this operation.";
+      } else if (error?.code === "not-found") {
+        message = "Firestore database was not found. Create Firestore Database in Firebase Console.";
+      } else if (error?.message) {
+        message = error.message;
       }
-    );
-
-  }
-
-
-  /* =====================================================
-     SELECT REVIEW
-  ===================================================== */
-
-  reviewSelect.addEventListener(
-    "change",
-    () => {
-
-      const value =
-        reviewSelect.value;
-
-
-      if (
-        value === ""
-      ) {
-
-        selectedReview.innerHTML = `
-          <p class="reviews-loading">
-            Select a review above to read it.
-          </p>
-        `;
-
-        return;
-
-      }
-
-
-      const review =
-        reviews[
-          Number(value)
-        ];
-
-
-      if (review) {
-
-        displayReview(
-          review
-        );
-
-      }
-
+      return message;
     }
-  );
 
-
-  /* =====================================================
-     DISPLAY REVIEW
-  ===================================================== */
-
-  function displayReview(
-    review
-  ) {
-
-    let rating =
-      Number(
-        review.rating
-      ) || 5;
-
-
-    rating =
-      Math.min(
-        5,
-        Math.max(
-          1,
-          rating
-        )
-      );
-
-
-    const stars =
-      "★".repeat(rating) +
-      "☆".repeat(5 - rating);
-
-
-    selectedReview.innerHTML = `
-
-      <div class="review-stars">
-        ${stars}
-      </div>
-
-      <p class="review-message">
-        “${escapeHTML(review.message)}”
-      </p>
-
-      <strong class="review-name">
-        ${escapeHTML(
-          review.name ||
-          "Academy Member"
-        )}
-      </strong>
-
-      <span class="review-role">
-        ${escapeHTML(
-          review.role ||
-          "Member"
-        )}
-      </span>
-
-    `;
-
-  }
-
-
-  /* =====================================================
-     SUBMIT REVIEW
-  ===================================================== */
-
-  reviewForm.addEventListener(
-    "submit",
-    async event => {
-
-      event.preventDefault();
-
-
-      console.log(
-        "Review form submitted."
-      );
-
-
+    async function loadReviews() {
       if (!db) {
-
-        reviewStatus.textContent =
-          "Firebase is not initialized.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
+        reviewSelect.innerHTML = `<option value="">Reviews unavailable</option>`;
+        selectedReview.innerHTML = `<p>Firebase could not be initialized.</p>`;
         return;
-
       }
 
-
-      /* -----------------------------------------------
-         RATING
-      ----------------------------------------------- */
-
-      const ratingInput =
-        document.querySelector(
-          'input[name="rating"]:checked'
-        );
-
-
-      if (!ratingInput) {
-
-        reviewStatus.textContent =
-          "Please select a rating.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      /* -----------------------------------------------
-         FORM DATA
-      ----------------------------------------------- */
-
-      const name =
-        document
-          .getElementById("reviewName")
-          .value
-          .trim();
-
-
-      const role =
-        document
-          .getElementById("reviewRole")
-          .value;
-
-
-      const message =
-        document
-          .getElementById("reviewMessage")
-          .value
-          .trim();
-
-
-      const rating =
-        Number(
-          ratingInput.value
-        );
-
-
-      /* -----------------------------------------------
-         VALIDATION
-      ----------------------------------------------- */
-
-      if (
-        !name ||
-        !role ||
-        !message
-      ) {
-
-        reviewStatus.textContent =
-          "Please complete all fields.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      if (
-        name.length > 60
-      ) {
-
-        reviewStatus.textContent =
-          "Your name is too long.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      if (
-        message.length > 500
-      ) {
-
-        reviewStatus.textContent =
-          "Your review is too long.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      if (
-        rating < 1 ||
-        rating > 5
-      ) {
-
-        reviewStatus.textContent =
-          "Invalid rating.";
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-        return;
-
-      }
-
-
-      /* -----------------------------------------------
-         DISABLE BUTTON
-      ----------------------------------------------- */
-
-      reviewSubmit.disabled =
-        true;
-
-      reviewSubmit.textContent =
-        "SUBMITTING...";
-
-
-      reviewStatus.textContent =
-        "Submitting your review...";
-
-
-      reviewStatus.style.color =
-        "#555";
-
-
-      /* -----------------------------------------------
-         SAVE TO FIRESTORE
-      ----------------------------------------------- */
+      reviewSelect.innerHTML = `<option value="">Loading reviews...</option>`;
+      selectedReview.innerHTML = `<p class="reviews-loading">Loading reviews...</p>`;
 
       try {
+        const reviewsCollection = collection(db, "reviews");
+        const snapshot = await getDocs(reviewsCollection);
 
-        console.log(
-          "Sending review to Firestore..."
-        );
-
-
-        const reviewsCollection =
-          collection(
-            db,
-            "reviews"
-          );
-
-
-        const docRef =
-          await addDoc(
-            reviewsCollection,
-            {
-
-              name:
-                name,
-
-              role:
-                role,
-
-              rating:
-                rating,
-
-              message:
-                message,
-
-              createdAt:
-                serverTimestamp()
-
-            }
-          );
-
-
-        console.log(
-          "Review saved successfully:",
-          docRef.id
-        );
-
-
-        /* -------------------------------------------
-           SUCCESS
-        ------------------------------------------- */
-
-        reviewStatus.textContent =
-          "Thank you! Your review has been submitted.";
-
-        reviewStatus.style.color =
-          "#0757c9";
-
-
-        /* -------------------------------------------
-           CREATE LOCAL REVIEW
-        ------------------------------------------- */
-
-        const newReview = {
-
-          id:
-            docRef.id,
-
-          name:
-            name,
-
-          role:
-            role,
-
-          rating:
-            rating,
-
-          message:
-            message
-
-        };
-
-
-        reviews.push(
-          newReview
-        );
-
+        reviews = [];
+        snapshot.forEach(documentSnapshot => {
+          reviews.push({
+            id: documentSnapshot.id,
+            ...documentSnapshot.data()
+          });
+        });
 
         renderReviewSelector();
-
-
-        const newIndex =
-          reviews.length - 1;
-
-
-        reviewSelect.value =
-          String(newIndex);
-
-
-        displayReview(
-          newReview
-        );
-
-
-        reviewForm.reset();
-
-
       } catch (error) {
+        const message = showFirebaseError(error);
+        reviewSelect.innerHTML = `<option value="">Reviews unavailable</option>`;
+        selectedReview.innerHTML = `<p class="reviews-loading">${escapeHTML(message)}</p>`;
+      }
+    }
 
-        console.error(
-          "FIRESTORE SUBMIT ERROR:",
-          error
-        );
-
-
-        const message =
-          showFirebaseError(
-            error
-          );
-
-
-        reviewStatus.textContent =
-          message;
-
-
-        reviewStatus.style.color =
-          "#d32f2f";
-
-      } finally {
-
-        reviewSubmit.disabled =
-          false;
-
-
-        reviewSubmit.textContent =
-          "SUBMIT REVIEW";
-
+    function renderReviewSelector() {
+      if (reviews.length === 0) {
+        reviewSelect.innerHTML = `<option value="">No reviews yet</option>`;
+        selectedReview.innerHTML = `<p class="reviews-loading">No reviews yet. Be the first to review Baryan Badminton Academy!</p>`;
+        return;
       }
 
+      reviewSelect.innerHTML = `<option value="">Select a review...</option>`;
+      reviews.forEach((review, index) => {
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = `${review.name || "Academy Member"} — ${review.role || "Member"}`;
+        reviewSelect.appendChild(option);
+      });
     }
-  );
 
+    reviewSelect.addEventListener("change", () => {
+      const value = reviewSelect.value;
+      if (value === "") {
+        selectedReview.innerHTML = `<p class="reviews-loading">Select a review above to read it.</p>`;
+        return;
+      }
+      const review = reviews[Number(value)];
+      if (review) displayReview(review);
+    });
 
-  /* =====================================================
-     START FIREBASE
-  ===================================================== */
+    function displayReview(review) {
+      let rating = Number(review.rating) || 5;
+      rating = Math.min(5, Math.max(1, rating));
+      const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
 
-  loadReviews();
+      selectedReview.innerHTML = `
+        <div class="review-stars">${stars}</div>
+        <p class="review-message">“${escapeHTML(review.message)}”</p>
+        <strong class="review-name">${escapeHTML(review.name || "Academy Member")}</strong>
+        <span class="review-role">${escapeHTML(review.role || "Member")}</span>
+      `;
+    }
 
-</script>
+    reviewForm.addEventListener("submit", async event => {
+      event.preventDefault();
+
+      if (!db) {
+        reviewStatus.textContent = "Firebase is not initialized.";
+        reviewStatus.style.color = "#d32f2f";
+        return;
+      }
+
+      const ratingInput = document.querySelector('input[name="rating"]:checked');
+      if (!ratingInput) {
+        reviewStatus.textContent = "Please select a rating.";
+        reviewStatus.style.color = "#d32f2f";
+        return;
+      }
+
+      const name = document.getElementById("reviewName").value.trim();
+      const role = document.getElementById("reviewRole").value;
+      const message = document.getElementById("reviewMessage").value.trim();
+      const rating = Number(ratingInput.value);
+
+      if (!name || !role || !message) {
+        reviewStatus.textContent = "Please complete all fields.";
+        reviewStatus.style.color = "#d32f2f";
+        return;
+      }
+
+      reviewSubmit.disabled = true;
+      reviewSubmit.textContent = "SUBMITTING...";
+      reviewStatus.textContent = "Submitting your review...";
+      reviewStatus.style.color = "#555";
+
+      try {
+        const reviewsCollection = collection(db, "reviews");
+        const docRef = await addDoc(reviewsCollection, {
+          name,
+          role,
+          rating,
+          message,
+          createdAt: serverTimestamp()
+        });
+
+        reviewStatus.textContent = "Thank you! Your review has been submitted.";
+        reviewStatus.style.color = "#0757c9";
+
+        const newReview = { id: docRef.id, name, role, rating, message };
+        reviews.push(newReview);
+        renderReviewSelector();
+        reviewSelect.value = String(reviews.length - 1);
+        displayReview(newReview);
+        reviewForm.reset();
+      } catch (error) {
+        const message = showFirebaseError(error);
+        reviewStatus.textContent = message;
+        reviewStatus.style.color = "#d32f2f";
+      } finally {
+        reviewSubmit.disabled = false;
+        reviewSubmit.textContent = "SUBMIT REVIEW";
+      }
+    });
+
+    loadReviews();
+  </script>
 
 </body>
 </html>

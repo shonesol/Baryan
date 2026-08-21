@@ -8,9 +8,6 @@
   <!-- Cloudinary Upload Widget -->
   <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
   <style>
-    /* =====================================================
-       BASE + ORIGINAL STYLES
-    ===================================================== */
     :root {
       --blue: #0757c9;
       --orange: #f97316;
@@ -28,7 +25,6 @@
     }
     .gallery-container { width: min(1140px, 92%); margin: 0 auto; }
 
-    /* Logo */
     .logo {
       display: flex;
       align-items: center;
@@ -43,7 +39,6 @@
     }
     footer .logo img { height: 50px; }
 
-    /* Header */
     .gallery-header {
       position: sticky;
       top: 0;
@@ -89,7 +84,6 @@
       border-radius: 8px;
     }
 
-    /* Hero */
     .gallery-hero {
       background: linear-gradient(135deg, #0b1a3a, #0757c9);
       color: #fff;
@@ -113,7 +107,6 @@
     .gallery-hero h1 span { color: #fbbf24; }
     .gallery-hero p { margin: 0; opacity: 0.9; font-size: 1.1rem; }
 
-    /* Section */
     .gallery-section { padding: 60px 0 40px; }
     .section-heading { text-align: center; margin-bottom: 36px; }
     .section-heading h2 {
@@ -124,7 +117,6 @@
     .section-heading h2 span { color: var(--blue); }
     .section-heading p { color: var(--muted); margin: 0; }
 
-    /* Filters */
     .gallery-filters {
       display: flex;
       justify-content: center;
@@ -149,7 +141,6 @@
       color: #fff;
     }
 
-    /* Photo Grid */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -199,7 +190,6 @@
     }
     .gallery-overlay small { font-size: 0.8rem; opacity: 0.8; }
 
-    /* Videos */
     .video-section { padding: 40px 0 60px; background: #f8fafc; }
     .video-grid {
       display: grid;
@@ -234,9 +224,7 @@
       background: rgba(0,0,0,0.35);
       transition: background 0.2s;
     }
-    .video-placeholder:hover .video-play-overlay,
-    .video-placeholder.playing .video-play-overlay { background: rgba(0,0,0,0.15); }
-    .video-placeholder.playing .video-play-overlay { opacity: 0; pointer-events: none; }
+    .video-placeholder:hover .video-play-overlay { background: rgba(0,0,0,0.5); }
     .video-play {
       width: 64px;
       height: 64px;
@@ -260,7 +248,6 @@
     }
     .video-info h3 { margin: 4px 0 0; font-size: 1.05rem; }
 
-    /* CTA */
     .gallery-cta {
       background: linear-gradient(135deg, #0b1a3a, #0757c9);
       color: #fff;
@@ -288,7 +275,6 @@
       box-shadow: 0 8px 20px rgba(249,115,22,0.35);
     }
 
-    /* Footer */
     .gallery-footer {
       background: #0b0b0b;
       color: #94a3b8;
@@ -311,7 +297,6 @@
     }
     .footer-links a:hover { color: #fff; }
 
-    /* Lightbox (photos) */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -370,7 +355,6 @@
     .lightbox-prev { left: 20px; top: 50%; transform: translateY(-50%); }
     .lightbox-next { right: 20px; top: 50%; transform: translateY(-50%); }
 
-    /* Video Lightbox */
     .video-lightbox {
       position: fixed;
       inset: 0;
@@ -429,7 +413,6 @@
     .video-lightbox-prev { left: 20px; }
     .video-lightbox-next { right: 20px; }
 
-    /* Empty / loading */
     .gallery-empty {
       text-align: center;
       padding: 40px 20px;
@@ -437,7 +420,6 @@
       font-size: 1.05rem;
     }
 
-    /* ========== ADMIN PANEL ========== */
     .admin-bar {
       position: fixed;
       bottom: 0;
@@ -476,7 +458,6 @@
     .admin-btn.secondary { background: #475569; }
     .admin-btn:hover { opacity: 0.9; }
 
-    /* Admin login modal */
     .admin-login-modal {
       position: fixed;
       inset: 0;
@@ -505,7 +486,6 @@
     }
     .admin-login-box .error { color: #dc2626; font-size: 0.9rem; margin-bottom: 8px; }
 
-    /* Admin manage panel */
     .admin-panel {
       position: fixed;
       inset: 0;
@@ -567,7 +547,6 @@
       font-weight: 600;
     }
 
-    /* Floating admin trigger (only visible when logged out) */
     .admin-trigger {
       position: fixed;
       bottom: 20px;
@@ -678,7 +657,7 @@
   <button class="lightbox-next" id="lightboxNext" aria-label="Next">›</button>
 </div>
 
-<!-- Video Lightbox (full size, high quality) -->
+<!-- Video Lightbox -->
 <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
   <button class="video-lightbox-close" id="videoLightboxClose">×</button>
   <button class="video-lightbox-prev" id="videoLightboxPrev">‹</button>
@@ -704,7 +683,7 @@
   </div>
 </footer>
 
-<!-- Admin trigger (small lock button) -->
+<!-- Admin trigger -->
 <button class="admin-trigger" id="adminTrigger" title="Admin login">🔒</button>
 
 <!-- Admin login modal -->
@@ -718,7 +697,7 @@
   </div>
 </div>
 
-<!-- Admin bottom bar (visible when logged in) -->
+<!-- Admin bottom bar -->
 <div class="admin-bar" id="adminBar">
   <div class="admin-bar-inner">
     <h3>Admin Mode</h3>
@@ -744,28 +723,21 @@
 
 <script>
 /* ============================================================
-   CONFIG – CHANGE THESE
+   CONFIG – YOUR CLOUDINARY DETAILS
 ============================================================ */
-const CLOUD_NAME = "ziudh5iv";          // ← your Cloudinary cloud name
-const UPLOAD_PRESET_PHOTO = "baryan_photos";   // ← unsigned preset for photos
-const UPLOAD_PRESET_VIDEO = "baryan_videos";   // ← unsigned preset for videos
-const ADMIN_PASSWORD = "admin123";             // ← change this!
+const CLOUD_NAME = "ziudh5iv";                 // your Cloud Name from the screenshot
+const UPLOAD_PRESET_PHOTO = "baryan_photos";   // must be UNSIGNED
+const UPLOAD_PRESET_VIDEO = "baryan_videos";   // must be UNSIGNED
+const ADMIN_PASSWORD = "admin123";             // change this!
 
-/* Storage key */
 const STORAGE_KEY = "baryan_gallery_media_v1";
 
-/* ============================================================
-   STATE
-============================================================ */
 let media = { photos: [], videos: [] };
 let isAdmin = false;
 let visiblePhotoItems = [];
 let currentPhotoIndex = 0;
 let currentVideoIndex = 0;
 
-/* ============================================================
-   LOAD / SAVE
-============================================================ */
 function loadMedia() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -779,9 +751,6 @@ function saveMedia() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(media));
 }
 
-/* ============================================================
-   RENDER PHOTOS
-============================================================ */
 function renderPhotos() {
   const grid = document.getElementById("galleryGrid");
   const empty = document.getElementById("photoEmpty");
@@ -808,24 +777,18 @@ function renderPhotos() {
     </button>
   `).join("");
 
-  // Click handlers
   grid.querySelectorAll(".gallery-item").forEach(item => {
     item.addEventListener("click", () => {
       visiblePhotoItems = Array.from(grid.querySelectorAll(".gallery-item"))
         .filter(el => el.style.display !== "none");
-      const idx = visiblePhotoItems.indexOf(item);
-      openPhotoLightbox(idx);
+      openPhotoLightbox(visiblePhotoItems.indexOf(item));
     });
   });
 
-  // Re-apply active filter
   const active = document.querySelector(".filter-button.active");
   if (active) filterPhotos(active.dataset.filter);
 }
 
-/* ============================================================
-   RENDER VIDEOS
-============================================================ */
 function renderVideos() {
   const grid = document.getElementById("videoGrid");
   const empty = document.getElementById("videoEmpty");
@@ -855,15 +818,11 @@ function renderVideos() {
 
   grid.querySelectorAll(".video-card").forEach(card => {
     card.addEventListener("click", () => {
-      const idx = parseInt(card.dataset.index, 10);
-      openVideoLightbox(idx);
+      openVideoLightbox(parseInt(card.dataset.index, 10));
     });
   });
 }
 
-/* ============================================================
-   FILTERS
-============================================================ */
 function filterPhotos(category) {
   document.querySelectorAll(".gallery-item").forEach(item => {
     const cat = item.getAttribute("data-category");
@@ -881,9 +840,7 @@ document.querySelectorAll(".filter-button").forEach(btn => {
   });
 });
 
-/* ============================================================
-   PHOTO LIGHTBOX (next / prev)
-============================================================ */
+/* Photo Lightbox */
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxCaption = document.getElementById("lightboxCaption");
@@ -892,8 +849,7 @@ function openPhotoLightbox(index) {
   if (!visiblePhotoItems.length) return;
   currentPhotoIndex = index;
   const item = visiblePhotoItems[index];
-  const img = item.querySelector("img");
-  lightboxImage.src = img.src;
+  lightboxImage.src = item.querySelector("img").src;
   lightboxCaption.textContent = item.getAttribute("data-title") || "";
   lightbox.classList.add("open");
   lightbox.setAttribute("aria-hidden", "false");
@@ -923,9 +879,7 @@ document.getElementById("lightboxNext").addEventListener("click", showNextPhoto)
 document.getElementById("lightboxPrev").addEventListener("click", showPrevPhoto);
 lightbox.addEventListener("click", e => { if (e.target === lightbox) closePhotoLightbox(); });
 
-/* ============================================================
-   VIDEO LIGHTBOX (next / prev) – high quality full player
-============================================================ */
+/* Video Lightbox */
 const videoLightbox = document.getElementById("videoLightbox");
 const videoPlayer = document.getElementById("videoLightboxPlayer");
 const videoCaption = document.getElementById("videoLightboxCaption");
@@ -935,7 +889,7 @@ function openVideoLightbox(index) {
   if (!videos.length) return;
   currentVideoIndex = index;
   const v = videos[index];
-  videoPlayer.src = v.url;          // full high-res Cloudinary URL
+  videoPlayer.src = v.url;
   videoPlayer.load();
   videoCaption.textContent = v.title || "Video";
   videoLightbox.classList.add("open");
@@ -972,7 +926,6 @@ videoLightbox.addEventListener("click", e => {
   if (e.target === videoLightbox) closeVideoLightbox();
 });
 
-/* Keyboard */
 document.addEventListener("keydown", e => {
   if (lightbox.classList.contains("open")) {
     if (e.key === "Escape") closePhotoLightbox();
@@ -986,9 +939,7 @@ document.addEventListener("keydown", e => {
   }
 });
 
-/* ============================================================
-   ADMIN AUTH (simple client-side)
-============================================================ */
+/* Admin Auth */
 const adminTrigger = document.getElementById("adminTrigger");
 const adminLoginModal = document.getElementById("adminLoginModal");
 const adminBar = document.getElementById("adminBar");
@@ -1034,22 +985,15 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   adminPanel.classList.remove("open");
 });
 
-/* Restore session */
 if (sessionStorage.getItem("baryan_admin") === "1") {
   isAdmin = true;
   adminTrigger.classList.add("hidden");
   adminBar.classList.add("visible");
 }
 
-/* ============================================================
-   CLOUDINARY UPLOAD (photos → baryan/photos, videos → baryan/videos)
-============================================================ */
+/* Cloudinary Upload */
 function openPhotoUploader() {
   if (!isAdmin) return;
-  if (CLOUD_NAME === "YOUR_CLOUD_NAME") {
-    alert("Please set your Cloudinary CLOUD_NAME and upload presets in the script.");
-    return;
-  }
   const widget = cloudinary.createUploadWidget({
     cloudName: CLOUD_NAME,
     uploadPreset: UPLOAD_PRESET_PHOTO,
@@ -1082,10 +1026,6 @@ function openPhotoUploader() {
 
 function openVideoUploader() {
   if (!isAdmin) return;
-  if (CLOUD_NAME === "YOUR_CLOUD_NAME") {
-    alert("Please set your Cloudinary CLOUD_NAME and upload presets in the script.");
-    return;
-  }
   const widget = cloudinary.createUploadWidget({
     cloudName: CLOUD_NAME,
     uploadPreset: UPLOAD_PRESET_VIDEO,
@@ -1095,19 +1035,16 @@ function openVideoUploader() {
     maxFiles: 10,
     resourceType: "video",
     clientAllowedFormats: ["mp4", "mov", "webm", "avi"],
-    maxVideoFileSize: 200000000,   // 200 MB
-    // Keep high quality – no aggressive compression
+    maxVideoFileSize: 200000000,
     styles: { palette: { window: "#FFFFFF", sourceBg: "#F4F4F5", primary: "#0757c9" } }
   }, (error, result) => {
     if (!error && result && result.event === "success") {
       const info = result.info;
-      // Prefer the original / high quality delivery URL
-      const highQualityUrl = info.secure_url; // Cloudinary already serves original quality unless transformed
       const title = prompt("Video title (optional):", info.original_filename || "Video") || "Video";
       const category = prompt("Category (training / competition / community):", "training") || "training";
       media.videos.unshift({
         id: info.public_id,
-        url: highQualityUrl,
+        url: info.secure_url,
         title: title,
         category: category.toLowerCase().trim(),
         createdAt: new Date().toISOString()
@@ -1122,9 +1059,7 @@ function openVideoUploader() {
 document.getElementById("uploadPhotoBtn").addEventListener("click", openPhotoUploader);
 document.getElementById("uploadVideoBtn").addEventListener("click", openVideoUploader);
 
-/* ============================================================
-   MANAGE / DELETE
-============================================================ */
+/* Manage / Delete */
 document.getElementById("manageBtn").addEventListener("click", () => {
   renderManagePanel();
   adminPanel.classList.add("open");
@@ -1166,9 +1101,6 @@ function renderManagePanel() {
   });
 }
 
-/* ============================================================
-   HELPERS
-============================================================ */
 function esc(str) {
   if (!str) return "";
   return String(str)
@@ -1179,9 +1111,7 @@ function esc(str) {
     .replace(/'/g, "&#39;");
 }
 
-/* ============================================================
-   INIT
-============================================================ */
+/* Init */
 loadMedia();
 renderPhotos();
 renderVideos();

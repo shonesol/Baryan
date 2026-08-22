@@ -73,25 +73,174 @@
       line-height: 1.6;
     }
 
-    /* ===== PHOTO GALLERY ===== */
+    /* ===== PHOTO SLIDER ===== */
     .photo-gallery-section {
-      padding: 50px 0 60px;
+      padding: 60px 0 70px;
       background: #fff;
     }
-    .photo-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+    .photo-slider-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
     }
-    .photo-gallery-grid img {
+    .photo-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .photo-slide {
+      flex: 0 0 100%;
+      position: relative;
+      height: 420px;
+      cursor: pointer;
+    }
+    .photo-slide img {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 12px;
       display: block;
-      transition: transform 0.3s ease;
+      transition: transform 0.5s ease;
     }
-    .photo-gallery-grid img:hover { transform: scale(1.03); }
+    .photo-slide:hover img {
+      transform: scale(1.04);
+    }
+    .photo-slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 28px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .photo-slide:hover .photo-slide-caption {
+      opacity: 1;
+    }
+
+    .photo-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .photo-prev,
+    .photo-next {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #0757c9;
+      background: #fff;
+      color: #0757c9;
+      font-size: 1.6rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .photo-prev:hover,
+    .photo-next:hover {
+      background: #0757c9;
+      color: #fff;
+      transform: scale(1.08);
+    }
+    .photo-dots {
+      display: flex;
+      gap: 10px;
+    }
+    .photo-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #ccc;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+    .photo-dot.active {
+      background: #0757c9;
+      transform: scale(1.25);
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox-img-wrap {
+      position: relative;
+      max-width: 92vw;
+      max-height: 82vh;
+    }
+    .lightbox-img-wrap img {
+      max-width: 92vw;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      z-index: 5;
+    }
+    .lb-close:hover { background: #0757c9; }
+    .lb-prev,
+    .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: all 0.25s ease;
+    }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+    .lb-prev:hover,
+    .lb-next:hover {
+      background: #0757c9;
+      border-color: #0757c9;
+    }
+    .lb-counter {
+      color: rgba(255,255,255,0.7);
+      margin-top: 16px;
+      font-size: 0.95rem;
+    }
+    body.lightbox-open { overflow: hidden; }
 
     /* ===== JOIN & BOOK ===== */
     .join-book-section {
@@ -110,26 +259,12 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       border: 1px solid #eee;
     }
-    .join-book-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
-    }
-    .join-book-card p {
-      color: #555;
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-    .join-book-card ol {
-      margin: 0 0 24px 18px;
-      color: #444;
-      line-height: 1.85;
-    }
+    .join-book-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+    .join-book-card p { color: #555; line-height: 1.7; margin-bottom: 18px; }
+    .join-book-card ol { margin: 0 0 24px 18px; color: #444; line-height: 1.85; }
 
     /* ===== STAFF SLIDER ===== */
-    .staff-section {
-      padding: 70px 0;
-      background: #fff;
-    }
+    .staff-section { padding: 70px 0; background: #fff; }
     .staff-slider-wrapper {
       position: relative;
       overflow: hidden;
@@ -156,14 +291,10 @@
       display: block;
       transition: transform 0.4s ease;
     }
-    .staff-card:hover img {
-      transform: scale(1.06);
-    }
+    .staff-card:hover img { transform: scale(1.06); }
     .staff-info {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       padding: 22px 18px;
       background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
       color: #fff;
@@ -175,11 +306,7 @@
       letter-spacing: 0.03em;
       margin-bottom: 4px;
     }
-    .staff-info p {
-      font-size: 0.85rem;
-      opacity: 0.9;
-      margin: 0;
-    }
+    .staff-info p { font-size: 0.85rem; opacity: 0.9; margin: 0; }
     .staff-explore-btn {
       margin-top: 12px;
       padding: 8px 16px;
@@ -191,7 +318,6 @@
       font-size: 0.82rem;
       cursor: pointer;
     }
-
     .staff-controls {
       display: flex;
       justify-content: center;
@@ -232,10 +358,7 @@
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    .staff-modal.open {
-      opacity: 1;
-      visibility: visible;
-    }
+    .staff-modal.open { opacity: 1; visibility: visible; }
     .staff-modal-overlay {
       position: absolute;
       inset: 0;
@@ -256,15 +379,11 @@
       transform: translateY(20px);
       transition: transform 0.3s ease;
     }
-    .staff-modal.open .staff-modal-content {
-      transform: translateY(0);
-    }
+    .staff-modal.open .staff-modal-content { transform: translateY(0); }
     .staff-modal-close {
       position: absolute;
-      top: 12px;
-      right: 15px;
-      width: 40px;
-      height: 40px;
+      top: 12px; right: 15px;
+      width: 40px; height: 40px;
       border: none;
       border-radius: 50%;
       background: #111;
@@ -273,8 +392,7 @@
       cursor: pointer;
     }
     .staff-modal-photo {
-      width: 160px;
-      height: 160px;
+      width: 160px; height: 160px;
       margin: 10px auto 20px;
       border-radius: 50%;
       overflow: hidden;
@@ -282,8 +400,7 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
     .staff-modal-photo img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
     }
     .staff-modal-content h3 {
@@ -336,15 +453,16 @@
       .staff-card { flex: 0 0 calc(33.333% - 15px); }
     }
     @media (max-width: 900px) {
-      .photo-gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .join-book-grid { grid-template-columns: 1fr; }
       .staff-card { flex: 0 0 calc(50% - 11px); }
+      .photo-slide { height: 320px; }
     }
     @media (max-width: 560px) {
-      .photo-gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .photo-gallery-grid img { height: 140px; }
       .staff-card { flex: 0 0 85%; height: 300px; }
+      .photo-slide { height: 260px; }
       .logo img { height: 42px; }
+      .lb-prev { left: 10px; }
+      .lb-next { right: 10px; }
     }
   </style>
 </head>
@@ -364,6 +482,7 @@
 
       <nav class="main-navigation" id="mainNavigation">
         <a href="#home" class="active">Home</a>
+        <a href="#gallery">Gallery</a>
         <a href="#mission">Mission</a>
         <a href="#join">Join</a>
         <a href="#staff">Staff</a>
@@ -393,25 +512,70 @@
       </div>
     </section>
 
-    <!-- PHOTO GALLERY -->
-    <section class="photo-gallery-section">
+    <!-- ==================== SLIDING PHOTO GALLERY ==================== -->
+    <section class="photo-gallery-section" id="gallery">
       <div class="container">
         <div class="section-heading center-heading" style="margin-bottom: 30px;">
           <p class="eyebrow">ACADEMY MOMENTS</p>
           <h2>LIFE AT <span>BARYAN</span></h2>
+          <p>Click any photo to view full size</p>
         </div>
-        <div class="photo-gallery-grid">
-          <img src="5277a911-f90a-490e-a43a-99e2dc8841c6.jpeg" alt="Academy training">
-          <img src="c0df4b6f-1fa2-4b85-9f8c-328e645edfa5.jpeg" alt="Players on court">
-          <img src="2d88defd-f4be-497f-8aef-5d50bb277e3e.jpeg" alt="Badminton action">
-          <img src="2509f763-9704-4226-8472-2d620672e194.jpeg" alt="Team training">
-          <img src="12857a52-e324-4ec3-bb3c-433504dda1d3.jpeg" alt="Junior players">
-          <img src="dab26d07-0e0e-4a5d-a609-532815e368ca.jpeg" alt="Coaching session">
-          <img src="011998db-4a59-4fce-91cf-1375202fb4e4.jpeg" alt="Academy community">
-          <img src="5cba26d7-a05d-430b-85c4-04c0cce2511f.jpeg" alt="Players and coaches">
+
+        <div class="photo-slider-wrapper">
+          <div class="photo-track" id="photoTrack">
+            <div class="photo-slide" data-index="0">
+              <img src="5277a911-f90a-490e-a43a-99e2dc8841c6.jpeg" alt="Academy training">
+              <div class="photo-slide-caption">Academy Training</div>
+            </div>
+            <div class="photo-slide" data-index="1">
+              <img src="c0df4b6f-1fa2-4b85-9f8c-328e645edfa5.jpeg" alt="Players on court">
+              <div class="photo-slide-caption">Players on Court</div>
+            </div>
+            <div class="photo-slide" data-index="2">
+              <img src="2d88defd-f4be-497f-8aef-5d50bb277e3e.jpeg" alt="Badminton action">
+              <div class="photo-slide-caption">Match Action</div>
+            </div>
+            <div class="photo-slide" data-index="3">
+              <img src="2509f763-9704-4226-8472-2d620672e194.jpeg" alt="Team training">
+              <div class="photo-slide-caption">Team Training</div>
+            </div>
+            <div class="photo-slide" data-index="4">
+              <img src="12857a52-e324-4ec3-bb3c-433504dda1d3.jpeg" alt="Junior players">
+              <div class="photo-slide-caption">Junior Players</div>
+            </div>
+            <div class="photo-slide" data-index="5">
+              <img src="dab26d07-0e0e-4a5d-a609-532815e368ca.jpeg" alt="Coaching session">
+              <div class="photo-slide-caption">Coaching Session</div>
+            </div>
+            <div class="photo-slide" data-index="6">
+              <img src="011998db-4a59-4fce-91cf-1375202fb4e4.jpeg" alt="Academy community">
+              <div class="photo-slide-caption">Academy Community</div>
+            </div>
+            <div class="photo-slide" data-index="7">
+              <img src="5cba26d7-a05d-430b-85c4-04c0cce2511f.jpeg" alt="Players and coaches">
+              <div class="photo-slide-caption">Players & Coaches</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-controls">
+          <button class="photo-prev" id="photoPrev" aria-label="Previous">‹</button>
+          <div class="photo-dots" id="photoDots"></div>
+          <button class="photo-next" id="photoNext" aria-label="Next">›</button>
         </div>
       </div>
     </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+      <button class="lb-close" id="lbClose">×</button>
+      <button class="lb-prev" id="lbPrev">‹</button>
+      <button class="lb-next" id="lbNext">›</button>
+      <div class="lightbox-img-wrap">
+        <img id="lbImage" src="" alt="">
+      </div>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
 
     <!-- MISSION & VISION -->
     <section class="mission-section" id="mission">
@@ -469,7 +633,7 @@
       </div>
     </section>
 
-    <!-- ==================== STAFF SLIDER ==================== -->
+    <!-- STAFF SLIDER -->
     <section class="staff-section" id="staff">
       <div class="container">
         <div class="section-heading center-heading">
@@ -480,7 +644,6 @@
 
         <div class="staff-slider-wrapper">
           <div class="staff-track" id="staffTrack">
-
             <div class="staff-card" data-staff="1">
               <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Alema G Hamis">
               <div class="staff-info">
@@ -489,7 +652,6 @@
                 <button class="staff-explore-btn" type="button">View Details</button>
               </div>
             </div>
-
             <div class="staff-card" data-staff="2">
               <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Sarah Nalwoga">
               <div class="staff-info">
@@ -498,7 +660,6 @@
                 <button class="staff-explore-btn" type="button">View Details</button>
               </div>
             </div>
-
             <div class="staff-card" data-staff="3">
               <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="David Ssempijja">
               <div class="staff-info">
@@ -507,7 +668,6 @@
                 <button class="staff-explore-btn" type="button">View Details</button>
               </div>
             </div>
-
             <div class="staff-card" data-staff="4">
               <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Grace Nakato">
               <div class="staff-info">
@@ -516,20 +676,19 @@
                 <button class="staff-explore-btn" type="button">View Details</button>
               </div>
             </div>
-
           </div>
         </div>
 
         <div class="staff-controls">
-          <button class="staff-prev" id="staffPrev" aria-label="Previous">‹</button>
-          <button class="staff-next" id="staffNext" aria-label="Next">›</button>
+          <button class="staff-prev" id="staffPrev">‹</button>
+          <button class="staff-next" id="staffNext">›</button>
         </div>
 
         <!-- STAFF MODAL -->
         <div class="staff-modal" id="staffModal" aria-hidden="true">
           <div class="staff-modal-overlay" id="staffModalOverlay"></div>
           <div class="staff-modal-content">
-            <button class="staff-modal-close" id="staffModalClose" type="button">×</button>
+            <button class="staff-modal-close" id="staffModalClose">×</button>
             <div class="staff-modal-photo" id="staffModalPhoto"></div>
             <h3 id="staffModalName"></h3>
             <p class="staff-modal-position" id="staffModalPosition"></p>
@@ -631,6 +790,7 @@
       </div>
       <div>
         <h4>Explore</h4>
+        <a href="#gallery">Gallery</a>
         <a href="#mission">Mission</a>
         <a href="#join">Join & Book</a>
         <a href="#staff">Staff</a>
@@ -674,9 +834,120 @@
     }
   </script>
 
+  <!-- PHOTO SLIDER + LIGHTBOX -->
+  <script>
+    (function () {
+      const track = document.getElementById("photoTrack");
+      const slides = document.querySelectorAll(".photo-slide");
+      const prevBtn = document.getElementById("photoPrev");
+      const nextBtn = document.getElementById("photoNext");
+      const dotsContainer = document.getElementById("photoDots");
+      let current = 0;
+      let autoTimer;
+
+      // Create dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.className = "photo-dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+        dot.addEventListener("click", () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+      const dots = document.querySelectorAll(".photo-dot");
+
+      function goTo(index) {
+        current = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle("active", i === current));
+        resetAuto();
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function resetAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(next, 5000);
+      }
+
+      prevBtn.addEventListener("click", prev);
+      nextBtn.addEventListener("click", next);
+      resetAuto();
+
+      // Pause on hover
+      const wrapper = document.querySelector(".photo-slider-wrapper");
+      wrapper.addEventListener("mouseenter", () => clearInterval(autoTimer));
+      wrapper.addEventListener("mouseleave", resetAuto);
+
+      // ===== LIGHTBOX =====
+      const lightbox = document.getElementById("lightbox");
+      const lbImage = document.getElementById("lbImage");
+      const lbCounter = document.getElementById("lbCounter");
+      const lbClose = document.getElementById("lbClose");
+      const lbPrev = document.getElementById("lbPrev");
+      const lbNext = document.getElementById("lbNext");
+      let lbIndex = 0;
+
+      const images = Array.from(slides).map(s => ({
+        src: s.querySelector("img").src,
+        alt: s.querySelector("img").alt
+      }));
+
+      function openLightbox(index) {
+        lbIndex = index;
+        showLbImage();
+        lightbox.classList.add("open");
+        document.body.classList.add("lightbox-open");
+        clearInterval(autoTimer); // pause slider
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.classList.remove("lightbox-open");
+        resetAuto();
+      }
+
+      function showLbImage() {
+        lbImage.src = images[lbIndex].src;
+        lbImage.alt = images[lbIndex].alt;
+        lbCounter.textContent = `${lbIndex + 1} / ${images.length}`;
+      }
+
+      slides.forEach((slide, i) => {
+        slide.addEventListener("click", () => openLightbox(i));
+      });
+
+      lbClose.addEventListener("click", closeLightbox);
+      lbPrev.addEventListener("click", () => {
+        lbIndex = (lbIndex - 1 + images.length) % images.length;
+        showLbImage();
+      });
+      lbNext.addEventListener("click", () => {
+        lbIndex = (lbIndex + 1) % images.length;
+        showLbImage();
+      });
+
+      lightbox.addEventListener("click", e => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", e => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") {
+          lbIndex = (lbIndex - 1 + images.length) % images.length;
+          showLbImage();
+        }
+        if (e.key === "ArrowRight") {
+          lbIndex = (lbIndex + 1) % images.length;
+          showLbImage();
+        }
+      });
+    })();
+  </script>
+
   <!-- STAFF SLIDER + MODAL -->
   <script>
-    // Staff data
     const staffData = {
       1: {
         name: "Alema G Hamis",
@@ -712,7 +983,6 @@
       }
     };
 
-    // Slider logic
     const track = document.getElementById("staffTrack");
     const prevBtn = document.getElementById("staffPrev");
     const nextBtn = document.getElementById("staffNext");
@@ -730,8 +1000,7 @@
       const visible = getVisibleCount();
       const maxIndex = Math.max(0, cards.length - visible);
       if (currentIndex > maxIndex) currentIndex = maxIndex;
-
-      const cardWidth = cards[0].offsetWidth + 22; // 22 = gap
+      const cardWidth = cards[0].offsetWidth + 22;
       track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     }
 
@@ -739,14 +1008,12 @@
       currentIndex = Math.max(0, currentIndex - 1);
       updateSlider();
     });
-
     nextBtn.addEventListener("click", () => {
       const visible = getVisibleCount();
       const maxIndex = Math.max(0, cards.length - visible);
       currentIndex = Math.min(maxIndex, currentIndex + 1);
       updateSlider();
     });
-
     window.addEventListener("resize", updateSlider);
     updateSlider();
 
@@ -763,19 +1030,12 @@
     function openStaffModal(id) {
       const data = staffData[id];
       if (!data) return;
-
       modalName.textContent = data.name;
       modalPosition.textContent = data.position;
       modalBio.textContent = data.bio;
       modalContact.innerHTML = `
-        <div class="staff-contact-item">
-          <strong>Email</strong>
-          <a href="mailto:${data.email}">${data.email}</a>
-        </div>
-        <div class="staff-contact-item">
-          <strong>Phone</strong>
-          <a href="tel:${data.phone.replace(/\s/g,"")}">${data.phone}</a>
-        </div>
+        <div class="staff-contact-item"><strong>Email</strong><a href="mailto:${data.email}">${data.email}</a></div>
+        <div class="staff-contact-item"><strong>Phone</strong><a href="tel:${data.phone.replace(/\s/g,"")}">${data.phone}</a></div>
       `;
       modalPhoto.innerHTML = `<img src="${data.photo}" alt="${data.name}">`;
       modal.classList.add("open");
@@ -839,7 +1099,6 @@
     const reviewForm = document.getElementById("reviewForm");
     const reviewSubmit = document.getElementById("reviewSubmit");
     const reviewStatus = document.getElementById("reviewStatus");
-
     let reviews = [];
 
     function escapeHTML(value) {
@@ -852,9 +1111,7 @@
     }
 
     function showFirebaseError(error) {
-      if (error?.code === "permission-denied") {
-        return "Firebase denied access. Check your Firestore Rules.";
-      }
+      if (error?.code === "permission-denied") return "Firebase denied access. Check your Firestore Rules.";
       return error?.message || "Unable to connect to the review system.";
     }
 

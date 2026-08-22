@@ -10,40 +10,16 @@
   <meta name="description"
     content="Baryan Badminton Academy in Uganda offers structured badminton coaching, junior training, fitness and competitive preparation in Kampala.">
 
-  <meta name="keywords"
-    content="Baryan Badminton Academy, badminton academy Uganda, badminton academy Kampala, badminton training Kampala, badminton coaching Uganda">
-
   <meta name="author" content="Baryan Badminton Academy">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0757c9">
 
   <link rel="canonical" href="https://www.baryanbadmintonacademy.com/">
-
-  <meta property="og:title" content="Baryan Badminton Academy Uganda | Badminton Training in Kampala">
-  <meta property="og:description" content="Train, develop and compete with Baryan Badminton Academy in Uganda.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.baryanbadmintonacademy.com/">
-  <meta property="og:image" content="https://www.baryanbadmintonacademy.com/assets/images/baryan-logo.jpg">
-
   <link rel="stylesheet" href="css/style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SportsOrganization",
-    "name": "Baryan Badminton Academy",
-    "url": "https://www.baryanbadmintonacademy.com/",
-    "logo": "https://www.baryanbadmintonacademy.com/4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png",
-    "description": "Baryan Badminton Academy develops badminton players through professional coaching, skills training, fitness and competitive opportunities in Uganda.",
-    "sport": "Badminton",
-    "email": "baryanmintonclub@gmail.com",
-    "telephone": "+256755805092"
-  }
-  </script>
 
   <style>
     .logo {
@@ -58,30 +34,66 @@
       width: auto;
       display: block;
     }
-    footer .logo img {
-      height: 50px;
-    }
+    footer .logo img { height: 50px; }
 
-    /* Cleaner hero – less text so slides show better */
+    /* ===== STATIC HERO ===== */
+    .home-hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.2) 100%);
+    }
     .home-hero-content {
-      max-width: 680px;
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      color: #fff;
     }
-    .home-hero .hero-copy h1 {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
+    .home-hero .eyebrow { color: #fff; opacity: 0.9; }
+    .home-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.9rem);
       line-height: 1.1;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      color: #fff;
     }
+    .home-hero h1 span { color: #ffc107; }
     .home-hero .hero-description {
-      font-size: 1.05rem;
-      max-width: 480px;
-      margin-bottom: 24px;
+      font-size: 1.1rem;
+      max-width: 460px;
+      margin-bottom: 28px;
       opacity: 0.95;
-    }
-    .hero-stat-card {
-      display: none; /* remove the side card so slides breathe */
+      line-height: 1.6;
     }
 
-    /* Simple join & book cards */
+    /* ===== PHOTO GALLERY ===== */
+    .photo-gallery-section {
+      padding: 50px 0 60px;
+      background: #fff;
+    }
+    .photo-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .photo-gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .photo-gallery-grid img:hover { transform: scale(1.03); }
+
+    /* ===== JOIN & BOOK ===== */
     .join-book-section {
       padding: 70px 0;
       background: #f8f9fb;
@@ -99,27 +111,213 @@
       border: 1px solid #eee;
     }
     .join-book-card h3 {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       margin-bottom: 12px;
-      color: #0b0b0b;
     }
     .join-book-card p {
       color: #555;
       line-height: 1.7;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
     .join-book-card ol {
       margin: 0 0 24px 18px;
       color: #444;
-      line-height: 1.8;
-    }
-    .join-book-card .primary-button,
-    .join-book-card .whatsapp-button {
-      display: inline-flex;
-      margin-top: 6px;
+      line-height: 1.85;
     }
 
-    /* Reviews tweaks */
+    /* ===== STAFF SLIDER ===== */
+    .staff-section {
+      padding: 70px 0;
+      background: #fff;
+    }
+    .staff-slider-wrapper {
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .staff-track {
+      display: flex;
+      gap: 22px;
+      transition: transform 0.45s ease;
+    }
+    .staff-card {
+      flex: 0 0 calc(25% - 17px);
+      position: relative;
+      height: 320px;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111;
+    }
+    .staff-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .staff-card:hover img {
+      transform: scale(1.06);
+    }
+    .staff-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 22px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      color: #fff;
+    }
+    .staff-info h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+    .staff-info p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+    .staff-explore-btn {
+      margin-top: 12px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #fff;
+      color: #111;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .staff-controls {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .staff-prev,
+    .staff-next {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #0757c9;
+      background: #fff;
+      color: #0757c9;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .staff-prev:hover,
+    .staff-next:hover {
+      background: #0757c9;
+      color: #fff;
+    }
+
+    /* Staff Modal */
+    .staff-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .staff-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .staff-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+    }
+    .staff-modal-content {
+      position: relative;
+      z-index: 2;
+      width: min(480px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .staff-modal.open .staff-modal-content {
+      transform: translateY(0);
+    }
+    .staff-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .staff-modal-photo {
+      width: 160px;
+      height: 160px;
+      margin: 10px auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .staff-modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .staff-modal-content h3 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+    .staff-modal-position {
+      color: #0757c9;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .staff-modal-contact {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+    .staff-contact-item {
+      padding: 12px;
+      border-radius: 8px;
+      background: #f5f5f5;
+      font-size: 0.92rem;
+    }
+    .staff-contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .staff-modal-contact a {
+      color: #0757c9;
+      font-weight: 600;
+    }
+    body.modal-open { overflow: hidden; }
+
+    /* Reviews */
     .review-status {
       min-height: 24px;
       margin-top: 12px;
@@ -129,30 +327,24 @@
       opacity: 0.65;
       cursor: not-allowed;
     }
-    .review-stars {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-    .review-message {
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-    .review-name {
-      display: block;
-      margin-bottom: 5px;
-    }
-    .review-role {
-      display: block;
-      opacity: 0.7;
-    }
+    .review-stars { font-size: 1.5rem; margin-bottom: 15px; }
+    .review-message { line-height: 1.7; margin-bottom: 15px; }
+    .review-name { display: block; margin-bottom: 5px; }
+    .review-role { display: block; opacity: 0.7; }
 
-    @media (max-width: 768px) {
-      .join-book-grid {
-        grid-template-columns: 1fr;
-      }
-      .logo img {
-        height: 42px;
-      }
+    @media (max-width: 1000px) {
+      .staff-card { flex: 0 0 calc(33.333% - 15px); }
+    }
+    @media (max-width: 900px) {
+      .photo-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .join-book-grid { grid-template-columns: 1fr; }
+      .staff-card { flex: 0 0 calc(50% - 11px); }
+    }
+    @media (max-width: 560px) {
+      .photo-gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .photo-gallery-grid img { height: 140px; }
+      .staff-card { flex: 0 0 85%; height: 300px; }
+      .logo img { height: 42px; }
     }
   </style>
 </head>
@@ -162,18 +354,19 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-container">
-      <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
+      <a href="#home" class="logo">
         <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
       </a>
 
-      <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNavigation">
+      <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation">
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="main-navigation" id="mainNavigation" aria-label="Main navigation">
+      <nav class="main-navigation" id="mainNavigation">
         <a href="#home" class="active">Home</a>
         <a href="#mission">Mission</a>
         <a href="#join">Join</a>
+        <a href="#staff">Staff</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
         <a href="membership.html" class="nav-join">Join Academy</a>
@@ -183,43 +376,40 @@
 
   <main>
 
-    <!-- HERO (simplified) -->
-    <section class="home-hero" id="home">
-      <div class="hero-slider" id="heroSlider">
-        <div class="hero-slide active" style="background-image: url('11fc554a-a5c7-46d3-a55e-673e721447c7.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('5277a911-f90a-490e-a43a-99e2dc8841c6.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('c0df4b6f-1fa2-4b85-9f8c-328e645edfa5.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('2d88defd-f4be-497f-8aef-5d50bb277e3e.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('2509f763-9704-4226-8472-2d620672e194.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('12857a52-e324-4ec3-bb3c-433504dda1d3.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('dab26d07-0e0e-4a5d-a609-532815e368ca.jpeg')"></div>
-        <div class="hero-slide" style="background-image: url('011998db-4a59-4fce-91cf-1375202fb4e4.jpeg')"></div>
-      </div>
-
+    <!-- STATIC HERO -->
+    <section class="home-hero" id="home"
+      style="background-image: url('11fc554a-a5c7-46d3-a55e-673e721447c7.jpeg')">
       <div class="hero-overlay"></div>
-
       <div class="container home-hero-content">
-        <div class="hero-copy">
-          <p class="eyebrow">BARYAN BADMINTON ACADEMY</p>
-          <h1>
-            TRAIN.
-            <span>DEVELOP.</span>
-            COMPETE.
-          </h1>
-          <p class="hero-description">
-            Structured badminton coaching in Kampala for juniors and players of all levels.
-          </p>
-          <div class="hero-actions">
-            <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
-            <a href="#join" class="secondary-button">HOW TO JOIN</a>
-          </div>
+        <p class="eyebrow">BARYAN BADMINTON ACADEMY</p>
+        <h1>TRAIN. <span>DEVELOP.</span> COMPETE.</h1>
+        <p class="hero-description">
+          Structured badminton coaching in Kampala for juniors and players of all levels.
+        </p>
+        <div class="hero-actions">
+          <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
+          <a href="#join" class="secondary-button">HOW TO JOIN</a>
         </div>
       </div>
+    </section>
 
-      <div class="hero-controls">
-        <button class="hero-prev" id="heroPrev" aria-label="Previous slide">‹</button>
-        <div class="hero-dots" id="heroDots"></div>
-        <button class="hero-next" id="heroNext" aria-label="Next slide">›</button>
+    <!-- PHOTO GALLERY -->
+    <section class="photo-gallery-section">
+      <div class="container">
+        <div class="section-heading center-heading" style="margin-bottom: 30px;">
+          <p class="eyebrow">ACADEMY MOMENTS</p>
+          <h2>LIFE AT <span>BARYAN</span></h2>
+        </div>
+        <div class="photo-gallery-grid">
+          <img src="5277a911-f90a-490e-a43a-99e2dc8841c6.jpeg" alt="Academy training">
+          <img src="c0df4b6f-1fa2-4b85-9f8c-328e645edfa5.jpeg" alt="Players on court">
+          <img src="2d88defd-f4be-497f-8aef-5d50bb277e3e.jpeg" alt="Badminton action">
+          <img src="2509f763-9704-4226-8472-2d620672e194.jpeg" alt="Team training">
+          <img src="12857a52-e324-4ec3-bb3c-433504dda1d3.jpeg" alt="Junior players">
+          <img src="dab26d07-0e0e-4a5d-a609-532815e368ca.jpeg" alt="Coaching session">
+          <img src="011998db-4a59-4fce-91cf-1375202fb4e4.jpeg" alt="Academy community">
+          <img src="5cba26d7-a05d-430b-85c4-04c0cce2511f.jpeg" alt="Players and coaches">
+        </div>
       </div>
     </section>
 
@@ -230,64 +420,121 @@
           <p class="eyebrow">OUR PURPOSE</p>
           <h2>MISSION & <span>VISION</span></h2>
         </div>
-
         <div class="mission-grid">
           <article class="mission-card blue-mission">
             <span class="mission-icon">M</span>
             <h3>Our Mission</h3>
-            <p>
-              To develop badminton players through quality coaching, consistent
-              training, discipline, teamwork and opportunities to compete.
-            </p>
+            <p>To develop badminton players through quality coaching, consistent training, discipline, teamwork and opportunities to compete.</p>
           </article>
-
           <article class="mission-card orange-mission">
             <span class="mission-icon">V</span>
             <h3>Our Vision</h3>
-            <p>
-              To become a respected badminton development academy that creates
-              opportunities for athletes to reach their full potential.
-            </p>
+            <p>To become a respected badminton development academy that creates opportunities for athletes to reach their full potential.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- HOW TO JOIN + HOW TO BOOK -->
+    <!-- HOW TO JOIN + BOOK -->
     <section class="join-book-section" id="join">
       <div class="container">
         <div class="section-heading center-heading">
           <p class="eyebrow">GET STARTED</p>
           <h2>JOIN THE CLUB & <span>BOOK A SESSION</span></h2>
         </div>
-
         <div class="join-book-grid">
-          <!-- How to Join -->
           <div class="join-book-card">
             <h3>How to Join the Club</h3>
             <p>Becoming a member is simple:</p>
             <ol>
               <li>Fill in the online membership form</li>
-              <li>Choose your training level (Beginner, Intermediate, Advanced or Junior)</li>
+              <li>Choose your training level</li>
               <li>Complete registration and payment</li>
               <li>Start training with the academy</li>
             </ol>
             <a href="membership.html" class="primary-button">Start Membership</a>
           </div>
-
-          <!-- How to Book a Session -->
           <div class="join-book-card">
             <h3>How to Book a Session</h3>
             <p>Want to try a session or ask about training times?</p>
             <ol>
               <li>Message us on WhatsApp</li>
               <li>Tell us your preferred day and level</li>
-              <li>We will confirm the available session and venue</li>
+              <li>We will confirm the available session</li>
               <li>Come train with us</li>
             </ol>
-            <a href="https://wa.me/256755805092" target="_blank" rel="noopener" class="whatsapp-button">
-              WhatsApp to Book
-            </a>
+            <a href="https://wa.me/256755805092" target="_blank" rel="noopener" class="whatsapp-button">WhatsApp to Book</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STAFF SLIDER ==================== -->
+    <section class="staff-section" id="staff">
+      <div class="container">
+        <div class="section-heading center-heading">
+          <p class="eyebrow">OUR STAFF</p>
+          <h2>MEET THE <span>TEAM</span></h2>
+          <p>The dedicated coaches and support team behind Baryan Badminton Academy.</p>
+        </div>
+
+        <div class="staff-slider-wrapper">
+          <div class="staff-track" id="staffTrack">
+
+            <div class="staff-card" data-staff="1">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Alema G Hamis">
+              <div class="staff-info">
+                <h4>Alema G Hamis</h4>
+                <p>Head Coach</p>
+                <button class="staff-explore-btn" type="button">View Details</button>
+              </div>
+            </div>
+
+            <div class="staff-card" data-staff="2">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Sarah Nalwoga">
+              <div class="staff-info">
+                <h4>Sarah Nalwoga</h4>
+                <p>Junior Coach</p>
+                <button class="staff-explore-btn" type="button">View Details</button>
+              </div>
+            </div>
+
+            <div class="staff-card" data-staff="3">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="David Ssempijja">
+              <div class="staff-info">
+                <h4>David Ssempijja</h4>
+                <p>Fitness Coach</p>
+                <button class="staff-explore-btn" type="button">View Details</button>
+              </div>
+            </div>
+
+            <div class="staff-card" data-staff="4">
+              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Grace Nakato">
+              <div class="staff-info">
+                <h4>Grace Nakato</h4>
+                <p>Administrator</p>
+                <button class="staff-explore-btn" type="button">View Details</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="staff-controls">
+          <button class="staff-prev" id="staffPrev" aria-label="Previous">‹</button>
+          <button class="staff-next" id="staffNext" aria-label="Next">›</button>
+        </div>
+
+        <!-- STAFF MODAL -->
+        <div class="staff-modal" id="staffModal" aria-hidden="true">
+          <div class="staff-modal-overlay" id="staffModalOverlay"></div>
+          <div class="staff-modal-content">
+            <button class="staff-modal-close" id="staffModalClose" type="button">×</button>
+            <div class="staff-modal-photo" id="staffModalPhoto"></div>
+            <h3 id="staffModalName"></h3>
+            <p class="staff-modal-position" id="staffModalPosition"></p>
+            <p id="staffModalBio"></p>
+            <div class="staff-modal-contact" id="staffModalContact"></div>
           </div>
         </div>
       </div>
@@ -299,12 +546,11 @@
         <div class="section-heading center-heading">
           <p class="eyebrow">REVIEWS</p>
           <h2>WHAT OUR <span>PLAYERS SAY</span></h2>
-          <p>Hear from players, parents and members of the Baryan Badminton Academy community.</p>
         </div>
 
         <div class="reviews-selector">
           <label for="reviewSelect">Select a review</label>
-          <select id="reviewSelect" aria-label="Select a review">
+          <select id="reviewSelect">
             <option value="">Loading reviews...</option>
           </select>
           <div class="selected-review" id="selectedReview">
@@ -316,15 +562,13 @@
           <div class="review-form-heading">
             <p class="eyebrow">YOUR EXPERIENCE</p>
             <h3>LEAVE A <span>REVIEW</span></h3>
-            <p>Tell us about your experience at Baryan Badminton Academy.</p>
           </div>
 
           <form id="reviewForm" class="review-form">
             <div class="form-group">
               <label for="reviewName">Your Name</label>
-              <input type="text" id="reviewName" name="name" placeholder="Enter your name" required maxlength="60" autocomplete="name">
+              <input type="text" id="reviewName" name="name" placeholder="Enter your name" required maxlength="60">
             </div>
-
             <div class="form-group">
               <label for="reviewRole">You are a</label>
               <select id="reviewRole" name="role" required>
@@ -335,7 +579,6 @@
                 <option value="Member">Member</option>
               </select>
             </div>
-
             <div class="form-group">
               <label>Rating</label>
               <div class="rating-input">
@@ -346,12 +589,10 @@
                 <label><input type="radio" name="rating" value="1"> ★</label>
               </div>
             </div>
-
             <div class="form-group">
               <label for="reviewMessage">Your Review</label>
               <textarea id="reviewMessage" name="message" rows="5" placeholder="Write your review..." required maxlength="500"></textarea>
             </div>
-
             <button type="submit" class="primary-button review-submit" id="reviewSubmit">SUBMIT REVIEW</button>
             <p id="reviewStatus" class="review-status" aria-live="polite"></p>
           </form>
@@ -379,8 +620,8 @@
   <footer>
     <div class="container footer-grid">
       <div>
-        <a href="#home" class="logo" aria-label="Baryan Badminton Academy home">
-          <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
+        <a href="#home" class="logo">
+          <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Logo">
           <div class="logo-text">
             <span>BARYAN</span>
             <span>ACADEMY</span>
@@ -388,27 +629,24 @@
         </a>
         <p>Train. Develop. Compete. Belong.</p>
       </div>
-
       <div>
         <h4>Explore</h4>
         <a href="#mission">Mission</a>
         <a href="#join">Join & Book</a>
-        <a href="#reviews">Reviews</a>
+        <a href="#staff">Staff</a>
       </div>
-
       <div>
         <h4>Academy</h4>
         <a href="membership.html">Membership</a>
+        <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
       </div>
-
       <div>
         <h4>Contact</h4>
         <a href="https://wa.me/256755805092" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:baryanmintonclub@gmail.com">Email</a>
       </div>
     </div>
-
     <div class="container footer-bottom">
       <p>© 2026 Baryan Badminton Academy. All rights reserved.</p>
       <div>
@@ -422,74 +660,155 @@
   <script>
     const menuButton = document.getElementById("mobileMenuButton");
     const navigation = document.getElementById("mainNavigation");
-
     if (menuButton && navigation) {
       menuButton.addEventListener("click", () => {
         const isOpen = navigation.classList.toggle("open");
         menuButton.setAttribute("aria-expanded", String(isOpen));
       });
-
       document.querySelectorAll(".main-navigation a").forEach(link => {
         link.addEventListener("click", () => {
           navigation.classList.remove("open");
           menuButton.setAttribute("aria-expanded", "false");
         });
       });
-
-      document.addEventListener("keydown", event => {
-        if (event.key === "Escape") {
-          navigation.classList.remove("open");
-          menuButton.setAttribute("aria-expanded", "false");
-        }
-      });
     }
   </script>
 
-  <!-- HERO SLIDER -->
+  <!-- STAFF SLIDER + MODAL -->
   <script>
-    (function () {
-      const slides = document.querySelectorAll('.hero-slide');
-      const dotsContainer = document.getElementById('heroDots');
-      const prevBtn = document.getElementById('heroPrev');
-      const nextBtn = document.getElementById('heroNext');
-      let current = 0;
-      let autoTimer;
+    // Staff data
+    const staffData = {
+      1: {
+        name: "Alema G Hamis",
+        position: "Head Coach",
+        bio: "Alema G Hamis supports player development through structured badminton coaching, technical training and competitive preparation.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      },
+      2: {
+        name: "Sarah Nalwoga",
+        position: "Junior Coach",
+        bio: "Sarah Nalwoga supports junior players as they develop badminton fundamentals, confidence, coordination and teamwork.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      },
+      3: {
+        name: "David Ssempijja",
+        position: "Fitness & Conditioning Coach",
+        bio: "David Ssempijja supports players with fitness, conditioning, movement and physical preparation for badminton.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      },
+      4: {
+        name: "Grace Nakato",
+        position: "Academy Administrator",
+        bio: "Grace Nakato supports academy administration and helps ensure smooth communication between players, parents and the academy.",
+        email: "baryanmintonclub@gmail.com",
+        phone: "+256 755 805 092",
+        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
+      }
+    };
 
-      slides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
+    // Slider logic
+    const track = document.getElementById("staffTrack");
+    const prevBtn = document.getElementById("staffPrev");
+    const nextBtn = document.getElementById("staffNext");
+    const cards = document.querySelectorAll(".staff-card");
+    let currentIndex = 0;
+
+    function getVisibleCount() {
+      if (window.innerWidth <= 560) return 1;
+      if (window.innerWidth <= 900) return 2;
+      if (window.innerWidth <= 1000) return 3;
+      return 4;
+    }
+
+    function updateSlider() {
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+      const cardWidth = cards[0].offsetWidth + 22; // 22 = gap
+      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
+
+    prevBtn.addEventListener("click", () => {
+      currentIndex = Math.max(0, currentIndex - 1);
+      updateSlider();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, cards.length - visible);
+      currentIndex = Math.min(maxIndex, currentIndex + 1);
+      updateSlider();
+    });
+
+    window.addEventListener("resize", updateSlider);
+    updateSlider();
+
+    // Modal
+    const modal = document.getElementById("staffModal");
+    const modalPhoto = document.getElementById("staffModalPhoto");
+    const modalName = document.getElementById("staffModalName");
+    const modalPosition = document.getElementById("staffModalPosition");
+    const modalBio = document.getElementById("staffModalBio");
+    const modalContact = document.getElementById("staffModalContact");
+    const closeBtn = document.getElementById("staffModalClose");
+    const overlay = document.getElementById("staffModalOverlay");
+
+    function openStaffModal(id) {
+      const data = staffData[id];
+      if (!data) return;
+
+      modalName.textContent = data.name;
+      modalPosition.textContent = data.position;
+      modalBio.textContent = data.bio;
+      modalContact.innerHTML = `
+        <div class="staff-contact-item">
+          <strong>Email</strong>
+          <a href="mailto:${data.email}">${data.email}</a>
+        </div>
+        <div class="staff-contact-item">
+          <strong>Phone</strong>
+          <a href="tel:${data.phone.replace(/\s/g,"")}">${data.phone}</a>
+        </div>
+      `;
+      modalPhoto.innerHTML = `<img src="${data.photo}" alt="${data.name}">`;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeStaffModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    cards.forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.closest(".staff-explore-btn")) e.stopPropagation();
+        openStaffModal(card.dataset.staff);
       });
-
-      const dots = document.querySelectorAll('.hero-dot');
-
-      function goTo(index) {
-        slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (index + slides.length) % slides.length;
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
-        resetAuto();
+      const btn = card.querySelector(".staff-explore-btn");
+      if (btn) {
+        btn.addEventListener("click", e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openStaffModal(card.dataset.staff);
+        });
       }
+    });
 
-      function next() { goTo(current + 1); }
-      function prev() { goTo(current - 1); }
-
-      function resetAuto() {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(next, 5500);
-      }
-
-      nextBtn.addEventListener('click', next);
-      prevBtn.addEventListener('click', prev);
-      resetAuto();
-
-      const hero = document.querySelector('.home-hero');
-      hero.addEventListener('mouseenter', () => clearInterval(autoTimer));
-      hero.addEventListener('mouseleave', resetAuto);
-    })();
+    closeBtn.addEventListener("click", closeStaffModal);
+    overlay.addEventListener("click", closeStaffModal);
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && modal.classList.contains("open")) closeStaffModal();
+    });
   </script>
 
   <!-- FIREBASE REVIEWS -->
@@ -508,12 +827,11 @@
     };
 
     let db = null;
-
     try {
       const app = initializeApp(firebaseConfig);
       db = getFirestore(app);
     } catch (error) {
-      console.error("Firebase initialization failed:", error);
+      console.error("Firebase init failed:", error);
     }
 
     const reviewSelect = document.getElementById("reviewSelect");
@@ -546,13 +864,10 @@
         selectedReview.innerHTML = `<p>Firebase could not be initialized.</p>`;
         return;
       }
-
       try {
         const snapshot = await getDocs(collection(db, "reviews"));
         reviews = [];
-        snapshot.forEach(doc => {
-          reviews.push({ id: doc.id, ...doc.data() });
-        });
+        snapshot.forEach(doc => reviews.push({ id: doc.id, ...doc.data() }));
         renderReviewSelector();
       } catch (error) {
         const message = showFirebaseError(error);
@@ -564,10 +879,9 @@
     function renderReviewSelector() {
       if (reviews.length === 0) {
         reviewSelect.innerHTML = `<option value="">No reviews yet</option>`;
-        selectedReview.innerHTML = `<p class="reviews-loading">No reviews yet. Be the first to review!</p>`;
+        selectedReview.innerHTML = `<p class="reviews-loading">No reviews yet. Be the first!</p>`;
         return;
       }
-
       reviewSelect.innerHTML = `<option value="">Select a review...</option>`;
       reviews.forEach((review, index) => {
         const option = document.createElement("option");
@@ -589,7 +903,6 @@
     function displayReview(review) {
       let rating = Math.min(5, Math.max(1, Number(review.rating) || 5));
       const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-
       selectedReview.innerHTML = `
         <div class="review-stars">${stars}</div>
         <p class="review-message">“${escapeHTML(review.message)}”</p>
@@ -600,20 +913,17 @@
 
     reviewForm.addEventListener("submit", async event => {
       event.preventDefault();
-
       if (!db) {
         reviewStatus.textContent = "Firebase is not initialized.";
         reviewStatus.style.color = "#d32f2f";
         return;
       }
-
       const ratingInput = document.querySelector('input[name="rating"]:checked');
       if (!ratingInput) {
         reviewStatus.textContent = "Please select a rating.";
         reviewStatus.style.color = "#d32f2f";
         return;
       }
-
       const name = document.getElementById("reviewName").value.trim();
       const role = document.getElementById("reviewRole").value;
       const message = document.getElementById("reviewMessage").value.trim();
@@ -635,7 +945,6 @@
           name, role, rating, message,
           createdAt: serverTimestamp()
         });
-
         reviewStatus.textContent = "Thank you! Your review has been submitted.";
         reviewStatus.style.color = "#0757c9";
 

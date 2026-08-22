@@ -1,1463 +1,1636 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tujje Safaris | Uganda Safaris, Gorilla Trekking & East Africa Adventures</title>
+<meta name="description" content="Tujje Safaris offers premium Uganda safari experiences including gorilla trekking, chimpanzee tracking, wildlife safaris, cultural tours, bird watching, luxury adventures, and tailor-made East Africa journeys across Uganda, Kenya, Tanzania, and Rwanda.">
+<meta name="keywords" content="Tujje Safaris, Uganda safari tours, Gorilla trekking Uganda, Bwindi Impenetrable Forest, Murchison Falls safari, Queen Elizabeth National Park, Kibale chimpanzee trekking, Kidepo Valley safari, Uganda wildlife tours, luxury Uganda safaris, Kenya safari, Maasai Mara safari, Tanzania Serengeti safari, Ngorongoro Crater tours, Rwanda gorilla trekking, East Africa travel packages">
+<meta name="author" content="Tujje Safaris">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#123A73">
+<link rel="canonical" href="https://www.tujjesafaris.com/">
 
-  <title>Baryan Badminton Academy Uganda | Badminton Training in Kampala</title>
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tujje Safaris">
+<meta property="og:title" content="Tujje Safaris | Discover Uganda & East Africa">
+<meta property="og:description" content="Experience unforgettable gorilla trekking, wildlife safaris, cultural adventures and tailor-made East Africa journeys with Tujje Safaris.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.tujjesafaris.com/">
+<meta property="og:image" content="https://www.tujjesafaris.com/images/logo.jpg">
 
-  <meta name="description"
-    content="Baryan Badminton Academy in Uganda offers structured badminton coaching, junior training, fitness and competitive preparation in Kampala.">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tujje Safaris | Uganda Safari Experts">
+<meta name="twitter:description" content="Gorilla Trekking • Wildlife Safaris • Cultural Tours • Luxury East Africa Adventures">
 
-  <meta name="author" content="Baryan Badminton Academy">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0757c9">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-  <link rel="canonical" href="https://www.baryanbadmintonacademy.com/">
-  <link rel="stylesheet" href="css/style.css">
+<style>
+:root {
+  --blue: #1565c0;
+  --orange: #ff9800;
+  --gold: #d4af37;
+  --dark: #0f172a;
+  --cream: #fff8e6;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
 
-  <style>
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-    .logo img {
-      height: 52px;
-      width: auto;
-      display: block;
-    }
-    footer .logo img { height: 50px; }
+html {
+  scroll-behavior: smooth;
+}
 
-    /* ===== STATIC HERO ===== */
-    .home-hero {
-      position: relative;
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.2) 100%);
-    }
-    .home-hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 640px;
-      color: #fff;
-    }
-    .home-hero .eyebrow { color: #fff; opacity: 0.9; }
-    .home-hero h1 {
-      font-size: clamp(2.5rem, 6vw, 3.9rem);
-      line-height: 1.1;
-      margin-bottom: 14px;
-      color: #fff;
-    }
-    .home-hero h1 span { color: #ffc107; }
-    .home-hero .hero-description {
-      font-size: 1.1rem;
-      max-width: 460px;
-      margin-bottom: 28px;
-      opacity: 0.95;
-      line-height: 1.6;
-    }
+body {
+  background: var(--cream);
+  color: #1b1b1b;
+  overflow-x: hidden;
+}
 
-    /* ===== PHOTO SLIDER ===== */
-    .photo-gallery-section {
-      padding: 60px 0 70px;
-      background: #fff;
-    }
-    .photo-slider-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    }
-    .photo-track {
-      display: flex;
-      transition: transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-    .photo-slide {
-      flex: 0 0 100%;
-      position: relative;
-      height: 420px;
-      cursor: pointer;
-    }
-    .photo-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .photo-slide:hover img { transform: scale(1.04); }
-    .photo-slide-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 24px 28px;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.05rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .photo-slide:hover .photo-slide-caption { opacity: 1; }
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(90deg, #1e88e5, #ff8f00);
+  color: white;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
 
-    .photo-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      margin-top: 24px;
-    }
-    .photo-prev, .photo-next {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: 2px solid #0757c9;
-      background: #fff;
-      color: #0757c9;
-      font-size: 1.6rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.25s ease;
-    }
-    .photo-prev:hover, .photo-next:hover {
-      background: #0757c9;
-      color: #fff;
-      transform: scale(1.08);
-    }
-    .photo-dots { display: flex; gap: 10px; }
-    .photo-dot {
-      width: 11px; height: 11px;
-      border-radius: 50%;
-      background: #ccc;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      padding: 0;
-    }
-    .photo-dot.active {
-      background: #0757c9;
-      transform: scale(1.25);
-    }
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-    /* ===== LIGHTBOX ===== */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      background: rgba(0,0,0,0.92);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox-img-wrap {
-      position: relative;
-      max-width: 92vw;
-      max-height: 82vh;
-    }
-    .lightbox-img-wrap img {
-      max-width: 92vw;
-      max-height: 82vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .lb-close {
-      position: absolute;
-      top: 20px; right: 24px;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: #fff;
-      font-size: 1.6rem;
-      cursor: pointer;
-      z-index: 5;
-    }
-    .lb-close:hover { background: #0757c9; }
-    .lb-prev, .lb-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 2px solid rgba(255,255,255,0.3);
-      color: #fff;
-      font-size: 1.8rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 5;
-      transition: all 0.25s ease;
-    }
-    .lb-prev { left: 20px; }
-    .lb-next { right: 20px; }
-    .lb-prev:hover, .lb-next:hover {
-      background: #0757c9;
-      border-color: #0757c9;
-    }
-    .lb-counter {
-      color: rgba(255,255,255,0.7);
-      margin-top: 16px;
-      font-size: 0.95rem;
-    }
-    body.lightbox-open { overflow: hidden; }
+.logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 12px rgba(255,140,0,0.6);
+  background: white;
+}
 
-    /* ===== MISSION & VISION SLIDERS ===== */
-    .mission-vision-section {
-      padding: 80px 0;
-      background: #f8f9fb;
-    }
-    .mv-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      margin-top: 20px;
-    }
-    .mv-block {
-      background: #fff;
-      border-radius: 18px;
-      padding: 28px 24px 24px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.06);
-      border: 1px solid #eee;
-    }
-    .mv-header {
-      margin-bottom: 22px;
-      text-align: center;
-    }
-    .mv-label {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      padding: 5px 14px;
-      border-radius: 50px;
-      margin-bottom: 10px;
-    }
-    .mission-header .mv-label {
-      background: rgba(7, 87, 201, 0.12);
-      color: #0757c9;
-    }
-    .vision-header .mv-label {
-      background: rgba(245, 124, 0, 0.12);
-      color: #e65100;
-    }
-    .mv-header h3 {
-      font-size: 1.45rem;
-      font-weight: 800;
-      margin: 0;
-    }
-    .mv-slider-wrapper {
-      overflow: hidden;
-      border-radius: 14px;
-    }
-    .mv-track {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-    .mv-card {
-      flex: 0 0 100%;
-      padding: 28px 22px;
-      text-align: center;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .mv-number {
-      font-size: 2.2rem;
-      font-weight: 900;
-      line-height: 1;
-      margin-bottom: 12px;
-      opacity: 0.18;
-    }
-    .mission-card .mv-number { color: #0757c9; }
-    .vision-card .mv-number { color: #e65100; }
-    .mv-card h4 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: #0b0b0b;
-    }
-    .mv-card p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: #555;
-      margin: 0;
-    }
-    .mv-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 20px;
-    }
-    .mv-prev, .mv-next {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      border: 2px solid #0757c9;
-      background: #fff;
-      color: #0757c9;
-      font-size: 1.4rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.25s ease;
-    }
-    .mv-prev:hover, .mv-next:hover {
-      background: #0757c9;
-      color: #fff;
-    }
-    .vision-header ~ .mv-controls .mv-prev,
-    .vision-header ~ .mv-controls .mv-next {
-      border-color: #e65100;
-      color: #e65100;
-    }
-    .vision-header ~ .mv-controls .mv-prev:hover,
-    .vision-header ~ .mv-controls .mv-next:hover {
-      background: #e65100;
-      color: #fff;
-    }
-    .mv-dots { display: flex; gap: 8px; }
-    .mv-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #ccc;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: all 0.3s ease;
-    }
-    .mv-dot.active {
-      background: #0757c9;
-      transform: scale(1.25);
-    }
-    .vision-header ~ .mv-controls .mv-dot.active {
-      background: #e65100;
-    }
+header h1 {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
 
-    /* ===== JOIN & BOOK ===== */
-    .join-book-section {
-      padding: 70px 0;
-      background: #fff;
-    }
-    .join-book-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    .join-book-card {
-      background: #f8f9fb;
-      border-radius: 16px;
-      padding: 36px 32px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      border: 1px solid #eee;
-    }
-    .join-book-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
-    .join-book-card p { color: #555; line-height: 1.7; margin-bottom: 18px; }
-    .join-book-card ol { margin: 0 0 24px 18px; color: #444; line-height: 1.85; }
+/* ===== MENU ===== */
+.menu-btn {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  background: linear-gradient(90deg, #1e88e5, #ff8f00, #d4af37);
+  color: white;
+  font-size: 22px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 15px rgba(0,0,0,.3);
+  border: none;
+  line-height: 1;
+}
 
-    /* ===== STAFF SLIDER ===== */
-    .staff-section { padding: 70px 0; background: #f8f9fb; }
-    .staff-slider-wrapper {
-      position: relative;
-      overflow: hidden;
-      margin-top: 10px;
-    }
-    .staff-track {
-      display: flex;
-      gap: 22px;
-      transition: transform 0.45s ease;
-    }
-    .staff-card {
-      flex: 0 0 calc(25% - 17px);
-      position: relative;
-      height: 320px;
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
-      background: #111;
-    }
-    .staff-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .staff-card:hover img { transform: scale(1.06); }
-    .staff-info {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 22px 18px;
-      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-      color: #fff;
-    }
-    .staff-info h4 {
-      font-size: 1rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      margin-bottom: 4px;
-    }
-    .staff-info p { font-size: 0.85rem; opacity: 0.9; margin: 0; }
-    .staff-explore-btn {
-      margin-top: 12px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      background: #fff;
-      color: #111;
-      font-weight: 700;
-      font-size: 0.82rem;
-      cursor: pointer;
-    }
-    .staff-controls {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 28px;
-    }
-    .staff-prev, .staff-next {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: 2px solid #0757c9;
-      background: #fff;
-      color: #0757c9;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.25s ease;
-    }
-    .staff-prev:hover, .staff-next:hover {
-      background: #0757c9;
-      color: #fff;
-    }
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(180deg, #1e88e5, #ff8f00);
+  padding: 30px 22px;
+  transition: 0.4s ease;
+  z-index: 1002;
+  color: white;
+  overflow-y: auto;
+}
 
-    /* Staff Modal */
-    .staff-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    .staff-modal.open { opacity: 1; visibility: visible; }
-    .staff-modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-    }
-    .staff-modal-content {
-      position: relative;
-      z-index: 2;
-      width: min(480px, 100%);
-      max-height: 90vh;
-      overflow-y: auto;
-      background: #fff;
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-    .staff-modal.open .staff-modal-content { transform: translateY(0); }
-    .staff-modal-close {
-      position: absolute;
-      top: 12px; right: 15px;
-      width: 40px; height: 40px;
-      border: none;
-      border-radius: 50%;
-      background: #111;
-      color: #fff;
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .staff-modal-photo {
-      width: 160px; height: 160px;
-      margin: 10px auto 20px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid #fff;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-    .staff-modal-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .staff-modal-content h3 {
-      font-size: 1.5rem;
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-    .staff-modal-position {
-      color: #0757c9;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .staff-modal-contact {
-      margin-top: 22px;
-      display: grid;
-      gap: 12px;
-    }
-    .staff-contact-item {
-      padding: 12px;
-      border-radius: 8px;
-      background: #f5f5f5;
-      font-size: 0.92rem;
-    }
-    .staff-contact-item strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-    .staff-modal-contact a {
-      color: #0757c9;
-      font-weight: 600;
-    }
-    body.modal-open { overflow: hidden; }
+.sidebar.open { left: 0; }
 
-    /* Reviews */
-    .review-status {
-      min-height: 24px;
-      margin-top: 12px;
-      font-weight: 600;
-    }
-    .review-submit:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-    }
-    .review-stars { font-size: 1.5rem; margin-bottom: 15px; }
-    .review-message { line-height: 1.7; margin-bottom: 15px; }
-    .review-name { display: block; margin-bottom: 5px; }
-    .review-role { display: block; opacity: 0.7; }
+.sidebar h2 {
+  text-align: center;
+  color: #d4af37;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
 
-    @media (max-width: 1000px) {
-      .staff-card { flex: 0 0 calc(33.333% - 15px); }
-    }
-    @media (max-width: 900px) {
-      .mv-grid { grid-template-columns: 1fr; }
-      .join-book-grid { grid-template-columns: 1fr; }
-      .staff-card { flex: 0 0 calc(50% - 11px); }
-      .photo-slide { height: 320px; }
-    }
-    @media (max-width: 560px) {
-      .staff-card { flex: 0 0 85%; height: 300px; }
-      .photo-slide { height: 260px; }
-      .logo img { height: 42px; }
-      .lb-prev { left: 10px; }
-      .lb-next { right: 10px; }
-    }
-  </style>
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 13px 16px;
+  margin: 8px 0;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.12);
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background: #d4af37;
+  color: #111;
+  transform: translateX(6px);
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 1000;
+}
+
+#overlay.show { display: block; }
+
+/* ===== HERO ===== */
+.hero-slider {
+  width: 100%;
+  height: 72vh;
+  min-height: 520px;
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+              url("IMG_0860.jpeg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  max-width: 900px;
+}
+
+.hero-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 18px;
+  font-weight: 800;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 16px 36px;
+  background: linear-gradient(90deg, #ff9800, #d4af37);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: 0.3s;
+  box-shadow: 0 8px 25px rgba(255,152,0,0.4);
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255,152,0,0.5);
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 70px 5%;
+}
+
+.title {
+  text-align: center;
+  color: #ff8f00;
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 45px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ===== MISSION & VISION ===== */
+.mission-vision {
+  padding: 80px 5%;
+  background: linear-gradient(180deg, #0b1728 0%, #112240 100%);
+  color: #fff;
+}
+
+.mission-vision .title {
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.mission-vision .subtitle {
+  color: #cbd5e1;
+  margin-bottom: 50px;
+}
+
+.mv-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mv-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 20px;
+  padding: 36px 30px;
+  backdrop-filter: blur(10px);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--orange), var(--gold));
+}
+
+.mv-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.mv-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1565c0, #ff9800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+}
+
+.mv-card h3 {
+  color: var(--gold);
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.mv-card p {
+  color: #e2e8f0;
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.mv-list {
+  list-style: none;
+  margin-top: 18px;
+}
+
+.mv-list li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 12px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+.mv-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-size: 0.7rem;
+  top: 4px;
+}
+
+/* ===== FEATURED TRIPS ===== */
+.featured-trips {
+  background: #fff;
+}
+
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.trip-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  border: 1px solid #eee;
+  transition: 0.35s;
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.trip-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.trip-body {
+  padding: 22px 20px 26px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-body h3 {
+  color: #1e88e5;
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.trip-days {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff9800, #d4af37);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.trip-body p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 0.92rem;
+}
+
+.price-table th,
+.price-table td {
+  padding: 8px 6px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.price-table th {
+  color: #777;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.price-table td:last-child {
+  font-weight: 700;
+  color: #1565c0;
+  text-align: right;
+}
+
+.trip-btn {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: linear-gradient(90deg, #1e88e5, #ff8f00);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.trip-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30,136,229,0.3);
+}
+
+/* ===== GUIDES SECTION ===== */
+.guides-section {
+  background: linear-gradient(180deg, #0b1728, #112240);
+  color: white;
+}
+
+.guides-section .title {
+  color: var(--gold);
+}
+
+.guides-section .subtitle {
+  color: #cbd5e1;
+}
+
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.guide-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 18px;
+  padding: 30px 25px;
+  text-align: center;
+  transition: 0.35s;
+  backdrop-filter: blur(8px);
+}
+
+.guide-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.guide-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--gold);
+  margin-bottom: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.guide-card h3 {
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.guide-role {
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.guide-card p {
+  color: #e2e8f0;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+/* ===== PHOTO GALLERY SLIDER ===== */
+.home-gallery {
+  background: linear-gradient(180deg, #0b1728, #112240);
+  padding: 80px 4%;
+}
+
+.home-gallery h2 {
+  text-align: center;
+  color: var(--gold);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.home-gallery > p {
+  text-align: center;
+  color: #cbd5e1;
+  margin-bottom: 45px;
+  font-size: 1.15rem;
+}
+
+.gallerySwiper {
+  width: 100%;
+  padding-bottom: 55px;
+}
+
+.gallerySwiper .swiper-slide {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 3px solid var(--gold);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  transition: 0.4s;
+}
+
+.gallerySwiper .swiper-slide:hover {
+  transform: translateY(-8px);
+}
+
+.gallerySwiper img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--gold) !important;
+  background: rgba(21,101,192,0.8);
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--orange) !important;
+  width: 28px !important;
+  border-radius: 10px;
+}
+
+/* ===== BOOKING ===== */
+#bookingForm {
+  max-width: 620px;
+  margin: 0 auto;
+  background: white;
+  padding: 35px 30px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  border-top: 5px solid var(--gold);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px 15px;
+  margin-top: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.25s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(255,152,0,0.15);
+}
+
+button[type="submit"],
+#reviewForm button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  background: linear-gradient(90deg, #1e88e5, #ff8f00);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[type="submit"]:hover,
+#reviewForm button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30,136,229,0.3);
+}
+
+/* ===== REVIEWS ===== */
+.reviews {
+  background: #fff8e6;
+}
+
+.review-slider {
+  max-width: 650px;
+  margin: 30px auto 40px;
+}
+
+.review-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border-top: 5px solid #d4af37;
+  text-align: center;
+}
+
+.review-card h3 {
+  color: #1e88e5;
+  margin-bottom: 8px;
+}
+
+/* ===== SOCIAL ===== */
+.social-section {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.social-icons a {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  background: var(--orange);
+  color: var(--gold);
+  transform: translateY(-6px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  background: var(--dark);
+  color: white;
+  padding: 70px 0 30px;
+  margin: 0;
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 50px;
+}
+
+.footer-about h3 {
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.footer-about p {
+  line-height: 1.8;
+  margin-bottom: 12px;
+  color: #cbd5e1;
+}
+
+.footer-about i {
+  color: var(--orange);
+  width: 22px;
+  margin-right: 8px;
+}
+
+.footer-about a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-about a:hover {
+  color: var(--gold);
+}
+
+.footer-links h3,
+.footer-contact h3 {
+  color: var(--gold);
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin: 12px 0;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--orange);
+  padding-left: 6px;
+}
+
+.payment {
+  margin-top: 50px;
+  padding: 35px 5%;
+  text-align: center;
+  border-top: 1px solid #334155;
+  border-bottom: 1px solid #334155;
+}
+
+.payment h2 {
+  color: var(--gold);
+  margin-bottom: 22px;
+  font-size: 1.6rem;
+}
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 18px;
+}
+
+.payment-icons i {
+  font-size: 42px;
+  color: #e2e8f0;
+  transition: 0.3s;
+}
+
+.payment-icons i:hover {
+  color: var(--orange);
+  transform: scale(1.15);
+}
+
+.payment p {
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.copy {
+  text-align: center;
+  padding: 25px 5% 10px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.copy span {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ===== CHATBOT ===== */
+#chatIcon {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #1565c0, #ff9800, #d4af37);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+  z-index: 9999;
+  transition: 0.3s;
+}
+
+#chatIcon:hover { transform: scale(1.1); }
+
+#chatbot {
+  position: fixed;
+  bottom: 90px;
+  right: 22px;
+  width: 320px;
+  height: 450px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.3);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+#chatHeader {
+  background: linear-gradient(90deg, #1565c0, #ff9800, #d4af37);
+  color: white;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+}
+
+#messages {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  background: #f8fafc;
+  font-size: 0.9rem;
+}
+
+.botMessage, .userMessage {
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.botMessage { background: #e3f2fd; }
+.userMessage { background: #ffe0b2; text-align: right; }
+
+#quickQuestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+#quickQuestions button {
+  font-size: 0.78rem;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  background: #ff9800;
+  color: white;
+  cursor: pointer;
+}
+
+#chatInput {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  background: white;
+}
+
+#chatInput input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+#chatInput button {
+  margin-left: 8px;
+  width: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #1565c0;
+  color: white;
+  cursor: pointer;
+}
+
+.showChat { display: flex !important; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-content h1 { font-size: 2.3rem; }
+  .gallerySwiper img { height: 280px; }
+  .mv-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .mission-vision {
+    padding: 60px 5%;
+  }
+  .mv-card {
+    padding: 28px 22px;
+  }
+  .mv-card h3 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-slider { height: 60vh; min-height: 420px; }
+  .hero-content h1 { font-size: 1.8rem; }
+  .hero-content p { font-size: 1.05rem; }
+  .title { font-size: 1.75rem; }
+  .subtitle { font-size: 1rem; margin-bottom: 30px; }
+  header h1 { font-size: 1.1rem; }
+  .logo-img { width: 40px; height: 40px; }
+  .trips-grid { grid-template-columns: 1fr; }
+  section { padding: 50px 4%; }
+  .trip-card img { height: 190px; }
+  .gallerySwiper img { height: 240px; }
+  .mv-card { padding: 24px 18px; }
+  .mv-icon { width: 50px; height: 50px; font-size: 1.3rem; }
+}
+</style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container nav-container">
-      <a href="#home" class="logo">
-        <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo">
-      </a>
-
-      <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open navigation">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="main-navigation" id="mainNavigation">
-        <a href="#home" class="active">Home</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#mission">Mission</a>
-        <a href="#join">Join</a>
-        <a href="#staff">Staff</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-        <a href="membership.html" class="nav-join">Join Academy</a>
-      </nav>
+<!-- HEADER -->
+<header>
+  <div class="header-content">
+    <div class="logo-container">
+      <img src="647b8421-b7ad-4101-aae5-1307c8b8d5fd.jpeg" alt="Tujje Safaris Logo" class="logo-img">
     </div>
-  </header>
+    <h1>TUJJE SAFARIS</h1>
+  </div>
+</header>
 
-  <main>
+<!-- MENU -->
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+<div id="sidebar" class="sidebar">
+  <h2>TUJJE SAFARIS</h2>
+  <a href="index.html">🏠 Home</a>
+  <a href="#mission">🎯 Mission & Vision</a>
+  <a href="#featured-trips">⭐ Featured Trips</a>
+  <a href="Itinerary.html">🗺️ Itineraries</a>
+  <a href="gallery.html">🖼️ Gallery</a>
+  <a href="destinations.html">📍 Destinations</a>
+  <a href="lodges.html">🏕️ Lodges & Parks</a>
+  <a href="services.html">💼 Services</a>
+  <a href="about.html">ℹ️ About Us</a>
+  <a href="Contact.html">📞 Contact</a>
+  <a href="testimonial.html">💬 Testimonials</a>
+  <a href="Qrcode.html">✍️ Submit Review</a>
+  <a href="privacy.html">🔒 Privacy Policy</a>
+  <a href="terms.html">📜 Terms & Conditions</a>
+</div>
+<div id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- STATIC HERO -->
-    <section class="home-hero" id="home"
-      style="background-image: url('11fc554a-a5c7-46d3-a55e-673e721447c7.jpeg')">
-      <div class="hero-overlay"></div>
-      <div class="container home-hero-content">
-        <p class="eyebrow">BARYAN BADMINTON ACADEMY</p>
-        <h1>TRAIN. <span>DEVELOP.</span> COMPETE.</h1>
-        <p class="hero-description">
-          Structured badminton coaching in Kampala for juniors and players of all levels.
-        </p>
-        <div class="hero-actions">
-          <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
-          <a href="#join" class="secondary-button">HOW TO JOIN</a>
-        </div>
-      </div>
-    </section>
+<!-- HERO -->
+<section class="hero-slider">
+  <div class="hero-content">
+    <h1>Discover Africa in Luxury Style</h1>
+    <p>Unforgettable gorilla trekking, wildlife safaris & cultural adventures across Uganda and East Africa.</p>
+    <a href="#booking" class="hero-btn">Plan Your Adventure</a>
+  </div>
+</section>
 
-    <!-- PHOTO SLIDER -->
-    <section class="photo-gallery-section" id="gallery">
-      <div class="container">
-        <div class="section-heading center-heading" style="margin-bottom: 30px;">
-          <p class="eyebrow">ACADEMY MOMENTS</p>
-          <h2>LIFE AT <span>BARYAN</span></h2>
-          <p>Click any photo to view full size</p>
-        </div>
+<!-- MISSION & VISION -->
+<section class="mission-vision" id="mission">
+  <h2 class="title">Our Mission & Vision</h2>
+  <p class="subtitle">The heart and soul of every adventure we create at Tujje Safaris</p>
 
-        <div class="photo-slider-wrapper">
-          <div class="photo-track" id="photoTrack">
-            <div class="photo-slide" data-index="0">
-              <img src="5277a911-f90a-490e-a43a-99e2dc8841c6.jpeg" alt="Academy training">
-              <div class="photo-slide-caption">Academy Training</div>
-            </div>
-            <div class="photo-slide" data-index="1">
-              <img src="c0df4b6f-1fa2-4b85-9f8c-328e645edfa5.jpeg" alt="Players on court">
-              <div class="photo-slide-caption">Players on Court</div>
-            </div>
-            <div class="photo-slide" data-index="2">
-              <img src="2d88defd-f4be-497f-8aef-5d50bb277e3e.jpeg" alt="Badminton action">
-              <div class="photo-slide-caption">Match Action</div>
-            </div>
-            <div class="photo-slide" data-index="3">
-              <img src="2509f763-9704-4226-8472-2d620672e194.jpeg" alt="Team training">
-              <div class="photo-slide-caption">Team Training</div>
-            </div>
-            <div class="photo-slide" data-index="4">
-              <img src="12857a52-e324-4ec3-bb3c-433504dda1d3.jpeg" alt="Junior players">
-              <div class="photo-slide-caption">Junior Players</div>
-            </div>
-            <div class="photo-slide" data-index="5">
-              <img src="dab26d07-0e0e-4a5d-a609-532815e368ca.jpeg" alt="Coaching session">
-              <div class="photo-slide-caption">Coaching Session</div>
-            </div>
-            <div class="photo-slide" data-index="6">
-              <img src="011998db-4a59-4fce-91cf-1375202fb4e4.jpeg" alt="Academy community">
-              <div class="photo-slide-caption">Academy Community</div>
-            </div>
-            <div class="photo-slide" data-index="7">
-              <img src="5cba26d7-a05d-430b-85c4-04c0cce2511f.jpeg" alt="Players and coaches">
-              <div class="photo-slide-caption">Players & Coaches</div>
-            </div>
-          </div>
-        </div>
+  <div class="mv-container">
 
-        <div class="photo-controls">
-          <button class="photo-prev" id="photoPrev">‹</button>
-          <div class="photo-dots" id="photoDots"></div>
-          <button class="photo-next" id="photoNext">›</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-      <button class="lb-close" id="lbClose">×</button>
-      <button class="lb-prev" id="lbPrev">‹</button>
-      <button class="lb-next" id="lbNext">›</button>
-      <div class="lightbox-img-wrap">
-        <img id="lbImage" src="" alt="">
-      </div>
-      <div class="lb-counter" id="lbCounter"></div>
+    <!-- MISSION -->
+    <div class="mv-card">
+      <div class="mv-icon"><i class="fas fa-compass"></i></div>
+      <h3>Our Mission</h3>
+      <p>
+        To deliver authentic, safe and unforgettable safari experiences that connect travellers 
+        with the wild beauty of Uganda and East Africa, while supporting local communities 
+        and protecting wildlife for future generations.
+      </p>
+      <ul class="mv-list">
+        <li>Create personalized, high-quality safari journeys</li>
+        <li>Support conservation and community projects</li>
+        <li>Provide expert local guides and seamless service</li>
+        <li>Promote sustainable and responsible tourism</li>
+        <li>Make Africa accessible to every kind of traveller</li>
+      </ul>
     </div>
 
-    <!-- MISSION & VISION SLIDERS -->
-    <section class="mission-vision-section" id="mission">
-      <div class="container">
-        <div class="section-heading center-heading">
-          <p class="eyebrow">OUR PURPOSE</p>
-          <h2>MISSION & <span>VISION</span></h2>
-          <p>What drives Baryan Badminton Academy every day</p>
-        </div>
+    <!-- VISION -->
+    <div class="mv-card">
+      <div class="mv-icon"><i class="fas fa-eye"></i></div>
+      <h3>Our Vision</h3>
+      <p>
+        To become the most trusted and preferred safari company in East Africa — known for 
+        exceptional experiences, genuine care, and a lasting positive impact on people, 
+        wildlife and the environment.
+      </p>
+      <ul class="mv-list">
+        <li>Be the first choice for gorilla trekking & wildlife safaris</li>
+        <li>Set the standard for sustainable safari tourism</li>
+        <li>Inspire a new generation of responsible travellers</li>
+        <li>Grow alongside the communities we work with</li>
+        <li>Leave every guest with lifelong memories of Africa</li>
+      </ul>
+    </div>
 
-        <div class="mv-grid">
+  </div>
+</section>
 
-          <!-- MISSIONS -->
-          <div class="mv-block">
-            <div class="mv-header mission-header">
-              <span class="mv-label">MISSIONS</span>
-              <h3>What We Do</h3>
-            </div>
+<!-- FEATURED TRIPS -->
+<section id="featured-trips" class="featured-trips">
+  <h2 class="title">Featured Safari Trips</h2>
+  <p class="subtitle">Hand-crafted itineraries with clear pricing for every budget. All packages can be fully customized.</p>
 
-            <div class="mv-slider-wrapper">
-              <div class="mv-track" id="missionTrack">
-                <div class="mv-card mission-card">
-                  <div class="mv-number">01</div>
-                  <h4>Quality Coaching</h4>
-                  <p>Provide structured, professional badminton coaching that builds strong technical foundations for every player, from beginners to advanced athletes.</p>
-                </div>
-                <div class="mv-card mission-card">
-                  <div class="mv-number">02</div>
-                  <h4>Player Development</h4>
-                  <p>Develop players holistically by focusing on skills, fitness, tactics, mental strength and sportsmanship both on and off the court.</p>
-                </div>
-                <div class="mv-card mission-card">
-                  <div class="mv-number">03</div>
-                  <h4>Junior Pathways</h4>
-                  <p>Create clear development pathways for juniors so young athletes can grow with confidence, discipline and a love for the game.</p>
-                </div>
-                <div class="mv-card mission-card">
-                  <div class="mv-number">04</div>
-                  <h4>Competitive Opportunities</h4>
-                  <p>Give players regular opportunities to compete, gain match experience and measure their progress against others.</p>
-                </div>
-                <div class="mv-card mission-card">
-                  <div class="mv-number">05</div>
-                  <h4>Character & Discipline</h4>
-                  <p>Instil discipline, teamwork, respect and responsibility so that every player becomes a better person as well as a better athlete.</p>
-                </div>
-              </div>
-            </div>
+  <div class="trips-grid">
 
-            <div class="mv-controls">
-              <button class="mv-prev" id="missionPrev">‹</button>
-              <div class="mv-dots" id="missionDots"></div>
-              <button class="mv-next" id="missionNext">›</button>
-            </div>
-          </div>
-
-          <!-- VISIONS -->
-          <div class="mv-block">
-            <div class="mv-header vision-header">
-              <span class="mv-label">VISIONS</span>
-              <h3>Where We Are Going</h3>
-            </div>
-
-            <div class="mv-slider-wrapper">
-              <div class="mv-track" id="visionTrack">
-                <div class="mv-card vision-card">
-                  <div class="mv-number">01</div>
-                  <h4>Leading Academy</h4>
-                  <p>To become one of the most respected and trusted badminton development academies in Uganda and the East African region.</p>
-                </div>
-                <div class="mv-card vision-card">
-                  <div class="mv-number">02</div>
-                  <h4>National Impact</h4>
-                  <p>To produce players who can compete at national level and represent Uganda with pride in regional and international tournaments.</p>
-                </div>
-                <div class="mv-card vision-card">
-                  <div class="mv-number">03</div>
-                  <h4>Inclusive Growth</h4>
-                  <p>To create an inclusive environment where every player — regardless of background or starting level — has the chance to improve and succeed.</p>
-                </div>
-                <div class="mv-card vision-card">
-                  <div class="mv-number">04</div>
-                  <h4>Strong Community</h4>
-                  <p>To build a vibrant badminton community of players, parents, coaches and supporters who grow together through the sport.</p>
-                </div>
-                <div class="mv-card vision-card">
-                  <div class="mv-number">05</div>
-                  <h4>Lasting Legacy</h4>
-                  <p>To leave a lasting legacy by developing not only champions on the court, but disciplined, confident and responsible young people.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mv-controls">
-              <button class="mv-prev" id="visionPrev">‹</button>
-              <div class="mv-dots" id="visionDots"></div>
-              <button class="mv-next" id="visionNext">›</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW TO JOIN + BOOK -->
-    <section class="join-book-section" id="join">
-      <div class="container">
-        <div class="section-heading center-heading">
-          <p class="eyebrow">GET STARTED</p>
-          <h2>JOIN THE CLUB & <span>BOOK A SESSION</span></h2>
-        </div>
-        <div class="join-book-grid">
-          <div class="join-book-card">
-            <h3>How to Join the Club</h3>
-            <p>Becoming a member is simple:</p>
-            <ol>
-              <li>Fill in the online membership form</li>
-              <li>Choose your training level</li>
-              <li>Complete registration and payment</li>
-              <li>Start training with the academy</li>
-            </ol>
-            <a href="membership.html" class="primary-button">Start Membership</a>
-          </div>
-          <div class="join-book-card">
-            <h3>How to Book a Session</h3>
-            <p>Want to try a session or ask about training times?</p>
-            <ol>
-              <li>Message us on WhatsApp</li>
-              <li>Tell us your preferred day and level</li>
-              <li>We will confirm the available session</li>
-              <li>Come train with us</li>
-            </ol>
-            <a href="https://wa.me/256755805092" target="_blank" rel="noopener" class="whatsapp-button">WhatsApp to Book</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STAFF SLIDER -->
-    <section class="staff-section" id="staff">
-      <div class="container">
-        <div class="section-heading center-heading">
-          <p class="eyebrow">OUR STAFF</p>
-          <h2>MEET THE <span>TEAM</span></h2>
-          <p>The dedicated coaches and support team behind Baryan Badminton Academy.</p>
-        </div>
-
-        <div class="staff-slider-wrapper">
-          <div class="staff-track" id="staffTrack">
-            <div class="staff-card" data-staff="1">
-              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Alema G Hamis">
-              <div class="staff-info">
-                <h4>Alema G Hamis</h4>
-                <p>Head Coach</p>
-                <button class="staff-explore-btn" type="button">View Details</button>
-              </div>
-            </div>
-            <div class="staff-card" data-staff="2">
-              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Sarah Nalwoga">
-              <div class="staff-info">
-                <h4>Sarah Nalwoga</h4>
-                <p>Junior Coach</p>
-                <button class="staff-explore-btn" type="button">View Details</button>
-              </div>
-            </div>
-            <div class="staff-card" data-staff="3">
-              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="David Ssempijja">
-              <div class="staff-info">
-                <h4>David Ssempijja</h4>
-                <p>Fitness Coach</p>
-                <button class="staff-explore-btn" type="button">View Details</button>
-              </div>
-            </div>
-            <div class="staff-card" data-staff="4">
-              <img src="e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg" alt="Grace Nakato">
-              <div class="staff-info">
-                <h4>Grace Nakato</h4>
-                <p>Administrator</p>
-                <button class="staff-explore-btn" type="button">View Details</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="staff-controls">
-          <button class="staff-prev" id="staffPrev">‹</button>
-          <button class="staff-next" id="staffNext">›</button>
-        </div>
-
-        <!-- STAFF MODAL -->
-        <div class="staff-modal" id="staffModal" aria-hidden="true">
-          <div class="staff-modal-overlay" id="staffModalOverlay"></div>
-          <div class="staff-modal-content">
-            <button class="staff-modal-close" id="staffModalClose">×</button>
-            <div class="staff-modal-photo" id="staffModalPhoto"></div>
-            <h3 id="staffModalName"></h3>
-            <p class="staff-modal-position" id="staffModalPosition"></p>
-            <p id="staffModalBio"></p>
-            <div class="staff-modal-contact" id="staffModalContact"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="reviews-section" id="reviews">
-      <div class="container">
-        <div class="section-heading center-heading">
-          <p class="eyebrow">REVIEWS</p>
-          <h2>WHAT OUR <span>PLAYERS SAY</span></h2>
-        </div>
-
-        <div class="reviews-selector">
-          <label for="reviewSelect">Select a review</label>
-          <select id="reviewSelect">
-            <option value="">Loading reviews...</option>
-          </select>
-          <div class="selected-review" id="selectedReview">
-            <p class="reviews-loading">Loading reviews...</p>
-          </div>
-        </div>
-
-        <div class="review-form-wrapper">
-          <div class="review-form-heading">
-            <p class="eyebrow">YOUR EXPERIENCE</p>
-            <h3>LEAVE A <span>REVIEW</span></h3>
-          </div>
-
-          <form id="reviewForm" class="review-form">
-            <div class="form-group">
-              <label for="reviewName">Your Name</label>
-              <input type="text" id="reviewName" name="name" placeholder="Enter your name" required maxlength="60">
-            </div>
-            <div class="form-group">
-              <label for="reviewRole">You are a</label>
-              <select id="reviewRole" name="role" required>
-                <option value="">Select one</option>
-                <option value="Player">Player</option>
-                <option value="Parent">Parent</option>
-                <option value="Coach">Coach</option>
-                <option value="Member">Member</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Rating</label>
-              <div class="rating-input">
-                <label><input type="radio" name="rating" value="5" required> ★★★★★</label>
-                <label><input type="radio" name="rating" value="4"> ★★★★</label>
-                <label><input type="radio" name="rating" value="3"> ★★★</label>
-                <label><input type="radio" name="rating" value="2"> ★★</label>
-                <label><input type="radio" name="rating" value="1"> ★</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="reviewMessage">Your Review</label>
-              <textarea id="reviewMessage" name="message" rows="5" placeholder="Write your review..." required maxlength="500"></textarea>
-            </div>
-            <button type="submit" class="primary-button review-submit" id="reviewSubmit">SUBMIT REVIEW</button>
-            <p id="reviewStatus" class="review-status" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- CONTACT CTA -->
-  <section class="contact-cta" id="contact">
-    <div class="container contact-cta-content">
-      <div>
-        <p class="eyebrow">READY TO PLAY?</p>
-        <h2>YOUR NEXT <span>GAME STARTS HERE.</span></h2>
-      </div>
-      <div class="cta-buttons">
-        <a href="membership.html" class="primary-button">JOIN ACADEMY</a>
-        <a href="https://wa.me/256755805092" target="_blank" rel="noopener" class="whatsapp-button">WhatsApp Academy</a>
+    <div class="trip-card">
+      <img src="IMG_0817.jpeg" alt="Mountain gorilla in Bwindi">
+      <div class="trip-body">
+        <span class="trip-days">5 Days</span>
+        <h3>Gorilla Express</h3>
+        <p>Bwindi gorilla trekking + Lake Bunyonyi relaxation. Perfect short escape focused on the iconic mountain gorillas.</p>
+        <table class="price-table">
+          <tr><th>Style</th><th>Per person</th></tr>
+          <tr><td>Budget</td><td>from $1,850</td></tr>
+          <tr><td>Mid-range</td><td>from $2,450</td></tr>
+          <tr><td>Luxury</td><td>from $3,650</td></tr>
+        </table>
+        <a href="#booking" class="trip-btn">Enquire Now</a>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <a href="#home" class="logo">
-          <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Logo">
-          <div class="logo-text">
-            <span>BARYAN</span>
-            <span>ACADEMY</span>
-          </div>
-        </a>
-        <p>Train. Develop. Compete. Belong.</p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <a href="#gallery">Gallery</a>
-        <a href="#mission">Mission</a>
-        <a href="#join">Join & Book</a>
-        <a href="#staff">Staff</a>
-      </div>
-      <div>
-        <h4>Academy</h4>
-        <a href="membership.html">Membership</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="https://wa.me/256755805092" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:baryanmintonclub@gmail.com">Email</a>
+    <div class="trip-card">
+      <img src="IMG_0818.jpeg" alt="Gorilla eating vegetation">
+      <div class="trip-body">
+        <span class="trip-days">7 Days</span>
+        <h3>Gorillas & Chimps</h3>
+        <p>Bwindi gorillas + Kibale chimpanzee tracking + Queen Elizabeth game drives and boat cruise on the Kazinga Channel.</p>
+        <table class="price-table">
+          <tr><th>Style</th><th>Per person</th></tr>
+          <tr><td>Budget</td><td>from $2,650</td></tr>
+          <tr><td>Mid-range</td><td>from $3,450</td></tr>
+          <tr><td>Luxury</td><td>from $5,200</td></tr>
+        </table>
+        <a href="#booking" class="trip-btn">Enquire Now</a>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <p>© 2026 Baryan Badminton Academy. All rights reserved.</p>
-      <div>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
+
+    <div class="trip-card">
+      <img src="IMG_0813.jpeg" alt="Hippos in the water">
+      <div class="trip-body">
+        <span class="trip-days">8 Days</span>
+        <h3>Classic Uganda</h3>
+        <p>Murchison Falls (hippos, Nile boat safari) + Kibale chimps + Queen Elizabeth + optional gorilla add-on.</p>
+        <table class="price-table">
+          <tr><th>Style</th><th>Per person</th></tr>
+          <tr><td>Budget</td><td>from $2,950</td></tr>
+          <tr><td>Mid-range</td><td>from $3,850</td></tr>
+          <tr><td>Luxury</td><td>from $5,900</td></tr>
+        </table>
+        <a href="#booking" class="trip-btn">Enquire Now</a>
       </div>
     </div>
-  </footer>
 
-  <!-- MOBILE NAV -->
-  <script>
-    const menuButton = document.getElementById("mobileMenuButton");
-    const navigation = document.getElementById("mainNavigation");
-    if (menuButton && navigation) {
-      menuButton.addEventListener("click", () => {
-        const isOpen = navigation.classList.toggle("open");
-        menuButton.setAttribute("aria-expanded", String(isOpen));
-      });
-      document.querySelectorAll(".main-navigation a").forEach(link => {
-        link.addEventListener("click", () => {
-          navigation.classList.remove("open");
-          menuButton.setAttribute("aria-expanded", "false");
-        });
-      });
+    <div class="trip-card">
+      <img src="IMG_0836.jpeg" alt="Baby rhino in the grass">
+      <div class="trip-body">
+        <span class="trip-days">10 Days</span>
+        <h3>Ultimate Highlights</h3>
+        <p>Murchison Falls, Kibale, Queen Elizabeth, Bwindi gorillas + Ziwa Rhino Sanctuary. The perfect balance of wildlife and primates.</p>
+        <table class="price-table">
+          <tr><th>Style</th><th>Per person</th></tr>
+          <tr><td>Budget</td><td>from $3,650</td></tr>
+          <tr><td>Mid-range</td><td>from $4,750</td></tr>
+          <tr><td>Luxury</td><td>from $7,200</td></tr>
+        </table>
+        <a href="#booking" class="trip-btn">Enquire Now</a>
+      </div>
+    </div>
+
+    <div class="trip-card">
+      <img src="IMG_2681.jpeg" alt="Lion cub in a tree">
+      <div class="trip-body">
+        <span class="trip-days">14 Days</span>
+        <h3>Grand Uganda Safari</h3>
+        <p>Full circuit: Kidepo Valley, Murchison, Kibale, Queen Elizabeth, Bwindi + cultural experiences. The complete Uganda adventure.</p>
+        <table class="price-table">
+          <tr><th>Style</th><th>Per person</th></tr>
+          <tr><td>Budget</td><td>from $4,950</td></tr>
+          <tr><td>Mid-range</td><td>from $6,450</td></tr>
+          <tr><td>Luxury</td><td>from $9,800</td></tr>
+        </table>
+        <a href="#booking" class="trip-btn">Enquire Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHOTO SLIDER -->
+<section class="home-gallery">
+  <h2>Moments from the Wild</h2>
+  <p>Real adventures. Real smiles. Real Africa with Tujje Safaris.</p>
+
+  <div class="swiper gallerySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="IMG_0813.jpeg" alt="Hippos in the water"></div>
+      <div class="swiper-slide"><img src="IMG_0817.jpeg" alt="Mountain gorilla resting"></div>
+      <div class="swiper-slide"><img src="IMG_0818.jpeg" alt="Gorilla eating leaves"></div>
+      <div class="swiper-slide"><img src="IMG_0820.jpeg" alt="Close-up of gorilla face"></div>
+      <div class="swiper-slide"><img src="IMG_0845.jpeg" alt="Hornbills pair"></div>
+      <div class="swiper-slide"><img src="IMG_0823.jpeg" alt="Chimpanzee in the forest"></div>
+      <div class="swiper-slide"><img src="IMG_0816.jpeg" alt="Gorilla looking at camera"></div>
+      <div class="swiper-slide"><img src="IMG_0836.jpeg" alt="Baby rhino"></div>
+      <div class="swiper-slide"><img src="IMG_2681.jpeg" alt="Young lion in tree"></div>
+      <div class="swiper-slide"><img src="IMG_5709.jpeg" alt="Group by the lake"></div>
+      <div class="swiper-slide"><img src="IMG_2955.jpeg" alt="Murchison Falls National Park entrance"></div>
+      <div class="swiper-slide"><img src="IMG_5349.jpeg" alt="Banana farm adventure"></div>
+      <div class="swiper-slide"><img src="IMG_6153.jpeg" alt="Evening poolside"></div>
+      <div class="swiper-slide"><img src="IMG_2687.jpeg" alt="Team photo"></div>
+      <div class="swiper-slide"><img src="IMG_4395.jpeg" alt="Yoga overlooking the valley"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- MEET OUR GUIDES -->
+<section class="guides-section">
+  <h2 class="title">Meet Our Expert Guides</h2>
+  <p class="subtitle">Passionate local experts who turn every safari into a lifetime memory. Their knowledge, energy and love for Uganda will make your journey unforgettable.</p>
+
+  <div class="guides-grid">
+    <div class="guide-card">
+      <img src="IMG_2687.jpeg" alt="Guide Huzo" class="guide-avatar">
+      <h3>Huzo</h3>
+      <div class="guide-role">Lead Safari Guide & Gorilla Specialist</div>
+      <p>With over 12 years of experience in Bwindi and Mgahinga, Huzo has led more than 800 successful gorilla treks. Known for his calm energy, sharp wildlife spotting skills and incredible storytelling around the campfire.</p>
+    </div>
+
+    <div class="guide-card">
+      <img src="IMG_5709.jpeg" alt="Guide Kirunda" class="guide-avatar">
+      <h3>Kirunda</h3>
+      <div class="guide-role">Wildlife & Birding Expert</div>
+      <p>Kirunda is a true son of Queen Elizabeth and Murchison Falls National Parks. A certified bird guide with over 400 species under his belt, he brings the savannah to life with infectious enthusiasm and deep ecological knowledge.</p>
+    </div>
+
+    <div class="guide-card">
+      <img src="IMG_6153.jpeg" alt="Guide Andrew" class="guide-avatar">
+      <h3>Andrew</h3>
+      <div class="guide-role">Adventure & Cultural Guide</div>
+      <p>From white-water rafting on the Nile to cultural immersions with the Batwa and Banyankole, Andrew crafts high-energy, heartfelt experiences. Guests love his big smile, safety-first approach and talent for creating magical group moments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <h2 class="title">Book Your Dream Safari</h2>
+  <p class="subtitle">Tell us your travel dates and preferences — we’ll craft the perfect itinerary just for you.</p>
+
+  <form id="bookingForm">
+    <input id="name" placeholder="Full Name" required>
+    <input id="email" type="email" placeholder="Email Address" required>
+    <input id="phone" placeholder="Phone / WhatsApp" required>
+    <input id="country" placeholder="Country of Residence" required>
+
+    <select id="destination" required>
+      <option value="">Select Destination</option>
+      <option>Uganda</option>
+      <option>Kenya</option>
+      <option>Tanzania</option>
+      <option>Rwanda</option>
+      <option>Multi-Country East Africa</option>
+    </select>
+
+    <select id="package" required>
+      <option value="">Select Experience</option>
+      <option>Gorilla Trekking</option>
+      <option>Wildlife Safari</option>
+      <option>Luxury Safari</option>
+      <option>Honeymoon Safari</option>
+      <option>Adventure & Rafting</option>
+      <option>Custom Itinerary</option>
+    </select>
+
+    <input id="date" type="date" required>
+    <textarea id="message" rows="4" placeholder="Tell us about your dream trip..."></textarea>
+
+    <button type="submit">Send Booking Request</button>
+  </form>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews">
+  <h2 class="title">What Our Guests Say</h2>
+  <div id="reviewBox" class="review-slider">
+    <p>Loading reviews...</p>
+  </div>
+
+  <form id="reviewForm" style="max-width:600px;margin:40px auto 0;background:white;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+    <h3 style="text-align:center;margin-bottom:20px;color:#1e88e5;">Share Your Experience</h3>
+    <input id="rname" placeholder="Your Name" required>
+    <textarea id="rtext" rows="4" placeholder="Write your review..." required></textarea>
+    <select id="rrating">
+      <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+      <option value="4">⭐⭐⭐⭐ Great</option>
+      <option value="3">⭐⭐⭐ Good</option>
+      <option value="2">⭐⭐ Fair</option>
+      <option value="1">⭐ Poor</option>
+    </select>
+    <button type="button" onclick="submitReview()">Submit Review</button>
+  </form>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+  <h2 class="title">Connect With Us</h2>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=61554350095901" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/tujje_safaris_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/256702094292" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/256701939235" target="_blank" title="WhatsApp 2"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.tiktok.com/@tujje.safaris" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-about">
+      <h3>Tujje Safaris</h3>
+      <p>We craft unforgettable safari experiences across Uganda and East Africa. From gorilla encounters in Bwindi to thrilling game drives and cultural immersions — your adventure starts here.</p>
+      <p><i class="fas fa-map-marker-alt"></i> Jinja & Kampala, Uganda</p>
+      <p><i class="fas fa-phone"></i> +256 702 094 292</p>
+      <p><i class="fas fa-phone"></i> +256 701 939 235</p>
+      <p><i class="fas fa-phone"></i> +256 774 674 861</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:info@tujjesafaris.com">info@tujjesafaris.com</a></p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#booking">Book a Safari</a></li>
+        <li><a href="#featured-trips">Featured Trips</a></li>
+        <li><a href="#mission">Mission & Vision</a></li>
+        <li><a href="Itinerary.html">Popular Itineraries</a></li>
+        <li><a href="gallery.html">Photo Gallery</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="about.html">About Tujje</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Why Travel With Us</h3>
+      <p style="color:#cbd5e1;line-height:1.8;">
+        ✓ Expert local guides<br>
+        ✓ Hand-picked lodges<br>
+        ✓ 24/7 support on safari<br>
+        ✓ Sustainable & community-focused<br>
+        ✓ Fully customizable trips
+      </p>
+    </div>
+  </div>
+
+  <div class="payment">
+    <h2>Secure Payment Methods</h2>
+    <div class="payment-icons">
+      <i class="fab fa-cc-visa"></i>
+      <i class="fab fa-cc-mastercard"></i>
+      <i class="fab fa-cc-paypal"></i>
+      <i class="fab fa-cc-stripe"></i>
+      <i class="fab fa-google-pay"></i>
+      <i class="fab fa-apple-pay"></i>
+      <i class="fas fa-credit-card"></i>
+    </div>
+    <p>We accept Visa, Mastercard, PayPal, Stripe, Apple Pay, Google Pay and all major debit & credit cards.</p>
+  </div>
+
+  <div class="copy">
+    &copy; <span id="year"></span> Tujje Safaris. All Rights Reserved. | Crafted with ❤️ in Uganda
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<div id="chatIcon" onclick="toggleChat()">💬</div>
+<div id="chatbot">
+  <div id="chatHeader">
+    <div>🤖 Tujje Safari AI</div>
+    <div>
+      <button onclick="toggleChat()" style="background:white;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;color:#1565c0;">✖</button>
+    </div>
+  </div>
+  <div id="messages">
+    <div class="botMessage">
+      👋 Karibu! Welcome to <b>Tujje Safaris</b>.<br><br>
+      I can help with gorilla trekking, wildlife safaris, lodges, itineraries and more. How can I assist you today?
+    </div>
+  </div>
+  <div id="quickQuestions">
+    <button onclick="askQuick('Tell me about Gorilla Trekking')">Gorilla Trekking</button>
+    <button onclick="askQuick('Safari Packages')">Packages</button>
+    <button onclick="askQuick('Best time to visit')">Best Time</button>
+    <button onclick="askQuick('Book a Tour')">Book Now</button>
+  </div>
+  <div id="chatInput">
+    <input type="text" id="question" placeholder="Ask anything..." onkeypress="if(event.key==='Enter')sendMessage()">
+    <button onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+// Year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Menu
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+
+// Swiper Gallery
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".gallerySwiper", {
+    loop: true,
+    centeredSlides: true,
+    spaceBetween: 25,
+    autoplay: {
+      delay: 3200,
+      disableOnInteraction: false
+    },
+    speed: 900,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    breakpoints: {
+      0:   { slidesPerView: 1 },
+      640: { slidesPerView: 1.3 },
+      900: { slidesPerView: 2.2 },
+      1200:{ slidesPerView: 2.8 }
     }
-  </script>
+  });
+});
 
-  <!-- PHOTO SLIDER + LIGHTBOX -->
-  <script>
-    (function () {
-      const track = document.getElementById("photoTrack");
-      const slides = document.querySelectorAll(".photo-slide");
-      const prevBtn = document.getElementById("photoPrev");
-      const nextBtn = document.getElementById("photoNext");
-      const dotsContainer = document.getElementById("photoDots");
-      let current = 0;
-      let autoTimer;
+// EmailJS Booking
+emailjs.init("JS9FCzRaz44ibCjcz");
+document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector("button");
+  btn.disabled = true;
+  btn.innerHTML = "Sending...";
 
-      slides.forEach((_, i) => {
-        const dot = document.createElement("button");
-        dot.className = "photo-dot" + (i === 0 ? " active" : "");
-        dot.addEventListener("click", () => goTo(i));
-        dotsContainer.appendChild(dot);
-      });
-      const dots = document.querySelectorAll(".photo-dot");
+  const data = {
+    to_email: "tujjesafaris759@gmail.com",
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    country: document.getElementById("country").value,
+    destination: document.getElementById("destination").value,
+    package: document.getElementById("package").value,
+    date: document.getElementById("date").value,
+    message: document.getElementById("message").value
+  };
 
-      function goTo(index) {
-        current = (index + slides.length) % slides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d, i) => d.classList.toggle("active", i === current));
-        resetAuto();
-      }
+  try {
+    await emailjs.send("service_mun08xi", "template_j2s60y8", data);
+    alert("✅ Booking request sent successfully! We will contact you shortly.");
+    this.reset();
+    window.open("https://wa.me/256702094292", "_blank");
+  } catch (err) {
+    console.error(err);
+    alert("❌ Something went wrong. Please try again or WhatsApp us.");
+  }
+  btn.disabled = false;
+  btn.innerHTML = "Send Booking Request";
+});
 
-      function next() { goTo(current + 1); }
-      function prev() { goTo(current - 1); }
+/* ===========================
+   TUJJE SAFARI AI – CHATBOT
+=========================== */
+function toggleChat() {
+  document.getElementById("chatbot").classList.toggle("showChat");
+}
 
-      function resetAuto() {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(next, 5000);
-      }
+function askQuick(text) {
+  document.getElementById("question").value = text;
+  sendMessage();
+}
 
-      prevBtn.addEventListener("click", prev);
-      nextBtn.addEventListener("click", next);
-      resetAuto();
+function sendMessage() {
+  const input = document.getElementById("question");
+  const rawMsg = input.value.trim();
+  const msg = rawMsg.toLowerCase();
 
-      const wrapper = document.querySelector(".photo-slider-wrapper");
-      wrapper.addEventListener("mouseenter", () => clearInterval(autoTimer));
-      wrapper.addEventListener("mouseleave", resetAuto);
+  if (!rawMsg) return;
 
-      // LIGHTBOX
-      const lightbox = document.getElementById("lightbox");
-      const lbImage = document.getElementById("lbImage");
-      const lbCounter = document.getElementById("lbCounter");
-      const lbClose = document.getElementById("lbClose");
-      const lbPrev = document.getElementById("lbPrev");
-      const lbNext = document.getElementById("lbNext");
-      let lbIndex = 0;
+  const messages = document.getElementById("messages");
 
-      const images = Array.from(slides).map(s => ({
-        src: s.querySelector("img").src,
-        alt: s.querySelector("img").alt
-      }));
+  messages.innerHTML += `<div class="userMessage">${rawMsg}</div>`;
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
 
-      function openLightbox(index) {
-        lbIndex = index;
-        showLbImage();
-        lightbox.classList.add("open");
-        document.body.classList.add("lightbox-open");
-        clearInterval(autoTimer);
-      }
+  const typingId = "typing-" + Date.now();
+  messages.innerHTML += `<div class="botMessage" id="${typingId}"><em>Tujje AI is typing...</em></div>`;
+  messages.scrollTop = messages.scrollHeight;
 
-      function closeLightbox() {
-        lightbox.classList.remove("open");
-        document.body.classList.remove("lightbox-open");
-        resetAuto();
-      }
+  setTimeout(() => {
+    document.getElementById(typingId)?.remove();
 
-      function showLbImage() {
-        lbImage.src = images[lbIndex].src;
-        lbImage.alt = images[lbIndex].alt;
-        lbCounter.textContent = `${lbIndex + 1} / ${images.length}`;
-      }
+    let reply = "";
 
-      slides.forEach((slide, i) => {
-        slide.addEventListener("click", () => openLightbox(i));
-      });
-
-      lbClose.addEventListener("click", closeLightbox);
-      lbPrev.addEventListener("click", () => {
-        lbIndex = (lbIndex - 1 + images.length) % images.length;
-        showLbImage();
-      });
-      lbNext.addEventListener("click", () => {
-        lbIndex = (lbIndex + 1) % images.length;
-        showLbImage();
-      });
-
-      lightbox.addEventListener("click", e => {
-        if (e.target === lightbox) closeLightbox();
-      });
-
-      document.addEventListener("keydown", e => {
-        if (!lightbox.classList.contains("open")) return;
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowLeft") {
-          lbIndex = (lbIndex - 1 + images.length) % images.length;
-          showLbImage();
-        }
-        if (e.key === "ArrowRight") {
-          lbIndex = (lbIndex + 1) % images.length;
-          showLbImage();
-        }
-      });
-    })();
-  </script>
-
-  <!-- MISSION & VISION SLIDERS -->
-  <script>
-    function createMVSlider(trackId, prevId, nextId, dotsId) {
-      const track = document.getElementById(trackId);
-      const slides = track.querySelectorAll(".mv-card");
-      const prevBtn = document.getElementById(prevId);
-      const nextBtn = document.getElementById(nextId);
-      const dotsContainer = document.getElementById(dotsId);
-      let current = 0;
-      let autoTimer;
-
-      slides.forEach((_, i) => {
-        const dot = document.createElement("button");
-        dot.className = "mv-dot" + (i === 0 ? " active" : "");
-        dot.addEventListener("click", () => goTo(i));
-        dotsContainer.appendChild(dot);
-      });
-      const dots = dotsContainer.querySelectorAll(".mv-dot");
-
-      function goTo(index) {
-        current = (index + slides.length) % slides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d, i) => d.classList.toggle("active", i === current));
-        resetAuto();
-      }
-
-      function next() { goTo(current + 1); }
-      function prev() { goTo(current - 1); }
-
-      function resetAuto() {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(next, 4500);
-      }
-
-      prevBtn.addEventListener("click", prev);
-      nextBtn.addEventListener("click", next);
-      resetAuto();
-
-      const wrapper = track.closest(".mv-slider-wrapper");
-      wrapper.addEventListener("mouseenter", () => clearInterval(autoTimer));
-      wrapper.addEventListener("mouseleave", resetAuto);
+    if (msg.match(/^(hi|hello|hey|good morning|good afternoon|good evening|karibu|habari)/)) {
+      reply = `Karibu sana! 👋<br><br>
+      Welcome to <strong>Tujje Safaris</strong>. I’m your personal safari consultant.<br><br>
+      I can help you with gorilla trekking, wildlife safaris, chimpanzee tracking, itineraries, best time to visit, packing advice, and more.<br><br>
+      How may I assist you today?`;
+    }
+    else if (msg.includes("gorilla") || msg.includes("bwindi") || msg.includes("mgahinga")) {
+      reply = `🦍 <strong>Gorilla Trekking in Uganda</strong><br><br>
+      Uganda is home to more than half of the world’s remaining mountain gorillas. The main locations are:<br><br>
+      • <strong>Bwindi Impenetrable National Park</strong> (most popular)<br>
+      • <strong>Mgahinga Gorilla National Park</strong><br><br>
+      <strong>Key details:</strong><br>
+      • Permit cost: USD 800 per person (2025/2026)<br>
+      • Trek duration: 2–8 hours<br>
+      • You spend 1 full hour with the gorillas<br>
+      • Minimum age: 15 years<br><br>
+      We highly recommend booking permits 3–6 months in advance.<br><br>
+      Would you like a 3-day or 4-day gorilla trek itinerary?`;
+    }
+    else if (msg.includes("chimp") || msg.includes("chimpanzee") || msg.includes("kibale")) {
+      reply = `🐒 <strong>Chimpanzee Tracking</strong><br><br>
+      The best place is <strong>Kibale National Park</strong> — the “Primate Capital of the World”.<br><br>
+      • Permit: USD 250 per person<br>
+      • Success rate: over 90%<br>
+      • Chimpanzee Habituation Experience also available<br><br>
+      Kibale pairs perfectly with Queen Elizabeth or a gorilla trek.`;
+    }
+    else if (msg.includes("best time") || msg.includes("when to visit") || msg.includes("best season") || msg.includes("weather")) {
+      reply = `📅 <strong>Best Time to Visit Uganda</strong><br><br>
+      <strong>Peak (Dry):</strong> June–September & December–February<br>
+      Ideal for gorilla trekking and game drives.<br><br>
+      <strong>Green Season:</strong> March–May & October–November<br>
+      Fewer tourists, lush landscapes, lower rates.<br><br>
+      Gorilla trekking is possible year-round.`;
+    }
+    else if (msg.includes("package") || msg.includes("itinerary") || msg.includes("safari package") || msg.includes("tour")) {
+      reply = `🌍 <strong>Popular Safari Packages</strong><br><br>
+      • 5 Days – Gorilla Express<br>
+      • 7 Days – Gorillas & Chimps<br>
+      • 8 Days – Classic Uganda<br>
+      • 10 Days – Ultimate Highlights<br>
+      • 14 Days – Grand Uganda Safari<br><br>
+      All available in Budget, Mid-range and Luxury. How many days are you thinking of?`;
+    }
+    else if (msg.includes("price") || msg.includes("cost") || msg.includes("how much") || msg.includes("budget") || msg.includes("rate")) {
+      reply = `💰 <strong>Safari Costs</strong><br><br>
+      Approximate per person sharing:<br>
+      • Budget / Mid-range: from USD 350–550 per day<br>
+      • Luxury: from USD 650–1,200+ per day<br><br>
+      Gorilla permit (USD 800) and chimpanzee permit (USD 250) are extra government fees.<br><br>
+      Share your dates and preferred style for a precise quote.`;
+    }
+    else if (msg.includes("pack") || msg.includes("what to bring") || msg.includes("clothing") || msg.includes("gear")) {
+      reply = `🎒 <strong>What to Pack</strong><br><br>
+      • Neutral clothing (beige, olive, brown)<br>
+      • Long trousers & long-sleeved shirts<br>
+      • Sturdy waterproof hiking boots<br>
+      • Light rain jacket + warm fleece<br>
+      • Insect repellent, sunscreen, hat<br>
+      • Binoculars & camera<br>
+      • Reusable water bottle`;
+    }
+    else if (msg.includes("vaccine") || msg.includes("vaccination") || msg.includes("yellow fever") || msg.includes("malaria") || msg.includes("health")) {
+      reply = `🩺 <strong>Health & Vaccinations</strong><br><br>
+      • Yellow Fever vaccination is required<br>
+      • Malaria prophylaxis strongly recommended<br>
+      • Routine vaccines (Hep A, Typhoid, Tetanus) advised<br><br>
+      Consult a travel clinic 6–8 weeks before departure.`;
+    }
+    else if (msg.includes("lodge") || msg.includes("hotel") || msg.includes("accommodation") || msg.includes("where to stay")) {
+      reply = `🏕️ <strong>Accommodation</strong><br><br>
+      We work with carefully selected properties:<br>
+      • Luxury: Sanctuary Gorilla Forest Camp, Clouds Mountain Gorilla Lodge, etc.<br>
+      • Mid-range: Ichumbi, Engagi, Parkview<br>
+      • Comfortable budget options also available`;
+    }
+    else if (msg.includes("book") || msg.includes("reserve") || msg.includes("availability") || msg.includes("confirm")) {
+      reply = `📅 <strong>Ready to Book?</strong><br><br>
+      Please share:<br>
+      1. Travel dates<br>
+      2. Number of people<br>
+      3. Preferred comfort level<br>
+      4. Interests<br><br>
+      WhatsApp us: +256 702 094 292 or +256 701 939 235`;
+    }
+    else if (msg.includes("contact") || msg.includes("whatsapp") || msg.includes("phone") || msg.includes("email") || msg.includes("reach")) {
+      reply = `📞 <strong>Contact Tujje Safaris</strong><br><br>
+      • WhatsApp / Call: +256 702 094 292<br>
+      • WhatsApp / Call: +256 701 939 235<br>
+      • Email: info@tujjesafaris.com`;
+    }
+    else {
+      reply = `Thank you for your question.<br><br>
+      I specialise in Uganda and East Africa safaris. Could you rephrase or tell me what you’d like to know more about?`;
     }
 
-    createMVSlider("missionTrack", "missionPrev", "missionNext", "missionDots");
-    createMVSlider("visionTrack", "visionPrev", "visionNext", "visionDots");
-  </script>
+    messages.innerHTML += `<div class="botMessage">${reply}</div>`;
+    messages.scrollTop = messages.scrollHeight;
+  }, 700 + Math.random() * 600);
+}
+</script>
 
-  <!-- STAFF SLIDER + MODAL -->
-  <script>
-    const staffData = {
-      1: {
-        name: "Alema G Hamis",
-        position: "Head Coach",
-        bio: "Alema G Hamis supports player development through structured badminton coaching, technical training and competitive preparation.",
-        email: "baryanmintonclub@gmail.com",
-        phone: "+256 755 805 092",
-        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-      },
-      2: {
-        name: "Sarah Nalwoga",
-        position: "Junior Coach",
-        bio: "Sarah Nalwoga supports junior players as they develop badminton fundamentals, confidence, coordination and teamwork.",
-        email: "baryanmintonclub@gmail.com",
-        phone: "+256 755 805 092",
-        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-      },
-      3: {
-        name: "David Ssempijja",
-        position: "Fitness & Conditioning Coach",
-        bio: "David Ssempijja supports players with fitness, conditioning, movement and physical preparation for badminton.",
-        email: "baryanmintonclub@gmail.com",
-        phone: "+256 755 805 092",
-        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-      },
-      4: {
-        name: "Grace Nakato",
-        position: "Academy Administrator",
-        bio: "Grace Nakato supports academy administration and helps ensure smooth communication between players, parents and the academy.",
-        email: "baryanmintonclub@gmail.com",
-        phone: "+256 755 805 092",
-        photo: "e5ec51cf-a87b-435f-a299-b73a3c82baad.jpeg"
-      }
-    };
+<!-- Firebase (reviews) -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    const track = document.getElementById("staffTrack");
-    const prevBtn = document.getElementById("staffPrev");
-    const nextBtn = document.getElementById("staffNext");
-    const cards = document.querySelectorAll(".staff-card");
-    let currentIndex = 0;
+const firebaseConfig = {
+  apiKey: "AIzaSyAUxwj4JVPWAz3oDjPTSaEUot49pHxmWQg",
+  authDomain: "tujjesafari-dbda9.firebaseapp.com",
+  projectId: "tujjesafari-dbda9",
+  storageBucket: "tujjesafari-dbda9.firebasestorage.app",
+  messagingSenderId: "39777982092",
+  appId: "1:39777982092:web:bc488a73cf7bb637204da9",
+  measurementId: "G-2PP6P43TER"
+};
 
-    function getVisibleCount() {
-      if (window.innerWidth <= 560) return 1;
-      if (window.innerWidth <= 900) return 2;
-      if (window.innerWidth <= 1000) return 3;
-      return 4;
-    }
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    function updateSlider() {
-      const visible = getVisibleCount();
-      const maxIndex = Math.max(0, cards.length - visible);
-      if (currentIndex > maxIndex) currentIndex = maxIndex;
-      const cardWidth = cards[0].offsetWidth + 22;
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
+let reviews = [];
+let index = 0;
 
-    prevBtn.addEventListener("click", () => {
-      currentIndex = Math.max(0, currentIndex - 1);
-      updateSlider();
-    });
-    nextBtn.addEventListener("click", () => {
-      const visible = getVisibleCount();
-      const maxIndex = Math.max(0, cards.length - visible);
-      currentIndex = Math.min(maxIndex, currentIndex + 1);
-      updateSlider();
-    });
-    window.addEventListener("resize", updateSlider);
-    updateSlider();
+async function loadReviews() {
+  try {
+    const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(q);
+    reviews = [];
+    snap.forEach(doc => reviews.push(doc.data()));
+    if (reviews.length > 0) showReview();
+    else document.getElementById("reviewBox").innerHTML = "<p>No reviews yet – be the first!</p>";
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-    const modal = document.getElementById("staffModal");
-    const modalPhoto = document.getElementById("staffModalPhoto");
-    const modalName = document.getElementById("staffModalName");
-    const modalPosition = document.getElementById("staffModalPosition");
-    const modalBio = document.getElementById("staffModalBio");
-    const modalContact = document.getElementById("staffModalContact");
-    const closeBtn = document.getElementById("staffModalClose");
-    const overlay = document.getElementById("staffModalOverlay");
+function showReview() {
+  if (reviews.length === 0) return;
+  const r = reviews[index];
+  document.getElementById("reviewBox").innerHTML = `
+    <div class="review-card">
+      <h3>${r.name || "Guest"}</h3>
+      <p>${"⭐".repeat(Number(r.rating) || 5)}</p>
+      <p>${r.text || r.review || ""}</p>
+    </div>`;
+  index = (index + 1) % reviews.length;
+}
 
-    function openStaffModal(id) {
-      const data = staffData[id];
-      if (!data) return;
-      modalName.textContent = data.name;
-      modalPosition.textContent = data.position;
-      modalBio.textContent = data.bio;
-      modalContact.innerHTML = `
-        <div class="staff-contact-item"><strong>Email</strong><a href="mailto:${data.email}">${data.email}</a></div>
-        <div class="staff-contact-item"><strong>Phone</strong><a href="tel:${data.phone.replace(/\s/g,"")}">${data.phone}</a></div>
-      `;
-      modalPhoto.innerHTML = `<img src="${data.photo}" alt="${data.name}">`;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
-    }
-
-    function closeStaffModal() {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
-    }
-
-    cards.forEach(card => {
-      card.addEventListener("click", e => {
-        if (e.target.closest(".staff-explore-btn")) e.stopPropagation();
-        openStaffModal(card.dataset.staff);
-      });
-      const btn = card.querySelector(".staff-explore-btn");
-      if (btn) {
-        btn.addEventListener("click", e => {
-          e.preventDefault();
-          e.stopPropagation();
-          openStaffModal(card.dataset.staff);
-        });
-      }
-    });
-
-    closeBtn.addEventListener("click", closeStaffModal);
-    overlay.addEventListener("click", closeStaffModal);
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && modal.classList.contains("open")) closeStaffModal();
-    });
-  </script>
-
-  <!-- FIREBASE REVIEWS -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCuHXXUB5aYqlGfEs3lMMvFwNdqHIpT29E",
-      authDomain: "baryan-5f81d.firebaseapp.com",
-      projectId: "baryan-5f81d",
-      storageBucket: "baryan-5f81d.firebasestorage.app",
-      messagingSenderId: "409395363296",
-      appId: "1:409395363296:web:f20c12dfb4c738361cbf85",
-      measurementId: "G-J1RCHQN6XN"
-    };
-
-    let db = null;
-    try {
-      const app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-    } catch (error) {
-      console.error("Firebase init failed:", error);
-    }
-
-    const reviewSelect = document.getElementById("reviewSelect");
-    const selectedReview = document.getElementById("selectedReview");
-    const reviewForm = document.getElementById("reviewForm");
-    const reviewSubmit = document.getElementById("reviewSubmit");
-    const reviewStatus = document.getElementById("reviewStatus");
-    let reviews = [];
-
-    function escapeHTML(value) {
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    function showFirebaseError(error) {
-      if (error?.code === "permission-denied") return "Firebase denied access. Check your Firestore Rules.";
-      return error?.message || "Unable to connect to the review system.";
-    }
-
-    async function loadReviews() {
-      if (!db) {
-        reviewSelect.innerHTML = `<option value="">Reviews unavailable</option>`;
-        selectedReview.innerHTML = `<p>Firebase could not be initialized.</p>`;
-        return;
-      }
-      try {
-        const snapshot = await getDocs(collection(db, "reviews"));
-        reviews = [];
-        snapshot.forEach(doc => reviews.push({ id: doc.id, ...doc.data() }));
-        renderReviewSelector();
-      } catch (error) {
-        const message = showFirebaseError(error);
-        reviewSelect.innerHTML = `<option value="">Reviews unavailable</option>`;
-        selectedReview.innerHTML = `<p class="reviews-loading">${escapeHTML(message)}</p>`;
-      }
-    }
-
-    function renderReviewSelector() {
-      if (reviews.length === 0) {
-        reviewSelect.innerHTML = `<option value="">No reviews yet</option>`;
-        selectedReview.innerHTML = `<p class="reviews-loading">No reviews yet. Be the first!</p>`;
-        return;
-      }
-      reviewSelect.innerHTML = `<option value="">Select a review...</option>`;
-      reviews.forEach((review, index) => {
-        const option = document.createElement("option");
-        option.value = String(index);
-        option.textContent = `${review.name || "Member"} — ${review.role || "Member"}`;
-        reviewSelect.appendChild(option);
-      });
-    }
-
-    reviewSelect.addEventListener("change", () => {
-      const value = reviewSelect.value;
-      if (value === "") {
-        selectedReview.innerHTML = `<p class="reviews-loading">Select a review above to read it.</p>`;
-        return;
-      }
-      displayReview(reviews[Number(value)]);
-    });
-
-    function displayReview(review) {
-      let rating = Math.min(5, Math.max(1, Number(review.rating) || 5));
-      const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-      selectedReview.innerHTML = `
-        <div class="review-stars">${stars}</div>
-        <p class="review-message">“${escapeHTML(review.message)}”</p>
-        <strong class="review-name">${escapeHTML(review.name || "Academy Member")}</strong>
-        <span class="review-role">${escapeHTML(review.role || "Member")}</span>
-      `;
-    }
-
-    reviewForm.addEventListener("submit", async event => {
-      event.preventDefault();
-      if (!db) {
-        reviewStatus.textContent = "Firebase is not initialized.";
-        reviewStatus.style.color = "#d32f2f";
-        return;
-      }
-      const ratingInput = document.querySelector('input[name="rating"]:checked');
-      if (!ratingInput) {
-        reviewStatus.textContent = "Please select a rating.";
-        reviewStatus.style.color = "#d32f2f";
-        return;
-      }
-      const name = document.getElementById("reviewName").value.trim();
-      const role = document.getElementById("reviewRole").value;
-      const message = document.getElementById("reviewMessage").value.trim();
-      const rating = Number(ratingInput.value);
-
-      if (!name || !role || !message) {
-        reviewStatus.textContent = "Please complete all fields.";
-        reviewStatus.style.color = "#d32f2f";
-        return;
-      }
-
-      reviewSubmit.disabled = true;
-      reviewSubmit.textContent = "SUBMITTING...";
-      reviewStatus.textContent = "Submitting...";
-      reviewStatus.style.color = "#555";
-
-      try {
-        const docRef = await addDoc(collection(db, "reviews"), {
-          name, role, rating, message,
-          createdAt: serverTimestamp()
-        });
-        reviewStatus.textContent = "Thank you! Your review has been submitted.";
-        reviewStatus.style.color = "#0757c9";
-
-        const newReview = { id: docRef.id, name, role, rating, message };
-        reviews.push(newReview);
-        renderReviewSelector();
-        reviewSelect.value = String(reviews.length - 1);
-        displayReview(newReview);
-        reviewForm.reset();
-      } catch (error) {
-        reviewStatus.textContent = showFirebaseError(error);
-        reviewStatus.style.color = "#d32f2f";
-      } finally {
-        reviewSubmit.disabled = false;
-        reviewSubmit.textContent = "SUBMIT REVIEW";
-      }
-    });
-
+window.submitReview = async function () {
+  const name = document.getElementById("rname").value;
+  const text = document.getElementById("rtext").value;
+  const rating = document.getElementById("rrating").value;
+  try {
+    await addDoc(collection(db, "reviews"), { name, text, rating, createdAt: serverTimestamp() });
+    alert("⭐ Thank you! Your review has been submitted.");
+    document.getElementById("reviewForm").reset();
     loadReviews();
-  </script>
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
+};
 
+setInterval(() => { if (reviews.length > 0) showReview(); }, 5000);
+loadReviews();
+</script>
 </body>
 </html>

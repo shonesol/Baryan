@@ -722,400 +722,667 @@
 </div>
 
 <script>
-/* ============================================================
-   CONFIG – YOUR CLOUDINARY DETAILS
-============================================================ */
+    // ========================================
+    // CONFIG – Viatrix Gallery
+    // ========================================
+    const CLOUD_NAME = "ziudh5iv";
+const UPLOAD_PRESET_PHOTO = "baryan_gallery";
+const UPLOAD_PRESET_VIDEO = "baryan_gallery";
+const ADMIN_PASSWORD = "admin123";
 
-const CLOUD_NAME = "ziudh5iv";                 // your Cloud Name
-const UPLOAD_PRESET_PHOTO = "baryan_gallery";  // your unsigned preset
-const UPLOAD_PRESET_VIDEO = "baryan_gallery";  // same preset for videos
-const ADMIN_PASSWORD = "admin123";             // change this!             // change this!
+    // ========================================
+    // Elements
+    // ========================================
+    const adminToggle    = document.getElementById("adminToggle");
+    const adminPanel     = document.getElementById("adminPanel");
+    const loginModal     = document.getElementById("loginModal");
+    const adminPassword  = document.getElementById("adminPassword");
+    const loginSubmit    = document.getElementById("loginSubmit");
+    const loginCancel    = document.getElementById("loginCancel");
 
-const STORAGE_KEY = "baryan_gallery_media_v1";
+    const fileInput      = document.getElementById("fileInput");
+    const uploadBtn      = document.getElementById("uploadBtn");
+    const uploadBox      = document.getElementById("uploadBox");
+    const statusEl       = document.getElementById("status");
+    const progressWrap   = document.getElementById("progressWrap");
+    const progressBar    = document.getElementById("progressBar");
 
-let media = { photos: [], videos: [] };
-let isAdmin = false;
-let visiblePhotoItems = [];
-let currentPhotoIndex = 0;
-let currentVideoIndex = 0;
+    const photoGallery   = document.getElementById("photoGallery");
+    const videoGallery   = document.getElementById("videoGallery");
+    const photoCountEl   = document.getElementById("photoCount");
+    const videoCountEl   = document.getElementById("videoCount");
+    const clearPhotosBtn = document.getElementById("clearPhotosBtn");
+    const clearVideosBtn = document.getElementById("clearVideosBtn");
 
-function loadMedia() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) media = JSON.parse(raw);
-  } catch (e) { console.warn(e); }
-  if (!media.photos) media.photos = [];
-  if (!media.videos) media.videos = [];
-}
+    const viewer         = document.getElementById("viewer");
+    const viewerMedia    = document.getElementById("viewerMedia");
+    const viewerCaption  = document.getElementById("viewerCaption");
+    const viewerCounter  = document.getElementById("viewerCounter");
+    const viewerClose    = document.getElementById("viewerClose");
+    const viewerPrev     = document.getElementById("viewerPrev");
+    const viewerNext     = document.getElementById("viewerNext");
 
-function saveMedia() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(media));
-}
+    let isAdmin = false;
+    let currentList = [];
+    let currentIndex = 0;
+    let currentType = "photo";
 
-function renderPhotos() {
-  const grid = document.getElementById("galleryGrid");
-  const empty = document.getElementById("photoEmpty");
-  const photos = media.photos || [];
+    // ========================================
+    // Fetch from Cloudinary
+    // ========================================
+    async function fetchList(key, resourceType) {
+      const url =
+        `https://res.cloudinary.com/${CLOUD_NAME}/${resourceType}/list/${key}.json?_=${Date.now()}`;
 
-  if (!photos.length) {
-    empty.style.display = "block";
-    grid.innerHTML = "";
-    return;
-  }
-  empty.style.display = "none";
+      try {
+        const res = await fetch(url);
 
-  grid.innerHTML = photos.map((p, i) => `
-    <button class="gallery-item"
-            data-category="${esc(p.category || 'training')}"
-            data-index="${i}"
-            data-title="${esc(p.title || '')}">
-      <img src="${esc(p.url)}" alt="${esc(p.title || 'Photo')}" loading="lazy">
-      <div class="gallery-overlay">
-        <span>${(p.category || 'TRAINING').toUpperCase()}</span>
-        <strong>${esc(p.title || 'Photo')}</strong>
-        <small>View image →</small>
-      </div>
-    </button>
-  `).join("");
+        if (res.status === 404) return [];
 
-  grid.querySelectorAll(".gallery-item").forEach(item => {
-    item.addEventListener("click", () => {
-      visiblePhotoItems = Array.from(grid.querySelectorAll(".gallery-item"))
-        .filter(el => el.style.display !== "none");
-      openPhotoLightbox(visiblePhotoItems.indexOf(item));
+        if (!res.ok) {
+          throw new Error("HTTP " + res.status);
+        }
+
+        const data = await res.json();
+
+        return (data.resources || [])
+          .map(r => {
+            const format =
+              r.format ||
+              (resourceType === "video" ? "mp4" : "jpg");
+
+            const version = r.version ? `v${r.version}/` : "";
+
+            return {
+              url:
+                `https://res.cloudinary.com/${CLOUD_NAME}/${resourceType}/upload/` +
+                `${version}${r.public_id}.${format}`,
+              title: r.public_id || "",
+              addedAt: new Date(r.created_at).getTime()
+            };
+          })
+          .sort((a, b) => b.addedAt - a.addedAt);
+
+      } catch (err) {
+        console.error("List fetch failed:", err);
+        return [];
+      }
+    }
+
+    // ========================================
+    // Admin
+    // ========================================
+    function setAdminState(loggedIn) {
+      isAdmin = loggedIn;
+
+      adminPanel.classList.toggle("visible", loggedIn);
+
+      adminToggle.textContent =
+        loggedIn ? "Logout Admin" : "Admin Login";
+
+      adminToggle.classList.toggle("logged-in", loggedIn);
+
+      clearPhotosBtn.classList.toggle("visible", loggedIn);
+      clearVideosBtn.classList.toggle("visible", loggedIn);
+    }
+
+    adminToggle.addEventListener("click", () => {
+      if (isAdmin) {
+        setAdminState(false);
+        setStatus("Admin logged out", "info");
+      } else {
+        loginModal.classList.add("open");
+        adminPassword.value = "";
+        adminPassword.focus();
+      }
     });
-  });
 
-  const active = document.querySelector(".filter-button.active");
-  if (active) filterPhotos(active.dataset.filter);
-}
+    loginCancel.addEventListener("click", () => {
+      loginModal.classList.remove("open");
+    });
 
-function renderVideos() {
-  const grid = document.getElementById("videoGrid");
-  const empty = document.getElementById("videoEmpty");
-  const videos = media.videos || [];
+    loginSubmit.addEventListener("click", () => {
+      if (adminPassword.value === ADMIN_PASSWORD) {
+        setAdminState(true);
+        loginModal.classList.remove("open");
+        setStatus(
+          "Admin unlocked – you can now upload",
+          "success"
+        );
+      } else {
+        alert("Incorrect password");
+        adminPassword.focus();
+      }
+    });
 
-  if (!videos.length) {
-    empty.style.display = "block";
-    grid.innerHTML = "";
-    return;
-  }
-  empty.style.display = "none";
+    adminPassword.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        loginSubmit.click();
+      }
+    });
 
-  grid.innerHTML = videos.map((v, i) => `
-    <article class="video-card" data-index="${i}">
-      <div class="video-placeholder">
-        <video src="${esc(v.url)}" muted playsinline preload="metadata"></video>
-        <div class="video-play-overlay">
-          <button class="video-play" type="button">▶</button>
+    function setStatus(msg, type = "info") {
+      statusEl.className = `status-${type}`;
+      statusEl.innerHTML = msg;
+    }
+
+    // ========================================
+    // Thumbnail URLs
+    // ========================================
+    function thumbUrl(url, isVideo) {
+      if (isVideo) {
+        return url
+          .replace(
+            "/video/upload/",
+            "/video/upload/so_0,w_420,h_420,c_fill,q_auto,f_jpg/"
+          )
+          .replace(
+            /\.(mp4|mov|webm|m4v|avi)$/i,
+            ""
+          );
+      }
+
+      return url.replace(
+        "/image/upload/",
+        "/image/upload/c_fill,w_420,h_420,q_auto,f_auto/"
+      );
+    }
+
+    // ========================================
+    // Create gallery item
+    // ========================================
+    function createItem(item, type) {
+      const el = document.createElement("div");
+      el.className = "gallery-item";
+
+      const isVideo = type === "video";
+
+      el.innerHTML = `
+        <img
+          src="${thumbUrl(item.url, isVideo)}"
+          alt="${item.title || ""}"
+          loading="lazy"
+        >
+
+        ${
+          isVideo
+            ? '<div class="video-badge">▶ Video</div>'
+            : ""
+        }
+
+        <div class="gallery-overlay">
+          <span>${item.title || "Untitled"}</span>
         </div>
-      </div>
-      <div class="video-info">
-        <span>${(v.category || 'TRAINING').toUpperCase()}</span>
-        <h3>${esc(v.title || 'Video')}</h3>
-      </div>
-    </article>
-  `).join("");
+      `;
 
-  grid.querySelectorAll(".video-card").forEach(card => {
-    card.addEventListener("click", () => {
-      openVideoLightbox(parseInt(card.dataset.index, 10));
-    });
-  });
-}
-
-function filterPhotos(category) {
-  document.querySelectorAll(".gallery-item").forEach(item => {
-    const cat = item.getAttribute("data-category");
-    item.style.display = (category === "all" || cat === category) ? "block" : "none";
-  });
-  visiblePhotoItems = Array.from(document.querySelectorAll(".gallery-item"))
-    .filter(el => el.style.display !== "none");
-}
-
-document.querySelectorAll(".filter-button").forEach(btn => {
-  btn.addEventListener("click", function () {
-    document.querySelectorAll(".filter-button").forEach(b => b.classList.remove("active"));
-    this.classList.add("active");
-    filterPhotos(this.dataset.filter);
-  });
-});
-
-/* Photo Lightbox */
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxCaption = document.getElementById("lightboxCaption");
-
-function openPhotoLightbox(index) {
-  if (!visiblePhotoItems.length) return;
-  currentPhotoIndex = index;
-  const item = visiblePhotoItems[index];
-  lightboxImage.src = item.querySelector("img").src;
-  lightboxCaption.textContent = item.getAttribute("data-title") || "";
-  lightbox.classList.add("open");
-  lightbox.setAttribute("aria-hidden", "false");
-  document.body.classList.add("lightbox-open");
-}
-
-function closePhotoLightbox() {
-  lightbox.classList.remove("open");
-  lightbox.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("lightbox-open");
-}
-
-function showNextPhoto() {
-  if (!visiblePhotoItems.length) return;
-  currentPhotoIndex = (currentPhotoIndex + 1) % visiblePhotoItems.length;
-  openPhotoLightbox(currentPhotoIndex);
-}
-
-function showPrevPhoto() {
-  if (!visiblePhotoItems.length) return;
-  currentPhotoIndex = (currentPhotoIndex - 1 + visiblePhotoItems.length) % visiblePhotoItems.length;
-  openPhotoLightbox(currentPhotoIndex);
-}
-
-document.getElementById("lightboxClose").addEventListener("click", closePhotoLightbox);
-document.getElementById("lightboxNext").addEventListener("click", showNextPhoto);
-document.getElementById("lightboxPrev").addEventListener("click", showPrevPhoto);
-lightbox.addEventListener("click", e => { if (e.target === lightbox) closePhotoLightbox(); });
-
-/* Video Lightbox */
-const videoLightbox = document.getElementById("videoLightbox");
-const videoPlayer = document.getElementById("videoLightboxPlayer");
-const videoCaption = document.getElementById("videoLightboxCaption");
-
-function openVideoLightbox(index) {
-  const videos = media.videos || [];
-  if (!videos.length) return;
-  currentVideoIndex = index;
-  const v = videos[index];
-  videoPlayer.src = v.url;
-  videoPlayer.load();
-  videoCaption.textContent = v.title || "Video";
-  videoLightbox.classList.add("open");
-  videoLightbox.setAttribute("aria-hidden", "false");
-  document.body.classList.add("lightbox-open");
-}
-
-function closeVideoLightbox() {
-  videoPlayer.pause();
-  videoPlayer.removeAttribute("src");
-  videoLightbox.classList.remove("open");
-  videoLightbox.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("lightbox-open");
-}
-
-function showNextVideo() {
-  const videos = media.videos || [];
-  if (!videos.length) return;
-  currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-  openVideoLightbox(currentVideoIndex);
-}
-
-function showPrevVideo() {
-  const videos = media.videos || [];
-  if (!videos.length) return;
-  currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-  openVideoLightbox(currentVideoIndex);
-}
-
-document.getElementById("videoLightboxClose").addEventListener("click", closeVideoLightbox);
-document.getElementById("videoLightboxNext").addEventListener("click", showNextVideo);
-document.getElementById("videoLightboxPrev").addEventListener("click", showPrevVideo);
-videoLightbox.addEventListener("click", e => {
-  if (e.target === videoLightbox) closeVideoLightbox();
-});
-
-document.addEventListener("keydown", e => {
-  if (lightbox.classList.contains("open")) {
-    if (e.key === "Escape") closePhotoLightbox();
-    if (e.key === "ArrowRight") showNextPhoto();
-    if (e.key === "ArrowLeft") showPrevPhoto();
-  }
-  if (videoLightbox.classList.contains("open")) {
-    if (e.key === "Escape") closeVideoLightbox();
-    if (e.key === "ArrowRight") showNextVideo();
-    if (e.key === "ArrowLeft") showPrevVideo();
-  }
-});
-
-/* Admin Auth */
-const adminTrigger = document.getElementById("adminTrigger");
-const adminLoginModal = document.getElementById("adminLoginModal");
-const adminBar = document.getElementById("adminBar");
-const adminPanel = document.getElementById("adminPanel");
-
-adminTrigger.addEventListener("click", () => {
-  adminLoginModal.classList.add("open");
-  document.getElementById("adminPassword").focus();
-});
-
-document.getElementById("cancelLogin").addEventListener("click", () => {
-  adminLoginModal.classList.remove("open");
-  document.getElementById("loginError").style.display = "none";
-});
-
-document.getElementById("loginBtn").addEventListener("click", doLogin);
-document.getElementById("adminPassword").addEventListener("keydown", e => {
-  if (e.key === "Enter") doLogin();
-});
-
-function doLogin() {
-  const pass = document.getElementById("adminPassword").value;
-  const err = document.getElementById("loginError");
-  if (pass === ADMIN_PASSWORD) {
-    isAdmin = true;
-    sessionStorage.setItem("baryan_admin", "1");
-    adminLoginModal.classList.remove("open");
-    adminTrigger.classList.add("hidden");
-    adminBar.classList.add("visible");
-    err.style.display = "none";
-    document.getElementById("adminPassword").value = "";
-  } else {
-    err.textContent = "Incorrect password";
-    err.style.display = "block";
-  }
-}
-
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  isAdmin = false;
-  sessionStorage.removeItem("baryan_admin");
-  adminBar.classList.remove("visible");
-  adminTrigger.classList.remove("hidden");
-  adminPanel.classList.remove("open");
-});
-
-if (sessionStorage.getItem("baryan_admin") === "1") {
-  isAdmin = true;
-  adminTrigger.classList.add("hidden");
-  adminBar.classList.add("visible");
-}
-
-/* Cloudinary Upload */
-function openPhotoUploader() {
-  if (!isAdmin) return;
-  const widget = cloudinary.createUploadWidget({
-    cloudName: CLOUD_NAME,
-    uploadPreset: UPLOAD_PRESET_PHOTO,
-    folder: "baryan/photos",
-    sources: ["local", "camera"],
-    multiple: true,
-    maxFiles: 20,
-    resourceType: "image",
-    clientAllowedFormats: ["jpg", "jpeg", "png", "webp", "gif"],
-    maxImageFileSize: 10000000,
-    styles: { palette: { window: "#FFFFFF", sourceBg: "#F4F4F5", primary: "#0757c9" } }
-  }, (error, result) => {
-    if (!error && result && result.event === "success") {
-      const info = result.info;
-      const title = prompt("Photo title (optional):", info.original_filename || "Photo") || "Photo";
-      const category = prompt("Category (training / competition / community):", "training") || "training";
-      media.photos.unshift({
-        id: info.public_id,
-        url: info.secure_url,
-        title: title,
-        category: category.toLowerCase().trim(),
-        createdAt: new Date().toISOString()
+      el.addEventListener("click", () => {
+        openViewer(type, item.url);
       });
-      saveMedia();
-      renderPhotos();
-    }
-  });
-  widget.open();
-}
 
-function openVideoUploader() {
-  if (!isAdmin) return;
-  const widget = cloudinary.createUploadWidget({
-    cloudName: CLOUD_NAME,
-    uploadPreset: UPLOAD_PRESET_VIDEO,
-    folder: "baryan/videos",
-    sources: ["local"],
-    multiple: true,
-    maxFiles: 10,
-    resourceType: "video",
-    clientAllowedFormats: ["mp4", "mov", "webm", "avi"],
-    maxVideoFileSize: 200000000,
-    styles: { palette: { window: "#FFFFFF", sourceBg: "#F4F4F5", primary: "#0757c9" } }
-  }, (error, result) => {
-    if (!error && result && result.event === "success") {
-      const info = result.info;
-      const title = prompt("Video title (optional):", info.original_filename || "Video") || "Video";
-      const category = prompt("Category (training / competition / community):", "training") || "training";
-      media.videos.unshift({
-        id: info.public_id,
-        url: info.secure_url,
-        title: title,
-        category: category.toLowerCase().trim(),
-        createdAt: new Date().toISOString()
+      return el;
+    }
+
+    // ========================================
+    // Render Photos
+    // ========================================
+    async function renderPhotos() {
+      const list = await fetchList(
+        PHOTO_KEY,
+        "image"
+      );
+
+      photoGallery.innerHTML = "";
+
+      photoCountEl.textContent =
+        list.length +
+        (list.length === 1 ? " photo" : " photos");
+
+      if (list.length === 0) {
+        photoGallery.innerHTML = `
+          <div class="empty-state">
+            <p>No photos yet. Admin can upload.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(item => {
+        photoGallery.appendChild(
+          createItem(item, "photo")
+        );
       });
-      saveMedia();
-      renderVideos();
     }
-  });
-  widget.open();
-}
 
-document.getElementById("uploadPhotoBtn").addEventListener("click", openPhotoUploader);
-document.getElementById("uploadVideoBtn").addEventListener("click", openVideoUploader);
+    // ========================================
+    // Render Videos
+    // ========================================
+    async function renderVideos() {
+      const list = await fetchList(
+        VIDEO_KEY,
+        "video"
+      );
 
-/* Manage / Delete */
-document.getElementById("manageBtn").addEventListener("click", () => {
-  renderManagePanel();
-  adminPanel.classList.add("open");
-});
-document.getElementById("closePanel").addEventListener("click", () => {
-  adminPanel.classList.remove("open");
-});
+      videoGallery.innerHTML = "";
 
-function renderManagePanel() {
-  const pGrid = document.getElementById("managePhotos");
-  const vGrid = document.getElementById("manageVideos");
+      videoCountEl.textContent =
+        list.length +
+        (list.length === 1 ? " video" : " videos");
 
-  pGrid.innerHTML = (media.photos || []).map((p, i) => `
-    <div class="admin-media-card">
-      <img src="${esc(p.url)}" alt="">
-      <button class="del" data-type="photo" data-index="${i}" title="Delete">×</button>
-    </div>
-  `).join("") || "<p>No photos</p>";
+      if (list.length === 0) {
+        videoGallery.innerHTML = `
+          <div class="empty-state">
+            <p>No videos yet. Admin can upload.</p>
+          </div>
+        `;
+        return;
+      }
 
-  vGrid.innerHTML = (media.videos || []).map((v, i) => `
-    <div class="admin-media-card">
-      <video src="${esc(v.url)}" muted preload="metadata"></video>
-      <button class="del" data-type="video" data-index="${i}" title="Delete">×</button>
-    </div>
-  `).join("") || "<p>No videos</p>";
+      list.forEach(item => {
+        videoGallery.appendChild(
+          createItem(item, "video")
+        );
+      });
+    }
 
-  document.querySelectorAll(".admin-media-card .del").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const type = btn.dataset.type;
-      const idx = parseInt(btn.dataset.index, 10);
-      if (!confirm("Delete this " + type + "?")) return;
-      if (type === "photo") media.photos.splice(idx, 1);
-      else media.videos.splice(idx, 1);
-      saveMedia();
-      renderPhotos();
-      renderVideos();
-      renderManagePanel();
+    // ========================================
+    // Upload
+    // ========================================
+    async function uploadFile(file) {
+      const isVideo = file.type.startsWith("video/");
+      const isImage = file.type.startsWith("image/");
+
+      if (!isImage && !isVideo) {
+        setStatus(
+          "Only images and videos are allowed.",
+          "error"
+        );
+        return;
+      }
+
+      setStatus(
+        `<span class="spinner"></span> Uploading ${file.name}…`,
+        "info"
+      );
+
+      uploadBtn.disabled = true;
+
+      progressWrap.style.display = "block";
+      progressBar.style.width = "25%";
+
+      const formData = new FormData();
+
+      formData.append("file", file);
+      formData.append(
+        "upload_preset",
+        UPLOAD_PRESET
+      );
+
+      formData.append(
+        "tags",
+        isVideo ? VIDEO_KEY : PHOTO_KEY
+      );
+
+      // Optional folders
+      formData.append(
+        "folder",
+        isVideo
+          ? "baryan/gallery/videos"
+          : "baryan/gallery/photos"
+      );
+
+      const resourceType =
+        isVideo ? "video" : "image";
+
+      let timer;
+
+      try {
+        timer = setInterval(() => {
+          const cur =
+            parseFloat(progressBar.style.width);
+
+          if (cur < 80) {
+            progressBar.style.width =
+              (cur + 10) + "%";
+          }
+        }, 250);
+
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${resourceType}/upload`,
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+        clearInterval(timer);
+
+        progressBar.style.width = "100%";
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(
+            data.error?.message ||
+            "Upload failed"
+          );
+        }
+
+        // Refresh gallery
+        if (isVideo) {
+          await renderVideos();
+        } else {
+          await renderPhotos();
+        }
+
+        setStatus(
+          `✅ Uploaded successfully (${isVideo ? "video" : "photo"})`,
+          "success"
+        );
+
+      } catch (err) {
+        if (timer) clearInterval(timer);
+
+        console.error(err);
+
+        setStatus(
+          "Error: " + err.message,
+          "error"
+        );
+
+      } finally {
+        uploadBtn.disabled = false;
+        fileInput.value = "";
+
+        setTimeout(() => {
+          progressWrap.style.display = "none";
+          progressBar.style.width = "0%";
+        }, 600);
+      }
+    }
+
+    // ========================================
+    // Handle Multiple Files
+    // ========================================
+    async function handleFiles(files) {
+      const valid = Array.from(files).filter(
+        f =>
+          f.type.startsWith("image/") ||
+          f.type.startsWith("video/")
+      );
+
+      if (!valid.length) {
+        setStatus(
+          "No valid media files selected.",
+          "error"
+        );
+        return;
+      }
+
+      for (const file of valid) {
+        await uploadFile(file);
+      }
+    }
+
+    // ========================================
+    // Viewer
+    // ========================================
+    function openViewer(type, url) {
+      currentType = type;
+
+      const load =
+        type === "video"
+          ? fetchList(VIDEO_KEY, "video")
+          : fetchList(PHOTO_KEY, "image");
+
+      load.then(list => {
+        currentList = list;
+
+        currentIndex =
+          currentList.findIndex(
+            i => i.url === url
+          );
+
+        if (currentIndex < 0) {
+          currentIndex = 0;
+        }
+
+        showCurrent();
+
+        viewer.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    }
+
+    function showCurrent() {
+      if (!currentList.length) return;
+
+      const item =
+        currentList[currentIndex];
+
+      const isVideo =
+        currentType === "video";
+
+      viewerMedia.innerHTML = "";
+
+      if (isVideo) {
+        const video =
+          document.createElement("video");
+
+        video.src = item.url;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+
+        video.style.maxWidth = "92vw";
+        video.style.maxHeight = "78vh";
+        video.style.borderRadius = "12px";
+
+        viewerMedia.appendChild(video);
+
+      } else {
+        const img =
+          document.createElement("img");
+
+        img.src = item.url;
+        img.alt = item.title || "";
+
+        viewerMedia.appendChild(img);
+      }
+
+      viewerCaption.textContent =
+        item.title || "";
+
+      viewerCounter.textContent =
+        `${currentIndex + 1} / ${currentList.length}`;
+    }
+
+    // ========================================
+    // Next / Previous
+    // ========================================
+    function nextItem() {
+      if (!currentList.length) return;
+
+      currentIndex =
+        (currentIndex + 1) %
+        currentList.length;
+
+      showCurrent();
+    }
+
+    function prevItem() {
+      if (!currentList.length) return;
+
+      currentIndex =
+        (currentIndex - 1 +
+          currentList.length) %
+        currentList.length;
+
+      showCurrent();
+    }
+
+    // ========================================
+    // Close Viewer
+    // ========================================
+    function closeViewer() {
+      viewer.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+      const video =
+        viewerMedia.querySelector("video");
+
+      if (video) {
+        video.pause();
+        video.src = "";
+      }
+    }
+
+    viewerClose.addEventListener(
+      "click",
+      closeViewer
+    );
+
+    viewerNext.addEventListener(
+      "click",
+      nextItem
+    );
+
+    viewerPrev.addEventListener(
+      "click",
+      prevItem
+    );
+
+    viewer.addEventListener("click", e => {
+      if (e.target === viewer) {
+        closeViewer();
+      }
     });
-  });
-}
 
-function esc(str) {
-  if (!str) return "";
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+    // ========================================
+    // Keyboard Navigation
+    // ========================================
+    document.addEventListener(
+      "keydown",
+      e => {
+        if (!viewer.classList.contains("open")) {
+          return;
+        }
 
-/* Init */
-loadMedia();
-renderPhotos();
-renderVideos();
+        if (e.key === "Escape") {
+          closeViewer();
+        }
+
+        if (e.key === "ArrowRight") {
+          nextItem();
+        }
+
+        if (e.key === "ArrowLeft") {
+          prevItem();
+        }
+      }
+    );
+
+    // ========================================
+    // Clear / Refresh Buttons
+    // ========================================
+    clearPhotosBtn.addEventListener(
+      "click",
+      () => {
+        if (
+          confirm(
+            "This only refreshes the view.\n" +
+            "To permanently delete files, use the Cloudinary Media Library."
+          )
+        ) {
+          renderPhotos();
+        }
+      }
+    );
+
+    clearVideosBtn.addEventListener(
+      "click",
+      () => {
+        if (
+          confirm(
+            "This only refreshes the view.\n" +
+            "To permanently delete files, use the Cloudinary Media Library."
+          )
+        ) {
+          renderVideos();
+        }
+      }
+    );
+
+    // ========================================
+    // Upload Events
+    // ========================================
+    uploadBtn.addEventListener(
+      "click",
+      () => fileInput.click()
+    );
+
+    fileInput.addEventListener(
+      "change",
+      () => {
+        if (fileInput.files.length) {
+          handleFiles(fileInput.files);
+        }
+      }
+    );
+
+    // ========================================
+    // Drag & Drop
+    // ========================================
+    [
+      "dragenter",
+      "dragover",
+      "dragleave",
+      "drop"
+    ].forEach(evt => {
+      uploadBox.addEventListener(
+        evt,
+        e => {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      );
+    });
+
+    uploadBox.addEventListener(
+      "dragover",
+      () => {
+        uploadBox.classList.add("dragover");
+      }
+    );
+
+    uploadBox.addEventListener(
+      "dragleave",
+      () => {
+        uploadBox.classList.remove("dragover");
+      }
+    );
+
+    uploadBox.addEventListener(
+      "drop",
+      e => {
+        uploadBox.classList.remove("dragover");
+
+        if (
+          e.dataTransfer.files.length
+        ) {
+          handleFiles(
+            e.dataTransfer.files
+          );
+        }
+      }
+    );
+
+    // ========================================
+    // Start
+    // ========================================
+    renderPhotos();
+    renderVideos();
+
 </script>
 </body>
 </html>

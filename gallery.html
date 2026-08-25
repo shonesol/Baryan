@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Baryan Badminton Club</title>
+  <meta name="description" content="See training, matches, tournaments and community activities at Baryan Badminton Club.">
+  <!-- Cloudinary Upload Widget -->
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+  <style>
+    :root {
+      --blue: #0757c9;
+      --orange: #f97316;
+      --dark: #0b0b0b;
+      --text: #1e293b;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.5;
+    }
+    .gallery-container { width: min(1140px, 92%); margin: 0 auto; }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+    footer .logo img { height: 50px; }
+
+    .gallery-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 0;
+    }
+    .gallery-header .gallery-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .gallery-logo {
+      font-weight: 900;
+      font-size: 1.15rem;
+      text-decoration: none;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+    .gallery-logo span { color: var(--blue); }
+    .gallery-header nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .gallery-header nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .gallery-header nav a:hover,
+    .gallery-header nav a.active { color: var(--blue); }
+    .gallery-join {
+      background: var(--orange) !important;
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .gallery-hero {
+      background: linear-gradient(135deg, #0b1a3a, #0757c9);
+      color: #fff;
+      padding: 70px 0 60px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin: 0 0 10px;
+    }
+    .gallery-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .gallery-hero h1 span { color: #fbbf24; }
+    .gallery-hero p { margin: 0; opacity: 0.9; font-size: 1.1rem; }
+
+    .gallery-section { padding: 60px 0 40px; }
+    .section-heading { text-align: center; margin-bottom: 36px; }
+    .section-heading h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      margin: 8px 0 10px;
+    }
+    .section-heading h2 span { color: var(--blue); }
+    .section-heading p { color: var(--muted); margin: 0; }
+
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .filter-button {
+      padding: 8px 18px;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .filter-button:hover { border-color: var(--blue); color: var(--blue); }
+    .filter-button.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .gallery-item {
+      position: relative;
+      border: none;
+      padding: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      background: #f1f5f9;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+    }
+    .gallery-overlay strong {
+      font-size: 1rem;
+      font-weight: 800;
+      margin: 2px 0 4px;
+    }
+    .gallery-overlay small { font-size: 0.8rem; opacity: 0.8; }
+
+    .video-section { padding: 40px 0 60px; background: #f8fafc; }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .video-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .video-placeholder {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-placeholder video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background 0.2s;
+    }
+    .video-placeholder:hover .video-play-overlay { background: rgba(0,0,0,0.5); }
+    .video-play {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: #0757c9;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .video-info { padding: 14px 16px; }
+    .video-info span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--blue);
+    }
+    .video-info h3 { margin: 4px 0 0; font-size: 1.05rem; }
+
+    .gallery-cta {
+      background: linear-gradient(135deg, #0b1a3a, #0757c9);
+      color: #fff;
+      text-align: center;
+      padding: 60px 0;
+    }
+    .gallery-cta h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      margin: 8px 0 20px;
+    }
+    .gallery-cta h2 span { color: #fbbf24; }
+    .orange-button {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 10px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .orange-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(249,115,22,0.35);
+    }
+
+    .gallery-footer {
+      background: #0b0b0b;
+      color: #94a3b8;
+      padding: 40px 0;
+    }
+    .gallery-footer .gallery-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .gallery-footer .gallery-logo { color: #fff; }
+    .gallery-footer p { margin: 8px 0 0; font-size: 0.95rem; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(5,5,5,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
+    }
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    body.lightbox-open { overflow: hidden; }
+    .lightbox-content {
+      max-width: min(900px, 90vw);
+      max-height: 85vh;
+      text-align: center;
+    }
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    .lightbox-caption {
+      color: #fff;
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      border: none;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-close { top: 20px; right: 20px; }
+    .lightbox-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+    .lightbox-next { right: 20px; top: 50%; transform: translateY(-50%); }
+
+    .video-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2100;
+      background: rgba(5,5,5,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
+    }
+    .video-lightbox.open { opacity: 1; visibility: visible; }
+    .video-lightbox-content {
+      width: min(960px, 94vw);
+      text-align: center;
+    }
+    .video-lightbox-content video {
+      width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      background: #000;
+    }
+    .video-lightbox-caption {
+      color: #fff;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+    .video-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+    .video-lightbox-prev,
+    .video-lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: none;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+    .video-lightbox-prev { left: 20px; }
+    .video-lightbox-next { right: 20px; }
+
+    .gallery-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    .admin-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #0b0b0b;
+      color: #fff;
+      padding: 12px 16px;
+      display: none;
+      z-index: 1500;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    }
+    .admin-bar.visible { display: block; }
+    .admin-bar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .admin-bar h3 { margin: 0; font-size: 1rem; }
+    .admin-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .admin-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      background: var(--blue);
+      color: #fff;
+    }
+    .admin-btn.danger { background: #dc2626; }
+    .admin-btn.secondary { background: #475569; }
+    .admin-btn:hover { opacity: 0.9; }
+
+    .admin-login-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .admin-login-modal.open { display: flex; }
+    .admin-login-box {
+      background: #fff;
+      padding: 28px;
+      border-radius: 16px;
+      width: min(360px, 92%);
+      text-align: center;
+    }
+    .admin-login-box h2 { margin: 0 0 16px; }
+    .admin-login-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+    .admin-login-box .error { color: #dc2626; font-size: 0.9rem; margin-bottom: 8px; }
+
+    .admin-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background: rgba(5,5,5,0.9);
+      display: none;
+      overflow-y: auto;
+      padding: 40px 16px;
+    }
+    .admin-panel.open { display: block; }
+    .admin-panel-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .admin-panel h2 { margin: 0 0 20px; }
+    .admin-media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .admin-media-card {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #eee;
+    }
+    .admin-media-card img,
+    .admin-media-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .admin-media-card .del {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 50%;
+      background: #dc2626;
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .admin-close-panel {
+      float: right;
+      background: #64748b;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .admin-trigger {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: #0b0b0b;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1400;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .admin-trigger:hover { opacity: 1; }
+    .admin-trigger.hidden { display: none; }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .lightbox-prev, .lightbox-next,
+      .video-lightbox-prev, .video-lightbox-next {
+        width: 40px; height: 40px; font-size: 1.3rem;
+      }
+      .logo img { height: 42px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="gallery-header">
+  <div class="gallery-container">
+    <a href="index.html" class="gallery-logo">BARYAN <span>BADMINTON CLUB</span></a>
+    <a href="index.html" class="logo" aria-label="Baryan Badminton Academy home">
+      <img src="4FE486F5-D5C8-47AC-95F2-8CE3A7199446.png" alt="Baryan Badminton Academy logo" onerror="this.style.display='none'">
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="#gallery" class="active">Gallery</a>
+      <a href="membership.html" class="gallery-join">Join Us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="gallery-hero">
+    <div class="gallery-container">
+      <p class="eyebrow">BARYAN BADMINTON CLUB</p>
+      <h1>SEE THE <span>ACTION.</span></h1>
+      <p>Training. Competition. Community. Experience life at Baryan Badminton Club.</p>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-container">
+      <div class="section-heading">
+        <p class="eyebrow">PHOTO GALLERY</p>
+        <h2>LIFE AT <span>BARYAN.</span></h2>
+        <p>Photos from training sessions, matches, tournaments and club activities.</p>
+      </div>
+
+      <div class="gallery-filters">
+        <button class="filter-button active" data-filter="all">All</button>
+        <button class="filter-button" data-filter="training">Training</button>
+        <button class="filter-button" data-filter="competition">Competition</button>
+        <button class="filter-button" data-filter="community">Community</button>
+      </div>
+
+      <div class="gallery-empty" id="photoEmpty" style="display:none;">
+        <p>No photos yet.</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <div class="gallery-container">
+      <div class="section-heading">
+        <p class="eyebrow">VIDEO</p>
+        <h2>WATCH <span>THE GAME.</span></h2>
+      </div>
+      <div class="gallery-empty" id="videoEmpty" style="display:none;">
+        <p>No videos yet.</p>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+  </section>
+
+  <section class="gallery-cta">
+    <div class="gallery-container">
+      <p class="eyebrow">READY TO PLAY?</p>
+      <h2>BE PART OF <span>THE ACTION.</span></h2>
+      <a href="membership.html" class="orange-button">JOIN BARYAN</a>
+    </div>
+  </section>
+</main>
+
+<!-- Photo Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous">‹</button>
+  <div class="lightbox-content">
+    <img id="lightboxImage" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next">›</button>
+</div>
+
+<!-- Video Lightbox -->
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true">
+  <button class="video-lightbox-close" id="videoLightboxClose">×</button>
+  <button class="video-lightbox-prev" id="videoLightboxPrev">‹</button>
+  <div class="video-lightbox-content">
+    <video id="videoLightboxPlayer" controls playsinline></video>
+    <div class="video-lightbox-caption" id="videoLightboxCaption"></div>
+  </div>
+  <button class="video-lightbox-next" id="videoLightboxNext">›</button>
+</div>
+
+<footer class="gallery-footer">
+  <div class="gallery-container">
+    <div>
+      <a href="index.html" class="gallery-logo">BARYAN <span>BC</span></a>
+      <p>Train. Compete. Improve. Belong.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="membership.html">Membership</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Admin trigger -->
+<button class="admin-trigger" id="adminTrigger" title="Admin login">🔒</button>
+
+<!-- Admin login modal -->
+<div class="admin-login-modal" id="adminLoginModal">
+  <div class="admin-login-box">
+    <h2>Admin Login</h2>
+    <p class="error" id="loginError" style="display:none;"></p>
+    <input type="password" id="adminPassword" placeholder="Password" autocomplete="current-password">
+    <button class="admin-btn" id="loginBtn" style="width:100%;">Log in</button>
+    <button class="admin-btn secondary" id="cancelLogin" style="width:100%;margin-top:8px;">Cancel</button>
+  </div>
+</div>
+
+<!-- Admin bottom bar -->
+<div class="admin-bar" id="adminBar">
+  <div class="admin-bar-inner">
+    <h3>Admin Mode</h3>
+    <div class="admin-actions">
+      <button class="admin-btn" id="uploadPhotoBtn">+ Upload Photo</button>
+      <button class="admin-btn" id="uploadVideoBtn">+ Upload Video</button>
+      <button class="admin-btn secondary" id="manageBtn">Manage Media</button>
+      <button class="admin-btn danger" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+</div>
+
+<!-- Manage panel -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-panel-inner">
+    <button class="admin-close-panel" id="closePanel">Close</button>
+    <h2>Manage Photos</h2>
+    <div class="admin-media-grid" id="managePhotos"></div>
+    <h2>Manage Videos</h2>
+    <div class="admin-media-grid" id="manageVideos"></div>
+  </div>
+</div>
+
+<script>
+// ========================================
+// CONFIG – Baryan Gallery
+// ========================================
+const CLOUD_NAME = "ziudh5iv";
+const UPLOAD_PRESET_PHOTO = "baryan_gallery";
+const UPLOAD_PRESET_VIDEO = "baryan_gallery";
+const ADMIN_PASSWORD = "admin123";
+
+// Tags used for listing assets (must match what the upload preset / widget applies)
+const PHOTO_TAG = "baryan_photo";
+const VIDEO_TAG = "baryan_video";
+
+// ========================================
+// State
+// ========================================
+let isAdmin = false;
+let photos = [];          // { url, publicId, title, category, createdAt }
+let videos = [];          // { url, publicId, title, createdAt }
+let currentFilter = "all";
+let photoIndex = 0;
+let videoIndex = 0;
+
+// ========================================
+// DOM Elements
+// ========================================
+const galleryGrid      = document.getElementById("galleryGrid");
+const videoGrid        = document.getElementById("videoGrid");
+const photoEmpty       = document.getElementById("photoEmpty");
+const videoEmpty       = document.getElementById("videoEmpty");
+
+const lightbox         = document.getElementById("lightbox");
+const lightboxImage    = document.getElementById("lightboxImage");
+const lightboxCaption  = document.getElementById("lightboxCaption");
+const lightboxClose    = document.getElementById("lightboxClose");
+const lightboxPrev     = document.getElementById("lightboxPrev");
+const lightboxNext     = document.getElementById("lightboxNext");
+
+const videoLightbox        = document.getElementById("videoLightbox");
+const videoLightboxPlayer  = document.getElementById("videoLightboxPlayer");
+const videoLightboxCaption = document.getElementById("videoLightboxCaption");
+const videoLightboxClose   = document.getElementById("videoLightboxClose");
+const videoLightboxPrev    = document.getElementById("videoLightboxPrev");
+const videoLightboxNext    = document.getElementById("videoLightboxNext");
+
+const adminTrigger     = document.getElementById("adminTrigger");
+const adminLoginModal  = document.getElementById("adminLoginModal");
+const adminPassword    = document.getElementById("adminPassword");
+const loginBtn         = document.getElementById("loginBtn");
+const cancelLogin      = document.getElementById("cancelLogin");
+const loginError       = document.getElementById("loginError");
+
+const adminBar         = document.getElementById("adminBar");
+const uploadPhotoBtn   = document.getElementById("uploadPhotoBtn");
+const uploadVideoBtn   = document.getElementById("uploadVideoBtn");
+const manageBtn        = document.getElementById("manageBtn");
+const logoutBtn        = document.getElementById("logoutBtn");
+
+const adminPanel       = document.getElementById("adminPanel");
+const closePanel       = document.getElementById("closePanel");
+const managePhotos     = document.getElementById("managePhotos");
+const manageVideos     = document.getElementById("manageVideos");
+
+// ========================================
+// Cloudinary helpers
+// ========================================
+function thumbUrl(url, isVideo) {
+  if (isVideo) {
+    // Generate a frame thumbnail from the video
+    return url
+      .replace("/video/upload/", "/video/upload/so_0,w_600,h_400,c_fill,q_auto,f_jpg/")
+      .replace(/\.(mp4|mov|webm|m4v|avi|mkv)$/i, "");
+  }
+  return url.replace(
+    "/image/upload/",
+    "/image/upload/c_fill,w_600,h_600,q_auto,f_auto/"
+  );
+}
+
+async function fetchResources(tag, resourceType) {
+  // Public list endpoint (requires the upload preset to make assets listable or the tag to be public)
+  const url = `https://res.cloudinary.com/${CLOUD_NAME}/${resourceType}/list/${tag}.json?_=${Date.now()}`;
+  try {
+    const res = await fetch(url);
+    if (res.status === 404) return [];
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    return (data.resources || [])
+      .map(r => {
+        const format = r.format || (resourceType === "video" ? "mp4" : "jpg");
+        const version = r.version ? `v${r.version}/` : "";
+        const category = (r.context && r.context.custom && r.context.custom.category) ||
+                         (r.tags && r.tags.find(t => ["training","competition","community"].includes(t))) ||
+                         "community";
+        return {
+          url: `https://res.cloudinary.com/${CLOUD_NAME}/${resourceType}/upload/${version}${r.public_id}.${format}`,
+          publicId: r.public_id,
+          title: (r.context && r.context.custom && r.context.custom.caption) || r.public_id.split("/").pop() || "Untitled",
+          category: category,
+          createdAt: new Date(r.created_at).getTime()
+        };
+      })
+      .sort((a, b) => b.createdAt - a.createdAt);
+  } catch (err) {
+    console.error("Failed to fetch " + resourceType + " list:", err);
+    return [];
+  }
+}
+
+// ========================================
+// Render Photos
+// ========================================
+function renderPhotos() {
+  const filtered = currentFilter === "all"
+    ? photos
+    : photos.filter(p => p.category === currentFilter);
+
+  galleryGrid.innerHTML = "";
+
+  if (filtered.length === 0) {
+    photoEmpty.style.display = "block";
+    return;
+  }
+  photoEmpty.style.display = "none";
+
+  filtered.forEach((item, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "gallery-item";
+    btn.type = "button";
+    btn.innerHTML = `
+      <img src="${thumbUrl(item.url, false)}" alt="${item.title}" loading="lazy">
+      <div class="gallery-overlay">
+        <span>${item.category.toUpperCase()}</span>
+        <strong>${item.title}</strong>
+      </div>
+    `;
+    btn.addEventListener("click", () => openPhotoLightbox(filtered, idx));
+    galleryGrid.appendChild(btn);
+  });
+}
+
+// ========================================
+// Render Videos
+// ========================================
+function renderVideos() {
+  videoGrid.innerHTML = "";
+
+  if (videos.length === 0) {
+    videoEmpty.style.display = "block";
+    return;
+  }
+  videoEmpty.style.display = "none";
+
+  videos.forEach((item, idx) => {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.innerHTML = `
+      <div class="video-placeholder">
+        <img src="${thumbUrl(item.url, true)}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;">
+        <div class="video-play-overlay">
+          <button class="video-play" aria-label="Play">▶</button>
+        </div>
+      </div>
+      <div class="video-info">
+        <span>VIDEO</span>
+        <h3>${item.title}</h3>
+      </div>
+    `;
+    card.querySelector(".video-placeholder").addEventListener("click", () => openVideoLightbox(idx));
+    videoGrid.appendChild(card);
+  });
+}
+
+// ========================================
+// Photo Lightbox
+// ========================================
+let currentPhotoList = [];
+
+function openPhotoLightbox(list, index) {
+  currentPhotoList = list;
+  photoIndex = index;
+  showPhoto();
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("lightbox-open");
+}
+
+function showPhoto() {
+  if (!currentPhotoList.length) return;
+  const item = currentPhotoList[photoIndex];
+  lightboxImage.src = item.url;
+  lightboxImage.alt = item.title;
+  lightboxCaption.textContent = item.title + (item.category ? ` · ${item.category}` : "");
+}
+
+function closePhotoLightbox() {
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("lightbox-open");
+  lightboxImage.src = "";
+}
+
+function nextPhoto() {
+  if (!currentPhotoList.length) return;
+  photoIndex = (photoIndex + 1) % currentPhotoList.length;
+  showPhoto();
+}
+
+function prevPhoto() {
+  if (!currentPhotoList.length) return;
+  photoIndex = (photoIndex - 1 + currentPhotoList.length) % currentPhotoList.length;
+  showPhoto();
+}
+
+// ========================================
+// Video Lightbox
+// ========================================
+function openVideoLightbox(index) {
+  videoIndex = index;
+  showVideo();
+  videoLightbox.classList.add("open");
+  document.body.classList.add("lightbox-open");
+}
+
+function showVideo() {
+  if (!videos.length) return;
+  const item = videos[videoIndex];
+  videoLightboxPlayer.src = item.url;
+  videoLightboxCaption.textContent = item.title;
+  videoLightboxPlayer.play().catch(() => {});
+}
+
+function closeVideoLightbox() {
+  videoLightbox.classList.remove("open");
+  document.body.classList.remove("lightbox-open");
+  videoLightboxPlayer.pause();
+  videoLightboxPlayer.src = "";
+}
+
+function nextVideo() {
+  if (!videos.length) return;
+  videoIndex = (videoIndex + 1) % videos.length;
+  showVideo();
+}
+
+function prevVideo() {
+  if (!videos.length) return;
+  videoIndex = (videoIndex - 1 + videos.length) % videos.length;
+  showVideo();
+}
+
+// ========================================
+// Filters
+// ========================================
+document.querySelectorAll(".filter-button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter = btn.dataset.filter;
+    renderPhotos();
+  });
+});
+
+// ========================================
+// Admin Login / Logout
+// ========================================
+function setAdmin(loggedIn) {
+  isAdmin = loggedIn;
+  adminBar.classList.toggle("visible", loggedIn);
+  adminTrigger.classList.toggle("hidden", loggedIn);
+  if (!loggedIn) {
+    adminPanel.classList.remove("open");
+  }
+}
+
+adminTrigger.addEventListener("click", () => {
+  adminLoginModal.classList.add("open");
+  adminPassword.value = "";
+  loginError.style.display = "none";
+  setTimeout(() => adminPassword.focus(), 50);
+});
+
+cancelLogin.addEventListener("click", () => {
+  adminLoginModal.classList.remove("open");
+});
+
+loginBtn.addEventListener("click", () => {
+  if (adminPassword.value === ADMIN_PASSWORD) {
+    setAdmin(true);
+    adminLoginModal.classList.remove("open");
+  } else {
+    loginError.textContent = "Incorrect password";
+    loginError.style.display = "block";
+    adminPassword.focus();
+  }
+});
+
+adminPassword.addEventListener("keydown", e => {
+  if (e.key === "Enter") loginBtn.click();
+});
+
+logoutBtn.addEventListener("click", () => setAdmin(false));
+
+// ========================================
+// Cloudinary Upload Widget
+// ========================================
+function openUploadWidget(resourceType) {
+  const isVideo = resourceType === "video";
+  const preset = isVideo ? UPLOAD_PRESET_VIDEO : UPLOAD_PRESET_PHOTO;
+  const tag = isVideo ? VIDEO_TAG : PHOTO_TAG;
+
+  const widget = cloudinary.createUploadWidget(
+    {
+      cloudName: CLOUD_NAME,
+      uploadPreset: preset,
+      sources: ["local", "camera", "url"],
+      multiple: true,
+      maxFiles: 20,
+      resourceType: resourceType,
+      clientAllowedFormats: isVideo
+        ? ["mp4", "mov", "webm", "m4v"]
+        : ["jpg", "jpeg", "png", "webp", "gif", "heic"],
+      maxFileSize: isVideo ? 100000000 : 15000000, // 100MB video / 15MB image
+      folder: isVideo ? "baryan/gallery/videos" : "baryan/gallery/photos",
+      tags: [tag],
+      context: { category: "community" }, // default category; can be changed later in manage
+      styles: {
+        palette: {
+          window: "#FFFFFF",
+          windowBorder: "#0757c9",
+          tabIcon: "#0757c9",
+          menuIcons: "#5A616A",
+          textDark: "#000000",
+          textLight: "#FFFFFF",
+          link: "#0757c9",
+          action: "#f97316",
+          inactiveTabIcon: "#0E2F5A",
+          error: "#dc2626",
+          inProgress: "#0757c9",
+          complete: "#20B832",
+          sourceBg: "#E4EBF1"
+        }
+      }
+    },
+    (error, result) => {
+      if (error) {
+        console.error("Upload error:", error);
+        return;
+      }
+      if (result && result.event === "success") {
+        console.log("Uploaded:", result.info.public_id);
+      }
+      if (result && result.event === "close") {
+        // Refresh galleries after widget closes
+        loadMedia();
+      }
+    }
+  );
+  widget.open();
+}
+
+uploadPhotoBtn.addEventListener("click", () => openUploadWidget("image"));
+uploadVideoBtn.addEventListener("click", () => openUploadWidget("video"));
+
+// ========================================
+// Manage Panel
+// ========================================
+function renderManagePanel() {
+  managePhotos.innerHTML = "";
+  manageVideos.innerHTML = "";
+
+  photos.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "admin-media-card";
+    card.innerHTML = `
+      <img src="${thumbUrl(item.url, false)}" alt="">
+      <button class="del" title="Delete (note: requires Cloudinary authenticated delete)">×</button>
+    `;
+    card.querySelector(".del").addEventListener("click", () => {
+      alert("To permanently delete media, use the Cloudinary Media Library dashboard.\n\nPublic ID: " + item.publicId);
+    });
+    managePhotos.appendChild(card);
+  });
+
+  videos.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "admin-media-card";
+    card.innerHTML = `
+      <img src="${thumbUrl(item.url, true)}" alt="">
+      <button class="del" title="Delete (note: requires Cloudinary authenticated delete)">×</button>
+    `;
+    card.querySelector(".del").addEventListener("click", () => {
+      alert("To permanently delete media, use the Cloudinary Media Library dashboard.\n\nPublic ID: " + item.publicId);
+    });
+    manageVideos.appendChild(card);
+  });
+}
+
+manageBtn.addEventListener("click", () => {
+  renderManagePanel();
+  adminPanel.classList.add("open");
+});
+
+closePanel.addEventListener("click", () => {
+  adminPanel.classList.remove("open");
+});
+
+// ========================================
+// Keyboard & click handlers for lightboxes
+// ========================================
+lightboxClose.addEventListener("click", closePhotoLightbox);
+lightboxPrev.addEventListener("click", prevPhoto);
+lightboxNext.addEventListener("click", nextPhoto);
+lightbox.addEventListener("click", e => {
+  if (e.target === lightbox) closePhotoLightbox();
+});
+
+videoLightboxClose.addEventListener("click", closeVideoLightbox);
+videoLightboxPrev.addEventListener("click", prevVideo);
+videoLightboxNext.addEventListener("click", nextVideo);
+videoLightbox.addEventListener("click", e => {
+  if (e.target === videoLightbox) closeVideoLightbox();
+});
+
+document.addEventListener("keydown", e => {
+  if (lightbox.classList.contains("open")) {
+    if (e.key === "Escape") closePhotoLightbox();
+    if (e.key === "ArrowRight") nextPhoto();
+    if (e.key === "ArrowLeft") prevPhoto();
+  }
+  if (videoLightbox.classList.contains("open")) {
+    if (e.key === "Escape") closeVideoLightbox();
+    if (e.key === "ArrowRight") nextVideo();
+    if (e.key === "ArrowLeft") prevVideo();
+  }
+});
+
+// ========================================
+// Load everything
+// ========================================
+async function loadMedia() {
+  const [photoList, videoList] = await Promise.all([
+    fetchResources(PHOTO_TAG, "image"),
+    fetchResources(VIDEO_TAG, "video")
+  ]);
+  photos = photoList;
+  videos = videoList;
+  renderPhotos();
+  renderVideos();
+}
+
+// Start
+loadMedia();
+</script>
+</body>
+</html>
